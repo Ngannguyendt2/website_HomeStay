@@ -5,11 +5,11 @@
                 <div class="col-lg-6 header-top-left">
                     <div class="top-info">
                         <i class="fa fa-user-circle-o"></i>
-                        {{ Auth::user()->name }}
+{{--                        {{ Auth::user()->name }}--}}
                     </div>
                     <div class="top-info">
                         <i class="fa fa-envelope"></i>
-                        {{ Auth::user()->email }}
+{{--                        {{ Auth::user()->email }}--}}
                     </div>
                 </div>
                 <div class="col-lg-6 text-lg-right header-top-right">
