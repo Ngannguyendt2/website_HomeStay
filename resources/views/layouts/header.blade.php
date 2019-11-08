@@ -11,9 +11,9 @@
                     </div>
                     <div class="top-info">
                         @if(isset(Auth::user()->email))
-                        <i class="fa fa-envelope"></i>
-                        {{Auth::user()->email}}
-                    @endif
+                            <i class="fa fa-envelope"></i>
+                            {{Auth::user()->email}}
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-6 text-lg-right header-top-right">
