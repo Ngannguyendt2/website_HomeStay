@@ -14,9 +14,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('web.index');
-});
+Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
+Route::get('/' , 'HomeStayController@index')->name('web.index');
+
 
 Auth::routes();
 
