@@ -47,16 +47,17 @@
     <div class="container">
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
-        <div class="col-md-12" style="margin-top: 20px">
-            <h3 align="center">Thông tin cá nhân</h3>
+        <form method="post" action="{{route('user.update',$user->id)}}">
+            @csrf
+            <div class="col-md-12" style="margin-top: 20px">
+                <h3 align="center">Thông tin cá nhân</h3>
 
-            <div class="row" style="margin-top: 30px">
+                <div class="row" style="margin-top: 30px">
 
-                <div class="col-md-3">
-                    <img src="{{asset('storage/'.$user->image)}}" alt="">
-                </div>
-                <div class="col-md-8">
-                    <form>
+                    <div class="col-md-3">
+                        <img src="{{asset('storage/'.$user->image)}}" alt="">
+                    </div>
+                    <div class="col-md-8">
 
                         <div class="row">
                             <div class="col-md-12">
@@ -68,17 +69,17 @@
                             </div>
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ Email:</label>
-                                <input class="form-control" value="{{$user->email}}" name="name">
+                                <input class="form-control" value="{{$user->email}}" name="email">
                             </div>
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Số điện thoại:</label>
                                 <input placeholder="Thêm số điện thoại..." class="form-control" value="{{$user->phone}}"
-                                       name="name">
+                                       name="phone">
                             </div>
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ:</label>
                                 <input placeholder="Thêm địa chỉ của bạn" class="form-control"
-                                       value="{{$user->address}}" name="name">
+                                       value="{{$user->address}}" name="address">
                             </div>
                             <div class="col-md-12" style="margin-top: 20px">
                                 <strong>Thêm thông tin liên hệ</strong>
@@ -98,21 +99,24 @@
                                 <strong>Thay đổi lại mật khẩu</strong>
                             </div>
                             <div style="margin-top: 10px" class='col-md-12'>
-                                <input placeholder="Mật khẩu cũ của bạn" class="form-control" name="password">
+                                    <input placeholder="Mật khẩu cũ của bạn" type="password" class="form-control" name="password">
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
-                                <input placeholder="Mật khẩu mới của bạn" class="form-control" name="new_password">
+                                <input placeholder="Mật khẩu mới của bạn" type="password" class="form-control"
+                                       name="new_password">
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
-                                <input style="width: 100px" class="btn btn-success" type="submit" name="password"
-                                       value="Lưu">
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
                             </div>
                         </div>
-                    </form>
+
+                    </div>
 
                 </div>
+
             </div>
-        </div>
+        </form>
+
     </div>
 </div>
 

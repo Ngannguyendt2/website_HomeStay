@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\UserServiceInterface;
 use Illuminate\Http\Request;
 
+
 class UserController extends Controller
 {
     //
@@ -19,6 +20,12 @@ class UserController extends Controller
     {
         $user = $this->profileService->getUserById($id);
         return view('user.profile', compact('user'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $user = $this->profileService->getUserById($id);
+        $this->profileService->update($user, $request);
 
     }
 
