@@ -15,10 +15,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
-Route::get('/' , 'HomeStayController@index')->name('web.index');
+Route::get('/', 'HomeStayController@index')->name('web.index');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/{id}/profile','UserController@index')->name('user.profile');
+Route::get('/{id}/profile', 'UserController@index')->name('user.profile');
+Route::post('/{id}/update', 'UserController@update')->name('user.update');

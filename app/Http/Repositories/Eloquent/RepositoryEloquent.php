@@ -38,4 +38,10 @@ abstract class RepositoryEloquent implements RepositoryInterface
         // TODO: Implement getUserProfileById() method.
         return $this->model->find($id);
     }
+
+    public function update($object)
+    {
+        // TODO: Implement update() method.
+        $object->save();
+    }
 }
