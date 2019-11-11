@@ -37,11 +37,11 @@
             <a href="{{route('register')}}"><strong style="margin-left: 20px; color: firebrick ">Đăng kí</strong></a>
         </p>
         <p class="copyright w3l">
-            <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Trang chủ</i></a>
-            <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Danh sách nhà</i></a>
-            <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Về chúng tôi</i></a>
+            <a href="{{route('web.index')}}"><i style="margin-left: 20px">Trang chủ</i></a>
+            <a href="{{route('web.category')}}"><i style="margin-left: 20px">Danh sách nhà</i></a>
+            <a href="{{route('web.about_us')}}"><i style="margin-left: 20px">Về chúng tôi</i></a>
             <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Tin tức</i></a>
-            <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Hợp tác</i></a>
+            <a href="{{route('web.contact')}}"><i style="margin-left: 20px">Hợp tác</i></a>
         </p>
         <hr>
     </div>
@@ -59,7 +59,7 @@
                     <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-youtube"></i></a></li>
                     <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="{{ url('auth/google') }}"><i class="fa fa-google-plus"></i></a></li>
                 </ul>
             </div>
             <div class="clear"></div>

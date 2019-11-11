@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'admin'
+        'name', 'email', 'password', 'admin', 'google_id'
     ];
 
     /**
@@ -37,8 +37,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function profile()
-    {
-        return $this->hasOne('App\UserProfile');
-    }
 }
