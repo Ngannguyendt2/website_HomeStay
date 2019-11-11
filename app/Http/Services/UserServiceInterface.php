@@ -4,11 +4,9 @@
 namespace App\Http\Services;
 
 
-interface UserProfileServiceInterface
+interface UserServiceInterface
 {
     public function getAll();
-
-    public function getUserProfileById($id);
 
     public function getUserById($id);
 }

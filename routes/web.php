@@ -21,4 +21,5 @@ Route::get('/' , 'HomeStayController@index')->name('web.index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('profile','HomeStayController@profileUser')->name('user.profile');
+
+Route::get('/{id}/profile','UserController@index')->name('user.profile');
