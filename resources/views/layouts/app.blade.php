@@ -114,17 +114,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
     </div>
     <div class="col-md-12">
-        <h1 class="w3ls">Official Signup Form</h1>
+        <h1 class="w3ls">@yield('title')</h1>
         <div class="content-w3ls">
             <div class="content-agile1">
-                <h2 class="agileits1">Official</h2>
-                <p class="agileits2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h2 class="agileits1">HomeStay</h2>
+                <p class="agileits2">Sống theo phong cách của bạn</p>
             </div>
             <div class="content-agile2">
-
                 @yield('content')
-
-                <p class="wthree w3l">Fast Signup With Your Favourite Social Profile</p>
+                <p class="wthree w3l">Đăng nhập nhanh với trang mạng xã hội của bạn</p>
                 <ul class="social-agileinfo wthree2">
                     <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-youtube"></i></a></li>
@@ -134,10 +132,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="clear"></div>
         </div>
-        <p class="copyright w3l">© 2017 Official Signup Form. All Rights Reserved | Design by <a
-                    href="https://w3layouts.com/"
-                    target="_blank">W3layouts</a>
-        </p>
+        <p class="copyright w3l">© 2019 Được tạo ra bởi nhóm chị Dậu</p>
     </div>
 </div>
 </body>
