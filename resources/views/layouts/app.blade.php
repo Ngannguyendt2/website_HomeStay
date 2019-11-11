@@ -99,6 +99,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         function hideURLbar() {
             window.scrollTo(0, 1);
         } </script>
+    <link href="{{asset('img/favicon.ico')}}" rel="shortcut icon"/>
+
     <!-- fonts -->
     <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
@@ -109,36 +111,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- /css -->
 </head>
 <body>
-<div class="row">
-    <div class="col-md-12">
-        dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-    </div>
-    <div class="col-md-12">
-        <h1 class="w3ls">Official Signup Form</h1>
-        <div class="content-w3ls">
-            <div class="content-agile1">
-                <h2 class="agileits1">Official</h2>
-                <p class="agileits2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="content-agile2">
-
-                @yield('content')
-
-                <p class="wthree w3l">Fast Signup With Your Favourite Social Profile</p>
-                <ul class="social-agileinfo wthree2">
-                    <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
-            </div>
-            <div class="clear"></div>
+<div class="container">
+    <p class="copyright w3l">
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px" class="fa fa-facebook"></i></a>
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px" class="fa fa-twitter"></i></a>
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px" class="fa fa-instagram"></i></a>
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px" class="fa fa-pinterest"></i></a>
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px" class="fa fa-linkedin"></i></a>
+        <a href="{{route('login')}}"><strong style="margin-left: 20px; color: firebrick">Đăng nhập</strong></a>
+        <a href="{{route('register')}}"><strong style="margin-left: 20px; color: firebrick ">Đăng kí</strong></a>
+    </p>
+    <p class="copyright w3l">
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Trang chủ</i></a>
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Danh sách nhà</i></a>
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Về chúng tôi</i></a>
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Tin tức</i></a>
+        <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px">Hợp tác</i></a>
+    </p>
+    <hr>
+    <h1 class="w3ls">Official Signup Form</h1>
+    <div class="content-w3ls">
+        <div class="content-agile1">
+            <h2 class="agileits1">Official</h2>
+            <p class="agileits2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
-        <p class="copyright w3l">© 2017 Official Signup Form. All Rights Reserved | Design by <a
-                    href="https://w3layouts.com/"
-                    target="_blank">W3layouts</a>
-        </p>
+        <div class="content-agile2">
+
+            @yield('content')
+
+            <p class="wthree w3l">Fast Signup With Your Favourite Social Profile</p>
+            <ul class="social-agileinfo wthree2">
+                <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
     </div>
+    <p class="copyright w3l">© 2017 Official Signup Form. All Rights Reserved | Design by <a
+                href="https://w3layouts.com/"
+                target="_blank">W3layouts</a>
+    </p>
 </div>
 </body>
 </html>
