@@ -67,20 +67,32 @@
                                 <label>Tên đầy đủ:</label>
                                 <input class="form-control" value="{{$user->name}}" name="name">
                             </div>
+                            @if ($errors->has('name'))
+                              <p class="text text-danger">{{ $errors->first('name')}}</p>
+                            @endif
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ Email:</label>
                                 <input class="form-control" value="{{$user->email}}" name="email">
                             </div>
+                            @if ($errors->has('email'))
+                                <p class="text text-danger">{{ $errors->first('email')}}</p>
+                            @endif
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Số điện thoại:</label>
                                 <input placeholder="Thêm số điện thoại..." class="form-control" value="{{$user->phone}}"
                                        name="phone">
                             </div>
+                            @if ($errors->has('phone'))
+                                <p class="text text-danger">{{ $errors->first('phone')}}</p>
+                            @endif
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ:</label>
                                 <input placeholder="Thêm địa chỉ của bạn" class="form-control"
                                        value="{{$user->address}}" name="address">
                             </div>
+                            @if ($errors->has('address'))
+                                <p class="text text-danger">{{ $errors->first('address')}}</p>
+                            @endif
                             <div class="col-md-12" style="margin-top: 20px">
                                 <strong>Thêm thông tin liên hệ</strong>
                             </div>
@@ -99,7 +111,8 @@
                                 <strong>Thay đổi lại mật khẩu</strong>
                             </div>
                             <div style="margin-top: 10px" class='col-md-12'>
-                                    <input placeholder="Mật khẩu cũ của bạn" type="password" class="form-control" name="password">
+                                <input placeholder="Mật khẩu cũ của bạn" type="password" class="form-control"
+                                       name="password">
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
                                 <input placeholder="Mật khẩu mới của bạn" type="password" class="form-control"
