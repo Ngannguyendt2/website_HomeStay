@@ -49,9 +49,9 @@
                                    style="color: black">
                                     {{ __('Logout') }}
                                 </a>
-                                {{--                                    <a class="dropdown-item">--}}
-                                {{--                                        Thêm sau--}}
-                                {{--                                    </a>--}}
+{{--                                                                    <a class="dropdown-item">--}}
+{{--                                                                        Thêm sau--}}
+{{--                                                                    </a>--}}
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">

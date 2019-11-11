@@ -111,7 +111,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
 <div class="row">
     <div class="col-md-12">
-        dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
     </div>
     <div class="col-md-12">
         <h1 class="w3ls">Official Signup Form</h1>
@@ -126,9 +126,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <p class="wthree w3l">Fast Signup With Your Favourite Social Profile</p>
                 <ul class="social-agileinfo wthree2">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                 </ul>
             </div>
