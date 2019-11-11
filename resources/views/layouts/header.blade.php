@@ -47,11 +47,11 @@
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                                    style="color: black">
-                                    {{ __('Logout') }}
+                                    Đăng xuất
                                 </a>
-{{--                                                                    <a class="dropdown-item">--}}
-{{--                                                                        Thêm sau--}}
-{{--                                                                    </a>--}}
+                                <a style="color: black" class="dropdown-item" href="{{route('user.profile')}}">
+                                    Thông tin cá nhân
+                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
