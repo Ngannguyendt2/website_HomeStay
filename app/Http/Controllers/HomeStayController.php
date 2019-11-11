@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class HomeStayController extends Controller
 {
     public function index() {
-        return view('web.index');
+        return view('auth.profile');
     }
 
 
