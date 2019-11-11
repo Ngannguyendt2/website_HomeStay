@@ -21,5 +21,9 @@ Route::get('/', 'HomeStayController@index')->name('web.index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/{id}/profile', 'UserController@index')->name('user.profile');
-Route::post('/{id}/update', 'UserController@update')->name('user.update');
+
+
+Route::prefix('/user')->group(function (){
+    Route::get('/{id}/profile', 'UserController@index')->name('user.profile');
+    Route::post('/{id}/update', 'UserController@update')->name('user.update');
+});
