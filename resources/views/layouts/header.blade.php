@@ -75,10 +75,10 @@
                     </div>
                     <ul class="main-menu">
                         <li><a href="{{route('web.index')}}">Trang chủ</a></li>
-                        <li><a href="categories.html">Danh sách nhà</a></li>
-                        <li><a href="about.html">Về chúng tôi</a></li>
-                        <li><a href="blog.html">Tin tức</a></li>
-                        <li><a href="contact.html">Hợp tác</a></li>
+                        <li><a href="{{route('web.category')}}">Danh sách nhà</a></li>
+                        <li><a href="{{route('web.about_us')}}">Về chúng tôi</a></li>
+                        <li><a href="{{route('web.comingSoon')}}">Tin tức</a></li>
+                        <li><a href="{{route('web.contact')}}">Hợp tác</a></li>
                     </ul>
                 </div>
             </div>

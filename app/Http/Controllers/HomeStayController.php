@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeStayController extends Controller
@@ -19,7 +20,20 @@ class HomeStayController extends Controller
     }
 
 
-    public function profileUser() {
-        return view('user.profile');
+    public function profileUser($id) {
+        $user = User::findOrFail($id);
+        return view('user.profile', compact('user'));
+    }
+
+    public function category() {
+        return view('web.category');
+    }
+
+    public function aboutUs() {
+        return view('web.about_us');
+    }
+
+    public function contact() {
+        return view('web.contact');
     }
 }

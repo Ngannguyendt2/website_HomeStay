@@ -41,8 +41,8 @@
     <section class="properties-section spad">
         <div class="container">
             <div class="section-title text-center">
-                <h3>RECENT PROPERTIES</h3>
-                <p>Discover how much the latest properties have been sold for</p>
+                <h3>Căn hộ gần đây</h3>
+                <p>Khám phá những căn HomStay mới nhất hot nhất thị trường đang được cho thuê</p>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -145,8 +145,8 @@
     <section class="feature-section spad">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Featured Listings</h3>
-                <p>Browse houses and flats for sale and to rent in your area</p>
+                <h3>Danh sách nhà đẹp</h3>
+                <p>Duyệt nhà và căn hộ để bán và cho thuê trong khu vực của bạn</p>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6">
@@ -370,25 +370,25 @@
     <section class="feature-category-section spad">
         <div class="container">
             <div class="section-title text-center">
-                <h3>LOOKING PROPERTY</h3>
-                <p>What kind of property are you looking for? We will help you</p>
+                <h3>Loại nhà HomeStay</h3>
+                <p>Những loại HomeStay bạn đang tìm kiếm? Chúng tôi sẽ giúp bạn</p>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 f-cata">
-                    <img src="../../../../public/img/feature-cate/1.jpg" alt="">
-                    <h5>Apartment for rent</h5>
+                    <img src="{{asset('img/feature-cate/1.jpg')}}" alt="">
+                    <h5>Căn hộ cho thuê</h5>
                 </div>
                 <div class="col-lg-3 col-md-6 f-cata">
-                    <img src="../../../../public/img/feature-cate/2.jpg" alt="">
-                    <h5>Family Home</h5>
+                    <img src="{{asset('img/feature-cate/2.jpg')}}" alt="">
+                    <h5>Biệt thự gia đình</h5>
                 </div>
                 <div class="col-lg-3 col-md-6 f-cata">
-                    <img src="../../../../public/img/feature-cate/3.jpg" alt="">
-                    <h5>Resort Villas</h5>
+                    <img src="{{asset('img/feature-cate/3.jpg')}}" alt="">
+                    <h5>Khu nghỉ dưỡng</h5>
                 </div>
                 <div class="col-lg-3 col-md-6 f-cata">
-                    <img src="../../../../public/img/feature-cate/4.jpg" alt="">
-                    <h5>Office Building</h5>
+                    <img src="{{asset('img/feature-cate/4.jpg')}}" alt="">
+                    <h5>Tòa nhà văn phòng</h5>
                 </div>
             </div>
         </div>
@@ -397,7 +397,7 @@
 
 
     <!-- Review section -->
-    <section class="review-section set-bg" data-setbg="img/review-bg.jpg">
+    <section class="review-section set-bg" data-setbg="{{asset('img/review-bg.jpg')}}">
         <div class="container">
             <div class="review-slider owl-carousel">
                 <div class="review-item text-white">
@@ -446,8 +446,8 @@
     <section class="gallery-section spad">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Popular Places</h3>
-                <p>We understand the value and importance of place</p>
+                <h3>Khu vực phổ biến</h3>
+                <p>Chúng tôi hiểu giá trị và tầm quan trọng của khu vực</p>
             </div>
             <div class="gallery">
                 <div class="grid-sizer"></div>

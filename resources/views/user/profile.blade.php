@@ -38,7 +38,7 @@
 
 
 <!-- Page top section -->
-<section class="page-top-section set-bg" data-setbg="img/page-top-bg.jpg">
+<section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
 </section>
 <!--  Page top end -->
 
@@ -53,6 +53,7 @@
             <div class="row" style="margin-top: 30px">
 
                 <div class="col-md-3">
+
                     <img src="{{asset('storage/'.$user->image)}}" alt="">
                 </div>
                 <div class="col-md-8">
