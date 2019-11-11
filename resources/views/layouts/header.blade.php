@@ -47,11 +47,11 @@
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                                    style="color: black">
-                                    {{ __('Logout') }}
+                                    Đăng xuất
                                 </a>
-{{--                                                                    <a class="dropdown-item">--}}
-{{--                                                                        Thêm sau--}}
-{{--                                                                    </a>--}}
+                                <a style="color: black" class="dropdown-item" href="{{route('user.profile')}}">
+                                    Thông tin cá nhân
+                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
@@ -69,17 +69,16 @@
         <div class="row">
             <div class="col-12">
                 <div class="site-navbar">
-                    <a href="#" class="site-logo"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                    <a href="{{route('web.index')}}" class="site-logo"><img src="{{asset('img/logo.png')}}" ></a>
                     <div class="nav-switch">
                         <i class="fa fa-bars"></i>
                     </div>
                     <ul class="main-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="categories.html">FEATURED LISTING</a></li>
-                        <li><a href="about.html">ABOUT US</a></li>
-                        <li><a href="single-list.html">Pages</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{route('web.index')}}">Trang chủ</a></li>
+                        <li><a href="categories.html">Danh sách nhà</a></li>
+                        <li><a href="about.html">Về chúng tôi</a></li>
+                        <li><a href="blog.html">Tin tức</a></li>
+                        <li><a href="contact.html">Hợp tác</a></li>
                     </ul>
                 </div>
             </div>
