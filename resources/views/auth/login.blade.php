@@ -36,13 +36,11 @@
             </div>
         </div>
 
-
         <div>
-            <input type="submit" class="register" value="Register">
+            <input type="submit" class="register" value="Login">
             @if (Route::has('password.request'))
                 <a style="margin-left: 120px" class="btn btn-link" href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
-
                 </a>
 
             @endif
