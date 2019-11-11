@@ -49,7 +49,7 @@
                                    style="color: black">
                                     Đăng xuất
                                 </a>
-                                <a style="color: black" class="dropdown-item" href="{{route('user.profile')}}">
+                                <a style="color: black" class="dropdown-item" href="{{route('user.profile',Auth::user()->id)}}">
                                     Thông tin cá nhân
                                 </a>
 

@@ -53,7 +53,7 @@
             <div class="row" style="margin-top: 30px">
 
                 <div class="col-md-3">
-                    Hình ảnh ở đây
+                    <img src="{{asset('storage/'.$user->image)}}" alt="">
                 </div>
                 <div class="col-md-8">
                     <form>
@@ -64,19 +64,21 @@
                             </div>
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Tên đầy đủ:</label>
-                                <input class="form-control" value="" name="name">
+                                <input class="form-control" value="{{$user->name}}" name="name">
                             </div>
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ Email:</label>
-                                <input class="form-control" value="" name="name">
+                                <input class="form-control" value="{{$user->email}}" name="name">
                             </div>
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Số điện thoại:</label>
-                                <input placeholder="Thêm số điện thoại..." class="form-control" value="" name="name">
+                                <input placeholder="Thêm số điện thoại..." class="form-control" value="{{$user->phone}}"
+                                       name="name">
                             </div>
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ:</label>
-                                <input placeholder="Thêm địa chỉ của bạn" class="form-control" value="" name="name">
+                                <input placeholder="Thêm địa chỉ của bạn" class="form-control"
+                                       value="{{$user->address}}" name="name">
                             </div>
                             <div class="col-md-12" style="margin-top: 20px">
                                 <strong>Thêm thông tin liên hệ</strong>
