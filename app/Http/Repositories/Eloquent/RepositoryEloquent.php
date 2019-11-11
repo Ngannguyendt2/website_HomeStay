@@ -33,7 +33,7 @@ abstract class RepositoryEloquent implements RepositoryInterface
         return $this->model->all();
     }
 
-    public function getUserProfileById($id)
+    public function getById($id)
     {
         // TODO: Implement getUserProfileById() method.
         return $this->model->find($id);
