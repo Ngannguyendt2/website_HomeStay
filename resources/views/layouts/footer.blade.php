@@ -5,27 +5,27 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 footer-widget">
                 <img src="../../../../public/img/logo.png" alt="">
-                <p>Lorem ipsum dolo sit azmet, consecter dipise consult  elit. Maecenas mamus antesme non anean a dolor sample tempor nuncest erat.</p>
+                <p>Dự án project của nhóm 'Chị Dậu' với tên gọi Dậu homestay hứa hẹn sẽ mang cho người dùng trải nhiệm tuyệt vời nhất từ trước tới nay khi thuê căn hộ của nhóm chúng tôi.</p>
                 <div class="social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a>
+                    <a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a>
+                    <a href="{{route('web.comingSoon')}}"><i class="fa fa-instagram"></i></a>
+                    <a href="{{route('web.comingSoon')}}"><i class="fa fa-pinterest"></i></a>
+                    <a href="{{route('web.comingSoon')}}"><i class="fa fa-linkedin"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 footer-widget">
                 <div class="contact-widget">
-                    <h5 class="fw-title">CONTACT US</h5>
-                    <p><i class="fa fa-map-marker"></i>3711-2880 Nulla St, Mankato, Mississippi </p>
-                    <p><i class="fa fa-phone"></i>(+88) 666 121 4321</p>
-                    <p><i class="fa fa-envelope"></i>info.leramiz@colorlib.com</p>
+                    <h5 class="fw-title">Về chúng tôi</h5>
+                    <p><i class="fa fa-map-marker"></i>Lô đất TT04 Khu đô thị Moncity, phố Hàm Nghi , Hà Nội</p>
+                    <p><i class="fa fa-phone"></i>03.4912.4936</p>
+                    <p><i class="fa fa-envelope"></i>thanhcodegym@gmail.com</p>
                     <p><i class="fa fa-clock-o"></i>Mon - Sat, 08 AM - 06 PM</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 footer-widget">
                 <div class="double-menu-widget">
-                    <h5 class="fw-title">POPULAR PLACES</h5>
+                    <h5 class="fw-title">Địa chỉ phổ biến</h5>
                     <ul>
                         <li><a href="">Florida</a></li>
                         <li><a href="">New York</a></li>
@@ -44,10 +44,10 @@
             </div>
             <div class="col-lg-3 col-md-6  footer-widget">
                 <div class="newslatter-widget">
-                    <h5 class="fw-title">NEWSLETTER</h5>
-                    <p>Subscribe your email to get the latest news and new offer also discount</p>
+                    <h5 class="fw-title">Về bạn</h5>
+                    <p>Để lại địa chỉ email của bạn để có thể nhận được tin tức mới nhât từ chúng tôi</p>
                     <form class="footer-newslatter-form">
-                        <input type="text" placeholder="Email address">
+                        <input type="text" placeholder="Your email address">
                         <button><i class="fa fa-send"></i></button>
                     </form>
                 </div>
