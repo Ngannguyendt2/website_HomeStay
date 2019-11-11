@@ -13,7 +13,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         $user = new User;
         $user->name = 'ngannguyen';
         $user->email = 'ngannguyendt2haui@gmail.com';
