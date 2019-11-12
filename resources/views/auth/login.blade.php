@@ -2,8 +2,8 @@
 @section('content')
     <form action="{{route('login')}}" method="post">
         @csrf
-        <div class="form-control w3layouts">
-            <input type="email" id="email" class="@error('email') is-invalid @enderror" name="email"
+        <div class="form-control">
+            <input type="email" id="email" class="@error('email') is-invalid @enderror " name="email"
                    placeholder="mail@example.com"
                    title="Please enter a valid email">
             @error('email')
@@ -13,11 +13,13 @@
             @enderror
         </div>
 
+        </div>
+
         <div class="form-control agileinfo">
             <input type="password" class="lock @error('password') is-invalid @enderror" name="password"
                    placeholder="Password" id="password1">
             @error('password')
-            <span  class="invalid-feedback" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <p style="color:red; margin-left: 50px; margin-bottom: 10px">{{ $message }}</p>
             </span>
             @enderror
