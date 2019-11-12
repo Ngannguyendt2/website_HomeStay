@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -31,7 +32,6 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|min:5|max:50',
             'phone' => ['required', Rule::unique('users')->ignore(Auth::user()->id),],
             'address' => 'required|min:5',
-            'image' => 'mimes:jpeg,bmp,png'
         ];
     }
 }
