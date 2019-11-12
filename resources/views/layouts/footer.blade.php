@@ -1,6 +1,6 @@
 
 <!-- Footer section -->
-<footer class="footer-section set-bg" data-setbg="img/footer-bg.jpg">
+<footer class="footer-section set-bg" data-setbg="{{asset('img/footer-bg.jpg')}}">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6 footer-widget">
