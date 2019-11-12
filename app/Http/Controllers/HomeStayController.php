@@ -36,4 +36,8 @@ class HomeStayController extends Controller
     public function contact() {
         return view('web.contact');
     }
+
+    public function detail() {
+        return view('web.detail');
+    }
 }
