@@ -26,11 +26,15 @@ class UserController extends Controller
 
     public function update($id, UpdateUserRequest $request)
     {
-
-
-        $user = $this->profileService->getUserById($id);
-        $this->profileService->update($user, $request);
-
+        try {
+            $user = $this->profileService->getUserById($id);
+            $this->profileService->update($user, $request);
+            $message = 'Cap nhat thanh cong';
+            $request->session()->flash('success', $message);
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+        return redirect()->back();
     }
 
 }
