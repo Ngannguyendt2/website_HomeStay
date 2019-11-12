@@ -38,7 +38,7 @@
 
 
 <!-- Page top section -->
-<section class="page-top-section set-bg" data-setbg="img/page-top-bg.jpg">
+<section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
 </section>
 <!--  Page top end -->
 
@@ -55,6 +55,7 @@
                 <div class="row" style="margin-top: 30px">
 
                     <div class="col-md-3">
+
                         <img src="{{asset('storage/'.$user->image)}}" alt="">
                         <input type="file" class="form-control" name="image">
                     </div>
@@ -142,6 +143,7 @@
 
 <!--====== Javascripts & Jquery ======-->
 <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/masonry.pkgd.min.js')}}"></script>

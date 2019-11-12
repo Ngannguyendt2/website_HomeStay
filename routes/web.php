@@ -14,16 +14,24 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+Auth::routes();
+
+//Route::get('', 'HomeController@index')->name('home');
+
+Route::get('/category', 'HomeStayController@category')->name('web.category');
+Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
+Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('/', 'HomeStayController@index')->name('web.index');
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::prefix('/user')->middleware('auth')->group(function (){
+
     Route::get('/{id}/profile', 'UserController@index')->name('user.profile');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
+
 });
+
+Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Services\UserServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 
 class UserController extends Controller
