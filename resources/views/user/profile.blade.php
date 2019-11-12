@@ -46,6 +46,12 @@
 <!-- Breadcrumb -->
 <div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
     <div class="container">
+        @if(Session::has('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong> {{Session::get('success')}}</strong>
+            </div>
+        @endif
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
         <form method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data" class="dropzone">
@@ -56,15 +62,19 @@
                 <div class="row" style="margin-top: 30px">
 
                     <div class="col-md-3">
-                        <strong al>Click vào ảnh để đổi ảnh mới!</strong>
+                        <strong >Click vào ảnh để đổi ảnh mới!</strong>
                         <div class="profile-img-container img-circle">
                             <input type="file" name="image">
                             <img src="{{!empty(asset('storage/'.$user->image)) ? asset('storage/'.$user->image) :
                             'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}"
                                  class="img-thumbnail img-circle img-responsive"/>
+                            @if ($errors->has('image'))
+                                <p class="text text-danger">{{ $errors->first('image')}}</p>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-1"></div>
+
                     <div class="col-md-8">
 
                         <div class="row">
