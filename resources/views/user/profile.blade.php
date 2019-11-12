@@ -58,7 +58,11 @@
 
                         <img src="{{asset('storage/'.$user->image)}}" alt="">
                         <input type="file" class="form-control" name="image">
+                        @if ($errors->has('name'))
+                            <p class="text text-danger">{{ $errors->first('name')}}</p>
+                        @endif
                     </div>
+
                     <div class="col-md-8">
 
                         <div class="row">
