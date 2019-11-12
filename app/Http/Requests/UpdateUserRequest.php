@@ -31,6 +31,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|min:5|max:50',
             'phone' => ['required',Rule::unique('users')->ignore(Auth::user()->id)],
             'address' => 'required|min:5',
+            'image' => 'mimes:jpeg,bmp,png'
         ];
     }
 }

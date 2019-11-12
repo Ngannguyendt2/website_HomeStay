@@ -45,6 +45,12 @@
 <!-- Breadcrumb -->
 <div class="site-breadcrumb">
     <div class="container">
+        @if(Session::has('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong> {{Session::get('success')}}</strong>
+            </div>
+        @endif
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
         <form method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data">
@@ -58,7 +64,11 @@
 
                         <img src="{{asset('storage/'.$user->image)}}" alt="">
                         <input type="file" class="form-control" name="image">
+                        @if ($errors->has('name'))
+                            <p class="text text-danger">{{ $errors->first('name')}}</p>
+                        @endif
                     </div>
+
                     <div class="col-md-8">
 
                         <div class="row">
