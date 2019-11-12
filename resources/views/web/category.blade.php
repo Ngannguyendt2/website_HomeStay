@@ -325,7 +325,7 @@
                                 </div>
                                 <div class="room-info">
                                     <div class="rf-left">
-                                        <p><i class="fa fa-user"></i>  McHenry, MD 21541</p>
+                                        <p><i class="fa fa-user"></i> McHenry, MD 21541</p>
                                     </div>
                                     <div class="rf-right">
                                         <p><i class="fa fa-clock-o"></i> 1 days ago</p>
@@ -385,7 +385,7 @@
                             <div class="room-info-warp">
                                 <div class="room-info">
                                     <div class="rf-left">
-                                        <p><i class="fa fa-th-large"></i>   750 Square foot</p>
+                                        <p><i class="fa fa-th-large"></i> 750 Square foot</p>
                                         <p><i class="fa fa-bed"></i> 5 Bedrooms</p>
                                     </div>
                                     <div class="rf-right">
@@ -420,7 +420,7 @@
                             <div class="room-info-warp">
                                 <div class="room-info">
                                     <div class="rf-left">
-                                        <p><i class="fa fa-th-large"></i>   200 Square foot</p>
+                                        <p><i class="fa fa-th-large"></i> 200 Square foot</p>
                                         <p><i class="fa fa-bed"></i> 2 Bedrooms</p>
                                     </div>
                                     <div class="rf-right">
@@ -430,7 +430,7 @@
                                 </div>
                                 <div class="room-info">
                                     <div class="rf-left">
-                                        <p><i class="fa fa-user"></i>  Gina Wesley</p>
+                                        <p><i class="fa fa-user"></i> Gina Wesley</p>
                                     </div>
                                     <div class="rf-right">
                                         <p><i class="fa fa-clock-o"></i> 8 days ago</p>
@@ -452,4 +452,4 @@
     </section>
     <!-- page end -->
 
-    @endsection
+@endsection
