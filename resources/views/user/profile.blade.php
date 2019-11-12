@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('css/animate.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/style.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/uploadFile.css')}}"/>
 
 
     <!--[if lt IE 9]>
@@ -43,7 +44,7 @@
 <!--  Page top end -->
 
 <!-- Breadcrumb -->
-<div class="site-breadcrumb">
+<div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
     <div class="container">
         @if(Session::has('success'))
             <div class="alert alert-success alert-block">
@@ -53,7 +54,7 @@
         @endif
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
-        <form method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data">
+        <form method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data" class="dropzone">
             @csrf
             <div class="col-md-12" style="margin-top: 20px">
                 <h3 align="center">Thông tin cá nhân</h3>
@@ -61,13 +62,18 @@
                 <div class="row" style="margin-top: 30px">
 
                     <div class="col-md-3">
-
-                        <img src="{{asset('storage/'.$user->image)}}" alt="">
-                        <input type="file" class="form-control" name="image">
-                        @if ($errors->has('name'))
-                            <p class="text text-danger">{{ $errors->first('name')}}</p>
-                        @endif
+                        <strong >Click vào ảnh để đổi ảnh mới!</strong>
+                        <div class="profile-img-container img-circle">
+                            <input type="file" name="image">
+                            <img src="{{!empty(asset('storage/'.$user->image)) ? asset('storage/'.$user->image) :
+                            'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}"
+                                 class="img-thumbnail img-circle img-responsive"/>
+                            @if ($errors->has('image'))
+                                <p class="text text-danger">{{ $errors->first('image')}}</p>
+                            @endif
+                        </div>
                     </div>
+                    <div class="col-md-1"></div>
 
                     <div class="col-md-8">
 

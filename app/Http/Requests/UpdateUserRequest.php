@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -29,7 +30,7 @@ class UpdateUserRequest extends FormRequest
         return [
             //
             'name' => 'required|min:5|max:50',
-            'phone' => ['required',Rule::unique('users')->ignore(Auth::user()->id)],
+            'phone' => ['required', Rule::unique('users')->ignore(Auth::user()->id),],
             'address' => 'required|min:5',
             'image' => 'mimes:jpeg,bmp,png'
         ];

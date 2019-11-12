@@ -5,7 +5,7 @@
         <div class="container hero-text text-white">
             <h2>Dự án cuối module của nhóm Chị Dậu "Dậu homestay"</h2>
             <p>Trang web giúp bạn tìm kiếm, cho thuê homestay nổi tiếng nhất Việt Nam.<br>Cuộc sống hiện tiện nghi nằm trong lòng bàn tay của bạn!.</p>
-            <a href="#" class="site-btn">VIEW DETAIL</a>
+            <a href="{{route('web.comingSoon')}}" class="site-btn">VIEW DETAIL</a>
         </div>
     </section>
     <!-- Hero section end -->
@@ -16,7 +16,7 @@
         <div class="container">
             <form class="filter-form" style="border-radius: 10px">
                 @csrf
-                <input style="border-radius: 10px; width: 200px;" type="text" placeholder="Enter a street name, address number or keyword">
+                <input style="border-radius: 10px; width: 200px;" type="text" placeholder="Điền tên nhà...">
                 <select style="border-radius: 10px; width: 95px;">
                     <option value="City">Price</option>
                 </select>
