@@ -26,7 +26,7 @@ class UpdateUserRequest extends FormRequest
         return [
             //
             'name' => 'required|min:5|max:50',
-            'email' => 'required',
+            'email' => 'required|unique:users|email',
             'phone' => 'required|min:10',
             'address' => 'required|min:5',
             'image' => 'mimes:jpeg,bmp,png'
