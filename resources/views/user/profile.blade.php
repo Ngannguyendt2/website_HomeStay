@@ -65,8 +65,7 @@
                         <strong >Click vào ảnh để đổi ảnh mới!</strong>
                         <div class="profile-img-container img-circle">
                             <input type="file" name="image">
-                            <img src="{{!empty(asset('storage/'.$user->image)) ? asset('storage/'.$user->image) :
-                            'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}"
+                            <img src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
                                  class="img-thumbnail img-circle img-responsive"/>
                             @if ($errors->has('image'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
@@ -117,7 +116,7 @@
                             </div>
                             <div class="col-md-6" style="margin-top: 20px">
                                 <select class="form-control">
-                                    <option style="text-shadow: grey">Phương thức</option>
+                                    <option>Phương thức</option>
                                     <option>Facebook</option>
                                     <option>Zalo</option>
                                 </select>
