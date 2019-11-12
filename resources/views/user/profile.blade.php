@@ -74,7 +74,7 @@
                             @endif
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ Email:</label>
-                                <input class="form-control" value="{{$user->email}}" name="email">
+                                <input class="form-control" value="{{$user->email}}" name="email" disabled>
                             </div>
 
                             @if ($errors->has('email'))
