@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Official Signup Form Flat Responsive widget Template :: w3layouts</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords"
@@ -33,8 +33,8 @@
             <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px" class="fa fa-instagram"></i></a>
             <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px" class="fa fa-pinterest"></i></a>
             <a href="{{route('web.comingSoon')}}"><i style="margin-left: 20px" class="fa fa-linkedin"></i></a>
-            <a href="{{route('login')}}"><strong style="margin-left: 20px; color: firebrick">Đăng nhập</strong></a>
-            <a href="{{route('register')}}"><strong style="margin-left: 20px; color: firebrick ">Đăng kí</strong></a>
+            <a href="{{route('login')}}"><strong style="margin-left: 20px">Đăng nhập</strong></a>
+            <a href="{{route('register')}}"><strong style="margin-left: 20px">Đăng kí</strong></a>
         </p>
         <p class="copyright w3l">
             <a href="{{route('web.index')}}"><i style="margin-left: 20px">Trang chủ</i></a>
