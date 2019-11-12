@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6 footer-widget">
-                <img src="../../../../public/img/logo.png" alt="">
+                <img src="{{asset('img/logo.png')}}" alt="">
                 <p>Dự án project của nhóm 'Chị Dậu' với tên gọi Dậu homestay hứa hẹn sẽ mang cho người dùng trải nhiệm tuyệt vời nhất từ trước tới nay khi thuê căn hộ của nhóm chúng tôi.</p>
                 <div class="social">
                     <a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-lg-3 col-md-6  footer-widget">
                 <div class="newslatter-widget">
-                    <h5 class="fw-title">Về bạn</h5>
+                    <h5 class="fw-title">Hợp tác</h5>
                     <p>Để lại địa chỉ email của bạn để có thể nhận được tin tức mới nhât từ chúng tôi</p>
                     <form class="footer-newslatter-form">
                         <input type="text" placeholder="Your email address">
@@ -56,12 +56,11 @@
         <div class="footer-bottom">
             <div class="footer-nav">
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Featured Listing</a></li>
-                    <li><a href="">About us</a></li>
-                    <li><a href="">Pages</a></li>
-                    <li><a href="">Blog</a></li>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="{{route('web.index')}}">Trang chủ</a></li>
+                    <li><a href="{{route('web.category')}}">Danh sách nhà</a></li>
+                    <li><a href="{{route('web.about_us')}}">Về chúng tôi</a></li>
+                    <li><a href="{{route('web.comingSoon')}}">Tin tức</a></li>
+                    <li><a href="{{route('web.contact')}}">Hợp tác</a></li>
                 </ul>
             </div>
             <div class="copyright">

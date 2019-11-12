@@ -5,6 +5,8 @@ namespace App\Http\Services;
 
 
 use App\Http\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 
 class UserService implements UserServiceInterface
 {
@@ -25,5 +27,33 @@ class UserService implements UserServiceInterface
     {
         // TODO: Implement getUserById() method.
         return $this->profileRepo->getById($id);
+    }
+
+    public function update($object, $request)
+    {
+        if ($request->password == null) {
+            $object->name = $request->name;
+            $object->email = $request->email;
+            $object->phone = $request->phone;
+            $object->address = $request->address;
+            $object->password;
+            $this->profileRepo->update($object);
+
+        } else {
+            $object->name = $request->name;
+            $object->email = $request->email;
+            $object->phone = $request->phone;
+            $object->address = $request->address;
+            if ($request->file('image')) {
+            $currentImg=$object->image;
+            if ($currentImg) {
+                unlink(storage_path('app/public/' . $currentImg));
+            }
+                $path = $request->file('image')->store('images', 'public');
+                $object->image = $path;
+            }
+            $object->password = Hash::make($request->new_password);
+            $this->profileRepo->update($object);
+        }
     }
 }

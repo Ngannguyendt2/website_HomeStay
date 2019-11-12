@@ -121,7 +121,7 @@ h1.w3ls {
 h2.agileits1 {
     font-size: 40px;
     font-weight: normal;
-    color: #000000;
+    color: rgba(255, 255, 255, 0.76);
     text-align: Center;
     padding: 200px 0 15px;
     text-transform: uppercase;
@@ -130,7 +130,7 @@ h2.agileits1 {
 p.agileits2 {
     font-size: 15px;
     font-weight: normal;
-    color: #1f5eff;
+    color: white;
     text-align: center;
     text-transform: capitalize;
 }
