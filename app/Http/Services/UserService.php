@@ -33,7 +33,7 @@ class UserService implements UserServiceInterface
     {
         if ($request->password == null) {
             $object->name = $request->name;
-            $object->email = $request->email;
+            $object->email;
             $object->phone = $request->phone;
             $object->address = $request->address;
             $object->password;
@@ -41,7 +41,7 @@ class UserService implements UserServiceInterface
 
         } else {
             $object->name = $request->name;
-            $object->email = $request->email;
+            $object->email;
             $object->phone = $request->phone;
             $object->address = $request->address;
             if ($request->file('image')) {
