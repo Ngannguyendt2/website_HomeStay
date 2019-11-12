@@ -47,7 +47,7 @@
     <div class="container">
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
-        <form method="post" action="{{route('user.update',$user->id)}}">
+        <form method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data">
             @csrf
             <div class="col-md-12" style="margin-top: 20px">
                 <h3 align="center">Thông tin cá nhân</h3>
@@ -57,6 +57,7 @@
                     <div class="col-md-3">
 
                         <img src="{{asset('storage/'.$user->image)}}" alt="">
+                        <input type="file" class="form-control" name="image">
                     </div>
                     <div class="col-md-8">
 
@@ -69,12 +70,13 @@
                                 <input class="form-control" value="{{$user->name}}" name="name">
                             </div>
                             @if ($errors->has('name'))
-                              <p class="text text-danger">{{ $errors->first('name')}}</p>
+                                <p class="text text-danger">{{ $errors->first('name')}}</p>
                             @endif
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ Email:</label>
                                 <input class="form-control" value="{{$user->email}}" name="email">
                             </div>
+
                             @if ($errors->has('email'))
                                 <p class="text text-danger">{{ $errors->first('email')}}</p>
                             @endif

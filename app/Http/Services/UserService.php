@@ -36,7 +36,7 @@ class UserService implements UserServiceInterface
             $object->email = $request->email;
             $object->phone = $request->phone;
             $object->address = $request->address;
-            Hash::make($object->password);
+            $object->password;
             $this->profileRepo->update($object);
 
         } else {
@@ -45,10 +45,10 @@ class UserService implements UserServiceInterface
             $object->phone = $request->phone;
             $object->address = $request->address;
             if ($request->file('image')) {
-//            $currentImg=$object->image;
-//            if ($currentImg) {
-//                unlink(storage_path('app/public/' . $currentImg));
-//            }
+            $currentImg=$object->image;
+            if ($currentImg) {
+                unlink(storage_path('app/public/' . $currentImg));
+            }
                 $path = $request->file('image')->store('images', 'public');
                 $object->image = $path;
             }

@@ -25,14 +25,12 @@ Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('/', 'HomeStayController@index')->name('web.index');
 
-Route::prefix('user')->group(function () {
+
+Route::prefix('/user')->middleware('auth')->group(function (){
+
     Route::get('/{id}/profile', 'UserController@index')->name('user.profile');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
 
-});
-
-Route::get('google', function () {
-    return view('googleAuth');
 });
 
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
