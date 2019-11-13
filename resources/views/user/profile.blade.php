@@ -62,7 +62,7 @@
                 <div class="row" style="margin-top: 30px">
 
                     <div class="col-md-3">
-                        <e >Click vào ảnh để đổi ảnh mới!</e>
+                        <a >Click vào ảnh để đổi ảnh mới!</a>
                         <div class="profile-img-container img-circle">
 
                             <input type="file" name="image" accept="image/*" onchange="loadFile(event)">

@@ -14,8 +14,6 @@
             @enderror
         </div>
 
-        </div>
-
         <div class="form-control agileinfo">
             <input type="password" class="lock @error('password') is-invalid @enderror" name="password"
                    placeholder="Password" id="password1">

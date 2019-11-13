@@ -23,7 +23,7 @@
             <input id="password1" type="password"
                    class="form-control @error('password') is-invalid @enderror" name="password"
                    required
-                   autocomplete="new-password">
+                   autocomplete="new-password" placeholder="Nhập password mới của bạn...">
 
             @error('password')
             <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
             <input id="password2" type="password"
                    class="form-control @error('password') is-invalid @enderror" name="password_confirmation"
                    required
-                   autocomplete="new-password">
+                   autocomplete="new-password" placeholder="Nhập lại password mới của bạn...">
 
             @error('password')
             <span class="invalid-feedback" role="alert">
