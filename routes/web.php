@@ -26,11 +26,14 @@ Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoo
 Route::get('/', 'HomeStayController@index')->name('web.index');
 Route::get('/detail', "HomeStayController@detail")->name('web.detail');
 
-Route::prefix('/user')->middleware('auth')->group(function (){
+Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/{id}/profile', 'UserController@index')->name('user.profile');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
-
+    Route::prefix('/houses')->group(function () {
+        Route::get('/create', 'HouseController@create')->name('house.create');
+        Route::post('/create', 'HouseController@store')->name('house.store');
+    });
 });
 
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
