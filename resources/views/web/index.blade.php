@@ -53,7 +53,7 @@
                                 <h5>176 Kingsberry, Dr Anderson</h5>
                                 <p><i class="fa fa-map-marker"></i> Rochester, NY 14626</p>
                             </div>
-                            <div class="price">$1,777,000</div>
+                            <div class="price"><a href="{{route('web.detail')}}">$1,777,000</a></div>
                         </div>
                     </div>
                 </div>
