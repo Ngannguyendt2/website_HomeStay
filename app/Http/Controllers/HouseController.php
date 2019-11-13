@@ -18,7 +18,8 @@ class HouseController extends Controller
 
     public function create()
     {
-        return view('houses.create');
+        $categories=$this->house->getCategoryHouse();
+        return view('houses.create',compact('categories'));
     }
 
     public function store(CreateHouseRequest $request)

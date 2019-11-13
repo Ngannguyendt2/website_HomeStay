@@ -37,4 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function houses()
+    {
+        return $this->hasMany('App\House');
+    }
 }

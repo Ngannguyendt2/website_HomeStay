@@ -42,4 +42,9 @@ class HouseService implements HouseServicceInterface
         $house->save();
         $this->houseRepo->create($house);
     }
+    public function getCategoryHouse()
+    {
+        // TODO: Implement getCategoryHouse() method.
+        return $this->houseRepo->getCategoryHouse();
+    }
 }

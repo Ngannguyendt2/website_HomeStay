@@ -23,6 +23,11 @@ class UserController extends Controller
         $user = $this->profileService->getUserById($id);
         return view('user.profile', compact('user'));
     }
+    public function edit($id)
+    {
+        $user = $this->profileService->getUserById($id);
+        return view('user.update', compact('user'));
+    }
 
     public function update($id, UpdateUserRequest $request)
     {
