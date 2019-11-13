@@ -18,4 +18,10 @@ class UserRepository extends RepositoryEloquent implements UserRepositoryInterfa
         return $user;
     }
 
+    public function updatePassword($object)
+    {
+        // TODO: Implement updatePassword() method.
+        $object->save();
+    }
+
 }

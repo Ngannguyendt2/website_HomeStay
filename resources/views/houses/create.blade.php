@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="{{asset('css/animate.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/style.css')}}"/>
-    <link rel="stylesheet" href="{{asset('css/uploadFile.css')}}"/>
 
 
     <!--[if lt IE 9]>
@@ -44,28 +43,8 @@
 <!--  Page top end -->
 
 <!-- Breadcrumb -->
-<div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
-    <div class="container">
-        <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
-        <span><i class="fa fa-angle-right"></i>Đăng tin</span>
-        <div class="row">
-            <div class="col-md-6">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 
 
 <!-- Footer section -->

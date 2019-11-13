@@ -47,7 +47,6 @@ class LoginController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-
     public function handleGoogleCallback()
     {
         try {

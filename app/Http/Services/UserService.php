@@ -31,29 +31,35 @@ class UserService implements UserServiceInterface
 
     public function update($object, $request)
     {
-        if ($request->password == null) {
-            $object->name = $request->name;
-            $object->email;
-            $object->phone = $request->phone;
-            $object->address = $request->address;
-            $object->password;
-            $this->profileRepo->update($object);
 
-        } else {
-            $object->name = $request->name;
-            $object->email;
-            $object->phone = $request->phone;
-            $object->address = $request->address;
-            if ($request->file('image')) {
-            $currentImg=$object->image;
+        $object->email;
+        $object->name = $request->name;
+        $object->phone = $request->phone;
+        $object->address = $request->address;
+        if ($request->file('image')) {
+            $currentImg = $object->image;
             if ($currentImg) {
                 unlink(storage_path('app/public/' . $currentImg));
             }
-                $path = $request->file('image')->store('images', 'public');
-                $object->image = $path;
-            }
-            $object->password = Hash::make($request->new_password);
-            $this->profileRepo->update($object);
+            $path = $request->file('image')->store('images', 'public');
+            $object->image = $path;
         }
+//        if ($request->new_password == null) {
+//            $object->password;
+//        } else {
+//            $object->password = Hash::make($request->new_password);
+//        }
+        $this->profileRepo->update($object);
+    }
+
+    public function updatePassword($object, $request)
+    {
+        $object->password = null;
+        $object->email;
+        $object->name;
+        $object->phone;
+        $object->image;
+        $object->password = Hash::make($request->password);
+        $this->profileRepo->updatePassword($object);
     }
 }

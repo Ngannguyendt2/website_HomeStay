@@ -42,7 +42,6 @@
 <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
 </section>
 <!--  Page top end -->
-
 <!-- Breadcrumb -->
 <div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
     <div class="container">
@@ -52,21 +51,23 @@
                 <strong> {{Session::get('success')}}</strong>
             </div>
         @endif
+            @if(Session::has('error'))
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong> {{Session::get('error')}}</strong>
+                </div>
+            @endif
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
-        <form method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data" class="dropzone">
+        <form>
             @csrf
             <div class="col-md-12" style="margin-top: 20px">
                 <h3 align="center">Thông tin cá nhân</h3>
-
                 <div class="row" style="margin-top: 30px">
-
                     <div class="col-md-3">
-                        <a >Click vào ảnh để đổi ảnh mới!</a>
                         <div class="profile-img-container img-circle">
-
-                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
-                            <img id="img" src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}" class="img-thumbnail img-circle img-responsive"/>
+                            <img  src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
+                                 class="img-thumbnail img-circle img-responsive"/>
                             @if ($errors->has('image'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
                             @endif
@@ -82,62 +83,22 @@
                             </div>
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Tên đầy đủ:</label>
-                                <input class="form-control" value="{{$user->name}}" name="name">
+                                <h5>{{$user->name}}</h5>
                             </div>
-                            @if ($errors->has('name'))
-                                <p class="text text-danger">{{ $errors->first('name')}}</p>
-                            @endif
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ Email:</label>
-                                <input class="form-control" value="{{$user->email}}" name="email" disabled>
+                                <h5>{{$user->email}}</h5>
                             </div>
-
-                            @if ($errors->has('email'))
-                                <p class="text text-danger">{{ $errors->first('email')}}</p>
-                            @endif
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Số điện thoại:</label>
-                                <input placeholder="Thêm số điện thoại..." class="form-control" value="{{$user->phone}}"
-                                       name="phone">
+                                <h5>{{$user->phone}}</h5>
                             </div>
-                            @if ($errors->has('phone'))
-                                <p class="text text-danger">{{ $errors->first('phone')}}</p>
-                            @endif
                             <div style="margin-top: 10px" class="col-md-12">
                                 <label>Địa chỉ:</label>
-                                <input placeholder="Thêm địa chỉ của bạn" class="form-control"
-                                       value="{{$user->address}}" name="address">
-                            </div>
-                            @if ($errors->has('address'))
-                                <p class="text text-danger">{{ $errors->first('address')}}</p>
-                            @endif
-                            <div class="col-md-12" style="margin-top: 20px">
-                                <strong>Thêm thông tin liên hệ</strong>
-                            </div>
-                            <div class="col-md-6" style="margin-top: 20px">
-                                <select class="form-control">
-                                    <option>Phương thức</option>
-                                    <option>Facebook</option>
-                                    <option>Zalo</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6" style="margin-top: 20px">
-                                <input class="form-control" placeholder="Tên địa chỉ hoặc số điện thoại..."
-                                       name="method">
-                            </div>
-                            <div class="col-md-12" style="margin-top: 20px">
-                                <strong>Thay đổi lại mật khẩu</strong>
-                            </div>
-                            <div style="margin-top: 10px" class='col-md-12'>
-                                <input placeholder="Mật khẩu cũ của bạn" type="password" class="form-control"
-                                       name="password">
+                                <h5>{{$user->address}}</h5>
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
-                                <input placeholder="Mật khẩu mới của bạn" type="text" class="form-control"
-                                       name="new_password">
-                            </div>
-                            <div style="margin-top: 15px" class='col-md-12'>
-                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                                <a class="btn btn-outline-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh sửa thông tin cá nhân</b></a>
                             </div>
                         </div>
 
@@ -155,16 +116,6 @@
 <!-- Footer section -->
 @include('layouts.footer')
 <!-- Footer section end -->
-<script>
-    let loadFile = function(event) {
-        let reader = new FileReader();
-        reader.onload = function(){
-            let output = document.getElementById('img');
-            output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    };
-</script>
 <!--====== Javascripts & Jquery ======-->
 <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>

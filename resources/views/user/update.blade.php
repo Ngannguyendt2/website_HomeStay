@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LERAMIZ - Landing Page Template</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="LERAMIZ Landing Page Template">
+    <meta name="keywords" content="LERAMIZ, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link href="{{asset('img/favicon.ico')}}" rel="shortcut icon"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/animate.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/uploadFile.css')}}"/>
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<style>
+    p {
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+</style>
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Header section -->
+@include('layouts.header')
+<!-- Header section end -->
+
+
+<!-- Page top section -->
+<section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
+</section>
+<!--  Page top end -->
+
+<!-- Breadcrumb -->
+<div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
+    <div class="container">
+        @if(Session::has('password_ok'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong> {{Session::get('password_ok')}}</strong>
+            </div>
+        @endif
+        <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
+        <span><i class="fa fa-angle-right"></i>Sửa thông tin cá nhân</span>
+        <form method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data" class="dropzone">
+            @csrf
+            <div class="col-md-12" style="margin-top: 20px">
+                <h3 align="center">Chỉnh sửa thông tin cá nhân</h3>
+                <div class="row" style="margin-top: 30px">
+                    <div class="col-md-3">
+                        <e>Click vào ảnh để đổi ảnh mới!</e>
+
+                        <div class="profile-img-container img-circle">
+                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
+                            <img id="img"
+                                 src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
+                                 class="img-thumbnail img-circle img-responsive"/>
+                            @if ($errors->has('image'))
+                                <p class="text text-danger">{{ $errors->first('image')}}</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+
+                    <div class="col-md-8">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong>Thông tin cá nhân</strong>
+                            </div>
+                            <div style="margin-top: 10px" class="col-md-12">
+                                <label>Tên đầy đủ:</label>
+                                <input class="form-control" value="{{$user->name}}" name="name">
+                            </div>
+                            @if ($errors->has('name'))
+                                <p class="text text-danger">{{ $errors->first('name')}}</p>
+                            @endif
+                            <div style="margin-top: 10px" class="col-md-12">
+                                <label>Địa chỉ Email:</label>
+                                <input class="form-control" value="{{$user->email}}" name="email" disabled>
+                            </div>
+
+                            @if ($errors->has('email'))
+                                <p class="text text-danger">{{ $errors->first('email')}}</p>
+                            @endif
+                            <div style="margin-top: 10px" class="col-md-12">
+                                <label>Số điện thoại:</label>
+                                <input placeholder="Thêm số điện thoại..." class="form-control" value="{{$user->phone}}"
+                                       name="phone">
+                            </div>
+                            @if ($errors->has('phone'))
+                                <p class="text text-danger">{{ $errors->first('phone')}}</p>
+                            @endif
+                            <div style="margin-top: 10px" class="col-md-12">
+                                <label>Địa chỉ:</label>
+                                <input placeholder="Thêm địa chỉ của bạn" class="form-control"
+                                       value="{{$user->address}}" name="address">
+                            </div>
+                            @if ($errors->has('address'))
+                                <p class="text text-danger">{{ $errors->first('address')}}</p>
+                            @endif
+                            <div class="col-md-12" style="margin-top: 20px">
+                                <strong>Thêm thông tin liên hệ</strong>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 20px">
+                                <select class="form-control">
+                                    <option>Phương thức</option>
+                                    <option>Facebook</option>
+                                    <option>Zalo</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 20px">
+                                <input class="form-control" placeholder="Tên địa chỉ hoặc số điện thoại..."
+                                       name="method">
+                            </div>
+                            <div style="margin-top: 15px" class='col-md-12'>
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+        <div class="col-md-10">
+            <div class="col-md-12" style="margin-top: 20px; margin-left: 4px">
+                <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Đổi mật khẩu</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form method="post" action="{{route('user.updatePassword', $user->id)}}">
+                                @csrf
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <label data-error="wrong" data-success="right" for="form3"><b>Mật khẩu mới của
+                                                bạn:</b></label>
+                                        <input type="password" id="form3" name="password" class="form-control validate">
+                                    </div>
+                                    <hr>
+                                    <div class="md-form mb-4">
+                                        <label data-error="wrong" data-success="right" for="form2"><b>Nhập lại mật khẩu
+                                                mới của bạn</b></label>
+                                        <input type="password" id="form2" name="password" class="form-control validate">
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button class="btn btn-success">Xác nhận</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal"
+                       data-target="#modalSubscriptionForm"><strong>Thay đổi lại mật khẩu</strong></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer section -->
+@include('layouts.footer')
+<!-- Footer section end -->
+<script>
+    let loadFile = function (event) {
+        let reader = new FileReader();
+        reader.onload = function () {
+            let output = document.getElementById('img');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
+<!--====== Javascripts & Jquery ======-->
+<script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('js/masonry.pkgd.min.js')}}"></script>
+<script src="{{asset('js/magnific-popup.min.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
+
+<!-- load for map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
+<script src="{{asset('js/map.js')}}"></script>
+
+
+</body>
+</html>

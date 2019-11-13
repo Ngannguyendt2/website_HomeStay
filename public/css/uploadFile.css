@@ -5,15 +5,15 @@
     overflow:hidden;
 }
 
-.profile-img-container img:hover {
-    opacity: 0.5;
-    z-index: 501;
-}
+/*.profile-img-container img:hover {*/
+/*    opacity: 0.5;*/
+/*    z-index: 501;*/
+/*}*/
 
-.profile-img-container img:hover + i {
-    display: block;
-    z-index: 500;
-}
+/*.profile-img-container img:hover + i {*/
+/*    display: block;*/
+/*    z-index: 500;*/
+/*}*/
 
 .profile-img-container .icon-wrapper {
     position: absolute;
