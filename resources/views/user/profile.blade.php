@@ -64,6 +64,7 @@
                     <div class="col-md-3">
                         <e >Click vào ảnh để đổi ảnh mới!</e>
                         <div class="profile-img-container img-circle">
+
                             <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
                             <img id="img" src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}" class="img-thumbnail img-circle img-responsive"/>
                             @if ($errors->has('image'))
@@ -115,7 +116,7 @@
                             </div>
                             <div class="col-md-6" style="margin-top: 20px">
                                 <select class="form-control">
-                                    <option style="text-shadow: grey">Phương thức</option>
+                                    <option>Phương thức</option>
                                     <option>Facebook</option>
                                     <option>Zalo</option>
                                 </select>
