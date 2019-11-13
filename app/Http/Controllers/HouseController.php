@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServicceInterface;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class HouseController extends Controller
         return view('houses.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateHouseRequest $request)
     {
         $this->house->create($request);
         return redirect()->route('web.index');

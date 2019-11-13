@@ -38,3 +38,5 @@ Route::prefix('/user')->middleware('auth')->group(function () {
 
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+

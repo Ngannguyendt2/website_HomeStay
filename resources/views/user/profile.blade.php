@@ -58,13 +58,11 @@
             @csrf
             <div class="col-md-12" style="margin-top: 20px">
                 <h3 align="center">Thông tin cá nhân</h3>
-
                 <div class="row" style="margin-top: 30px">
-
                     <div class="col-md-3">
                         <e >Click vào ảnh để đổi ảnh mới!</e>
-                        <div class="profile-img-container img-circle">
 
+                        <div class="profile-img-container img-circle" >
                             <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
                             <img id="img" src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}" class="img-thumbnail img-circle img-responsive"/>
                             @if ($errors->has('image'))
@@ -133,7 +131,7 @@
                                        name="password">
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
-                                <input placeholder="Mật khẩu mới của bạn" type="text" class="form-control"
+                                <input placeholder="Mật khẩu mới của bạn" type="password" class="form-control"
                                        name="new_password">
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>

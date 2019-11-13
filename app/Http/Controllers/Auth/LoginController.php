@@ -66,6 +66,7 @@ class LoginController extends Controller
                     'email' => $user->email,
                     'google_id' => $user->id,
                     'password' => $user->token,
+                    'image' => $user->avatar,
                     'admin' => 0
                 ]);
 

@@ -47,7 +47,23 @@
 <div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
     <div class="container">
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
-        <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
+        <span><i class="fa fa-angle-right"></i>Đăng tin</span>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 

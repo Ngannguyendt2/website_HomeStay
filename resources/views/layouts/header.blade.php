@@ -2,40 +2,46 @@
     <div class="header-top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 header-top-left">
-                    <div class="top-info">
-                        @if(isset(Auth::user()->name))
-                            <i class="fa fa-user-circle-o"></i>
-                            {{ Auth::user()->name}}
-                        @endif
-                    </div>
-                    <div class="top-info">
-                        @if(isset(Auth::user()->email))
-                            <i class="fa fa-envelope"></i>
-                            {{Auth::user()->email}}
-                        @endif
+                <div class="col-lg-5 header-top-left">
+                    <div class="row">
+                        <div class="top-info">
+                            @if(isset(Auth::user()->name))
+                                <i class="fa fa-user-circle-o"></i>
+                                {{ Auth::user()->name}}
+                            @endif
+                        </div>
+                        <div class="top-info">
+                            @if(isset(Auth::user()->email))
+                                <i class="fa fa-envelope"></i>
+                                {{Auth::user()->email}}
+                            @endif
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 text-lg-right header-top-right">
+                <div class="col-lg-7 text-lg-right header-top-right">
                     <div class="top-social">
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-instagram"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-pinterest"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-linkedin"></i></a>
-                         <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b class="text text-light">Dang tin</b></a>
+                        <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b class="text text-light">Dang
+                                tin</b></a>
                     </div>
                     <div class="user-panel">                         <!-- Authentication Links -->
                         @guest
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     @if (Route::has('register'))
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     @endif
                                 </div>
+                                {{--                                <div class="col-lg-4">--}}
+                                {{--                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
+                                {{--                                </div>--}}
                             </div>
                         @else
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -50,7 +56,8 @@
                                    style="color: black">
                                     Đăng xuất
                                 </a>
-                                <a style="color: black" class="dropdown-item" href="{{route('user.profile',Auth::user()->id)}}">
+                                <a style="color: black" class="dropdown-item"
+                                   href="{{route('user.profile',Auth::user()->id)}}">
                                     Thông tin cá nhân
                                 </a>
 
@@ -70,7 +77,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="site-navbar">
-                    <a href="{{route('web.index')}}" class="site-logo"><img src="{{asset('img/logo.png')}}" ></a>
+                    <a href="{{route('web.index')}}" class="site-logo"><img src="{{asset('img/logo.png')}}"></a>
                     <div class="nav-switch">
                         <i class="fa fa-bars"></i>
                     </div>
