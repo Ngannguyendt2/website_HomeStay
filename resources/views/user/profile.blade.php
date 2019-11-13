@@ -62,12 +62,11 @@
                 <div class="row" style="margin-top: 30px">
 
                     <div class="col-md-3">
-                        <strong >Click vào ảnh để đổi ảnh mới!</strong>
+                        <e >Click vào ảnh để đổi ảnh mới!</e>
                         <div class="profile-img-container img-circle">
-                            <input type="file" name="image">
-                            <img src="{{!empty(asset('storage/'.$user->image)) ? asset('storage/'.$user->image) :
-                            'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}}"
-                                 class="img-thumbnail img-circle img-responsive"/>
+
+                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
+                            <img id="img" src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}" class="img-thumbnail img-circle img-responsive"/>
                             @if ($errors->has('image'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
                             @endif
@@ -117,7 +116,7 @@
                             </div>
                             <div class="col-md-6" style="margin-top: 20px">
                                 <select class="form-control">
-                                    <option style="text-shadow: grey">Phương thức</option>
+                                    <option>Phương thức</option>
                                     <option>Facebook</option>
                                     <option>Zalo</option>
                                 </select>
@@ -134,7 +133,7 @@
                                        name="password">
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
-                                <input placeholder="Mật khẩu mới của bạn" type="password" class="form-control"
+                                <input placeholder="Mật khẩu mới của bạn" type="text" class="form-control"
                                        name="new_password">
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
@@ -156,7 +155,16 @@
 <!-- Footer section -->
 @include('layouts.footer')
 <!-- Footer section end -->
-
+<script>
+    let loadFile = function(event) {
+        let reader = new FileReader();
+        reader.onload = function(){
+            let output = document.getElementById('img');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
 <!--====== Javascripts & Jquery ======-->
 <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>

@@ -23,6 +23,7 @@
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-instagram"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-pinterest"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-linkedin"></i></a>
+                         <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b class="text text-light">Dang tin</b></a>
                     </div>
                     <div class="user-panel">                         <!-- Authentication Links -->
                         @guest

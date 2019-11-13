@@ -13,4 +13,6 @@ interface RepositoryInterface
     public function getById($id);
 
     public function update($object);
+
+    public function create($object);
 }

@@ -8,14 +8,14 @@ use App\Http\Repositories\Eloquent\RepositoryEloquent;
 use App\Http\Repositories\UserRepositoryInterface;
 use App\User;
 
-class UserRepositoryRepository extends RepositoryEloquent implements UserRepositoryInterface
+class UserRepository extends RepositoryEloquent implements UserRepositoryInterface
 {
 
     public function getModel()
     {
         // TODO: Implement getModel() method.
-        $profile = User::class;
-        return $profile;
+        $user = User::class;
+        return $user;
     }
 
 }
