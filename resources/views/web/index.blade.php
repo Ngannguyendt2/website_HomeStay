@@ -53,7 +53,7 @@
                                 <h5>176 Kingsberry, Dr Anderson</h5>
                                 <p><i class="fa fa-map-marker"></i> Rochester, NY 14626</p>
                             </div>
-                            <div class="price">$1,777,000</div>
+                            <div class="price"><a href="{{route('web.detail')}}">$1,777,000</a></div>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                                 <h5>45 Lianne Dr, Greece Street</h5>
                                 <p><i class="fa fa-map-marker"></i> Tasley, VA 23441</p>
                             </div>
-                            <div class="price">$1255/month</div>
+                            <div class="price"><a href="{{route('web.detail')}}">$1255/month</a></div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                                 <h5>6101 Aqua Ave Apt 603</h5>
                                 <p><i class="fa fa-map-marker"></i> Miami Beach, FL 33141</p>
                             </div>
-                            <div class="price">$150,000</div>
+                            <div class="price"><a href="{{route('web.detail')}}">$150,000</a></div>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                                 <h5>339 N Oakhurst Dr Apt 303</h5>
                                 <p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>
                             </div>
-                            <div class="price">$3000/month</div>
+                            <div class="price"><a href="{{route('web.detail')}}">$3000/month</a></div>
                         </div>
                     </div>
                 </div>
