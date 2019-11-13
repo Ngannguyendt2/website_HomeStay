@@ -27,6 +27,7 @@ class UserController extends Controller
     public function update($id, UpdateUserRequest $request)
     {
         try {
+
             $user = $this->profileService->getUserById($id);
             $this->profileService->update($user, $request);
             $message = 'Cap nhat thanh cong';
