@@ -29,7 +29,8 @@ Route::get('/detail', "HomeStayController@detail")->name('web.detail');
 Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/{id}/profile', 'UserController@index')->name('user.profile');
-    Route::get('/{id}/update','UserController@edit')->name('user.edit');
+    Route::post('/{id}/updatePassword', 'UserController@updatePassword')->name('user.updatePassword');
+    Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::prefix('/houses')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');

@@ -42,10 +42,21 @@
 <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
 </section>
 <!--  Page top end -->
-
 <!-- Breadcrumb -->
 <div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
     <div class="container">
+        @if(Session::has('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong> {{Session::get('success')}}</strong>
+            </div>
+        @endif
+            @if(Session::has('error'))
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong> {{Session::get('error')}}</strong>
+                </div>
+            @endif
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
         <form>
@@ -87,7 +98,7 @@
                                 <h5>{{$user->address}}</h5>
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
-                                <a class="btn btn-outline-info" href="{{route('user.edit',['id'=>$user->id])}}">Chinh sua thong tin ca nhan</a>
+                                <a class="btn btn-outline-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh sửa thông tin cá nhân</b></a>
                             </div>
                         </div>
 
@@ -105,16 +116,6 @@
 <!-- Footer section -->
 @include('layouts.footer')
 <!-- Footer section end -->
-<script>
-    let loadFile = function (event) {
-        let reader = new FileReader();
-        reader.onload = function () {
-            let output = document.getElementById('img');
-            output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    };
-</script>
 <!--====== Javascripts & Jquery ======-->
 <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>

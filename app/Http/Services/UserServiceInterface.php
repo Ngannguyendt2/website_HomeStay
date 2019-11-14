@@ -16,4 +16,6 @@ interface UserServiceInterface
 
     public function getUserById($id);
     public function update($object,$request);
+
+    public function updatePassword($object, $request);
 }

@@ -44,11 +44,22 @@ class UserService implements UserServiceInterface
             $path = $request->file('image')->store('images', 'public');
             $object->image = $path;
         }
-        if ($request->new_password == null) {
-            $object->password;
-        } else {
-            $object->password = Hash::make($request->new_password);
-        }
+//        if ($request->new_password == null) {
+//            $object->password;
+//        } else {
+//            $object->password = Hash::make($request->new_password);
+//        }
         $this->profileRepo->update($object);
+    }
+
+    public function updatePassword($object, $request)
+    {
+        $object->password = null;
+        $object->email;
+        $object->name;
+        $object->phone;
+        $object->image;
+        $object->password = Hash::make($request->password);
+        $this->profileRepo->updatePassword($object);
     }
 }
