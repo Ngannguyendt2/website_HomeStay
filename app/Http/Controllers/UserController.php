@@ -58,4 +58,8 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function admin() {
+        return view('admin.index');
+    }
+
 }

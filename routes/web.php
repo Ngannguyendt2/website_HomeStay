@@ -34,6 +34,9 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store');
     });
+    Route::prefix('/admin')->group(function (){
+        Route::get('', 'UserController@admin')->name('user.admin.index');
+    });
 });
 
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
