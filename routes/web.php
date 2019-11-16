@@ -14,10 +14,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
 Auth::routes();
 
-//Route::get('', 'HomeController@index')->name('home');
 
 Route::get('/category', 'HomeStayController@category')->name('web.category');
 Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
