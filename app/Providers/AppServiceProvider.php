@@ -10,6 +10,7 @@ use App\Http\Services\HouseServicceInterface;
 use App\Http\Services\HouseService;
 use App\Http\Services\UserService;
 use App\Http\Services\UserServiceInterface;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -40,6 +41,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }

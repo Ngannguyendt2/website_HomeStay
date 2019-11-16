@@ -46,16 +46,18 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="propertie-item set-bg" data-setbg="img/propertie/1.jpg">
-                        <div class="sale-notic">FOR SALE</div>
-                        <div class="propertie-info text-white">
-                            <div class="info-warp">
-                                <h5>176 Kingsberry, Dr Anderson</h5>
-                                <p><i class="fa fa-map-marker"></i> Rochester, NY 14626</p>
+                    <a href="{{route('web.detail')}}">
+                        <div class="propertie-item set-bg" data-setbg="{{asset('img/propertie/1.jpg')}}">
+                            <div class="sale-notic">FOR SALE</div>
+                            <div class="propertie-info text-white">
+                                <div class="info-warp">
+                                    <h5>176 Kingsberry, Dr Anderson</h5>
+                                    <p><i class="fa fa-map-marker"></i> Rochester, NY 14626</p>
+                                </div>
+                                <div class="price"><a href="{{route('web.detail')}}">$1,777,000</a></div>
                             </div>
-                            <div class="price"><a href="{{route('web.detail')}}">$1,777,000</a></div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-6">
                     <div class="propertie-item set-bg" data-setbg="img/propertie/2.jpg">

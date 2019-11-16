@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Services\UserServiceInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 
@@ -44,7 +46,7 @@ class UserController extends Controller
         return redirect()->route('user.profile', $user->id);
     }
 
-    public function updatePassword($id, UpdatePasswordRequest $request) {
+    public function updatePassword($id, Request $request) {
         try {
             $user = $this->profileService->getUserById($id);
             $this->profileService->updatePassword($user, $request);
