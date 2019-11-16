@@ -14,15 +14,15 @@ class CategoriesTableSeeder extends Seeder
     {
         //
         $category=new Category;
-        $category->name='luxury';
+        $category->name='Biệt thự Villa';
         $category->save();
 
         $category=new Category;
-        $category->name='popularly';
+        $category->name='Nhà sàn';
         $category->save();
 
         $category=new Category;
-        $category->name='villa';
+        $category->name='Nhà tầng';
         $category->save();
 
 

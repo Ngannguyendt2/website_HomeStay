@@ -37,4 +37,5 @@ class CreateHouseRequest extends FormRequest
             'user_id'=>'required'
         ];
     }
+
 }

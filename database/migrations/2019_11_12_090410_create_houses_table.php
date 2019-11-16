@@ -15,13 +15,18 @@ class CreateHousesTable extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('address');
+            $table->string('name')->nullable();
+            $table->string('demand');
+            $table->string('province');
+            $table->string('district');
+            $table->string('ward');
+            $table->string('name_way');
+            $table->string('house_number');
             $table->string('totalBedRoom');
             $table->string('totalBathroom');
             $table->string('description');
             $table->string('price');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('status');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
