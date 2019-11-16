@@ -20,8 +20,8 @@ class HouseController extends Controller
     public function create()
     {
         $categories=$this->house->getCategoryHouse();
-//        $provinces = Province::all();
-        return view('houses.create',compact('categories'));
+        $provinces = Province::all();
+        return view('houses.create',compact('categories','provinces'));
     }
 
     public function store(Request $request)
