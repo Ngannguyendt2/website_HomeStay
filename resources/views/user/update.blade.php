@@ -52,6 +52,11 @@
 <!-- Breadcrumb -->
 <div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
     <div class="container">
+        @if (session('error-password'))
+            <span class="help-block">
+                {{session('error-password')}}
+            </span>
+        @endif
         @if(Session::has('password_ok'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -66,13 +71,13 @@
                 <h3 align="center">Chỉnh sửa thông tin cá nhân</h3>
                 <div class="row" style="margin-top: 30px">
                     <div class="col-md-3">
-                        <e>Click vào ảnh để đổi ảnh mới!</e>
+                        <span style="margin-left: 6px"> Click vào ảnh để đổi ảnh mới!</span>
 
                         <div class="profile-img-container img-circle">
                             <input type="file" name="image" accept="image/*" onchange="loadFile(event)">
-                            <img id="img"
+                            <img id="img" style="width: 200px; height: 200px;"
                                  src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
-                                 class="img-thumbnail img-circle img-responsive"/>
+                                 class="rounded-circle img-thumbnail img-circle img-responsive"/>
                             @if ($errors->has('image'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
                             @endif
@@ -158,6 +163,13 @@
                             <form method="post" action="{{route('user.updatePassword', $user->id)}}">
                                 @csrf
                                 <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <label data-error="wrong" data-success="right" for="form3"><b>Nhập mật khẩu
+                                                cũ:</b></label>
+                                        <input type="password" id="form3" name="current_password"
+                                               class="form-control validate">
+                                    </div>
+                                    <hr>
                                     <div class="md-form mb-5">
                                         <label data-error="wrong" data-success="right" for="form3"><b>Mật khẩu mới của
                                                 bạn:</b></label>

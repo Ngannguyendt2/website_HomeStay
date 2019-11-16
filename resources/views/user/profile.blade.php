@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>LERAMIZ - Landing Page Template</title>
+    <title>Dậu's HomeStay</title>
     <meta charset="UTF-8">
     <meta name="description" content="LERAMIZ Landing Page Template">
     <meta name="keywords" content="LERAMIZ, unica, creative, html">
@@ -66,8 +66,8 @@
                 <div class="row" style="margin-top: 30px">
                     <div class="col-md-3">
                         <div class="profile-img-container img-circle">
-                            <img  src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
-                                 class="img-thumbnail img-circle img-responsive"/>
+                            <img style="width: 200px; height: 200px;" src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
+                                 class="img-thumbnail img-circle img-responsive rounded-circle"/>
                             @if ($errors->has('image'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
                             @endif
