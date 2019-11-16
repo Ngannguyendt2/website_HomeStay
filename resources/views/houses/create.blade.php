@@ -67,94 +67,128 @@
             </div>
         </div>
         <div class="col-md-9" style="margin-bottom: 50px">
-            <div class="row">
-                <div style="margin-bottom: 30px" class="col-md-12"><h4 align="center">Cho thuê/Đặt thuê nhà </h4></div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-3" style="margin-top: 5px">
-                            <strong>Nhu cầu:</strong>
+            <form action="{{route('house.store')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                <div class="row">
+                    <div style="margin-bottom: 30px" class="col-md-12"><h4 align="center">Cho thuê/Đặt thuê nhà </h4>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-3" style="margin-top: 5px">
+                                <strong>Nhu cầu:</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <select name="demand" class="form-control custom-select">
+                                    <option selected> =>Chọn nhu cầu<=</option>
+                                    <option value="1">Cho thuê nhà</option>
+                                    <option value="0">Muốn thuê nhà</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <select name="" class="form-control custom-select">
-                                <option selected> =>Chọn nhu cầu<=</option>
-                                <option>Cho thuê nhà</option>
-                                <option>Muốn bán nhà</option>
-                                <option>Muốn thuê nhà</option>
-                                <option>Muốn mua nhà</option>
-                            </select>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-md-3" style="margin-top: 5px">
+                                <strong>Loại nhà:</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <select name="category_id" class="form-control custom-select">
+                                    <option selected> =>Chọn loại nhà<=</option>
+                                    <option value="4">Biệt thự villa</option>
+                                    <option value="5">Nhà sàn</option>
+                                    <option value="6">Nhà tầng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-md-3" style="margin-top: 65px">
+                                <strong>Địa chỉ:</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select onchange="javascript:test.filterCity()" name="province" id="province"
+                                                class="form-control">
+                                            <option selected>Thành phố</option>
+                                            @foreach($provinces as $province)
+                                                <option value="{{$province->id}}">{{$province->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <select style="margin-top: 15px"
+                                                onchange="javascript:test.filterDistrict()"
+                                                name="district" id="district" class="form-control">
+                                            <option selected>Quận huyện</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <select onchange="javascript:test.filterWard()" name="ward" id="ward"
+                                                style="margin-top: 15px" class="form-control">
+                                            <option selected>Xã/Phường</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-4">
+                                <input style="margin-top: 15px" name="name_way" class="form-control"
+                                       placeholder="Tên đường...">
+                            </div>
+                            <div class="col-md-4">
+                                <input style="margin-top: 15px" name="house_number" class="form-control"
+                                       placeholder="Số nhà...">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-md-3" style="margin-top: 5px">
+                                <strong>Chi tiết:</strong>
+                            </div>
+                            <div class="col-md-4">
+                                <input name="totalBedRoom" type="number" class="form-control"
+                                       placeholder="Số phòng ngủ...">
+                            </div>
+                            <div class="col-md-4">
+                                <input name="totalBathRoom" type="number" class="form-control"
+                                       placeholder="Số phòng tắm...">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-md-3" style="margin-top: 8px">
+                                <strong>Giá/đêm:</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <input name="price" type="number" class="form-control" placeholder="Giá theo đêm...">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-md-3" style="margin-top: 8px">
+                                <strong>Trạng thái:</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <select name="status" class="form-control" id="status">
+                                    <option selected>=>Trạng thái<=</option>
+                                    <option value="1">Cho thuê</option>
+                                    <option value="0">Bán</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col-md-3" style="margin-top: 5px">
-                            <strong>Loại nhà:</strong>
-                        </div>
-                        <div class="col-md-6">
-                            <select name="" class="form-control custom-select">
-                                <option selected> =>Chọn loại nhà<=</option>
-                                <option>Biệt thự villa</option>
-                                <option>Nhà sàn gỗ</option>
-                                <option>Nhà tầng</option>
-                            </select>
-                        </div>
+                    <div class="col-md-4">
+                        <textarea class="form-control" readonly style="height: 485px">Ảnh thì làm ở đây</textarea>
                     </div>
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col-md-3" style="margin-top: 40px">
-                            <strong>Địa chỉ:</strong>
-                        </div>
-                        <div class="col-md-9">
-                            <select onchange="javascript:test.filterCity()" name="province" id="province" class="form-control-sm">
-                                <option selected>Thành phố</option>
-{{--                                @foreach($provinces as $province)--}}
-{{--                                    <option value="{{$province->id}}">{{$province->name}}</option>--}}
-{{--                                    @endforeach--}}
-                            </select>
-                            <select onchange="javascript:test.filterDistrict()" name="district" id="district" class="form-control-sm">
-                                <option selected>Quận huyện</option>
-                            </select>
-                            <select onchange="javascript:test.filterWard()" name="ward" id="ward" style="margin-top: 10px" class="form-control-sm">
-                                <option selected>Xã/Phường</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3"></div>
-                        <div class="col-md-4">
-                            <input name="" class="form-control" placeholder="Tên đường...">
-                        </div>
-                        <div class="col-md-4">
-                            <input name="" class="form-control" placeholder="Số nhà...">
-                        </div>
+                    <div class="col-md-2" style="margin-top: 50px">
+                        <strong>Mô tả chung:</strong>
                     </div>
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col-md-3" style="margin-top: 5px">
-                            <strong>Chi tiết:</strong>
-                        </div>
-                        <div class="col-md-4">
-                            <input name="" type="number" class="form-control" placeholder="Số phòng ngủ...">
-                        </div>
-                        <div class="col-md-4">
-                            <input name="" type="number" class="form-control" placeholder="Số phòng tắm...">
-                        </div>
+                    <div class="col-md-10" style="margin-top: 20px">
+                    <textarea name="description" class="form-control" placeholder='Viết mô tả của bạn về ngôi nhà...'
+                              style="height: 100px"></textarea>
                     </div>
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col-md-3" style="margin-top: 8px">
-                            <strong>Giá/đêm:</strong>
-                        </div>
-                        <div class="col-md-8">
-                            <input name="" type="number" class="form-control" placeholder="Giá theo đêm...">
-                        </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-9" style="margin-top: 20px"><input style="width: 200px" type="submit"
+                                                                          class="btn btn-success" value="Đăng tin">
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <textarea  class="form-control" readonly style="height: 336px">Ảnh thì làm ở đây</textarea>
-                </div>
-                <div class="col-md-2" style="margin-top: 50px">
-                    <strong>Mô tả chung:</strong>
-                </div>
-                <div class="col-md-10" style="margin-top: 20px">
-                    <textarea name="" class="form-control" placeholder='Viết mô tả của bạn về ngôi nhà...' style="height: 100px"></textarea>
-                </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-9" style="margin-top: 20px"><input style="width: 200px" type="submit" class="btn btn-success" value="Đăng tin"></div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

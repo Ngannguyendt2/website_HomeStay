@@ -24,7 +24,7 @@ class HouseController extends Controller
         return view('houses.create',compact('categories'));
     }
 
-    public function store(CreateHouseRequest $request)
+    public function store(Request $request)
     {
         $this->house->create($request);
         return redirect()->route('web.index');

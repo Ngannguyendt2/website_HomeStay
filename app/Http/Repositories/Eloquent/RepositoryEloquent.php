@@ -47,6 +47,7 @@ abstract class RepositoryEloquent implements RepositoryInterface
 
     public function create($object)
     {
+//        dd($object);
         // TODO: Implement create() method.
         $object->save();
     }

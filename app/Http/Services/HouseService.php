@@ -20,8 +20,13 @@ class HouseService implements HouseServicceInterface
     {
         // TODO: Implement create() method.
         $house = new House();
+        $house->demand = $request->demand;
         $house->name = $request->name;
-        $house->address = $request->address;
+        $house->province = $request->province;
+        $house->district = $request->district;
+        $house->ward = $request->ward;
+        $house->name_way = $request->name_way;
+        $house->house_number = $request->house_number;
         $house->price = $request->price;
         $house->totalBathRoom = $request->totalBathRoom;
         $house->totalBedRoom = $request->totalBedRoom;
@@ -39,7 +44,6 @@ class HouseService implements HouseServicceInterface
         }
         $house->user_id = $request->user_id;
         $house->category_id = $request->category_id;
-        $house->save();
         $this->houseRepo->create($house);
     }
     public function getCategoryHouse()
