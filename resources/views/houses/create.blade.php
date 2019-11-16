@@ -104,9 +104,9 @@
                         <div class="col-md-9">
                             <select onchange="javascript:test.filterCity()" name="province" id="province" class="form-control-sm">
                                 <option selected>Thành phố</option>
-                                @foreach($provinces as $province)
-                                    <option value="{{$province->id}}">{{$province->name}}</option>
-                                    @endforeach
+{{--                                @foreach($provinces as $province)--}}
+{{--                                    <option value="{{$province->id}}">{{$province->name}}</option>--}}
+{{--                                    @endforeach--}}
                             </select>
                             <select onchange="javascript:test.filterDistrict()" name="district" id="district" class="form-control-sm">
                                 <option selected>Quận huyện</option>
