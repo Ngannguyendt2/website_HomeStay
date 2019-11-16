@@ -5,6 +5,7 @@ namespace App\Http\Services;
 
 
 use App\Http\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 
@@ -44,22 +45,18 @@ class UserService implements UserServiceInterface
             $path = $request->file('image')->store('images', 'public');
             $object->image = $path;
         }
-//        if ($request->new_password == null) {
-//            $object->password;
-//        } else {
-//            $object->password = Hash::make($request->new_password);
-//        }
+
         $this->profileRepo->update($object);
     }
 
     public function updatePassword($object, $request)
     {
-        $object->password = null;
-        $object->email;
-        $object->name;
-        $object->phone;
-        $object->image;
-        $object->password = Hash::make($request->password);
-        $this->profileRepo->updatePassword($object);
+        if(!(Hash::check($request->current_password, Auth::user()->password))) {
+            return redirect()->back()->with('error-password','Mật khẩu cũ không đúng');
+        } else {
+            $object->password = null;
+            $object->password = Hash::make($request->password);
+            return $this->profileRepo->updatePassword($object);
+        }
     }
 }

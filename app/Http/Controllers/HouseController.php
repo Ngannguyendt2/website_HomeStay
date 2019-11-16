@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServicceInterface;
+use App\Province;
 use Illuminate\Http\Request;
 
 class HouseController extends Controller
@@ -19,7 +20,8 @@ class HouseController extends Controller
     public function create()
     {
         $categories=$this->house->getCategoryHouse();
-        return view('houses.create',compact('categories'));
+        $provinces = Province::all();
+        return view('houses.create',compact('categories', 'provinces'));
     }
 
     public function store(CreateHouseRequest $request)
