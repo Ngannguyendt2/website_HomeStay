@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -9,8 +10,10 @@ use Illuminate\Support\Facades\Session;
 class HomeStayController extends Controller
 {
 
-    public function index() {
-        return view('web.index');
+    public function index()
+    {
+        $houses = \App\House::paginate(4);
+        return view('web.index', compact('houses'));
     }
 
 
@@ -39,5 +42,9 @@ class HomeStayController extends Controller
 
     public function detail() {
         return view('web.detail');
+    }
+
+    public function waiting() {
+        return view('waiting');
     }
 }
