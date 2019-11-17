@@ -44,7 +44,6 @@ class HouseService implements HouseServicceInterface
         }
         $house->user_id = $request->user_id;
         $house->category_id = $request->category_id;
-
         $this->houseRepo->create($house);
     }
     public function getCategoryHouse()

@@ -43,7 +43,7 @@ class Test {
 
     filterWard = function () {
         let id = $('#ward').val();
-        let url = 'http://localhost:8001/api/ward/' + id;
+        let url = 'http://localhost:8000/api/ward/' + id;
         $.ajax({
             url: url,
             type: "GET",

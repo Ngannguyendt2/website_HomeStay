@@ -62,4 +62,8 @@ class UserController extends Controller
         return view('admin.index');
     }
 
+    public function test() {
+        return view('home');
+    }
+
 }

@@ -51,12 +51,12 @@
                 <strong> {{Session::get('success')}}</strong>
             </div>
         @endif
-            @if(Session::has('error'))
-                <div class="alert alert-danger alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong> {{Session::get('error')}}</strong>
-                </div>
-            @endif
+        @if(Session::has('error'))
+            <div class="alert alert-danger alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong> {{Session::get('error')}}</strong>
+            </div>
+        @endif
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Thông tin cá nhân</span>
         <form>
@@ -66,9 +66,10 @@
                 <div class="row" style="margin-top: 30px">
                     <div class="col-md-3">
                         <div class="profile-img-container img-circle">
-                            <img style="width: 200px; height: 200px;" src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
-                                 class="img-thumbnail img-circle img-responsive rounded-circle"/>
-                            @if ($errors->has('image'))
+                            <img id="img" style="width: 200px; height: 200px;"
+                                 src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
+                                 class="img-thumbnail img-circle img-responsive rounded-circle" alt="ahihi"/>
+                            @if ($errors->has('images'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
                             @endif
                         </div>
@@ -98,7 +99,8 @@
                                 <h5>{{$user->address}}</h5>
                             </div>
                             <div style="margin-top: 15px" class='col-md-12'>
-                                <a class="btn btn-outline-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh sửa thông tin cá nhân</b></a>
+                                <a class="btn btn-outline-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
+                                        sửa thông tin cá nhân</b></a>
                             </div>
                         </div>
 

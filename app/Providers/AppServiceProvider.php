@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\House;
 use App\Http\Repositories\HouseRepositoryInterface;
 use App\Http\Repositories\IMPL\HouseRepository;
 use App\Http\Repositories\IMPL\UserRepository;
