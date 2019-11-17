@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Services\UserServiceInterface;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -19,8 +20,12 @@ class UserController extends Controller
     {
         $this->profileService = $profileService;
     }
+    public function index(){
+        $users = User::all();
+        return view('admin.users.list', compact('users'));
+    }
 
-    public function index($id)
+    public function getById($id)
     {
         $user = $this->profileService->getUserById($id);
         return view('user.profile', compact('user'));
