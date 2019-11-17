@@ -26,7 +26,7 @@ Route::get('/detail', "HomeStayController@detail")->name('web.detail');
 
 Route::prefix('/user')->middleware('auth')->group(function () {
 
-    Route::get('/{id}/profile', 'UserController@index')->name('user.profile');
+    Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
     Route::post('/{id}/updatePassword', 'UserController@updatePassword')->name('user.updatePassword');
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
@@ -35,7 +35,8 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::post('/create', 'HouseController@store')->name('house.store');
     });
     Route::prefix('/admin')->group(function (){
-        Route::get('', 'UserController@admin')->name('user.admin.index');
+        Route::get('', 'UserController@admin')->name('admin.index');
+        Route::get('/users', 'UserController@index')->name('admin.users.list');
     });
 });
 

@@ -62,7 +62,7 @@
                                 </a>
                                 @if(Auth::user()->admin == 1)
                                     <a style="color: black" class="dropdown-item"
-                                       href="{{route('user.admin.index',Auth::user()->id)}}">
+                                       href="{{route('admin.index',Auth::user()->id)}}">
                                         Trang Admin
                                     </a>
                                 @endif
