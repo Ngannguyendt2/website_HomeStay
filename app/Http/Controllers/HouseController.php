@@ -18,12 +18,14 @@ class HouseController extends Controller
         $this->house = $house;
     }
 
-    public function index() {
+    public function index()
+    {
         $houses = House::all();
         return view('admin.houses.index', compact('houses'));
     }
 
-    public function approve() {
+    public function approve()
+    {
         $houses = House::whereNull('approved_at')->get();
         return view('admin.houses.approve', compact('houses'));
     }
@@ -43,10 +45,17 @@ class HouseController extends Controller
     }
 
 
-    public function checkApprove($id) {
+    public function checkApprove($id)
+    {
         $house = House::findOrFail($id);
         $house->update(['approved_at' => now()]);
         return redirect()->route('admin.houses.approve')->withMessage('Nhà đã xác nhận được phép đăng');
+    }
+
+    public function getById($id)
+    {
+        $house = House::findOrFail($id);
+        return view('web.detail', compact('house'));
     }
 
 
