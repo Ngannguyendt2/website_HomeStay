@@ -93,9 +93,9 @@
                             <div class="col-md-8">
                                 <select name="category_id" class="form-control custom-select">
                                     <option selected> =>Chọn loại nhà<=</option>
-                                    <option value="4">Biệt thự villa</option>
-                                    <option value="5">Nhà sàn</option>
-                                    <option value="6">Nhà tầng</option>
+                                    <option value="1">Biệt thự villa</option>
+                                    <option value="2">Nhà sàn</option>
+                                    <option value="3">Nhà tầng</option>
                                 </select>
                             </div>
                         </div>
@@ -174,7 +174,9 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <textarea class="form-control" readonly style="height: 485px">Ảnh thì làm ở đây</textarea>
+                        <input type="file" name="image[]" id="file-input" multiple>
+                        <span class="text-danger">{{ $errors->first('image') }}</span>
+                        <div id="thumb-output"></div>
                     </div>
                     <div class="col-md-2" style="margin-top: 50px">
                         <strong>Mô tả chung:</strong>
@@ -208,7 +210,30 @@
 <!-- load for map -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
 <script src="{{asset('js/map.js')}}"></script>
+<script>
 
+    $(document).ready(function () {
+        $('#file-input').on('change', function () { //on file input change
+
+                let data = $(this)[0].files; //this file data
+
+                $.each(data, function (index, file) { //loop though each file
+                    if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
+                        let fileRead = new FileReader(); //new filereader
+                        fileRead.onload = (function (file) { //trigger function on successful read
+                            return function (e) {
+                                let img = $('<img/>').addClass('thumb').attr('src', e.target.result).css('width','250px'); //create image element
+                                $('#thumb-output').append(img); //append image to output element
+                            };
+                        })(file);
+                        fileRead.readAsDataURL(file); //URL representing the file's data.
+                    }
+                });
+
+        });
+    });
+
+</script>
 
 </body>
 </html>
