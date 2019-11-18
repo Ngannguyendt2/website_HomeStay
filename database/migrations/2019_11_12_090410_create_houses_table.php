@@ -17,9 +17,9 @@ class CreateHousesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('demand');
-            $table->string('province');
-            $table->string('district');
-            $table->string('ward');
+            $table->string('province_id');
+            $table->string('district_id');
+            $table->string('ward_id');
             $table->string('name_way');
             $table->string('house_number');
             $table->string('totalBedRoom');

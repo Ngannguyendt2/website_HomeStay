@@ -7,6 +7,7 @@ use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServicceInterface;
 use App\Province;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HouseController extends Controller
 {
@@ -37,11 +38,14 @@ class HouseController extends Controller
 
     public function store(Request $request)
     {
-
         $this->house->create($request);
         return redirect()->route('web.index');
     }
 
+    public function housesManager($id) {
+        $houses = House::where('user_id', $id)->paginate(4);
+        return view('user.housesManager.list', compact('houses'));
+    }
 
     public function checkApprove($id) {
         $house = House::findOrFail($id);

@@ -45,6 +45,8 @@ class HomeStayController extends Controller
     }
 
     public function waiting() {
-        return view('waiting');
+        return view('web.waiting');
     }
+
+
 }

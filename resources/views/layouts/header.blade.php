@@ -60,12 +60,17 @@
                                    href="{{route('user.profile',Auth::user()->id)}}">
                                     Thông tin cá nhân
                                 </a>
+                                <a style="color: black" class="dropdown-item"
+                                   href="{{route('house.list',Auth::user()->id)}}">
+                                    Nhà của bạn
+                                </a>
                                 @if(Auth::user()->admin == 1)
                                     <a style="color: black" class="dropdown-item"
                                        href="{{route('admin.index',Auth::user()->id)}}">
                                         Trang Admin
                                     </a>
                                 @endif
+
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
                                     @csrf

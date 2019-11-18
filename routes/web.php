@@ -32,7 +32,8 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::prefix('/houses')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');
-        Route::post('/create', 'HouseController@store')->name('house.store');
+        Route::post('/create', 'HouseController@store')->name('house.store')->middleware('approve');
+        Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
     });
     Route::prefix('/admin')->middleware('admin')->group(function (){
         Route::get('', 'UserController@admin')->name('admin.index');
