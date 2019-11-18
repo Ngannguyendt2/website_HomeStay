@@ -6,6 +6,8 @@ namespace App\Http\Services;
 
 use App\House;
 use App\Http\Repositories\HouseRepositoryInterface;
+use App\Notifications\NewHouse;
+use App\User;
 
 class HouseService implements HouseServicceInterface
 {
@@ -44,8 +46,12 @@ class HouseService implements HouseServicceInterface
         }
         $house->user_id = $request->user_id;
         $house->category_id = $request->category_id;
-
         $this->houseRepo->create($house);
+
+        $admin = User::where('admin', 1)->first();
+        if ($admin) {
+            $admin->notify(new NewHouse($house));
+        }
     }
     public function getCategoryHouse()
     {

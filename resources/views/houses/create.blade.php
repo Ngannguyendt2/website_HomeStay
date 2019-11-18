@@ -61,7 +61,7 @@
                 <img style="width: 210px; height: 210px;"
                      src="{{(Auth::user()->image)? asset('storage/'.Auth::user()->image) : asset('img/anhdaidien.jpg')}}"
                      class="img-thumbnail img-circle img-responsive rounded-circle"/>
-                @if ($errors->has('image'))
+                @if ($errors->has('images'))
                     <p class="text text-danger">{{ $errors->first('image')}}</p>
                 @endif
             </div>

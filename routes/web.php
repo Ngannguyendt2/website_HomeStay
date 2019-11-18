@@ -21,7 +21,7 @@ Route::get('/category', 'HomeStayController@category')->name('web.category');
 Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
 Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
-Route::get('/', 'HomeStayController@index')->name('web.index');
+Route::get('', 'HomeStayController@index')->name('web.index');
 Route::get('/detail', "HomeStayController@detail")->name('web.detail');
 
 Route::prefix('/user')->middleware('auth')->group(function () {
@@ -34,13 +34,20 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store');
     });
-    Route::prefix('/admin')->group(function (){
+    Route::prefix('/admin')->middleware('admin')->group(function (){
         Route::get('', 'UserController@admin')->name('admin.index');
         Route::get('/users', 'UserController@index')->name('admin.users.list');
+
+        Route::prefix('houses')->group(function (){
+            Route::get('', 'HouseController@index')->name('admin.houses.index');
+            Route::get('/{id}/approve', 'HouseController@checkApprove')->name('admin.houses.checkApprove');
+            Route::get('/approve', 'HouseController@approve')->name('admin.houses.approve');
+        });
     });
 });
 
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
+Route::get('waiting', 'HomeStayController@waiting')->name('waiting');
 
