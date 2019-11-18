@@ -33,8 +33,8 @@
                             <td>{{++$key}}</td>
                             <td>{{$house->demand}}</td>
                             <td>{{$house->category->name}}</td>
-                            <td>Nhà ở thành phố:{{$house->province}},quận huyện: {{$house->district}}
-                                , xã/phường: {{$house->ward}}, Đường: {{$house->name_way}}, Số nhà: {{$house->house_number}}</td>
+                            <td>{{$house->province->name}} <br> {{$house->district->name}}
+                                <br> {{$house->ward->name}} <br> {{$house->name_way}} <br> {{$house->house_number}}</td>
                             <td>{{$house->description}}</td>
                             <td>Số phòng ngủ:{{$house->totalBedroom}}, Số phòng tắm:{{$house->totalBathroom}}</td>
                             <td>{{$house->price}}</td>
@@ -45,6 +45,7 @@
 
                     </tbody>
                 </table>
+                {{$houses->links()}}
             </div>
         </div>
     </div>

@@ -24,9 +24,9 @@ class HouseService implements HouseServicceInterface
         $house = new House();
         $house->demand = $request->demand;
         $house->name = $request->name;
-        $house->province = $request->province;
-        $house->district = $request->district;
-        $house->ward = $request->ward;
+        $house->province_id = $request->province_id;
+        $house->district_id = $request->district_id;
+        $house->ward_id = $request->ward_id;
         $house->name_way = $request->name_way;
         $house->house_number = $request->house_number;
         $house->price = $request->price;

@@ -50,8 +50,8 @@
                         <div class="row">
                             <div class="col-xl-8 sl-title">
                                 <h2>{{$house->house_number}}-{{$house->name_way}}</h2>
-                                <p><i class="fa fa-map-marker"></i>{{$house->ward}},{{$house->district}}
-                                    ,{{$house->province}}</p>
+                                <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}, {{$house->district->name}}
+                                    , {{$house->province->name}}</p>
                             </div>
                             <div class="col-xl-4">
                                 <a href="#" class="price-btn">$4,500,000</a>

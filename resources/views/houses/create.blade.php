@@ -93,9 +93,9 @@
                             <div class="col-md-8">
                                 <select name="category_id" class="form-control custom-select">
                                     <option selected> =>Chọn loại nhà<=</option>
-                                    <option value="1">Biệt thự villa</option>
-                                    <option value="2">Nhà sàn</option>
-                                    <option value="3">Nhà tầng</option>
+                                    <option value="4">Biệt thự villa</option>
+                                    <option value="5">Nhà sàn</option>
+                                    <option value="6">Nhà tầng</option>
                                 </select>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                             <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <select onchange="javascript:test.filterCity()" name="province" id="province"
+                                        <select onchange="javascript:test.filterCity()" name="province_id" id="province"
                                                 class="form-control">
                                             <option selected>Thành phố</option>
                                             @foreach($provinces as $province)
@@ -117,12 +117,12 @@
                                     <div class="col-md-12">
                                         <select style="margin-top: 15px"
                                                 onchange="javascript:test.filterDistrict()"
-                                                name="district" id="district" class="form-control">
+                                                name="district_id" id="district" class="form-control">
                                             <option selected>Quận huyện</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12">
-                                        <select onchange="javascript:test.filterWard()" name="ward" id="ward"
+                                        <select onchange="javascript:test.filterWard()" name="ward_id" id="ward"
                                                 style="margin-top: 15px" class="form-control">
                                             <option selected>Xã/Phường</option>
                                         </select>
