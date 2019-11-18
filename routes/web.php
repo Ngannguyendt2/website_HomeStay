@@ -27,7 +27,7 @@ Route::get('/detail', "HomeStayController@detail")->name('web.detail');
 Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
-    Route::post('/{id}/updatePassword', 'UserController@updatePassword')->name('user.updatePassword');
+    Route::post('/{id}/changePassword', 'UserController@changePassword')->name('user.changePassword');
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::prefix('/houses')->group(function () {

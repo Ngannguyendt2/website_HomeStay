@@ -29,17 +29,17 @@ class UpdatePasswordRequest extends FormRequest
     {
         return [
             //
-            'password' => 'required|min:6|max:50',
+            'old_password' => 'required',
+            'new_password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation'=>'min:6'
         ];
     }
 
     public function message()
     {
-        return [
-            'password.required' => 'Không để trống mật khẩu',
-            'password.min' => 'Mật khẩu phải lớn hơn 6 ký tự',
-            'password.max' => 'Mật khẩu không quá 50 ký tự',
-
-        ];
+        return response()->json([
+            'status' => 'errors',
+            'message'=> 'loi roi'
+        ]);
     }
 }
