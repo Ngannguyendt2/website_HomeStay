@@ -22,7 +22,8 @@ Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
 Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('', 'HomeStayController@index')->name('web.index');
-Route::get('detail', "HomeStayController@detail")->name('web.detail');
+
+Route::get('{id}/detail', "HouseController@getById")->name('web.detail');
 
 Route::prefix('/user')->middleware('auth')->group(function () {
 
