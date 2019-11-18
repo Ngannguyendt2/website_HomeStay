@@ -52,17 +52,6 @@
 <!-- Breadcrumb -->
 <div class="site-breadcrumb" style="background-color: lightgoldenrodyellow">
     <div class="container">
-        @if (session('error-password'))
-            <span class="help-block">
-                {{session('error-password')}}
-            </span>
-        @endif
-        @if(Session::has('password_ok'))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong> {{Session::get('password_ok')}}</strong>
-            </div>
-        @endif
         <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
         <span><i class="fa fa-angle-right"></i>Sửa thông tin cá nhân</span>
         <form method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data" class="dropzone">
@@ -147,56 +136,7 @@
 
             </div>
         </form>
-        <div class="col-md-10">
-            <div class="col-md-12" style="margin-top: 20px; margin-left: 4px">
-                <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog"
-                     aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header text-center">
-                                <h4 class="modal-title w-100 font-weight-bold">Đổi mật khẩu</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form method="post" action="{{route('user.updatePassword', $user->id)}}">
-                                @csrf
-                                <div class="modal-body mx-3">
-                                    <div class="md-form mb-5">
-                                        <label data-error="wrong" data-success="right" for="form3"><b>Nhập mật khẩu
-                                                cũ:</b></label>
-                                        <input type="password" id="form3" name="current_password"
-                                               class="form-control validate">
-                                    </div>
-                                    <hr>
-                                    <div class="md-form mb-5">
-                                        <label data-error="wrong" data-success="right" for="form3"><b>Mật khẩu mới của
-                                                bạn:</b></label>
-                                        <input type="password" id="form3" name="password" class="form-control validate">
-                                    </div>
-                                    <hr>
-                                    <div class="md-form mb-4">
-                                        <label data-error="wrong" data-success="right" for="form2"><b>Nhập lại mật khẩu
-                                                mới của bạn</b></label>
-                                        <input type="password" id="form2" name="password" class="form-control validate">
-                                    </div>
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button class="btn btn-success">Xác nhận</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="text-center">
-                    <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal"
-                       data-target="#modalSubscriptionForm"><strong>Thay đổi lại mật khẩu</strong></a>
-                </div>
-            </div>
-
-        </div>
     </div>
 </div>
 

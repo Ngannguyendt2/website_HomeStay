@@ -13,19 +13,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
-
-        $limit = 10;
-
-        for ($i = 0; $i < $limit; $i++) {
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->unique()->email,
-                'address' => $faker->address,
-                'phone' => $faker->phoneNumber,
-                'password' => $faker->password,
-            ]);
-        }
         $user = new User;
         $user->name = 'ngannguyen';
         $user->email = 'ngannguyendt2haui@gmail.com';
