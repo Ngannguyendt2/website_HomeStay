@@ -48,10 +48,10 @@ class HouseService implements HouseServicceInterface
         $house->category_id = $request->category_id;
         $this->houseRepo->create($house);
 
-        $admin = User::where('admin', 1)->first();
-        if ($admin) {
-            $admin->notify(new NewHouse($house));
-        }
+//        $admin = User::where('admin', 1)->first();
+//        if ($admin) {
+//            $admin->notify(new NewHouse($house));
+//        }
     }
     public function getCategoryHouse()
     {
