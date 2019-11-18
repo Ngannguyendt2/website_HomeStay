@@ -14,7 +14,7 @@ class AddColumnApprovedAtToHouses extends Migration
     public function up()
     {
         Schema::table('houses', function (Blueprint $table) {
-            $table->timestamp('approved_at');
+            $table->timestamp('approved_at')->nullable();
         });
     }
 

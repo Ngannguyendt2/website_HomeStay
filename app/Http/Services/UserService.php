@@ -51,12 +51,24 @@ class UserService implements UserServiceInterface
 
     public function updatePassword($object, $request)
     {
-        if(!(Hash::check($request->current_password, Auth::user()->password))) {
-            return redirect()->back()->with('error-password','Mật khẩu cũ không đúng');
-        } else {
-            $object->password = null;
-            $object->password = Hash::make($request->password);
-            return $this->profileRepo->updatePassword($object);
+        try {
+            $currentPass = $object->password;
+            $newPass = $request->old_password;
+            if (Hash::check($newPass, $currentPass)) {
+                $object->password = Hash::make($request->new_password);;
+                $this->profileRepo->updatePassword($object);
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'doi mat mat khau thanh cong'
+                ]);
+            }
+
+            return response()->json([
+                'status' => 'errors',
+                'message' => 'mat khong khong dung'
+            ]);
+        } catch (\Exception $e) {
+
         }
     }
 }

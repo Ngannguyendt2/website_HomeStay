@@ -51,16 +51,10 @@ class UserController extends Controller
         return redirect()->route('user.profile', $user->id);
     }
 
-    public function updatePassword($id, Request $request) {
-        try {
-            $user = $this->profileService->getUserById($id);
-            $this->profileService->updatePassword($user, $request);
-            $message = 'Cập nhật mật khẩu thành công';
-            $request->session()->flash('password_ok', $message);
-        } catch (\Exception $exception) {
-            return $exception->getMessage();
-        }
-        return redirect()->back();
+    public function changePassword($id, UpdatePasswordRequest $request)
+    {
+        $user = $this->profileService->getUserById($id);
+        return $this->profileService->updatePassword($user, $request);
     }
 
     public function admin() {

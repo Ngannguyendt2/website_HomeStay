@@ -98,9 +98,13 @@
                                 <label>Địa chỉ:</label>
                                 <h5>{{$user->address}}</h5>
                             </div>
-                            <div style="margin-top: 15px" class='col-md-12'>
-                                <a class="btn btn-outline-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
-                                        sửa thông tin cá nhân</b></a>
+                            <div style="margin-top: 15px" class='col-md-4'>
+                                    <a class="btn btn-primary" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
+                                            sửa thông tin cá nhân</b></a>
+                            </div>
+                            <div style="margin-top: 15px" class="col-md-3">
+                                <a href="" class="btn btn-primary" data-toggle="modal"
+                                   data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
                             </div>
                         </div>
 
@@ -113,7 +117,57 @@
 
     </div>
 </div>
+<div id="ChangePassword" class="modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-center primecolor">Đổi mật khẩu </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <strong id="alert"></strong>
+                <div class="col-md-offset-1 col-md-10">
+                    <form method="POST" id="Password">
+                        @csrf
+                        <div class="form-group has-feedback">
+                            <input type="password" name="old_password" class="form-control"
+                                   placeholder="Nhập mật khẩu cũ ">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="old_password-error"></strong>
+                            </span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password" name="new_password" class="form-control"
+                                   placeholder="Nhập mật khẩu mới">
+                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="new_password-error"></strong>
+                            </span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="password" name="password_confirmation" class="form-control"
+                                   placeholder="Nhập lại mật khẩu ">
+                            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <button type="button" id="submitChangePass"
+                                        class="btn btn-primary btn-prime white btn-flat">Submit
+                                </button>
+
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Footer section -->
 @include('layouts.footer')
@@ -131,6 +185,46 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
 <script src="{{asset('js/map.js')}}"></script>
 
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+    $('body').on('click', '#submitChangePass', function () {
+        // e.preventDefault();
+        let changePasswordForm = $("#Password");
+        let formData = changePasswordForm.serialize();
+        $('#old_password-error').html("");
+        $('#new_password-error').html("");
+        $('#alert').html("");
+        $.ajax({
+            url: "{{ route('user.changePassword', $user->id) }}",
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                if (data.status == 'errors') {
+                    $('#alert').html(data.message).css('color', 'red');
+                }
+                if (data.status == 'success') {
+                    $('#alert').html(data.message).css('color', 'green');
+                }
+            },
+            error: function (result) {
 
+                let err = JSON.parse(result.responseText);
+                if (err.errors.old_password) {
+                    $('#old_password-error').html(err.errors.old_password[0]);
+                }
+
+                if (err.errors.new_password) {
+                    $('#new_password-error').html(err.errors.new_password[0]);
+                }
+            }
+        });
+    });
+
+
+</script>
 </body>
 </html>
