@@ -25,7 +25,7 @@ class HouseController extends Controller
     }
 
     public function approve() {
-        $houses = House::whereNull('approved_at')->get();
+        $houses = House::whereNull('approved_at')->paginate(4);
         return view('admin.houses.approve', compact('houses'));
     }
 

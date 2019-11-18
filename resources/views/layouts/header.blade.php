@@ -39,9 +39,6 @@
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     @endif
                                 </div>
-                                {{--                                <div class="col-lg-4">--}}
-                                {{--                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
-                                {{--                                </div>--}}
                             </div>
                         @else
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

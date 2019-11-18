@@ -54,7 +54,7 @@
                             <div class="propertie-info text-white">
                                 <div class="info-warp">
                                     <h5>{{$house->category->name}}</h5>
-                                    <p><i class="fa fa-map-marker"></i>{{$house->province}}-{{$house->district}}-{{$house->ward}}</p>
+                                    <p><i class="fa fa-map-marker"></i>{{$house->province->name}}-{{$house->district->name}}-{{$house->ward->name}}</p>
                                 </div>
                                 <div class="price"><a href="{{route('web.detail')}}">{{number_format($house->price)}} Đồng</a></div>
                             </div>
