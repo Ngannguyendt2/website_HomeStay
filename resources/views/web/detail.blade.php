@@ -13,7 +13,7 @@
     <div class="site-breadcrumb">
         <div class="container">
             <a href=""><i class="fa fa-home"></i>Home</a>
-            <span><i class="fa fa-angle-right"></i>Thông tin căn nhà</span>
+            <span><i class="fa fa-angle-right"></i>Thông tin căn hộ</span>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
                                 <a href="#" class="price-btn">$4,500,000</a>
                             </div>
                         </div>
-                        <h3 class="sl-sp-title">Property Details</h3>
+                        <h3 class="sl-sp-title">Chi tiết căn hộ</h3>
                         <div class="row property-details-list">
                             <div class="col-md-4 col-sm-6">
                                 <p><i class="fa fa-bed"></i>{{$house->totalBedRoom}} Phòng ngủ</p>
@@ -71,7 +71,7 @@
                                 <p><i class="fa fa-bath"></i>{{$house->totalBathroom}} Phòng tắm</p>
                             </div>
                         </div>
-                        <h3 class="sl-sp-title">Description</h3>
+                        <h3 class="sl-sp-title">Mô tả</h3>
                         <div class="description">
                             <p>{{$house->description}}</p>
                         </div>
