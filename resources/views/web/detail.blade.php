@@ -148,7 +148,150 @@
                     </div>
                 </div>
             </div>
+            <div id="Order" class="modal" role="dialog" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title text-center primecolor">Đặt thuê/mua </h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <div class="modal-body" style="overflow: hidden;">
+                            <strong id="alert"></strong>
+                            <div class="col-md-offset-1 col-md-10">
+                                <form method="POST" id="OrderHouse">
+                                    @csrf
+                                    <div class="form-group has-feedback">
+                                        <label>Tên người thuê: </label>
+                                        <input type="text" name="name" class="form-control"
+                                               placeholder="Nhập tên người thuê  ">
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <label>Email: </label>
+                                        <input type="email" name="email" class="form-control"
+                                               placeholder="Nhập email">
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="email-error"></strong>
+                            </span>
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <label>Số điện thoại: </label>
+                                        <input type="phone" name="phone" class="form-control"
+                                               placeholder="Nhập số điện thoại  ">
+                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="phone-error"></strong>
+                                        </span>
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <label>Ngày ở: </label>
+                                        <input type="date" name="checkin" class="form-control" id="checkin">
+                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="checkin-error"></strong>
+                                        </span>
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <label>Ngày trả: </label>
+                                        <input type="date" name="checkout" class="form-control" id="checkout">
+                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="checkout-error"></strong>
+                                        </span>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Tổng số tiền:</label>
+                                        <p id="price"></p>
+                                        <input id="totalPrice" name="totalPrice" value="" hidden>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 text-center">
+                                            <button type="button" id="submitOrderHouse"
+                                                    class="btn btn-primary btn-prime white btn-flat">Submit
+                                            </button>
+
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Page end -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').on('change', '#checkout', function () {
+                let dateCheckout = new Date($('#checkout').val());
+                let dateCheckin = new Date($('#checkin').val());
+                let date = new Date();
+                let datePrice = date.setTime((dateCheckout.getTime() - dateCheckin.getTime()) / 1000 / 60 / 60 / 24);
+                let priceOneDay = parseInt({{$house->price}});
+                totalPrice = priceOneDay * datePrice;
+                $('#totalPrice').val(totalPrice);
+                $('#price').html(totalPrice);
+            });
+
+
+            $('body').on('click', '#submitOrderHouse', function () {
+                // e.preventDefault();
+
+                let orderHouseForm = $("#OrderHouse");
+                let formData = orderHouseForm.serialize();
+                $('#name-error').html("");
+                $('#email-error').html("");
+                $('#phone-error').html("");
+                $('#checkin-error').html("");
+                $('#checkout-error').html("");
+                $('#alert').html("");
+                $.ajax({
+                    url: "{{route('customer.order', $house->id)}}",
+                    type: 'POST',
+                    data: formData,
+                    success: function (result) {
+
+                    },
+                    error: function (error) {
+                        let err = JSON.parse(error.responseText);
+                        if (err.errors.name) {
+                            $('#name-error').html(err.errors.name[0]);
+                        }
+                        if (err.errors.email) {
+                            $('#email-error').html(err.errors.email[0]);
+                        }
+                        if (err.errors.phone) {
+                            $('#phone-error').html(err.errors.phone[0]);
+                        }
+                        if (err.errors.checkin) {
+                            $('#checkin-error').html(err.errors.checkin[0]);
+                        }
+                        if (err.errors.checkout) {
+                            $('#checkout-error').html(err.errors.checkout[0]);
+                        }
+                    }
+                });
+            })
+            ;
+
+        })
+
+
+    </script>
 @endsection
+

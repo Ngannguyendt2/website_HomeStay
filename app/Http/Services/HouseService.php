@@ -9,7 +9,7 @@ use App\Http\Repositories\HouseRepositoryInterface;
 use App\Notifications\NewHouse;
 use App\User;
 
-class HouseService implements HouseServicceInterface
+class HouseService implements HouseServiceInterface
 {
     protected $houseRepo;
 
@@ -53,9 +53,16 @@ class HouseService implements HouseServicceInterface
 //            $admin->notify(new NewHouse($house));
 //        }
     }
+
     public function getCategoryHouse()
     {
         // TODO: Implement getCategoryHouse() method.
         return $this->houseRepo->getCategoryHouse();
+    }
+
+    public function getHouseById($id)
+    {
+        // TODO: Implement getHouseById() method.
+        return $this->houseRepo->getById($id);
     }
 }

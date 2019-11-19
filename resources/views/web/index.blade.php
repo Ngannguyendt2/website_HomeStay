@@ -47,6 +47,7 @@
             <div class="row">
                 @foreach($houses as $key => $house)
                     @if($house->approved_at !== null)
+
                 <div  class="col-md-6">
                     <a href="{{route('web.detail',$house->id)}}">
                         <div style="border-radius: 15px" class="propertie-item set-bg" data-setbg="{{asset('img/propertie/1.jpg')}}">
@@ -57,6 +58,7 @@
                                     <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}, {{$house->district->name}}, {{$house->province->name}}</p>
                                 </div>
                                 <div style="margin-top: 5px" class="price"><a href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}} Đồng</a></div>
+
                             </div>
                         </div>
                     </a>

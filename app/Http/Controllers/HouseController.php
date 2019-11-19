@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\House;
 use App\Http\Requests\CreateHouseRequest;
-use App\Http\Services\HouseServicceInterface;
+use App\Http\Services\HouseServiceInterface;
 use App\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +14,7 @@ class HouseController extends Controller
 
     protected $house;
 
-    public function __construct(HouseServicceInterface $house)
+    public function __construct(HouseServiceInterface $house)
     {
         $this->house = $house;
     }
