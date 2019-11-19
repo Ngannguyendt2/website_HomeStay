@@ -17,7 +17,7 @@ class CheckApprove
     {
         $response = $next($request);
 
-        if($request->approved_at === null) {
+        if($request->approved_at == null) {
             return redirect()->route('waiting');
         }
         return $response;

@@ -22,6 +22,7 @@ Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
 Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('', 'HomeStayController@index')->name('web.index');
+
 Route::get('{id}/detail', "HouseController@getById")->name('web.detail');
 
 Route::prefix('/user')->middleware('auth')->group(function () {
@@ -32,7 +33,8 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::prefix('/houses')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');
-        Route::post('/create', 'HouseController@store')->name('house.store');
+        Route::post('/create', 'HouseController@store')->name('house.store')->middleware('approve');
+        Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
     });
     Route::prefix('/admin')->middleware('admin')->group(function (){
         Route::get('', 'UserController@admin')->name('admin.index');

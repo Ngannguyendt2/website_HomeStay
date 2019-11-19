@@ -18,6 +18,21 @@ class House extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function province()
+    {
+        return $this->belongsTo('App\Province');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\District');
+    }
+
+    public function ward()
+    {
+        return $this->belongsTo('App\Ward');
+    }
+
     public function orders()
     {
         return $this->hasMany('App\Order');

@@ -15,4 +15,8 @@ class District extends Model
     public function wards() {
         return $this->hasMany(Ward::class);
     }
+
+    public function houses(){
+        $this->hasMany(House::class);
+    }
 }

@@ -41,20 +41,23 @@
                     </div>
                     <div class="owl-carousel sl-thumb-slider" id="sl-slider-thumb">
                         <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/1.jpg')}}"></div>
-                        <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/2.jpg')}}i"></div>
+                        <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/2.jpg')}}"></div>
                         <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/3.jpg')}}"></div>
                         <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/4.jpg')}}"></div>
                         <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/5.jpg')}}"></div>
                     </div>
                     <div class="single-list-content">
                         <div class="row">
-                            <div class="col-xl-8 sl-title">
+                            <div class="col-xl-6 sl-title">
                                 <h2>{{$house->house_number}}-{{$house->name_way}}</h2>
-                                <p><i class="fa fa-map-marker"></i>{{$house->ward}},{{$house->district}}
-                                    ,{{$house->province}}</p>
+                                <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}, {{$house->district->name}}
+                                    , {{$house->province->name}}</p>
                             </div>
-                            <div class="col-xl-4">
-                                <a href="#" class="price-btn">$4,500,000</a>
+                            <div class="col-xl-2">
+                               <p class="btn btn-primary">Giá: {{number_format($house->price)}} Đồng</p>
+                            </div>
+                            <div class="col-xl-2 offset-xl-1">
+                                <a href="#" class="btn btn-primary">Đặt phòng</a>
                             </div>
                         </div>
                         <h3 class="sl-sp-title">Chi tiết căn hộ</h3>
@@ -75,7 +78,7 @@
                         <div class="description">
                             <p>{{$house->description}}</p>
                         </div>
-                        <h3 class="sl-sp-title">Property Details</h3>
+                        <h3 class="sl-sp-title">Thông tin thêm</h3>
                         <div class="row property-details-list">
                             <div class="col-md-4 col-sm-6">
                                 <p><i class="fa fa-check-circle-o"></i>Điều hòa</p>
@@ -93,7 +96,7 @@
                                 <p><i class="fa fa-check-circle-o"></i>Bếp điện</p>
                             </div>
                         </div>
-                        <h3 class="sl-sp-title bd-no">Location</h3>
+                        <h3 class="sl-sp-title bd-no">Vị trí</h3>
                         <div class="pos-map" id="map-canvas"></div>
                     </div>
                 </div>
