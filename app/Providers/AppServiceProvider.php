@@ -9,7 +9,7 @@ use App\Http\Repositories\IMPL\CustomerRepository;
 use App\Http\Repositories\IMPL\HouseRepository;
 use App\Http\Repositories\IMPL\UserRepository;
 use App\Http\Repositories\UserRepositoryInterface;
-use App\Http\Services\HouseServicceInterface;
+use App\Http\Services\HouseServiceInterface;
 use App\Http\Services\HouseService;
 use App\Http\Services\UserService;
 use App\Http\Services\UserServiceInterface;
@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(HouseRepositoryInterface::class,
             HouseRepository::class);
-        $this->app->singleton(HouseServicceInterface::class,
+        $this->app->singleton(HouseServiceInterface::class,
             HouseService::class);
 
         $this->app->singleton(CustomerRepositoryInterface::class,

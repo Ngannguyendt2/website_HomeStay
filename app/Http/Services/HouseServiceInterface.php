@@ -4,7 +4,7 @@
 namespace App\Http\Services;
 
 
-interface HouseServicceInterface
+interface HouseServiceInterface
 {
     public function create($request);
 

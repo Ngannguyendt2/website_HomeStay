@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Services\HouseServicceInterface;
+use App\House;
+use App\Http\Services\HouseServiceInterface;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -12,7 +12,7 @@ class HomeStayController extends Controller
 {
     protected $house;
 
-    public function __construct(HouseServicceInterface $house)
+    public function __construct(HouseServiceInterface $house)
     {
         $this->house = $house;
     }
@@ -56,9 +56,9 @@ class HomeStayController extends Controller
         $house = $this->house->getHouseById($id);
         return view('web.detail',compact('house'));
     }
-
-    public function waiting()
-    {
-        return view('waiting');
+    public function waiting() {
+        return view('web.waiting');
     }
+
+
 }
