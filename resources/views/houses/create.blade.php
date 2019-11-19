@@ -93,9 +93,9 @@
                             <div class="col-md-8">
                                 <select name="category_id" class="form-control custom-select">
                                     <option selected> =>Chọn loại nhà<=</option>
-                                    <option value="4">Biệt thự villa</option>
-                                    <option value="5">Nhà sàn</option>
-                                    <option value="6">Nhà tầng</option>
+                                    <option value="1">Biệt thự villa</option>
+                                    <option value="2">Nhà sàn</option>
+                                    <option value="3">Nhà tầng</option>
                                 </select>
                             </div>
                         </div>
