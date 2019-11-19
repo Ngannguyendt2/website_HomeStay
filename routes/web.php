@@ -23,7 +23,7 @@ Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('', 'HomeStayController@index')->name('web.index');
 Route::post('/{id}/order', 'CustomerController@order')->name('customer.order');
-Route::get('{id}/detail', "HouseController@getById")->name('web.detail');
+Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail');
 Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
@@ -34,6 +34,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store')->middleware('approve');
         Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
+        Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
     });
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');

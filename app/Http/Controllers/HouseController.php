@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\House;
 use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServiceInterface;
 use App\Province;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HouseController extends Controller
 {
@@ -50,6 +50,11 @@ class HouseController extends Controller
         return view('user.housesManager.list', compact('houses'));
     }
 
+    public function detailCustomer($id){
+        $customers = House::findOrFail($id)->customers;
+        return view('user.housesManager.detailCustomer', compact('customers'));
+    }
+
     public function checkApprove($id)
     {
         $house = House::findOrFail($id);
@@ -57,7 +62,7 @@ class HouseController extends Controller
         return redirect()->route('admin.houses.approve')->withMessage('Nhà đã xác nhận được phép đăng');
     }
 
-    public function getById($id)
+    public function getHouseById($id)
     {
         $house = House::findOrFail($id);
         return view('web.detail', compact('house'));
