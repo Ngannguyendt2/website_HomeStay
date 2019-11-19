@@ -186,11 +186,11 @@
 <script src="{{asset('js/map.js')}}"></script>
 
 <script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-    });
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    //     }
+    // });
     $('body').on('click', '#submitChangePass', function () {
         // e.preventDefault();
         let changePasswordForm = $("#Password");

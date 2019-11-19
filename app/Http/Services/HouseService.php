@@ -53,9 +53,16 @@ class HouseService implements HouseServicceInterface
 //            $admin->notify(new NewHouse($house));
 //        }
     }
+
     public function getCategoryHouse()
     {
         // TODO: Implement getCategoryHouse() method.
         return $this->houseRepo->getCategoryHouse();
+    }
+
+    public function getHouseById($id)
+    {
+        // TODO: Implement getHouseById() method.
+        return $this->houseRepo->getById($id);
     }
 }

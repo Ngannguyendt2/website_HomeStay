@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Services\HouseServicceInterface;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class HomeStayController extends Controller
 {
+    protected $house;
+
+    public function __construct(HouseServicceInterface $house)
+    {
+        $this->house = $house;
+    }
 
     public function index()
     {
@@ -23,28 +30,35 @@ class HomeStayController extends Controller
     }
 
 
-    public function profileUser($id) {
+    public function profileUser($id)
+    {
         $user = User::findOrFail($id);
         return view('user.profile', compact('user'));
     }
 
-    public function category() {
+    public function category()
+    {
         return view('web.category');
     }
 
-    public function aboutUs() {
+    public function aboutUs()
+    {
         return view('web.about_us');
     }
 
-    public function contact() {
+    public function contact()
+    {
         return view('web.contact');
     }
 
-    public function detail() {
-        return view('web.detail');
+    public function detail($id)
+    {
+        $house = $this->house->getHouseById($id);
+        return view('web.detail',compact('house'));
     }
 
-    public function waiting() {
+    public function waiting()
+    {
         return view('waiting');
     }
 }

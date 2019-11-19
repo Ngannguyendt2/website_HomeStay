@@ -53,7 +53,8 @@
                                 <p><i class="fa fa-map-marker"></i>Beverly Hills, CA 90210</p>
                             </div>
                             <div class="col-xl-4">
-                                <a href="#" class="price-btn">$4,500,000</a>
+                                <a href="#" class="btn btn-primary" data-toggle="modal"
+                                   data-target="#Order">$4,500,000</a>
                             </div>
                         </div>
                         <h3 class="sl-sp-title">Property Details</h3>
@@ -75,7 +76,11 @@
                         </div>
                         <h3 class="sl-sp-title">Description</h3>
                         <div class="description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas fermentum ornareste. Donec index lorem. Vestibulum  aliquet odio, eget tempor libero. Cras congue cursus tincidunt. Nullam venenatis dui id orci egestas tincidunt id elit. Nullam ut vuputate justo. Integer lacnia pharetra pretium. Casan ante ipsum primis in faucibus orci luctus et ultrice.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus egestas fermentum
+                                ornareste. Donec index lorem. Vestibulum aliquet odio, eget tempor libero. Cras congue
+                                cursus tincidunt. Nullam venenatis dui id orci egestas tincidunt id elit. Nullam ut
+                                vuputate justo. Integer lacnia pharetra pretium. Casan ante ipsum primis in faucibus
+                                orci luctus et ultrice.</p>
                         </div>
                         <h3 class="sl-sp-title">Property Details</h3>
                         <div class="row property-details-list">
@@ -99,9 +104,12 @@
                         <div id="accordion" class="plan-accordion">
                             <div class="panel">
                                 <div class="panel-header" id="headingOne">
-                                    <button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">First Floor: <span>660 sq ft</span>	<i class="fa fa-angle-down"></i></button>
+                                    <button class="panel-link active" data-toggle="collapse" data-target="#collapse1"
+                                            aria-expanded="false" aria-controls="collapse1">First Floor:
+                                        <span>660 sq ft</span> <i class="fa fa-angle-down"></i></button>
                                 </div>
-                                <div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div id="collapse1" class="collapse show" aria-labelledby="headingOne"
+                                     data-parent="#accordion">
                                     <div class="panel-body">
                                         <img src="../../../../public/img/plan-sketch.jpg" alt="">
                                     </div>
@@ -109,10 +117,13 @@
                             </div>
                             <div class="panel">
                                 <div class="panel-header" id="headingTwo">
-                                    <button class="panel-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Second Floor:<span>610 sq ft.</span>	<i class="fa fa-angle-down"></i>
+                                    <button class="panel-link" data-toggle="collapse" data-target="#collapse2"
+                                            aria-expanded="true" aria-controls="collapse2">Second
+                                        Floor:<span>610 sq ft.</span> <i class="fa fa-angle-down"></i>
                                     </button>
                                 </div>
-                                <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div id="collapse2" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordion">
                                     <div class="panel-body">
                                         <img src="../../../../public/img/plan-sketch.jpg" alt="">
                                     </div>
@@ -120,10 +131,13 @@
                             </div>
                             <div class="panel">
                                 <div class="panel-header" id="headingThree">
-                                    <button class="panel-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">Third Floor :<span>580 sq ft</span>	<i class="fa fa-angle-down"></i>
+                                    <button class="panel-link" data-toggle="collapse" data-target="#collapse3"
+                                            aria-expanded="false" aria-controls="collapse3">Third Floor
+                                        :<span>580 sq ft</span> <i class="fa fa-angle-down"></i>
                                     </button>
                                 </div>
-                                <div id="collapse3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div id="collapse3" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordion">
                                     <div class="panel-body">
                                         <img src="../../../../public/img/plan-sketch.jpg" alt="">
                                     </div>
@@ -134,7 +148,8 @@
                         <h3 class="sl-sp-title bd-no">Video</h3>
                         <div class="perview-video">
                             <img src="../../../../public/img/video.jpg" alt="">
-                            <a href="https://www.youtube.com/watch?v=v13nSVp6m5I" class="video-link"><img src="../../../../public/img/video-btn.png" alt=""></a>
+                            <a href="https://www.youtube.com/watch?v=v13nSVp6m5I" class="video-link"><img
+                                    src="../../../../public/img/video-btn.png" alt=""></a>
                         </div>
                         <h3 class="sl-sp-title bd-no">Location</h3>
                         <div class="pos-map" id="map-canvas"></div>
@@ -207,7 +222,155 @@
                     </div>
                 </div>
             </div>
+            <div id="Order" class="modal" role="dialog" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title text-center primecolor">Đặt thuê/mua </h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <div class="modal-body" style="overflow: hidden;">
+                            <strong id="alert"></strong>
+                            <div class="col-md-offset-1 col-md-10">
+                                <form method="POST" id="OrderHouse">
+                                    @csrf
+                                    <div class="form-group has-feedback">
+                                        <label>Tên người thuê: </label>
+                                        <input type="text" name="name" class="form-control"
+                                               placeholder="Nhập tên người thuê  ">
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <label>Email: </label>
+                                        <input type="email" name="email" class="form-control"
+                                               placeholder="Nhập email">
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="email-error"></strong>
+                            </span>
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <label>Số điện thoại: </label>
+                                        <input type="phone" name="phone" class="form-control"
+                                               placeholder="Nhập số điện thoại  ">
+                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="phone-error"></strong>
+                                        </span>
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <label>Ngày ở: </label>
+                                        <input type="date" name="checkin" class="form-control" id="checkin">
+                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="checkin-error"></strong>
+                                        </span>
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <label>Ngày trả: </label>
+                                        <input type="date" name="checkout" class="form-control" id="checkout">
+                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="checkout-error"></strong>
+                                        </span>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Tổng số tiền:</label>
+                                        <p id="price"></p>
+                                        <input id="totalPrice" name="totalPrice" value="" hidden>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 text-center">
+                                            <button type="button" id="submitOrderHouse"
+                                                    class="btn btn-primary btn-prime white btn-flat">Submit
+                                            </button>
+
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Page end -->
-    @endsection
+    <script type="text/javascript">
+
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').on('change', '#checkout', function () {
+                let dateCheckout = new Date($('#checkout').val());
+                let dateCheckin = new Date($('#checkin').val());
+                let date = new Date();
+                let datePrice = date.setTime((dateCheckout.getTime() - dateCheckin.getTime()) / 1000 / 60 / 60 / 24);
+                let priceOneDay = parseInt({{$house->price}});
+                totalPrice = priceOneDay * datePrice;
+                $('#totalPrice').val(totalPrice);
+                $('#price').html(totalPrice);
+            });
+
+
+            $('body').on('click', '#submitOrderHouse', function () {
+                // e.preventDefault();
+
+                let orderHouseForm = $("#OrderHouse");
+                let formData = orderHouseForm.serialize();
+                $('#name-error').html("");
+                $('#email-error').html("");
+                $('#phone-error').html("");
+                $('#checkin-error').html("");
+                $('#checkout-error').html("");
+                $('#alert').html("");
+                $.ajax({
+                    url: "{{route('customer.order', $house->id)}}",
+                    type: 'POST',
+                    data: formData,
+                    success: function (result) {
+
+                    },
+                    error: function (error) {
+                        let err = JSON.parse(error.responseText);
+                        if (err.errors.name) {
+                            $('#name-error').html(err.errors.name[0]);
+                        }
+                        if (err.errors.email) {
+                            $('#email-error').html(err.errors.email[0]);
+                        }
+                        if (err.errors.phone) {
+                            $('#phone-error').html(err.errors.phone[0]);
+                        }
+                        if (err.errors.checkin) {
+                            $('#checkin-error').html(err.errors.checkin[0]);
+                        }
+                        if (err.errors.checkout) {
+                            $('#checkout-error').html(err.errors.checkout[0]);
+                        }
+                    }
+                });
+            })
+            ;
+
+        })
+
+
+    </script>
+
+@endsection
+

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\House;
+use App\Http\Repositories\CustomerRepositoryInterface;
 use App\Http\Repositories\HouseRepositoryInterface;
+use App\Http\Repositories\IMPL\CustomerRepository;
 use App\Http\Repositories\IMPL\HouseRepository;
 use App\Http\Repositories\IMPL\UserRepository;
 use App\Http\Repositories\UserRepositoryInterface;
@@ -33,6 +35,9 @@ class AppServiceProvider extends ServiceProvider
             HouseRepository::class);
         $this->app->singleton(HouseServicceInterface::class,
             HouseService::class);
+
+        $this->app->singleton(CustomerRepositoryInterface::class,
+            CustomerRepository::class);
     }
 
     /**
