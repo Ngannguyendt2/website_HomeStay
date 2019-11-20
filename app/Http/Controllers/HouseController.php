@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\House;
 use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServiceInterface;
 use App\Province;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 
 class HouseController extends Controller
 {
@@ -38,16 +39,22 @@ class HouseController extends Controller
         return view('houses.create', compact('categories', 'provinces'));
     }
 
-    public function store(Request $request)
+    public function store(CreateHouseRequest $request)
     {
         $this->house->create($request);
-        return redirect()->route('web.index');
+        Session::flash('success','Đã đăng bài thành công ... Xin vui lòng chờ admin kiểm duyệt');
+        return redirect()->route('house.create');
     }
 
     public function housesManager($id)
     {
         $houses = House::where('user_id', $id)->paginate(4);
         return view('user.housesManager.list', compact('houses'));
+    }
+
+    public function detailCustomer($id){
+        $customers = House::findOrFail($id)->customers;
+        return view('user.housesManager.detailCustomer', compact('customers'));
     }
 
     public function checkApprove($id)
@@ -57,7 +64,7 @@ class HouseController extends Controller
         return redirect()->route('admin.houses.approve')->withMessage('Nhà đã xác nhận được phép đăng');
     }
 
-    public function getById($id)
+    public function getHouseById($id)
     {
         $house = House::findOrFail($id);
         return view('web.detail', compact('house'));

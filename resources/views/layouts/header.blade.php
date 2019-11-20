@@ -59,7 +59,7 @@
                                 </a>
                                 <a style="color: black" class="dropdown-item"
                                    href="{{route('house.list',Auth::user()->id)}}">
-                                    Nhà của bạn
+                                    Nhà của tôi
                                 </a>
                                 @if(Auth::user()->admin == 1)
                                     <a style="color: black" class="dropdown-item"

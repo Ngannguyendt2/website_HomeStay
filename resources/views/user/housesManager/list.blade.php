@@ -21,7 +21,7 @@
                         <th>Address</th>
                         <th>Mô tả</th>
                         <th>Chi tiết nhà</th>
-                        <th style="background-color: gold">Giá theo đêm (VNĐ)</th>
+                        <th style="background-color: burlywood">Giá/ngày (VNĐ)</th>
                         <th>Trạng thái</th>
                     </tr>
                     </thead>
@@ -35,8 +35,9 @@
                                 <br> {{$house->ward->name}} <br> Đường: {{$house->name_way}} <br> Số nhà: {{$house->house_number}}</td>
                             <td>{{$house->description}}</td>
                             <td>Số phòng ngủ:{{$house->totalBedRoom}} <br>  Số phòng tắm:{{$house->totalBathroom}}</td>
-                            <td style="background-color: gold">{{number_format($house->price)}}đồng</td>
-                            <td style="background-color: red"><a href="#">Xem chi tiết</a></td>
+                            <td style="background-color: burlywood">{{number_format($house->price)}} đồng</td>
+                            <td style="{{count($house->customers)==0 ? 'background-color: red' : 'background-color: green'}}"><a href="{{route('house.detailCustomer', $house->id)}}">Xem chi tiết</a><br>Có {{count($house->customers)}} người đặt</td>
+
                         </tr>
                     @endforeach
 
