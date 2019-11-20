@@ -36,7 +36,7 @@ class CreateHouseRequest extends FormRequest
             'description' => 'required',
             'price' => 'required',
             'status' => 'required',
-//            'images'=>'mimes:jpeg,bmp,png',
+            'file-input'=>'required|mimes:jpeg,bmp,png',
             'category_id' => 'required',
             'user_id' => 'required'
         ];
@@ -55,6 +55,7 @@ class CreateHouseRequest extends FormRequest
             'totalBedRoom.required' => 'Số phòng ngủ không để trống',
             'totalBathRoom.required' => 'Số phòng tắm không được để trống',
             'price.required' => 'Nhấp giá cho thuê',
+            'file-input.required' => 'Ảnh không được để trống',
             'category_id.required' => 'Chọn loại nhà bạn muốn cho thuê'
         ];
     }

@@ -216,8 +216,9 @@
                     </div>
                     <div class="col-md-4">
                         <input type="file" name="image[]" id="file-input" multiple>
-                        <span class="text-danger">{{ $errors->first('image') }}</span>
-                        <div id="thumb-output"></div>
+                        @if ($errors->has('file-input'))
+                            <p class="text text-danger">{{ $errors->first('file-input')}}</p>
+                        @endif                        <div id="thumb-output"></div>
                     </div>
                     <div class="col-md-2" style="margin-top: 50px">
                         <strong>Mô tả chung:</strong>
