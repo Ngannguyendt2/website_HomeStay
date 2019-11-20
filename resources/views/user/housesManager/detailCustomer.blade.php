@@ -10,31 +10,41 @@
 
     <div class="container">
         <div class="row">
-                <div class="col-md-12">
-                    <br>
-                    <h3 align="center">Danh sách chi tiết khách hàng</h3>
+            <div class="col-md-12">
+                <br>
+                <h3 align="center">Danh sách chi tiết khách hàng</h3>
 
-                    <table style="margin-top: 20px" class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($customers as $key => $customer)
+                <table style="margin-top: 20px" class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tên đầy đủ</th>
+                        <th>Địa chỉ Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Ngày thuê dự kiến</th>
+                        <th>Ngày trả dự kiến</th>
+                        <th>Tổng số tiền</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($customers as $key => $customer)
                         <tr>
                             <td>{{++$key}}</td>
                             <td>{{$customer->name}}</td>
                             <td>{{$customer->email}}</td>
                             <td>{{$customer->phone}}</td>
-                        </tr>
+                            @foreach($orders as $order)
+                                @if($customer->id == $order->customer_id)
+                                    <td>{{$order->checkin}}</td>
+                                    <td>{{$order->checkout}}</td>
+                                    <td>{{number_format($order->totalPrice)}} đồng</td>
+                                @endif
                             @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

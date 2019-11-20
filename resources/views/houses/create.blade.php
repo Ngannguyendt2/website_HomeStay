@@ -89,7 +89,7 @@
                             <div class="col-md-8">
                                 <select name="demand" id="demand" class="form-control custom-select">
                                     <option value="" selected> =>Chọn nhu cầu<=</option>
-                                    <option value="1">Cho thduê nhà</option>
+                                    <option value="1">Cho thuê nhà</option>
                                     <option value="0">Muốn thuê nhà</option>
                                 </select>
                                 @if ($errors->has('demand'))
@@ -217,8 +217,9 @@
                     </div>
                     <div class="col-md-4">
                         <input type="file" name="image[]" id="file-input" multiple>
-                        <span class="text-danger">{{ $errors->first('image') }}</span>
-                        <div id="thumb-output"></div>
+                        @if ($errors->has('file-input'))
+                            <p class="text text-danger">{{ $errors->first('file-input')}}</p>
+                        @endif                        <div id="thumb-output"></div>
                     </div>
                     <div class="col-md-2" style="margin-top: 50px">
                         <strong>Mô tả chung:</strong>

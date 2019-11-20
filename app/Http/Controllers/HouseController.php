@@ -6,6 +6,7 @@ use App\Customer;
 use App\House;
 use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServiceInterface;
+use App\Order;
 use App\Province;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
@@ -54,7 +55,8 @@ class HouseController extends Controller
 
     public function detailCustomer($id){
         $customers = House::findOrFail($id)->customers;
-        return view('user.housesManager.detailCustomer', compact('customers'));
+        $orders = Order::where('house_id', $id)->get();
+        return view('user.housesManager.detailCustomer', compact('customers', 'orders'));
     }
 
     public function checkApprove($id)
