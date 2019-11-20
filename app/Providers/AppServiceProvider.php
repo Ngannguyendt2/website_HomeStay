@@ -7,10 +7,16 @@ use App\Http\Repositories\CustomerRepositoryInterface;
 use App\Http\Repositories\HouseRepositoryInterface;
 use App\Http\Repositories\IMPL\CustomerRepository;
 use App\Http\Repositories\IMPL\HouseRepository;
+use App\Http\Repositories\IMPL\OrderRepository;
 use App\Http\Repositories\IMPL\UserRepository;
+use App\Http\Repositories\OrderRepositoryInterface;
 use App\Http\Repositories\UserRepositoryInterface;
+use App\Http\Services\CustomerService;
+use App\Http\Services\CustomerServiceInterface;
 use App\Http\Services\HouseServiceInterface;
 use App\Http\Services\HouseService;
+use App\Http\Services\OrderService;
+use App\Http\Services\OrderServiceInterface;
 use App\Http\Services\UserService;
 use App\Http\Services\UserServiceInterface;
 use Illuminate\Support\Facades\Schema;
@@ -39,6 +45,13 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(CustomerRepositoryInterface::class,
             CustomerRepository::class);
+        $this->app->singleton(CustomerServiceInterface::class,
+            CustomerService::class);
+
+        $this->app->singleton(OrderRepositoryInterface::class,
+            OrderRepository::class);
+        $this->app->singleton(OrderServiceInterface::class,
+            OrderService::class);
     }
 
     /**

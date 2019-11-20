@@ -22,7 +22,8 @@ Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
 Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('', 'HomeStayController@index')->name('web.index');
-Route::post('/{id}/order', 'CustomerController@order')->name('customer.order');
+
+Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
 Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail');
 Route::prefix('/user')->middleware('auth')->group(function () {
 
