@@ -55,6 +55,14 @@
 <!-- Breadcrumb -->
 <div class="container">
     <div class="row">
+        <div class="col-md-12">
+            @if(Session::has('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong> {{Session::get('success')}}</strong>
+                </div>
+            @endif
+        </div>
         <div class="col-md-3">
             <p align="center" style="margin-left: 2px">Xin chào: <strong>{{Auth::user()->name}}</strong>!</p>
             <div style="margin-top: 30px" class="profile-img-container img-circle">
@@ -69,7 +77,7 @@
         <div class="col-md-9" style="margin-bottom: 50px">
             <form action="{{route('house.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}">
                 <div class="row">
                     <div style="margin-bottom: 30px" class="col-md-12"><h4 align="center">Cho thuê/Đặt thuê nhà </h4>
                     </div>
@@ -79,11 +87,14 @@
                                 <strong>Nhu cầu:</strong>
                             </div>
                             <div class="col-md-8">
-                                <select name="demand" class="form-control custom-select">
-                                    <option selected> =>Chọn nhu cầu<=</option>
+                                <select name="demand" id="demand" class="form-control custom-select">
+                                    <option value="" selected> =>Chọn nhu cầu<=</option>
                                     <option value="1">Cho thuê nhà</option>
                                     <option value="0">Muốn thuê nhà</option>
                                 </select>
+                                @if ($errors->has('demand'))
+                                    <p class="text text-danger">{{ $errors->first('demand')}}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">
@@ -91,12 +102,15 @@
                                 <strong>Loại nhà:</strong>
                             </div>
                             <div class="col-md-8">
-                                <select name="category_id" class="form-control custom-select">
-                                    <option selected> =>Chọn loại nhà<=</option>
-                                    <option value="1">Biệt thự villa</option>
-                                    <option value="2">Nhà sàn</option>
-                                    <option value="3">Nhà tầng</option>
+                                <select name="category_id" id="category_id" class="form-control custom-select">
+                                    <option value="" selected> =>Chọn loại nhà<=</option>
+                                    <option value="4">Biệt thự villa</option>
+                                    <option value="5">Nhà sàn</option>
+                                    <option value="6">Nhà tầng</option>
                                 </select>
+                                @if ($errors->has('category_id'))
+                                    <p class="text text-danger">{{ $errors->first('category_id')}}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">
@@ -106,37 +120,52 @@
                             <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <select onchange="javascript:test.filterCity()" name="province_id" id="province"
+                                        <select onchange="javascript:test.filterCity()" name="province_id" id="province_id"
                                                 class="form-control">
-                                            <option selected>Thành phố</option>
+                                            <option value="" selected>Thành phố</option>
                                             @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
                                             @endforeach
                                         </select>
+                                        @if ($errors->has('province_id'))
+                                            <p class="text text-danger">{{ $errors->first('province_id')}}</p>
+                                        @endif
                                     </div>
                                     <div class="col-md-12">
                                         <select style="margin-top: 15px"
                                                 onchange="javascript:test.filterDistrict()"
-                                                name="district_id" id="district" class="form-control">
-                                            <option selected>Quận huyện</option>
+                                                name="district_id" id="district_id" class="form-control">
+                                            <option value="" selected>Quận huyện</option>
                                         </select>
+                                        @if ($errors->has('district_id'))
+                                            <p class="text text-danger">{{ $errors->first('district_id')}}</p>
+                                        @endif
                                     </div>
                                     <div class="col-md-12">
-                                        <select onchange="javascript:test.filterWard()" name="ward_id" id="ward"
+                                        <select onchange="javascript:test.filterWard()" name="ward_id" id="ward_id"
                                                 style="margin-top: 15px" class="form-control">
-                                            <option selected>Xã/Phường</option>
+                                            <option value="" selected>Xã/Phường</option>
                                         </select>
+                                        @if ($errors->has('ward_id'))
+                                            <p class="text text-danger">{{ $errors->first('ward_id')}}</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3"></div>
                             <div class="col-md-4">
-                                <input style="margin-top: 15px" name="name_way" class="form-control"
+                                <input style="margin-top: 15px" name="name_way" id="name_way" class="form-control"
                                        placeholder="Tên đường...">
+                                @if ($errors->has('name_way'))
+                                    <p class="text text-danger">{{ $errors->first('name_way')}}</p>
+                                @endif
                             </div>
                             <div class="col-md-4">
-                                <input style="margin-top: 15px" name="house_number" class="form-control"
+                                <input style="margin-top: 15px" name="house_number" id="house_number" class="form-control"
                                        placeholder="Số nhà...">
+                                @if ($errors->has('house_number'))
+                                    <p class="text text-danger">{{ $errors->first('house_number')}}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">
@@ -144,12 +173,18 @@
                                 <strong>Chi tiết:</strong>
                             </div>
                             <div class="col-md-4">
-                                <input name="totalBedRoom" type="number" class="form-control"
+                                <input name="totalBedRoom" id="totalBedRoom" type="number" class="form-control"
                                        placeholder="Số phòng ngủ...">
+                                @if ($errors->has('totalBedRoom'))
+                                    <p class="text text-danger">{{ $errors->first('totalBedRoom')}}</p>
+                                @endif
                             </div>
                             <div class="col-md-4">
-                                <input name="totalBathRoom" type="number" class="form-control"
+                                <input name="totalBathroom" type="number" id="totalBathroom" class="form-control"
                                        placeholder="Số phòng tắm...">
+                                @if ($errors->has('totalBathroom'))
+                                    <p class="text text-danger">{{ $errors->first('totalBathroom')}}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">
@@ -157,7 +192,10 @@
                                 <strong>Giá/đêm:</strong>
                             </div>
                             <div class="col-md-8">
-                                <input name="price" type="number" class="form-control" placeholder="Giá theo đêm...">
+                                <input name="price" id="price" type="number" class="form-control" placeholder="Giá theo đêm...">
+                                @if ($errors->has('price'))
+                                    <p class="text text-danger">{{ $errors->first('price')}}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">
@@ -166,10 +204,13 @@
                             </div>
                             <div class="col-md-8">
                                 <select name="status" class="form-control" id="status">
-                                    <option selected>=>Trạng thái<=</option>
+                                    <option value="" selected>=>Trạng thái<=</option>
                                     <option value="1">Cho thuê</option>
                                     <option value="0">Bán</option>
                                 </select>
+                                @if ($errors->has('status'))
+                                    <p class="text text-danger">{{ $errors->first('status')}}</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -182,8 +223,11 @@
                         <strong>Mô tả chung:</strong>
                     </div>
                     <div class="col-md-10" style="margin-top: 20px">
-                    <textarea name="description" class="form-control" placeholder='Viết mô tả của bạn về ngôi nhà...'
+                    <textarea name="description" id="description" class="form-control" placeholder='Viết mô tả của bạn về ngôi nhà...'
                               style="height: 100px"></textarea>
+                        @if ($errors->has('description'))
+                            <p class="text text-danger">{{ $errors->first('description')}}</p>
+                        @endif
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-9" style="margin-top: 20px"><input style="width: 200px" type="submit"

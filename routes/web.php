@@ -32,7 +32,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::prefix('/houses')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');
-        Route::post('/create', 'HouseController@store')->name('house.store')->middleware('approve');
+        Route::post('/create', 'HouseController@store')->name('house.store');
         Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
     });
@@ -51,5 +51,5 @@ Route::prefix('/user')->middleware('auth')->group(function () {
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
-Route::get('waiting', 'HomeStayController@waiting')->name('waiting');
-
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/auth/{provider}/callback', 'SocialController@callback');

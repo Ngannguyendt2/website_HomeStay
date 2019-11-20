@@ -7,7 +7,8 @@ use App\House;
 use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServiceInterface;
 use App\Province;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 
 class HouseController extends Controller
 {
@@ -38,10 +39,11 @@ class HouseController extends Controller
         return view('houses.create', compact('categories', 'provinces'));
     }
 
-    public function store(Request $request)
+    public function store(CreateHouseRequest $request)
     {
         $this->house->create($request);
-        return redirect()->route('web.index');
+        Session::flash('success','Đã đăng bài thành công ... Xin vui lòng chờ admin kiểm duyệt');
+        return redirect()->route('house.create');
     }
 
     public function housesManager($id)

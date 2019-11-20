@@ -1,16 +1,16 @@
 class Test {
 
     filterCity = function () {
-        let id = $('#province').val();
+        let id = $('#province_id').val();
         let url = 'http://localhost:8000/api/' + id;
         $.ajax({
             url: url,
             type: "GET",
             success: function (respone) {
-                $('#district').html(respone);
+                $('#district_id').html(respone);
                 $.each(respone, function (index, value) {
                     let option = '<option value="' + value.id + '">' + value.name + '</option>';
-                    $('#district').append(option)
+                    $('#district_id').append(option)
 
                 })
             },
@@ -21,7 +21,7 @@ class Test {
     };
 
     filterDistrict = function () {
-        let id = $('#district').val();
+        let id = $('#district_id').val();
         console.log(id);
         let url = 'http://localhost:8000/api/district/' + id;
         $.ajax({
@@ -29,10 +29,10 @@ class Test {
             type: "GET",
             success: function (respone) {
                 console.log(respone);
-                $('#ward').html(respone);
+                $('#ward_id').html(respone);
                 respone.forEach(function (value, index) {
                     let option = '<option value="' + value.id + '">' + value.name + '</option>';
-                    $('#ward').append(option)
+                    $('#ward_id').append(option)
                 });
             },
             error: function (error) {
@@ -42,7 +42,7 @@ class Test {
     };
 
     filterWard = function () {
-        let id = $('#ward').val();
+        let id = $('#ward_id').val();
         let url = 'http://localhost:8000/api/ward/' + id;
         $.ajax({
             url: url,

@@ -30,7 +30,7 @@ class HouseService implements HouseServiceInterface
         $house->name_way = $request->name_way;
         $house->house_number = $request->house_number;
         $house->price = $request->price;
-        $house->totalBathRoom = $request->totalBathRoom;
+        $house->totalBathroom = $request->totalBathroom;
         $house->totalBedRoom = $request->totalBedRoom;
         $house->description = $request->description;
         $house->status = $request->status;
