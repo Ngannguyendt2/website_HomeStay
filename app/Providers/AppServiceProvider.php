@@ -19,6 +19,7 @@ use App\Http\Services\OrderService;
 use App\Http\Services\OrderServiceInterface;
 use App\Http\Services\UserService;
 use App\Http\Services\UserServiceInterface;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -60,5 +61,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
     }
 }

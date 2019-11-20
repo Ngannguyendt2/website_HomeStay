@@ -56,7 +56,7 @@
                 @yield('content')
                 <p class="wthree w3l">Đăng nhập nhanh với trang mạng xã hội của bạn</p>
                 <ul class="social-agileinfo wthree2">
-                    <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{ url('/auth/redirect/facebook') }}"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-youtube"></i></a></li>
                     <li><a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="{{ url('auth/google') }}"><i class="fa fa-google-plus"></i></a></li>
