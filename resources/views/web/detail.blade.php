@@ -44,14 +44,13 @@
                             <div class="col-sm-2 offset-xl-1">
                                 <div class="row">
                                     <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary" data-toggle="modal"
-                                                              data-target="#Order">Đặt phòng</a>
+                                   data-target="#Order">Đặt phòng</a>
                                     </div>
                                     <div class="col-md-12">
                                         <p class="btn btn-outline-dark" style="margin-top: 10px; width: 180px"> Giá: {{number_format($house->price)}} Đồng</p>
 
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <h3 class="sl-sp-title">Chi tiết căn hộ</h3>
