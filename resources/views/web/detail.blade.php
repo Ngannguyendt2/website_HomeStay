@@ -22,28 +22,16 @@
             <div class="row">
                 <div class="col-lg-8 single-list-page">
                     <div class="single-list-slider owl-carousel" id="sl-slider">
-                        <div class="sl-item set-bg" data-setbg="{{asset('img/single-list-slider/1.jpg')}}">
-                            <div class="sale-notic">FOR SALE</div>
+                        <?php foreach (json_decode($house -> image)as $picture) { ?>
+                        <div class="sl-item set-bg">
+                            <img src="{{asset('storage/images/'.$picture)}}">
                         </div>
-                        <div class="sl-item set-bg" data-setbg="{{asset('img/single-list-slider/2.jpg')}}">
-                            <div class="rent-notic">FOR Rent</div>
-                        </div>
-                        <div class="sl-item set-bg" data-setbg="{{asset('img/single-list-slider/3.jpg')}}">
-                            <div class="sale-notic">FOR SALE</div>
-                        </div>
-                        <div class="sl-item set-bg" data-setbg="{{asset('img/single-list-slider/4.jpg')}}">
-                            <div class="rent-notic">FOR Rent</div>
-                        </div>
-                        <div class="sl-item set-bg" data-setbg="{{asset('img/single-list-slider/5.jpg')}}">
-                            <div class="sale-notic">FOR SALE</div>
-                        </div>
+                            <?php } ?>
                     </div>
                     <div class="owl-carousel sl-thumb-slider" id="sl-slider-thumb">
-                        <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/1.jpg')}}"></div>
-                        <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/2.jpg')}}"></div>
-                        <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/3.jpg')}}"></div>
-                        <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/4.jpg')}}"></div>
-                        <div class="sl-thumb set-bg" data-setbg="{{asset('img/single-list-slider/5.jpg')}}"></div>
+                        <?php foreach (json_decode($house -> image)as $picture) { ?>
+                        <div class="sl-thumb set-bg"><img src="{{asset('storage/images/'.$picture)}}" style="height:120px; width:200px"></div>
+                            <?php } ?>
                     </div>
                     <div class="single-list-content">
                         <div class="row">
@@ -52,6 +40,7 @@
                                 <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}, {{$house->district->name}}
                                     , {{$house->province->name}}</p>
                             </div>
+
                             <div class="col-sm-2 offset-xl-1">
                                 <div class="row">
                                     <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary" data-toggle="modal"
