@@ -89,7 +89,7 @@
                             <div class="col-md-8">
                                 <select name="demand" id="demand" class="form-control custom-select">
                                     <option value="" selected> =>Chọn nhu cầu<=</option>
-                                    <option value="1">Cho thuê nhà</option>
+                                    <option value="1">Cho thduê nhà</option>
                                     <option value="0">Muốn thuê nhà</option>
                                 </select>
                                 @if ($errors->has('demand'))
@@ -103,10 +103,11 @@
                             </div>
                             <div class="col-md-8">
                                 <select name="category_id" id="category_id" class="form-control custom-select">
+
                                     <option value="" selected> =>Chọn loại nhà<=</option>
-                                    <option value="4">Biệt thự villa</option>
-                                    <option value="5">Nhà sàn</option>
-                                    <option value="6">Nhà tầng</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
                                 </select>
                                 @if ($errors->has('category_id'))
                                     <p class="text text-danger">{{ $errors->first('category_id')}}</p>
