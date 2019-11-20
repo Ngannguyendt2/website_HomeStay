@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateHouseRequest extends FormRequest
 {
@@ -24,31 +25,30 @@ class CreateHouseRequest extends FormRequest
     public function rules()
     {
         return [
-            'demand'=>'required',
-            'name'=>'required',
-            'province' => 'required',
-            'district' => 'required',
-            'ward' => 'required',
+            'demand' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'ward_id' => 'required',
             'name_way' => 'required',
             'house_number' => 'required',
-            'totalBedRoom'=>'required',
-            'totalBathRoom'=>'required',
-            'description'=>'required',
-            'price'=>'required',
-            'status'=>'required',
-            'images'=>'mimes:jpeg,bmp,png',
-            'category_id'=>'required',
-            'user_id'=>'required'
+            'totalBedRoom' => 'required',
+            'totalBathroom' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+//            'images'=>'mimes:jpeg,bmp,png',
+            'category_id' => 'required',
+            'user_id' => 'required'
         ];
     }
+
     public function messages()
     {
         return [
             'demand.required' => 'Vui lòng chọn nhu cầu',
-            'name.required' => 'Tên nhà không được để trống',
-            'province.required' => 'Thành phố không được để trống',
-            'district.required' => 'Quận huyện không được để trống',
-            'ward.required' => 'Xã phường không được để trống',
+            'province_id.required' => 'Thành phố không được để trống',
+            'district_id.required' => 'Quận huyện không được để trống',
+            'ward_id.required' => 'Xã phường không được để trống',
             'name_way.required' => 'Đường không được để trống',
             'house_number.required' => 'Số nhà không được để trống',
             'description.required' => 'Tạo mô tả cho nhà của bạn',

@@ -35,5 +35,10 @@ return [
         'client_secret' => 'JCGgu1OHAP6OqR1jjFzG685X',
         'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
     ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect' => env('FACEBOOK_APP_CALLBACK_URL'),
+    ],
 
 ];
