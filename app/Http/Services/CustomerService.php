@@ -31,12 +31,4 @@ class CustomerService implements CustomerServiceInterface
         $this->customerRepo->create($customer);
     }
 
-    public function order($request)
-    {
-        // TODO: Implement order() method.
-        $order = new Order;
-        $order->checkin = $request->checkin;
-        $order->checkout = $request->checkout;
-        $this->orderRepo->create($order);
-    }
 }

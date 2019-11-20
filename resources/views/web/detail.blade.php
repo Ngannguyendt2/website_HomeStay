@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-
     <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
         <div class="container text-white">
@@ -54,10 +53,11 @@
                                     , {{$house->province->name}}</p>
                             </div>
                             <div class="col-xl-2">
-                               <p class="btn btn-primary">Giá: {{number_format($house->price)}} Đồng</p>
+                                <p class="btn btn-primary">Giá: {{number_format($house->price)}} Đồng</p>
                             </div>
                             <div class="col-xl-2 offset-xl-1">
-                                <a href="#" class="btn btn-primary">Đặt phòng</a>
+                                <a href="#" class="btn btn-primary" data-toggle="modal"
+                                   data-target="#Order">Đặt phòng</a>
                             </div>
                         </div>
                         <h3 class="sl-sp-title">Chi tiết căn hộ</h3>
@@ -195,7 +195,8 @@
 
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
-                                        <input type="date" name="checkin" class="form-control" id="checkin">
+                                        <input type="text" name="checkin" class="form-control" id="checkin"
+                                               data-provide="datepicker">
                                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                         <span class="text-danger">
                                 <strong id="checkin-error"></strong>
@@ -204,7 +205,7 @@
 
                                     <div class="form-group has-feedback">
                                         <label>Ngày trả: </label>
-                                        <input type="date" name="checkout" class="form-control" id="checkout">
+                                        <input type="text" name="checkout" class="form-control" id="checkout">
                                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                         <span class="text-danger">
                                 <strong id="checkout-error"></strong>
@@ -213,7 +214,6 @@
                                     <div class="form-group has-feedback">
                                         <label>Tổng số tiền:</label>
                                         <p id="price"></p>
-                                        <input id="totalPrice" name="totalPrice" value="" hidden>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
@@ -236,19 +236,27 @@
     </section>
     <!-- Page end -->
     <script type="text/javascript">
+
         $(document).ready(function () {
-            $('body').on('change', '#checkout', function () {
-                let dateCheckout = new Date($('#checkout').val());
-                let dateCheckin = new Date($('#checkin').val());
-                let date = new Date();
-                let datePrice = date.setTime((dateCheckout.getTime() - dateCheckin.getTime()) / 1000 / 60 / 60 / 24);
-                let priceOneDay = parseInt({{$house->price}});
-                totalPrice = priceOneDay * datePrice;
-                $('#totalPrice').val(totalPrice);
-                $('#price').html(totalPrice);
+            $("#checkout").prop("disabled", true);
+            $('#checkin,#checkout').datepicker({
+                minDate: new Date()
             });
+            $('#checkin').change(function () {
+                let dateCheckin = new Date($('#checkin').val()).getTime();
+                if (dateCheckin) {
+                    $("#checkout").prop("disabled", false);
+                }
+                $('body').on('change', '#checkout', function () {
+                    let dateCheckout = new Date($('#checkout').val()).getTime();
 
-
+                    let date = new Date();
+                    let datePrice = date.setTime((dateCheckout - dateCheckin) / 1000 / 60 / 60 / 24);
+                    let priceOneDay = parseInt({{$house->price}});
+                    totalPrice = priceOneDay * datePrice;
+                    $('#price').html(totalPrice);
+                });
+            });
             $('body').on('click', '#submitOrderHouse', function () {
                 // e.preventDefault();
 
@@ -265,7 +273,12 @@
                     type: 'POST',
                     data: formData,
                     success: function (result) {
-
+                        if (result.status == 'errors') {
+                            $('#alert').html(result.message).css('color', 'red');
+                        }
+                        if (result.status == 'success') {
+                            $('#alert').html(result.message).css('color', 'green');
+                        }
                     },
                     error: function (error) {
                         let err = JSON.parse(error.responseText);
