@@ -36,7 +36,7 @@ class CreateHouseRequest extends FormRequest
             'description' => 'required',
             'price' => 'required',
             'status' => 'required',
-            'file-input'=>'required|mimes:jpeg,bmp,png',
+//            'file-input'=>'required|mimes:jpeg,bmp,png',
             'category_id' => 'required',
             'user_id' => 'required'
         ];

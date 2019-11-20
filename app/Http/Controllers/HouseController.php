@@ -56,8 +56,7 @@ class HouseController extends Controller
     public function detailCustomer($id){
         $customers = House::findOrFail($id)->customers;
         $orders = Order::where('house_id', $id)->get();
-        dd($orders);
-        return view('user.housesManager.detailCustomer', compact('customers'));
+        return view('user.housesManager.detailCustomer', compact('customers', 'orders'));
     }
 
     public function checkApprove($id)

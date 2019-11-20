@@ -89,7 +89,7 @@
                             <div class="col-md-8">
                                 <select name="demand" id="demand" class="form-control custom-select">
                                     <option value="" selected> =>Chọn nhu cầu<=</option>
-                                    <option value="1">Cho thduê nhà</option>
+                                    <option value="1">Cho thuê nhà</option>
                                     <option value="0">Muốn thuê nhà</option>
                                 </select>
                                 @if ($errors->has('demand'))
