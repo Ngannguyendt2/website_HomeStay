@@ -71,4 +71,10 @@ class UserService implements UserServiceInterface
 
         }
     }
+
+    public function destroy($id)
+    {
+        $user = $this->profileRepo->getById($id);
+        return $this->profileRepo->destroy($user);
+    }
 }
