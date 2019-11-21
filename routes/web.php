@@ -24,7 +24,7 @@ Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoo
 Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
-Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail');
+Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
 Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
