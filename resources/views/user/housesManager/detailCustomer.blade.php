@@ -44,6 +44,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                <a href="{{route('house.list', Auth::user()->id)}}">Back</a>
             </div>
         </div>
     </div>

@@ -63,40 +63,25 @@
                     </li>
                     <li class="dropdown head-dpdn">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
-                                    class="fa fa-bell"></i><span class="badge blue">3</span></a>
+                                    class="fa fa-bell"></i><span class="badge blue">{{count($houses)}}</span></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <div class="notification_header">
-                                    <h3>You have 3 new notification</h3>
+                                    <h3>You have {{count($houses)}} new notification</h3>
                                 </div>
                             </li>
+                            @foreach($houses as $house)
                             <li><a href="#">
-                                    <div class="user_img"><img src="{{asset('admin/images/in8.jpg')}}" alt="">
+                                    <div class="user_img"><img src="{{'storage/'.$house->user->image}}" alt="">
                                     </div>
                                     <div class="notification_desc">
-                                        <p>Lorem ipsum dolor</p>
+                                        <p>{{$house->user->name}}</p>
                                         <p><span>1 hour ago</span></p>
                                     </div>
                                     <div class="clearfix"></div>
-                                </a></li>
-                            <li class="odd"><a href="#">
-                                    <div class="user_img"><img src="{{asset('admin/images/in6.jpg')}}" alt="">
-                                    </div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor</p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
-                            <li><a href="#">
-                                    <div class="user_img"><img src="{{asset('admin/images/in7.jpg')}}" alt="">
-                                    </div>
-                                    <div class="notification_desc">
-                                        <p>Lorem ipsum dolor</p>
-                                        <p><span>1 hour ago</span></p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a></li>
+                                </a>
+                            </li>
+                            @endforeach
                             <li>
                                 <div class="notification_bottom">
                                     <a href="#">See all notifications</a>

@@ -54,3 +54,5 @@ Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/auth/{provider}/callback', 'SocialController@callback');
+
+//Route::post('test', 'HouseController@searchFilter')->name('search');

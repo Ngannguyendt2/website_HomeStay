@@ -8,7 +8,7 @@
     </section>
     <!--  Page top end -->
     <div class="container">
-        <div class="row" >
+        <div class="row">
             <div class="col-md-12">
                 <br>
                 <h3 style="color: firebrick" align="center">THÔNG TIN CHI TIẾT VỀ NHÀ CỦA BẠN</h3>
@@ -32,12 +32,16 @@
                             <td>{{$house->demand == 1 ? 'Cho thuê': 'Bán'}}</td>
                             <td>{{$house->category->name}}</td>
                             <td>{{$house->province->name}} <br> {{$house->district->name}}
-                                <br> {{$house->ward->name}} <br> Đường: {{$house->name_way}} <br> Số nhà: {{$house->house_number}}</td>
+                                <br> {{$house->ward->name}} <br> Đường: {{$house->name_way}} <br> Số
+                                nhà: {{$house->house_number}}</td>
                             <td>{{$house->description}}</td>
-                            <td>Số phòng ngủ:{{$house->totalBedRoom}} <br>  Số phòng tắm:{{$house->totalBathroom}}</td>
+                            <td>Số phòng ngủ:{{$house->totalBedRoom}} <br> Số phòng tắm:{{$house->totalBathroom}}</td>
                             <td style="background-color: burlywood">{{number_format($house->price)}} đồng</td>
-                            <td style="{{count($house->customers)==0 ? 'background-color: red' : 'background-color: green'}}"><a href="{{route('house.detailCustomer', $house->id)}}">Xem chi tiết</a><br>Có {{count($house->customers)}} người đặt</td>
-
+                            <td style="{{count($house->customers)==0 ? 'background-color: red' : 'background-color: green'}}">
+                                <a href="{{route('house.detailCustomer', $house->id)}}">Xem chi
+                                    tiết</a><br>Có {{count($house->customers)}} người đặt
+                            </td>
+                            <td style="width: 75px"><a style="color: red" href="#">Hủy Đăng</a></td>
                         </tr>
                     @endforeach
 
@@ -47,4 +51,4 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection

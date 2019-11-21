@@ -11,4 +11,6 @@ interface HouseServiceInterface
     public function getCategoryHouse();
 
     public function getHouseById($id);
+
+    public function search($request);
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\House;
 use App\Http\Services\HouseServiceInterface;
+use App\Province;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,9 +19,9 @@ class HomeStayController extends Controller
     }
 
     public function index()
-    {
+    {   $provinces = Province::all();
         $houses = \App\House::paginate(4);
-        return view('web.index', compact('houses'));
+        return view('web.index', compact('houses', 'provinces'));
     }
 
 

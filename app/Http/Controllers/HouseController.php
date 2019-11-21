@@ -8,7 +8,7 @@ use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServiceInterface;
 use App\Order;
 use App\Province;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class HouseController extends Controller
@@ -71,6 +71,10 @@ class HouseController extends Controller
         $house = House::findOrFail($id);
         return view('web.detail', compact('house'));
     }
+
+//    public function search(Request $request) {
+//
+//    }
 
 
 }
