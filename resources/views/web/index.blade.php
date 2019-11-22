@@ -4,7 +4,8 @@
     <section class="hero-section set-bg" data-setbg="img/bg.jpg">
         <div class="container hero-text text-white">
             <h2>Dự án cuối module của nhóm Chị Dậu "Dậu homestay"</h2>
-            <p>Trang web giúp bạn tìm kiếm, cho thuê homestay nổi tiếng nhất Việt Nam.<br>Cuộc sống hiện tiện nghi nằm trong lòng bàn tay của bạn!.</p>
+            <p>Trang web giúp bạn tìm kiếm, cho thuê homestay nổi tiếng nhất Việt Nam.<br>Cuộc sống hiện tiện nghi nằm
+                trong lòng bàn tay của bạn!.</p>
             <a href="{{route('web.comingSoon')}}" class="site-btn">VIEW DETAIL</a>
         </div>
     </section>
@@ -12,7 +13,7 @@
 
 
     <!-- Filter form section -->
-    <div class="filter-search" >
+    <div class="filter-search">
         <div class="container">
             <form class="filter-form" style="border-radius: 10px">
                 @csrf
@@ -48,23 +49,29 @@
                 @foreach($houses as $key => $house)
                     @if($house->approved_at !== null)
 
-                <div  class="col-md-6">
-                    <a href="{{route('web.detail',$house->id)}}">
-                        <div style="border-radius: 15px" class="propertie-item set-bg" data-setbg="{{asset('img/propertie/1.jpg')}}">
-                            <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "Bán"}}</div>
-                            <div class="propertie-info text-white">
-                                <div class="info-warp">
-                                    <h5>{{$house->category->name}}</h5>
-                                    <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}, {{$house->district->name}}, {{$house->province->name}}</p>
-                                </div>
-                                <div style="margin-top: 5px" class="price"><a href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}} Đồng</a></div>
+                        <div class="col-md-6">
+                            <a href="{{route('web.detail',$house->id)}}">
+                                <div style="border-radius: 15px" class="propertie-item set-bg">
+                                    <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "Bán"}}</div>
+                                    <img src="{{asset('storage/images/'.json_decode($house->image)[0])}}">
 
-                            </div>
+
+                                    <div class="propertie-info text-white">
+                                        <div class="info-warp">
+                                            <h5>{{$house->category->name}}</h5>
+                                            <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}
+                                                , {{$house->district->name}}, {{$house->province->name}}</p>
+                                        </div>
+                                        <div style="margin-top: 5px" class="price"><a
+                                                href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}}
+                                                Đồng</a></div>
+
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
                     @endif
-                    @endforeach
+                @endforeach
             </div>
             {{$houses->links()}}
 
@@ -97,14 +104,16 @@
                             <i class="fa fa-home"></i>
                             <div class="service-text">
                                 <h5>Quản lý Homestay</h5>
-                                <p>Đội ngũ quản lý của chúng tôi gồm những thành viên kì cựu và có thâm niên trong ngành bất động sản.</p>
+                                <p>Đội ngũ quản lý của chúng tôi gồm những thành viên kì cựu và có thâm niên trong ngành
+                                    bất động sản.</p>
                             </div>
                         </div>
                         <div class="service-item">
                             <i class="fa fa-briefcase"></i>
                             <div class="service-text">
                                 <h5>Cho thuê online</h5>
-                                <p>Trang web thuê nhà uy tín hỗ trợ cho thuê trực tuyến và qua hotline của chúng tôi 03.4912.4936.</p>
+                                <p>Trang web thuê nhà uy tín hỗ trợ cho thuê trực tuyến và qua hotline của chúng tôi
+                                    03.4912.4936.</p>
                             </div>
                         </div>
                     </div>
@@ -382,7 +391,9 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
-                    <p>“Chị Ngân sinh năm 1994, học khóa học PHP tại Codegym Việt Nam . Ở project này chị đảm nhiệm back end và front end cùng với kiến thức chuyên sâu chị đã cùng cả nhóm đã hoàn thành dự án một cách xuất sắc”</p>
+                    <p>“Chị Ngân sinh năm 1994, học khóa học PHP tại Codegym Việt Nam . Ở project này chị đảm nhiệm back
+                        end và front end cùng với kiến thức chuyên sâu chị đã cùng cả nhóm đã hoàn thành dự án một cách
+                        xuất sắc”</p>
                     <h5>Nguyễn Thị Ngân</h5>
                     <span>Back end and front end</span>
                     <div class="clint-pic set-bg" data-setbg="img/review/1.jpg"></div>
@@ -394,7 +405,9 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
-                    <p>“Bạn Thanh sinh năm 1999 với độ tuổi rất trẻ , bạn đã tìm đến Codegym Việt Nam và hiện tại đang học khóa PHP full time. Với project này bạn ấy đảm nhiệm cả back end và front end với kiên thức đã học của mình đã hoàn thành xuất sắc project. Câu châm ngôn : "Muỗi”</p>
+                    <p>“Bạn Thanh sinh năm 1999 với độ tuổi rất trẻ , bạn đã tìm đến Codegym Việt Nam và hiện tại đang
+                        học khóa PHP full time. Với project này bạn ấy đảm nhiệm cả back end và front end với kiên thức
+                        đã học của mình đã hoàn thành xuất sắc project. Câu châm ngôn : "Muỗi”</p>
                     <h5>Đỗ Đức Thanh</h5>
                     <span>Back end and front end</span>
                     <div class="clint-pic set-bg" data-setbg="img/review/1.jpg"></div>
@@ -406,7 +419,9 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
-                    <p>“Anh Nguyễn Văn Vinh với trách nhiệm cao cả là trưởng nhóm, mặc dù đã có tuổi và khả năng lập trình vượt trội thì anh Vinh đã hoàn thành project với tinh thần trách nhiệm cao nhât. Hiện anh Vinh đang học khóa PHP full time cua Codegym Việt Nam.”</p>
+                    <p>“Anh Nguyễn Văn Vinh với trách nhiệm cao cả là trưởng nhóm, mặc dù đã có tuổi và khả năng lập
+                        trình vượt trội thì anh Vinh đã hoàn thành project với tinh thần trách nhiệm cao nhât. Hiện anh
+                        Vinh đang học khóa PHP full time cua Codegym Việt Nam.”</p>
                     <h5>Nguyễn Văn Vinh</h5>
                     <span>Back end and front end</span>
                     <div class="clint-pic set-bg" data-setbg="img/review/1.jpg"></div>
