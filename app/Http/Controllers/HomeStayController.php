@@ -19,6 +19,7 @@ class HomeStayController extends Controller
 
     public function index()
     {
+//        return view('web.test');
         $houses = \App\House::paginate(4);
         return view('web.index', compact('houses'));
     }
