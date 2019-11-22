@@ -160,8 +160,6 @@
                             <div class="col-md-offset-1 col-md-10">
                                 <form method="POST" id="OrderHouse">
                                     @csrf
-                                    @if(Auth::user()->phone)
-                                    @else
                                         <div class="form-group has-feedback">
                                             <label>Số điện thoại: </label>
                                             <input type="phone" name="phone" class="form-control"
@@ -171,7 +169,6 @@
                                 <strong id="phone-error"></strong>
                                         </span>
                                         </div>
-                                    @endif
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
                                         <input type="text" name="checkin" class="form-control" id="checkin"
