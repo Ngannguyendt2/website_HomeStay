@@ -51,4 +51,8 @@ abstract class RepositoryEloquent implements RepositoryInterface
         $object->save();
 
     }
+    public function destroy($object)
+    {
+        $object->delete();
+    }
 }

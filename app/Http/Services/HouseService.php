@@ -65,4 +65,15 @@ class HouseService implements HouseServiceInterface
         // TODO: Implement getHouseById() method.
         return $this->houseRepo->getById($id);
     }
+
+    public function getAll()
+    {
+        return $this->houseRepo->getAll();
+    }
+
+    public function destroy($id)
+    {
+        $house = $this->houseRepo->getById($id);
+        return $this->houseRepo->destroy($house);
+    }
 }

@@ -15,4 +15,6 @@ interface RepositoryInterface
     public function update($object);
 
     public function create($object);
+
+    public function destroy($object);
 }

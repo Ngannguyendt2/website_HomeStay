@@ -32,8 +32,8 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone}}</td>
                             <td>{{$user->address}}</td>
-                            <td><i class="fa fa-trash btn text-danger" aria-hidden="true"></i></td>
-                            <td></td>
+                            <td>{{($user->admin==1) ? 'admin' : ''}}</td>
+                            <td><a href="{{route('admin.users.destroy', $user->id)}}" class="text-danger" onclick="return confirm('Bạn chắc chắn muốn xóa?')">xóa</a></td>
                         </tr>
                     @endforeach
                 @endif

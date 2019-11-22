@@ -23,8 +23,8 @@ class HouseController extends Controller
 
     public function index()
     {
-        $houses = House::all();
-        return view('admin.houses.index', compact('houses'));
+        $houses = $this->house->getAll();
+        return view('admin.houses.list', compact('houses'));
     }
 
     public function approve()
@@ -54,23 +54,22 @@ class HouseController extends Controller
     }
 
     public function detailCustomer($id){
-        $customers = House::findOrFail($id)->customers;
+        $customers = $this->house->getHouseById($id)->customers;
         $orders = Order::where('house_id', $id)->get();
         return view('user.housesManager.detailCustomer', compact('customers', 'orders'));
     }
 
     public function checkApprove($id)
     {
-        $house = House::findOrFail($id);
+        $house = $this->house->getHouseById($id);
         $house->update(['approved_at' => now()]);
         return redirect()->route('admin.houses.approve')->withMessage('Nhà đã xác nhận được phép đăng');
     }
 
     public function getHouseById($id)
     {
-        $house = House::findOrFail($id);
+        $house = $this->house->getHouseById($id);
         return view('web.detail', compact('house'));
     }
-
 
 }

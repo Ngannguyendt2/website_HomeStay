@@ -40,11 +40,13 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');
         Route::get('/users', 'UserController@index')->name('admin.users.list');
+        Route::get('/{id}/destroy', 'UserController@destroy')->name('admin.users.destroy');
 
         Route::prefix('houses')->group(function () {
-            Route::get('', 'HouseController@index')->name('admin.houses.index');
+            Route::get('', 'HouseController@index')->name('admin.houses.list');
             Route::get('/{id}/approve', 'HouseController@checkApprove')->name('admin.houses.checkApprove');
             Route::get('/approve', 'HouseController@approve')->name('admin.houses.approve');
+            Route::get('{id}/destroy', 'HouseController@destroy')->name('admin.houses.destroy');
         });
     });
 });
