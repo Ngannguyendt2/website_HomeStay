@@ -26,9 +26,10 @@ class OrderService implements OrderServiceInterface
     public function create($request, $houseId)
     {
         // TODO: Implement order() method.
+        dd($this->getDateCheckin($houseId));
         $order = new Order();
-        $order->checkin = $this->getDateCheckin($request);
-        $order->checkout = $this->getDateCheckout($request);
+        $order->checkin = $this->getDateCheckinFromForm($request);
+        $order->checkout = $this->getDateCheckoutFromForm($request);
         $order->totalPrice = $this->getPriceHouse($request, $houseId);
         $order->house_id = $houseId;
         if (!$this->checkEmailCustomer($request)) {
@@ -67,12 +68,12 @@ class OrderService implements OrderServiceInterface
         return $this->getDateCheckout($request)->diffInDays($this->getDateCheckin($request));
     }
 
-    public function getDateCheckin($request)
+    public function getDateCheckinFromForm($request)
     {
         return Carbon::create($request->checkin);
     }
 
-    public function getDateCheckout($request)
+    public function getDateCheckoutFromForm($request)
     {
         return Carbon::create($request->checkout);
     }
@@ -81,5 +82,10 @@ class OrderService implements OrderServiceInterface
     {
         $house = House::find($houseId);
         return $this->getDateOrder($request) * $house->price;
+    }
+    public function getDateCheckin($houseId)
+    {
+        // TODO: Implement getDateCheckin() method.
+        return $this->orderRepo->getDateCheckin($houseId);
     }
 }

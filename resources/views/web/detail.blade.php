@@ -22,16 +22,17 @@
             <div class="row">
                 <div class="col-lg-8 single-list-page">
                     <div class="single-list-slider owl-carousel" id="sl-slider">
-                        <?php foreach (json_decode($house -> image)as $picture) { ?>
+                        <?php foreach (json_decode($house->image)as $picture) { ?>
                         <div class="sl-item set-bg">
                             <img src="{{asset('storage/images/'.$picture)}}">
                         </div>
-                            <?php } ?>
+                        <?php } ?>
                     </div>
                     <div class="owl-carousel sl-thumb-slider" id="sl-slider-thumb">
-                        <?php foreach (json_decode($house -> image)as $picture) { ?>
-                        <div class="sl-thumb set-bg"><img src="{{asset('storage/images/'.$picture)}}" style="height:120px; width:200px"></div>
-                            <?php } ?>
+                        <?php foreach (json_decode($house->image)as $picture) { ?>
+                        <div class="sl-thumb set-bg"><img src="{{asset('storage/images/'.$picture)}}"
+                                                          style="height:120px; width:200px"></div>
+                        <?php } ?>
                     </div>
                     <div class="single-list-content">
                         <div class="row">
@@ -43,11 +44,13 @@
 
                             <div class="col-sm-2 offset-xl-1">
                                 <div class="row">
-                                    <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary" data-toggle="modal"
-                                   data-target="#Order">Đặt phòng</a>
+                                    <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary"
+                                                              data-toggle="modal"
+                                                              data-target="#Order">Đặt phòng</a>
                                     </div>
                                     <div class="col-md-12">
-                                        <p class="btn btn-outline-dark" style="margin-top: 10px; width: 180px"> Giá: {{number_format($house->price)}} Đồng</p>
+                                        <p class="btn btn-outline-dark" style="margin-top: 10px; width: 180px">
+                                            Giá: {{number_format($house->price)}} Đồng</p>
 
                                     </div>
                                 </div>
@@ -156,17 +159,18 @@
                             <div class="col-md-offset-1 col-md-10">
                                 <form method="POST" id="OrderHouse">
                                     @csrf
-
-                                    <div class="form-group has-feedback">
-                                        <label>Số điện thoại: </label>
-                                        <input type="phone" name="phone" class="form-control"
-                                               placeholder="Nhập số điện thoại  ">
-                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                                        <span class="text-danger">
+                                    @if(Auth::user()->phone)
+                                    @else
+                                        <div class="form-group has-feedback">
+                                            <label>Số điện thoại: </label>
+                                            <input type="phone" name="phone" class="form-control"
+                                                   placeholder="Nhập số điện thoại  ">
+                                            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                            <span class="text-danger">
                                 <strong id="phone-error"></strong>
                                         </span>
-                                    </div>
-
+                                        </div>
+                                    @endif
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
                                         <input type="text" name="checkin" class="form-control" id="checkin"
