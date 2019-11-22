@@ -22,8 +22,8 @@ class HomeStayController extends Controller
     {   $provinces = Province::all();
         $houses = House::whereNotNull('approved_at')->paginate(4);
         return view('web.index', compact('houses', 'provinces'));
-    }
 
+    }
 
     public function comingSoon()
     {

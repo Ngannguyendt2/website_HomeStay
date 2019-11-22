@@ -119,7 +119,7 @@
                         <div class="col-md-6">
                             <a href="{{route('web.detail',$house->id)}}">
                                 <div style="border-radius: 15px" class="propertie-item set-bg"
-                                     data-setbg="{{asset('img/propertie/1.jpg')}}">
+                                     data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
                                     <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "Bán"}}</div>
                                     <div class="propertie-info text-white">
                                         <div class="info-warp">
@@ -130,7 +130,6 @@
                                         <div style="margin-top: 5px" class="price"><a
                                                     href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}}
                                                 Đồng</a></div>
-
                                     </div>
                                 </div>
                             </a>

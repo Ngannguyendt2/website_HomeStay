@@ -17,4 +17,5 @@ class OrderRepository extends RepositoryEloquent implements OrderRepositoryInter
         $order = Order::class;
         return $order;
     }
+
 }
