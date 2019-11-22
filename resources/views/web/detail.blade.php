@@ -160,6 +160,15 @@
                                 <form method="POST" id="OrderHouse">
                                     @csrf
                                     @if(Auth::user()->phone)
+                                        <div class="form-group has-feedback" style="display: none">
+                                            <label>Số điện thoại: </label>
+                                            <input type="phone" name="phone" class="form-control"
+                                                   placeholder="Nhập số điện thoại  " value="{{Auth::user()->phone}}">
+                                            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                            <span class="text-danger">
+                                <strong id="phone-error"></strong>
+                                        </span>
+                                        </div>
                                     @else
                                         <div class="form-group has-feedback">
                                             <label>Số điện thoại: </label>
@@ -170,7 +179,7 @@
                                 <strong id="phone-error"></strong>
                                         </span>
                                         </div>
-                                    @endif
+                                        @endif
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
                                         <input type="text" name="checkin" class="form-control" id="checkin"

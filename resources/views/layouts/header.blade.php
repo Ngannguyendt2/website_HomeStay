@@ -47,12 +47,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
-                                   style="color: black">
-                                    Đăng xuất
-                                </a>
+
                                 <a style="color: black" class="dropdown-item"
                                    href="{{route('user.profile',Auth::user()->id)}}">
                                     Thông tin cá nhân
@@ -67,7 +62,12 @@
                                         Trang Admin
                                     </a>
                                 @endif
-
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                   style="color: black">
+                                    Đăng xuất
+                                </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
                                     @csrf
