@@ -37,9 +37,14 @@ class UpdatePasswordRequest extends FormRequest
 
     public function message()
     {
-        return response()->json([
-            'status' => 'errors',
-            'message'=> 'loi roi'
-        ]);
+        return [
+            'old_password.required' => 'Mật khẩu cũ không được để trống',
+            'new_password.min' => 'Mật khẩu ít nhất 6 ký tự',
+            'new_password.required_with' => 'Yêu cầu xác nhận mật khẩu',
+            'new_password.same' => 'Mật khẩu xác nhận phải giống nhau',
+            'password_confirmation' => 'Mật khẩu ít nhất 6 ký tự',
+        ];
+
+
     }
 }
