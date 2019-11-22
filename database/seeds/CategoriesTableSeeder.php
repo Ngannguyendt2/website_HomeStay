@@ -22,7 +22,11 @@ class CategoriesTableSeeder extends Seeder
         $category->save();
 
         $category=new Category;
-        $category->name='Nhà tầng';
+        $category->name='Căn hộ cho thuê';
+        $category->save();
+
+        $category=new Category;
+        $category->name='Khu nghỉ dưỡng';
         $category->save();
 
 

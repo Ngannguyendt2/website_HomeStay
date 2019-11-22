@@ -31,14 +31,13 @@ return [
     ],
 
     'google' => [
-        'client_id' => '564013829177-lpo9rpmrnnb2g0e49a2sn65gcolpotra.apps.googleusercontent.com',
-        'client_secret' => 'JCGgu1OHAP6OqR1jjFzG685X',
-        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
+        'client_id' => env('GOOGLE_APP_ID'),
+        'client_secret' => env('GOOGLE_APP_SECRET'),
+        'redirect' => env('GOOGLE_APP_CALLBACK_URL'),
     ],
     'facebook' => [
         'client_id' => env('FACEBOOK_APP_ID'),
         'client_secret' => env('FACEBOOK_APP_SECRET'),
         'redirect' => env('FACEBOOK_APP_CALLBACK_URL'),
     ],
-
 ];

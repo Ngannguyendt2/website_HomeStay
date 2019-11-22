@@ -206,7 +206,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
                                             <button type="button" id="submitOrderHouse"
-                                                    class="btn btn-primary btn-prime white btn-flat">Submit
+                                                    class="btn btn-primary btn-prime white btn-flat">Đặt Ngay
                                             </button>
 
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
