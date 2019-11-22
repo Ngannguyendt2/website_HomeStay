@@ -25,7 +25,7 @@ class OrderController extends Controller
         catch (\Exception $e){
             return response()->json([
                 'status' => 'errors',
-                'message' => 'Order không thành công'
+                'message' => $e->getMessage()
             ]);
         }
     }
