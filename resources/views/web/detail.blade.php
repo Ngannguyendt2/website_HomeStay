@@ -159,18 +159,15 @@
                             <div class="col-md-offset-1 col-md-10">
                                 <form method="POST" id="OrderHouse">
                                     @csrf
-                                    @if(Auth::user()->phone)
-                                    @else
-                                        <div class="form-group has-feedback">
-                                            <label>Số điện thoại: </label>
-                                            <input type="phone" name="phone" class="form-control" id="phone"
-                                                   placeholder="Nhập số điện thoại  ">
-                                            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                                            <span class="text-danger">
+                                    <div class="form-group has-feedback">
+                                        <label>Số điện thoại: </label>
+                                        <input type="phone" name="phone" class="form-control" id="phone"
+                                               placeholder="Nhập số điện thoại  ">
+                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <span class="text-danger">
                                 <strong id="phone-error"></strong>
                                         </span>
-                                        </div>
-                                    @endif
+                                    </div>
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
                                         <input type="text" name="checkin" class="form-control" id="checkin"
@@ -257,6 +254,7 @@
                         }
                     },
                     error: function (error) {
+                        console.log(error);
                         let err = JSON.parse(error.responseText);
                         if (err.errors.phone) {
                             $('#phone-error').html(err.errors.phone[0]);
