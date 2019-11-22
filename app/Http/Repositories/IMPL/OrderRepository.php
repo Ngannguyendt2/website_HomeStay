@@ -18,14 +18,4 @@ class OrderRepository extends RepositoryEloquent implements OrderRepositoryInter
         return $order;
     }
 
-    public function getDateCheckin($id)
-    {
-        // TODO: Implement getDateCheckin() method.
-        return Order::find($id)->where('checkin')->get();
-    }
-
-    public function getDateCheckout($id)
-    {
-        // TODO: Implement getDateCheckout() method.
-    }
 }
