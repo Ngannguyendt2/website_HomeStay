@@ -6,6 +6,7 @@ namespace App\Http\Services;
 
 interface HouseServiceInterface
 {
+    public function getAll();
     public function create($request);
 
     public function getCategoryHouse();
@@ -13,4 +14,6 @@ interface HouseServiceInterface
     public function getHouseById($id);
 
     public function search($request);
+//    public function destroy($object);
+
 }

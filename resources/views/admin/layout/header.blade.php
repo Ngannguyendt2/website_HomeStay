@@ -67,16 +67,16 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <div class="notification_header">
-                                    <h3>You have {{count($houses)}} new notification</h3>
+                                    <h3>Bạn có {{count($houses)}} tin nhắn mới</h3>
                                 </div>
                             </li>
                             @foreach($houses as $house)
                             <li><a href="#">
-                                    <div class="user_img"><img src="{{'storage/'.$house->user->image}}" alt="">
+                                    <div class="user_img"><img src="{{'storage/images/12.jpeg'}}" alt="ahihih">
                                     </div>
                                     <div class="notification_desc">
                                         <p>{{$house->user->name}}</p>
-                                        <p><span>1 hour ago</span></p>
+                                        <p><span>{{$house->created_at->diffForHumans()}}</span></p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </a>

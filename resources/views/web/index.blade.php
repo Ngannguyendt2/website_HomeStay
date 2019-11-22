@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('content')
-    <script src="{{asset('js/ajaxAddress.js')}}"></script>
     <!-- Hero section -->
+    <script src="{{asset('js/ajaxAddress.js')}}"></script>
+
     <section class="hero-section set-bg" data-setbg="img/bg.jpg">
         <div class="container hero-text text-white">
             <h2>Dự án cuối module của nhóm Chị Dậu "Dậu homestay"</h2>
@@ -114,7 +115,6 @@
 
             <div class="row">
                 @foreach($houses as $key => $house)
-                    @if($house->approved_at !== null)
 
                         <div class="col-md-6">
                             <a href="{{route('web.detail',$house->id)}}">
@@ -135,7 +135,6 @@
                                 </div>
                             </a>
                         </div>
-                    @endif
                 @endforeach
             </div>
             {{$houses->links()}}

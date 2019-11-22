@@ -20,8 +20,10 @@ class UserController extends Controller
     {
         $this->profileService = $profileService;
     }
-    public function index(){
-        $users = User::all();
+
+    public function index()
+    {
+        $users = $this->profileService->getAll();
         return view('admin.users.list', compact('users'));
     }
 
@@ -30,6 +32,7 @@ class UserController extends Controller
         $user = $this->profileService->getUserById($id);
         return view('user.profile', compact('user'));
     }
+
     public function edit($id)
     {
         $user = $this->profileService->getUserById($id);
@@ -57,12 +60,20 @@ class UserController extends Controller
         return $this->profileService->updatePassword($user, $request);
     }
 
-    public function admin() {
+    public function admin()
+    {
         return view('admin.index');
     }
 
-    public function test() {
+    public function test()
+    {
         return view('home');
+    }
+
+    public function destroy($id)
+    {
+        $this->profileService->destroy($id);
+        return redirect()->route('admin.users.list');
     }
 
 }

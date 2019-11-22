@@ -156,25 +156,6 @@
                             <div class="col-md-offset-1 col-md-10">
                                 <form method="POST" id="OrderHouse">
                                     @csrf
-                                    <div class="form-group has-feedback">
-                                        <label>Tên người thuê: </label>
-                                        <input type="text" name="name" class="form-control"
-                                               placeholder="Nhập tên người thuê  ">
-                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                        <span class="text-danger">
-                                <strong id="name-error"></strong>
-                            </span>
-                                    </div>
-
-                                    <div class="form-group has-feedback">
-                                        <label>Email: </label>
-                                        <input type="email" name="email" class="form-control"
-                                               placeholder="Nhập email">
-                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                        <span class="text-danger">
-                                <strong id="email-error"></strong>
-                            </span>
-                                    </div>
 
                                     <div class="form-group has-feedback">
                                         <label>Số điện thoại: </label>
@@ -255,8 +236,6 @@
 
                 let orderHouseForm = $("#OrderHouse");
                 let formData = orderHouseForm.serialize();
-                $('#name-error').html("");
-                $('#email-error').html("");
                 $('#phone-error').html("");
                 $('#checkin-error').html("");
                 $('#checkout-error').html("");
@@ -275,12 +254,6 @@
                     },
                     error: function (error) {
                         let err = JSON.parse(error.responseText);
-                        if (err.errors.name) {
-                            $('#name-error').html(err.errors.name[0]);
-                        }
-                        if (err.errors.email) {
-                            $('#email-error').html(err.errors.email[0]);
-                        }
                         if (err.errors.phone) {
                             $('#phone-error').html(err.errors.phone[0]);
                         }

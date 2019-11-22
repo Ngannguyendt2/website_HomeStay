@@ -24,7 +24,7 @@ Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoo
 Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
-Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail');
+Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
 Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
@@ -40,11 +40,13 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');
         Route::get('/users', 'UserController@index')->name('admin.users.list');
+        Route::get('/{id}/destroy', 'UserController@destroy')->name('admin.users.destroy');
 
         Route::prefix('houses')->group(function () {
-            Route::get('', 'HouseController@index')->name('admin.houses.index');
+            Route::get('', 'HouseController@index')->name('admin.houses.list');
             Route::get('/{id}/approve', 'HouseController@checkApprove')->name('admin.houses.checkApprove');
             Route::get('/approve', 'HouseController@approve')->name('admin.houses.approve');
+            Route::get('{id}/destroy', 'HouseController@destroy')->name('admin.houses.destroy');
         });
     });
 });
@@ -55,4 +57,4 @@ Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
-//Route::post('test', 'HouseController@searchFilter')->name('search');
+//Route::post('test', 'HouseController@search')->name('search');

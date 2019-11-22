@@ -18,4 +18,5 @@ interface UserServiceInterface
     public function update($object,$request);
 
     public function updatePassword($object, $request);
+    public function destroy($object);
 }

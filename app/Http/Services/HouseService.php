@@ -70,10 +70,22 @@ class HouseService implements HouseServiceInterface
     public function search($request)
     {
         // TODO: Implement search() method.
-        if(empty($request)) {
-            return $this->houseRepo->getAll();
-        }
-        $model = DB::table('houses')->select('houses.*');
-//        $model = $model->join()
+//        if (empty($request)) {
+//            return $this->houseRepo->getAll();
+//        }
+//        $model = House::all();
+
+
+    }
+
+    public function getAll()
+    {
+        return $this->houseRepo->getAll();
+    }
+
+    public function destroy($id)
+    {
+        $house = $this->houseRepo->getById($id);
+        return $this->houseRepo->destroy($house);
     }
 }

@@ -31,7 +31,7 @@
                     @foreach($houses as $key => $house)
                         <tr>
                             <td>{{++$key}}</td>
-                            <td>{{$house->demand}}</td>
+                            <td>{{$house->demand == 0 ? 'Cho Thuê': 'Bán'}}</td>
                             <td>{{$house->category->name}}</td>
                             <td>{{$house->province->name}} <br> {{$house->district->name}}
                                 <br> {{$house->ward->name}} <br> {{$house->name_way}} <br> {{$house->house_number}}</td>

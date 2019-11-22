@@ -35,8 +35,8 @@
                             <td>{{$customer->phone}}</td>
                             @foreach($orders as $order)
                                 @if($customer->id == $order->customer_id)
-                                    <td>{{$order->checkin}}</td>
-                                    <td>{{$order->checkout}}</td>
+                                    <td>{{date('d/m/Y', strtotime($order->checkin))}}</td>
+                                    <td>{{date('d/m/Y', strtotime($order->checkout))}}</td>
                                     <td>{{number_format($order->totalPrice)}} đồng</td>
                                 @endif
                             @endforeach
