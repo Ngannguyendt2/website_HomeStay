@@ -59,13 +59,13 @@ class UserService implements UserServiceInterface
                 $this->profileRepo->updatePassword($object);
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'doi mat mat khau thanh cong'
+                    'message' => 'Đổi mật khẩu thành công'
                 ]);
             }
 
             return response()->json([
                 'status' => 'errors',
-                'message' => 'mat khong khong dung'
+                'message' => 'mật khẩu không đúng'
             ]);
         } catch (\Exception $e) {
 

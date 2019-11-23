@@ -9,6 +9,7 @@
     <!--  Page top end -->
 
     <!-- Breadcrumb -->
+{{--    <div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div>--}}
     <div class="site-breadcrumb">
         <div class="container">
             <a href=""><i class="fa fa-home"></i>Home</a>
@@ -205,7 +206,8 @@
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
                                             <button type="button" id="submitOrderHouse"
-                                                    class="btn btn-primary btn-prime white btn-flat">Xác nhận
+
+                                                    class="btn btn-primary btn-prime white btn-flat">Đặt Ngay
                                             </button>
 
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
@@ -214,6 +216,7 @@
                                     </div>
 
                                 </form>
+
                             </div>
                         </div>
                     </div>

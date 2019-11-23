@@ -29,12 +29,11 @@ class OrderController extends Controller
                     'message' => 'lịch bạn đặt đã bị trùng '
                 ]);
             }
-
         }
         catch (\Exception $e){
             return response()->json([
                 'status' => 'errors',
-                'message' => 'lỗi order'
+                'message' => $e->getMessage()
             ]);
         }
     }

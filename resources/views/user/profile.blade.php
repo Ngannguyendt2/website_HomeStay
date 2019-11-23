@@ -99,11 +99,12 @@
                                 <h5>{{$user->address}}</h5>
                             </div>
                             <div style="margin-top: 15px" class='col-md-4'>
-                                    <a class="btn btn-primary" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
+                                    <a class="btn btn-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
                                             sửa thông tin cá nhân</b></a>
                             </div>
+                            <div class="col-md-3"></div>
                             <div style="margin-top: 15px" class="col-md-3">
-                                <a href="" class="btn btn-primary" data-toggle="modal"
+                                <a href="" class="btn btn-info" data-toggle="modal"
                                    data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
                             </div>
                         </div>
@@ -139,6 +140,7 @@
                             <span class="text-danger">
                                 <strong id="old_password-error"></strong>
                             </span>
+
                         </div>
                         <div class="form-group has-feedback">
                             <input type="password" name="new_password" class="form-control"
