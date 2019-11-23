@@ -31,15 +31,20 @@ class UpdatePasswordRequest extends FormRequest
             //
             'old_password' => 'required',
             'new_password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation'=>'min:6'
+            'password_confirmation' => 'min:6'
         ];
     }
 
-    public function message()
+    public function messages()
     {
-        return response()->json([
-            'status' => 'errors',
-            'message'=> 'loi roi'
-        ]);
+        return [
+            'old_password.required' => 'mật khẩu cũ không để trống',
+            'new_password.required' => 'mật khẩu mới không để trống ',
+            'new_password.min' => 'mật khẩu không dưới 6 ký tự ',
+            'password_confirmation.min' => 'mật khẩu không dưới 6 ký tự ',
+            'new_password.same' => 'mật khẩu nhập lại và mật khẩu mới phải giống nhau'
+
+
+        ];
     }
 }

@@ -160,7 +160,7 @@
                                 <form method="POST" id="OrderHouse">
                                     @csrf
                                     @if(Auth::user()->phone)
-                                        <div class="form-group has-feedback" style="display: none">
+                                        <div class="form-group has-feedback" style="display: none" >
                                             <label>Số điện thoại: </label>
                                             <input type="phone" name="phone" class="form-control"
                                                    placeholder="Nhập số điện thoại  " value="{{Auth::user()->phone}}">
@@ -205,7 +205,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
                                             <button type="button" id="submitOrderHouse"
-                                                    class="btn btn-primary btn-prime white btn-flat">Submit
+                                                    class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                             </button>
 
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
@@ -225,6 +225,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+
             $("#checkout").prop("disabled", true);
             $('#checkin,#checkout').datepicker({
                 minDate: new Date()

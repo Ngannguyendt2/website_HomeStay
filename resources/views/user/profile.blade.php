@@ -156,7 +156,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-center">
                                 <button type="button" id="submitChangePass"
-                                        class="btn btn-primary btn-prime white btn-flat">Submit
+                                        class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
 
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>

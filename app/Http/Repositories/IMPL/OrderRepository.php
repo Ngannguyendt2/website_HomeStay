@@ -18,4 +18,9 @@ class OrderRepository extends RepositoryEloquent implements OrderRepositoryInter
         return $order;
     }
 
+    public function checkDate($checkin, $checkout,$houseId)
+    {
+        // TODO: Implement checkDate() method.
+        return Order::where([['checkin','<',$checkin],['checkout','>=',$checkout],['house_id','=',$houseId]])->get();
+    }
 }
