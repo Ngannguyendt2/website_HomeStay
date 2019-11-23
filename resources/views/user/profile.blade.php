@@ -99,12 +99,12 @@
                                 <h5>{{$user->address}}</h5>
                             </div>
                             <div style="margin-top: 15px" class='col-md-4'>
-                                    <a class="btn btn-primary" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
+                                    <a class="btn btn-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
                                             sửa thông tin cá nhân</b></a>
                             </div>
                             <div class="col-md-3"></div>
                             <div style="margin-top: 15px" class="col-md-3">
-                                <a href="" class="btn btn-primary" data-toggle="modal"
+                                <a href="" class="btn btn-info" data-toggle="modal"
                                    data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-center">
                                 <button type="button" id="submitChangePass"
-                                        class="btn btn-primary btn-prime white btn-flat">Submit
+                                        class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
 
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>

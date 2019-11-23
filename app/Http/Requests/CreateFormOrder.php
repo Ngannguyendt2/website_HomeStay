@@ -30,4 +30,15 @@ class CreateFormOrder extends FormRequest
             'checkout' => 'required|after:checkin'
         ];
     }
+    public function messages()
+    {
+        return [
+            'phone.required'=>'số điện thoại không được để trống',
+            'checkin.required'=>'ngày checkin không được để trống ',
+            'checkin.after'=>'ngày checkin phải sau ngày hôm nay ',
+            'checkout.required'=>'ngày checkout không được để trống',
+            'checkout.after'=>'ngày checkout phải sau ngày checkin ',
+
+        ];
+    }
 }

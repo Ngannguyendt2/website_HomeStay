@@ -26,6 +26,7 @@ class OrderService implements OrderServiceInterface
     public function create($request, $houseId)
     {
         // TODO: Implement order() method.
+
         $order = new Order();
         $order->checkin = $this->getDateCheckinFromForm($request);
         $order->checkout = $this->getDateCheckoutFromForm($request);
@@ -81,6 +82,16 @@ class OrderService implements OrderServiceInterface
     {
         $house = House::find($houseId);
         return $this->getDateOrder($request) * $house->price;
+    }
+
+    public function checkDate($request, $houseId)
+    {
+        $orders = $this->orderRepo->checkDate($this->getDateCheckinFromForm($request), $this->getDateCheckoutFromForm($request), $houseId);
+        if ($orders) {
+            return true;
+
+        }
+        return false;
     }
 
 }
