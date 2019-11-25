@@ -8,4 +8,6 @@ interface OrderRepositoryInterface extends RepositoryInterface
 {
     public function checkDate($checkin, $checkout, $houseId);
 
+    public function getOrderByHouse($houseId);
+
 }

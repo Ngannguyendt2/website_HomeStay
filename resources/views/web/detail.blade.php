@@ -209,7 +209,6 @@
 
                                                     class="btn btn-primary btn-prime white btn-flat">Đặt Ngay
                                             </button>
-
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
                                             </button>
                                         </div>

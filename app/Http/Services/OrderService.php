@@ -87,11 +87,19 @@ class OrderService implements OrderServiceInterface
     public function checkDate($request, $houseId)
     {
         $orders = $this->orderRepo->checkDate($this->getDateCheckinFromForm($request), $this->getDateCheckoutFromForm($request), $houseId);
-        if ($orders) {
-            return true;
+        foreach ($orders as $order){
+            if ($order) {
+                return true;
 
+            }
+            return false;
         }
-        return false;
+
     }
 
+    public function getOrderByHouse($houseId)
+    {
+        // TODO: Implement getOrderByHouse() method.
+        return $this->orderRepo->getOrderByHouse($houseId);
+    }
 }

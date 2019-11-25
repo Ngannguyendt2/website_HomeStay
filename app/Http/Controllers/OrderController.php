@@ -24,6 +24,7 @@ class OrderController extends Controller
                 ]);
             }
             else{
+
                 return response()->json([
                     'status' => 'errors',
                     'message' => 'lịch bạn đặt đã bị trùng '
