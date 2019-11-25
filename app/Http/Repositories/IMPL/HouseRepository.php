@@ -26,4 +26,10 @@ class HouseRepository extends RepositoryEloquent implements HouseRepositoryInter
         return $categories;
 
     }
+
+    public function search($model)
+    {
+        return $model;
+        // TODO: Implement searchFilter() method.
+    }
 }

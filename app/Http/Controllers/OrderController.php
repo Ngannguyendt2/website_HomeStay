@@ -19,13 +19,13 @@ class OrderController extends Controller
             $this->order->create($request,$id);
             return response()->json([
                 'status' => 'success',
-                'message' => 'order thành công'
+                'message' => 'Order thành công'
             ]);
         }
         catch (\Exception $e){
             return response()->json([
                 'status' => 'errors',
-                'message' => 'lỗi order'
+                'message' => $e->getMessage()
             ]);
         }
     }

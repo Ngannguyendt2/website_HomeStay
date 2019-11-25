@@ -50,12 +50,11 @@ class LoginController extends Controller
     public function handleGoogleCallback()
     {
         try {
-
             $user = Socialite::driver('google')->user();
             $finduser = User::where('google_id', $user->id)->first();
             if ($finduser) {
 
-                Auth::login($finduser);
+                auth()->login($finduser);
 
                 return redirect('');
 
@@ -65,7 +64,7 @@ class LoginController extends Controller
                     'email' => $user->email,
                     'google_id' => $user->id,
                     'password' => $user->token,
-                    'images' => $user->avatar,
+                    'image' => $user->avatar,
                     'admin' => 0
                 ]);
 

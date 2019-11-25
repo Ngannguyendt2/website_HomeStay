@@ -8,6 +8,7 @@ use App\House;
 use App\Http\Repositories\HouseRepositoryInterface;
 use App\Notifications\NewHouse;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class HouseService implements HouseServiceInterface
 {
@@ -64,6 +65,17 @@ class HouseService implements HouseServiceInterface
     {
         // TODO: Implement getHouseById() method.
         return $this->houseRepo->getById($id);
+    }
+
+    public function search($request)
+    {
+        // TODO: Implement search() method.
+//        if (empty($request)) {
+//            return $this->houseRepo->getAll();
+//        }
+//        $model = House::all();
+
+
     }
 
     public function getAll()

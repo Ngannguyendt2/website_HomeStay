@@ -51,8 +51,10 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     });
 });
 
-Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('auth/{provider}', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/auth/{provider}/callback', 'SocialController@callback');
+
+//Route::post('test', 'HouseController@search')->name('search');

@@ -8,7 +8,7 @@ use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServiceInterface;
 use App\Order;
 use App\Province;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class HouseController extends Controller
@@ -43,7 +43,7 @@ class HouseController extends Controller
     public function store(CreateHouseRequest $request)
     {
         $this->house->create($request);
-        Session::flash('success','Đã đăng bài thành công ... Xin vui lòng chờ admin kiểm duyệt');
+        Session::flash('success', 'Đã đăng bài thành công ... Xin vui lòng chờ admin kiểm duyệt');
         return redirect()->route('house.create');
     }
 
@@ -53,7 +53,8 @@ class HouseController extends Controller
         return view('user.housesManager.list', compact('houses'));
     }
 
-    public function detailCustomer($id){
+    public function detailCustomer($id)
+    {
         $customers = $this->house->getHouseById($id)->customers;
         $orders = Order::where('house_id', $id)->get();
         return view('user.housesManager.detailCustomer', compact('customers', 'orders'));
@@ -72,4 +73,7 @@ class HouseController extends Controller
         return view('web.detail', compact('house'));
     }
 
+    public function search(Request $request){
+        return response()->json($request);
+    }
 }

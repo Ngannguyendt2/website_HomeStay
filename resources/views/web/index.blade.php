@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('content')
     <!-- Hero section -->
+    <script src="{{asset('js/ajaxAddress.js')}}"></script>
+
     <section class="hero-section set-bg" data-setbg="img/bg.jpg">
         <div class="container hero-text text-white">
             <h2>Dự án cuối module của nhóm Chị Dậu "Dậu homestay"</h2>
@@ -11,26 +13,90 @@
     </section>
     <!-- Hero section end -->
 
+{{--    <script>--}}
+{{--        $(document).ready(function () {--}}
+{{--            $('#province_id').change(function () {--}}
+{{--                let province = $('#province_id').val();--}}
+{{--                console.log(province);--}}
+{{--                $.ajax({--}}
+{{--                    url: "{{route('search')}}",--}}
+{{--                    type: 'POST',--}}
+{{--                    data: {province_id: province},--}}
+{{--                    success: function (response) {--}}
+{{--                        console.log(response)--}}
+{{--                    },--}}
+{{--                    error: function (errors) {--}}
+{{--                        console.log(errors)--}}
+{{--                    }--}}
 
+{{--                })--}}
+{{--            })--}}
+{{--        })--}}
+{{--    </script>--}}
     <!-- Filter form section -->
     <div class="filter-search">
         <div class="container">
             <form class="filter-form" style="border-radius: 10px">
-                @csrf
-                <input style="border-radius: 10px; width: 200px;" type="text" placeholder="Điền tên nhà...">
-                <select style="border-radius: 10px; width: 95px;">
-                    <option value="City">Price</option>
-                </select>
-                <select style="border-radius: 10px; width: 95px;">
-                    <option value="City">Bedroom</option>
-                </select>
-                <select style="border-radius: 10px; width: 95px;">
-                    <option value="City">Bathroom</option>
-                </select>
-                <select style="border-radius: 10px; width: 95px;">
-                    <option value="City">State</option>
-                </select>
-                <button style="border-radius: 10px" class="site-btn fs-submit">SEARCH</button>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <select class="form-control-sm" onchange="javascript:test.filterCity()"
+                                        name="province_id" id="province_id" style="border-radius: 5px ;width: 190px;">
+                                    <option value="">Tỉnh/T.phố</option>
+                                    @foreach($provinces as $province)
+                                        <option value="{{$province->id}}">{{$province->name}}</option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control-sm" onchange="javascript:test.filterDistrict()"
+                                        name="district_id" id="district_id" style="border-radius: 5px ; width: 190px;">
+                                    <option value="">Quận/Huyện</option>
+                                </select>
+                                <select class="form-control-sm" onchange="javascript:test.filterWard()" name="ward_id"
+                                        id="ward_id" style="border-radius: 5px ;width: 190px;">
+                                    <option value="">Xã/Phường</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px" class="row">
+                            <div class="col-sm-12">
+                                <select class="form-control-sm" style="border-radius: 5px ;width: 140px;">
+                                    <option value="">Số phòng tắm</option>
+                                </select>
+                                <select class="form-control-sm" style="border-radius: 5px ;width: 140px;">
+                                    <option value="">Số phòng ngủ</option>
+                                </select>
+                                <select class="form-control-sm" style="border-radius: 5px ;width: 140px;">
+                                    <option value="">Thời gian thuê</option>
+                                    <option>Khoảng 1-3 ngày</option>
+                                    <option>Khoảng 3-7 ngày</option>
+                                    <option>Khoảng 1-2 tuần</option>
+                                    <option>Khoảng 1 tháng</option>
+                                    <option>Trên 1 tháng</option>
+                                </select>
+                                <select class="form-control-sm" style="border-radius: 5px ;width: 128px;">
+                                    <option value="">Trạng thái</option>
+                                    <option value="0">Cho thuê</option>
+                                    <option value="1">Bán</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="col-sm-12">
+                            <input name="price" class="form-control"
+                                   style="border-radius: 6px; height: 30px;width:170px" type="text"
+                                   placeholder="Giá tiền mong muốn...">
+                        </div>
+                        <div class="col-sm-12" style="margin-top: 10px">
+                            <button style="border-radius: 10px; height: 30px; padding-bottom: 20px"
+                                    class="site-btn fs-submit">SEARCH
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -43,19 +109,18 @@
         <div class="container">
             <div class="section-title text-center">
                 <h3>Căn hộ gần đây</h3>
-                <p>Khám phá những căn HomStay mới nhất hot nhất thị trường đang được cho thuê</p>
+                <p>Khám phá những căn HomeStay mới nhất hot nhất thị trường đang được cho thuê</p>
             </div>
+            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>
+
             <div class="row">
                 @foreach($houses as $key => $house)
-                    @if($house->approved_at !== null)
 
                         <div class="col-md-6">
                             <a href="{{route('web.detail',$house->id)}}">
-                                <div style="border-radius: 15px" class="propertie-item set-bg">
+                                <div style="border-radius: 15px" class="propertie-item set-bg"
+                                     data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
                                     <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "Bán"}}</div>
-                                    <img src="{{asset('storage/images/'.json_decode($house->image)[0])}}">
-
-
                                     <div class="propertie-info text-white">
                                         <div class="info-warp">
                                             <h5>{{$house->category->name}}</h5>
@@ -63,14 +128,12 @@
                                                 , {{$house->district->name}}, {{$house->province->name}}</p>
                                         </div>
                                         <div style="margin-top: 5px" class="price"><a
-                                                href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}}
+                                                    href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}}
                                                 Đồng</a></div>
-
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @endif
                 @endforeach
             </div>
             {{$houses->links()}}

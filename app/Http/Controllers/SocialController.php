@@ -19,7 +19,7 @@ class SocialController extends Controller
         $user = $this->createUser($getInfo,$provider);
         auth()->login($user);
 
-        return redirect()->route('web.index');
+        return redirect('');
     }
     function createUser($getInfo,$provider){
         $user = User::where('provider_id', $getInfo->id)->first();
