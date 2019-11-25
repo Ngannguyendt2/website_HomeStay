@@ -160,8 +160,13 @@
                                 <button type="button" id="submitChangePass"
                                         class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
-
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                                <a class="btn btn-danger" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                   style="color: black">
+                                    Ok
+                                </a>
+{{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>--}}
                             </div>
                         </div>
                     </form>
