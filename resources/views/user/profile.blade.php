@@ -116,17 +116,7 @@
                             </div>
 
                             <div class="col-md-3"></div>
-
-                            <div style="margin-top: 15px" class='col-md-4'>
-
-                                <a class="btn btn-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
-                                        sửa thông tin cá nhân</b></a>
-                            </div>
                             <div class="col-md-3"></div>
-                            <div style="margin-top: 15px" class="col-md-3">
-                                <a href="" class="btn btn-info" data-toggle="modal"
-                                   data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
-                            </div>
                             <div class="col-md-1"></div>
                             @if(empty(Auth::user()->google_id) && empty(Auth::user()->provider_id))
                                 <div style="margin-top: 15px" class="col-md-3">
