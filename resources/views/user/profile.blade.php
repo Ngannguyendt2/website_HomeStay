@@ -65,18 +65,34 @@
                 <h3 align="center">Thông tin cá nhân</h3>
                 <div class="row" style="margin-top: 30px">
                     <div class="col-md-3">
-                        <div class="profile-img-container img-circle">
+                        <div class="col-md-12">
                             <img id="img" style="width: 200px; height: 200px;"
                                  src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
                                  class="img-thumbnail img-circle img-responsive rounded-circle" alt="ahihi"/>
                             @if ($errors->has('images'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
                             @endif
+                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
+                                <a href="" style="color: green" data-toggle="modal"
+                                   data-target="#ChangePassword"><i class="fa fa-key" style="font-size:24px"></i><b>Đổi
+                                        mật khẩu</b></a>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
+                                <a style="color: green" href="{{route('user.edit',['id'=>$user->id])}}"><i
+                                        class="fa fa-edit" style="font-size:20px"></i><b>Chỉnh sửa thông tin</b> </a>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
+                                <a style="color: green" href={{route('house.houseDetail', ['id'=>$user->id])}}>
+                                    <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i><b>Lịch sử
+                                        thuê nhà</b>
+                                </a>
+
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="col-md-2"></div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-7">
 
                         <div class="row">
                             <div class="col-md-12">
@@ -98,16 +114,9 @@
                                 <label>Địa chỉ:</label>
                                 <h5>{{$user->address}}</h5>
                             </div>
-                            <div style="margin-top: 15px" class='col-md-4'>
 
-                                <a class="btn btn-info" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
-                                        sửa thông tin cá nhân</b></a>
-                            </div>
                             <div class="col-md-3"></div>
-                            <div style="margin-top: 15px" class="col-md-3">
-                                <a href="" class="btn btn-info" data-toggle="modal"
-                                   data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
-                            </div>
+                            <div class="col-md-3"></div>
                             <div class="col-md-1"></div>
                             @if(empty(Auth::user()->google_id) && empty(Auth::user()->provider_id))
                                 <div style="margin-top: 15px" class="col-md-3">

@@ -44,6 +44,8 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         });
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
+
+        Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
         Route::post('/review','PostController@create')->name('house.review');
     });
     Route::prefix('/admin')->middleware('admin')->group(function () {

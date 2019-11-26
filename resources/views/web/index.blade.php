@@ -174,7 +174,7 @@
         <div class="container">
             <div class="section-title text-center">
                 <h3>Căn hộ gần đây</h3>
-                <p>Khám phá những căn HomStay mới nhất hot nhất thị trường đang được cho thuê</p>
+                <p>Khám phá những căn HomeStay mới nhất hot nhất thị trường đang được cho thuê</p>
             </div>
 {{--            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>--}}
 
