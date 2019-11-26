@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Http\Requests\CreateFormOrder;
 use App\Http\Services\CustomerServiceInterface;
 use Illuminate\Http\Request;
@@ -20,4 +21,5 @@ class CustomerController extends Controller
     {
 
     }
+
 }

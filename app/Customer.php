@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    //
+
     public function orders()
     {
         return $this->hasMany('App\Order');
@@ -15,5 +15,10 @@ class Customer extends Model
     public function houses()
     {
         return $this->belongsToMany('App\House', 'orders');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App\User');
     }
 }

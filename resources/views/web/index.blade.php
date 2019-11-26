@@ -13,72 +13,132 @@
     </section>
     <!-- Hero section end -->
 
-{{--    <script>--}}
-{{--        $(document).ready(function () {--}}
-{{--            $('#province_id').change(function () {--}}
-{{--                let province = $('#province_id').val();--}}
-{{--                console.log(province);--}}
-{{--                $.ajax({--}}
-{{--                    url: "{{route('search')}}",--}}
-{{--                    type: 'POST',--}}
-{{--                    data: {province_id: province},--}}
-{{--                    success: function (response) {--}}
-{{--                        console.log(response)--}}
-{{--                    },--}}
-{{--                    error: function (errors) {--}}
-{{--                        console.log(errors)--}}
-{{--                    }--}}
+    <script>
 
-{{--                })--}}
-{{--            })--}}
-{{--        })--}}
-{{--    </script>--}}
+        $(document).ready(function () {
+            $('#btn').click(function () {
+                let html = "";
+                let province = $('#province_id').val();
+                let district = $('#district_id').val();
+                let ward = $('#ward_id').val();
+                let bathroom = $('#totalBathroom').val();
+                let bedroom = $('#totalBedRoom').val();
+                let price = $('#price').val();
+                let data = {
+                    province_id: province,
+                    district_id: district,
+                    ward_id: ward,
+                    totalBathroom: bathroom,
+                    totalBedRoom: bedroom,
+                    price: price
+                };
+                let image;
+                $.ajax({
+                    url: "{{route('search')}}",
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        console.log(response.data);
+                        $.each(response.data, function (index, value) {
+                            html += '<div class="col-md-6">';
+                            html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">';
+                            html += '<div style="border-radius: 15px; background-image:url( ' + 'http://127.0.0.1:8000/storage/images/' + JSON.parse(value.image)[0] + ') " class="propertie-item set-bg" ' + '>';
+                            html += '<div class="sale-notic">' + "Cho thuê" + '</div>';
+                            html += '<div class="propertie-info text-white">';
+                            html += '<div class="info-warp">';
+                            html += '<h5>' + value.category.name + '</h5>';
+                            html += '<p><i class="fa fa-map-marker"></i>' +
+                                ' ' + value.ward.name + '\n' +
+                                ', ' + value.district.name + '<br>' + value.province.name + '</p>';
+                            html += '</div>';
+                            html += '<div style="margin-top: 5px" class="price">';
+                            html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">' + numberFormat(value.price)
+                                + ' ' +'Đồng </a>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</a>';
+                            html += '</div>'
+                        });
+                        $('#div').html(html)
+                    },
+                    error: function (errors) {
+                        console.log(errors)
+                    }
+
+                })
+            })
+        });
+
+        function numberFormat(number) {
+            return String(number).replace(/(.)(?=(\d{3})+$)/g,'$1,')
+        }
+
+    </script>
+
+
     <!-- Filter form section -->
     <div class="filter-search">
         <div class="container">
-            <form class="filter-form" style="border-radius: 10px">
+            <div class="filter-form" style="border-radius: 10px">
                 <div class="row">
                     <div class="col-sm-9">
                         <div class="row">
                             <div class="col-sm-12">
-                                <select class="form-control-sm" onchange="javascript:test.filterCity()"
-                                        name="province_id" id="province_id" style="border-radius: 5px ;width: 190px;">
-                                    <option value="">Tỉnh/T.phố</option>
-                                    @foreach($provinces as $province)
-                                        <option value="{{$province->id}}">{{$province->name}}</option>
-                                    @endforeach
-                                </select>
-                                <select class="form-control-sm" onchange="javascript:test.filterDistrict()"
-                                        name="district_id" id="district_id" style="border-radius: 5px ; width: 190px;">
-                                    <option value="">Quận/Huyện</option>
-                                </select>
-                                <select class="form-control-sm" onchange="javascript:test.filterWard()" name="ward_id"
-                                        id="ward_id" style="border-radius: 5px ;width: 190px;">
-                                    <option value="">Xã/Phường</option>
-                                </select>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" onchange="javascript:test.filterCity()"
+                                                name="province_id" id="province_id"
+                                                style="border-radius: 5px;height: 46px; width: 100%">
+                                            <option value="">Tỉnh/T.phố</option>
+                                            @foreach($provinces as $province)
+                                                <option value="{{$province->id}}">{{$province->name}}</option>
+                                            @endforeach
+                                        </select></div>
+                                    <div class="col-md-4">
+                                        <select class="form-control"
+                                                onchange="javascript:test.filterDistrict()"
+                                                name="district_id" id="district_id"
+                                                style="border-radius: 5px ;height: 46px ;width: 100%;">
+                                            <option value="">Quận/Huyện</option>
+                                        </select></div>
+                                    <div class="col-md-4">
+                                        <select class="form-control"
+                                                onchange="javascript:test.filterWard()" name="ward_id"
+                                                id="ward_id"
+                                                style="border-radius: 5px ;width: 100%; height: 46px">
+                                            <option value="">Xã/Phường</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                         <div style="margin-top: 10px" class="row">
                             <div class="col-sm-12">
-                                <select class="form-control-sm" style="border-radius: 5px ;width: 140px;">
-                                    <option value="">Số phòng tắm</option>
-                                </select>
-                                <select class="form-control-sm" style="border-radius: 5px ;width: 140px;">
-                                    <option value="">Số phòng ngủ</option>
-                                </select>
-                                <select class="form-control-sm" style="border-radius: 5px ;width: 140px;">
-                                    <option value="">Thời gian thuê</option>
-                                    <option>Khoảng 1-3 ngày</option>
-                                    <option>Khoảng 3-7 ngày</option>
-                                    <option>Khoảng 1-2 tuần</option>
-                                    <option>Khoảng 1 tháng</option>
-                                    <option>Trên 1 tháng</option>
-                                </select>
-                                <select class="form-control-sm" style="border-radius: 5px ;width: 128px;">
-                                    <option value="">Trạng thái</option>
-                                    <option value="0">Cho thuê</option>
-                                    <option value="1">Bán</option>
-                                </select>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" id="totalBathroom" class="form-control"
+                                               style="border-radius: 5px ;width: 100%;" placeholder="Số phòng tắm...">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" id="totalBedRoom"
+                                               style="border-radius: 5px ;width: 100%;"
+                                               placeholder="Số phòng ngủ...">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input class="form-control" style="width: 100%">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="form-control" style="width: 100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -86,18 +146,23 @@
 
                     <div class="col-sm-3">
                         <div class="col-sm-12">
-                            <input name="price" class="form-control"
-                                   style="border-radius: 6px; height: 30px;width:170px" type="text"
-                                   placeholder="Giá tiền mong muốn...">
+                            <div class="input-group">
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                                <input name="price" class="form-control"
+                                       type="text" placeholder="Giá tiền...">
+                            </div>
                         </div>
                         <div class="col-sm-12" style="margin-top: 10px">
-                            <button style="border-radius: 10px; height: 30px; padding-bottom: 20px"
-                                    class="site-btn fs-submit">SEARCH
+                            <button style="border-radius: 5px;width: 92%;height: 46px; padding-bottom: 20px"
+                                    id="btn" class="site-btn fs-submit">SEARCH
                             </button>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <!-- Filter form section end -->
@@ -111,29 +176,29 @@
                 <h3>Căn hộ gần đây</h3>
                 <p>Khám phá những căn HomeStay mới nhất hot nhất thị trường đang được cho thuê</p>
             </div>
-            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>
+{{--            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>--}}
 
-            <div class="row">
+            <div class="row" id="div">
                 @foreach($houses as $key => $house)
 
-                        <div class="col-md-6">
-                            <a href="{{route('web.detail',$house->id)}}">
-                                <div style="border-radius: 15px" class="propertie-item set-bg"
-                                     data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
-                                    <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "Bán"}}</div>
-                                    <div class="propertie-info text-white">
-                                        <div class="info-warp">
-                                            <h5>{{$house->category->name}}</h5>
-                                            <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}
-                                                , {{$house->district->name}}, {{$house->province->name}}</p>
-                                        </div>
-                                        <div style="margin-top: 5px" class="price"><a
-                                                    href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}}
-                                                Đồng</a></div>
+                    <div class="col-md-6">
+                        <a href="{{route('web.detail',$house->id)}}">
+                            <div style="border-radius: 15px" class="propertie-item set-bg"
+                                 data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
+                                <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "Bán"}}</div>
+                                <div class="propertie-info text-white">
+                                    <div class="info-warp">
+                                        <h5>{{$house->category->name}}</h5>
+                                        <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}
+                                            , {{$house->district->name}} <br> {{$house->province->name}}</p>
                                     </div>
+                                    <div style="margin-top: 5px" class="price"><a
+                                                href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}}
+                                            Đồng</a></div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
+                    </div>
                 @endforeach
             </div>
             {{$houses->links()}}
