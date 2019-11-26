@@ -16,8 +16,8 @@ class CustomerController extends Controller
         $this->customer = $customerService;
     }
 
-    public function order(CreateFormOrder $request, $id)
+    public function destroyOrder($orderId)
     {
-
+        $this->customer->destroyOrder($orderId);
     }
 }

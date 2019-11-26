@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 @section('content')
     <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
@@ -104,6 +105,7 @@
 
                                 @endforeach
                             </div>
+
                         </div>
                         <div class="row property-details-list">
                             <button type="button" class="btn btn-success" data-toggle="modal"
