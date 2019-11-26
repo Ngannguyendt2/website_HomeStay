@@ -9,7 +9,7 @@
     <!--  Page top end -->
 
     <!-- Breadcrumb -->
-{{--    <div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div>--}}
+    {{--    <div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div>--}}
     <div class="site-breadcrumb">
         <div class="container">
             <a href=""><i class="fa fa-home"></i>Home</a>
@@ -76,23 +76,40 @@
                         <div class="description">
                             <p>{{$house->description}}</p>
                         </div>
-                        <h3 class="sl-sp-title">Thông tin thêm</h3>
+                        <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
-                            <div class="col-md-4 col-sm-6">
-                                <p><i class="fa fa-check-circle-o"></i>Điều hòa</p>
-                                <p><i class="fa fa-check-circle-o"></i>Điện thoại</p>
-                                <p><i class="fa fa-check-circle-o"></i>Máy giặt</p>
+                            <div class="row">
+                                @foreach($posts as $key => $post)
+                                    <div class="rating col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p>{{$post->user->name}}</p>
+                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
+                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
+                                                     class="img-thumbnail img-circle img-responsive rounded-circle"
+                                                     alt="ahihi"/>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @foreach ($post->ratings()->get() as $rate)
+                                                    <input id="input-1" name="input-1" class="rating rating-loading"
+                                                           data-min="0"
+                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"
+                                                           data-size="xs"
+                                                           disabled="">
+                                                @endforeach
+                                                <p>{{$post->body}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                @endforeach
                             </div>
-                            <div class="col-md-4 col-sm-6">
-                                <p><i class="fa fa-check-circle-o"></i>Máy sưởi</p>
-                                <p><i class="fa fa-check-circle-o"></i> Biệt thự Villa</p>
-                                <p><i class="fa fa-check-circle-o"></i>Trung tâm</p>
-                            </div>
-                            <div class="col-md-4">
-                                <p><i class="fa fa-check-circle-o"></i>View thành phố</p>
-                                <p><i class="fa fa-check-circle-o"></i> Internet</p>
-                                <p><i class="fa fa-check-circle-o"></i>Bếp điện</p>
-                            </div>
+                        </div>
+                        <div class="row property-details-list">
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#review">Để lại nhận xét
+                            </button>
                         </div>
                         <h3 class="sl-sp-title bd-no">Vị trí</h3>
                         <div class="pos-map" id="map-canvas"></div>
@@ -146,11 +163,13 @@
                     </div>
                 </div>
             </div>
+
+
             <div id="Order" class="modal" role="dialog" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title text-center primecolor">Đặt thuê/mua </h3>
+                            <h3 class="modal-title text-center primecolor">Đặt thuê </h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -181,7 +200,7 @@
                                 <strong id="phone-error"></strong>
                                         </span>
                                         </div>
-                                        @endif
+                                    @endif
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
                                         <input type="text" name="checkin" class="form-control" id="checkin"
@@ -194,6 +213,7 @@
 
                                     <div class="form-group has-feedback">
                                         <label>Ngày trả: </label>
+                                        <input type="hidden" value="{{$house->id}}" id="house_id">
                                         <input type="text" name="checkout" class="form-control" id="checkout">
                                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                         <span class="text-danger">
@@ -207,9 +227,9 @@
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
                                             <button type="button" id="submitOrderHouse"
+
                                                     class="btn btn-primary btn-prime white btn-flat">Đặt Ngay
                                             </button>
-
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
                                             </button>
                                         </div>
@@ -222,16 +242,68 @@
                     </div>
                 </div>
             </div>
+
+
+            <div id="review" class="modal" role="dialog" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title text-center primecolor">Nhận xét </h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <div class="modal-body" style="overflow: hidden;">
+                            <strong id="alert"></strong>
+                            <div class="col-md-offset-1 col-md-10">
+                                <form method="POST" id="reviewHouse">
+                                    @csrf
+                                    <div class="rating">
+                                        <input id="input-1" name="rate" class="rating rating-loading" data-min="0"
+                                               data-max="5" data-step="1" data-size="xs"
+                                               value="{{ $house->userAverageRating }}">
+                                        <input type="hidden" name="id" required="" value="{{ $house->id }}">
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        <input type="text" name="body" class="form-control" id="body">
+                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <span class="text-danger">
+                                <strong id="body-error"></strong>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 text-center">
+                                            <button type="button" id="submitReview" data-dismiss="modal"
+                                                    class="btn btn-primary btn-prime white btn-flat">Nhận xét
+                                            </button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
     <!-- Page end -->
     <script type="text/javascript">
 
         $(document).ready(function () {
+
             $("#checkout").prop("disabled", true);
             $('#checkin,#checkout').datepicker({
                 minDate: new Date()
             });
+
             $('#checkin').change(function () {
                 let dateCheckin = new Date($('#checkin').val()).getTime();
                 if (dateCheckin) {
@@ -281,12 +353,10 @@
                         }
                     }
                 });
-            })
-            ;
-
+            });
         })
 
-
     </script>
+    <script src="{{asset('js/ajaxReview.js')}}"></script>
 @endsection
 

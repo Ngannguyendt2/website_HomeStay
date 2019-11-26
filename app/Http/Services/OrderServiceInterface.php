@@ -11,4 +11,8 @@ interface OrderServiceInterface
     public function findById($id);
 
     public function destroy($id);
+
+    public function checkDate($request, $houseId);
+
+    public function getOrderByHouse($houseId);
 }

@@ -42,6 +42,9 @@ Route::prefix('/user')->middleware('auth')->group(function () {
             Route::get('detail/approve/{id}', 'OrderController@approve')->name('houses.customer.approve');
             Route::get('delete/{id}' , 'OrderController@delete')->name('houses.customer.delete');
         });
+
+        Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
+        Route::post('/review','PostController@create')->name('house.review');
     });
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');
@@ -63,4 +66,6 @@ Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
+
 Route::post('/search', 'HouseController@search')->name('search');
+

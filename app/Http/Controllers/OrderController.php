@@ -19,15 +19,24 @@ class OrderController extends Controller
         $this->order = $order;
     }
 
-    public function order(CreateFormOrder $request, $id)
-    {
-        try {
-            $this->order->create($request, $id);
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Order thành công'
-            ]);
-        } catch (\Exception $e) {
+    public function order(CreateFormOrder $request,$id){
+        try{
+            if(!$this->order->checkDate($request,$id)){
+                $this->order->create($request,$id);
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'order thành công'
+                ]);
+            }
+            else{
+
+                return response()->json([
+                    'status' => 'errors',
+                    'message' => 'lịch bạn đặt đã bị trùng '
+                ]);
+            }
+        }
+        catch (\Exception $e){
             return response()->json([
                 'status' => 'errors',
                 'message' => $e->getMessage()

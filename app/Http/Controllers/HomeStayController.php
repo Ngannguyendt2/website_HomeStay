@@ -8,6 +8,7 @@ use App\Province;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use willvincent\Rateable\Rating;
 
 class HomeStayController extends Controller
 {
@@ -19,7 +20,8 @@ class HomeStayController extends Controller
     }
 
     public function index()
-    {   $provinces = Province::all();
+    {
+        $provinces = Province::all();
         $houses = House::whereNotNull('approved_at')->orderBy('approved_at', 'DESC')->paginate(4);
         return view('web.index', compact('houses', 'provinces'));
 
@@ -55,9 +57,12 @@ class HomeStayController extends Controller
     public function detail($id)
     {
         $house = $this->house->getHouseById($id);
-        return view('web.detail',compact('house'));
+
+        return view('web.detail', compact('house'));
     }
-    public function waiting() {
+
+    public function waiting()
+    {
         return view('web.waiting');
     }
 

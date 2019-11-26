@@ -8,8 +8,10 @@ use App\Http\Repositories\HouseRepositoryInterface;
 use App\Http\Repositories\IMPL\CustomerRepository;
 use App\Http\Repositories\IMPL\HouseRepository;
 use App\Http\Repositories\IMPL\OrderRepository;
+use App\Http\Repositories\IMPL\PostRepository;
 use App\Http\Repositories\IMPL\UserRepository;
 use App\Http\Repositories\OrderRepositoryInterface;
+use App\Http\Repositories\PostRepositoryInterface;
 use App\Http\Repositories\UserRepositoryInterface;
 use App\Http\Services\CustomerService;
 use App\Http\Services\CustomerServiceInterface;
@@ -17,6 +19,8 @@ use App\Http\Services\HouseServiceInterface;
 use App\Http\Services\HouseService;
 use App\Http\Services\OrderService;
 use App\Http\Services\OrderServiceInterface;
+use App\Http\Services\PostService;
+use App\Http\Services\PostServiceInterface;
 use App\Http\Services\UserService;
 use App\Http\Services\UserServiceInterface;
 use Illuminate\Support\Facades\Schema;
@@ -52,6 +56,11 @@ class AppServiceProvider extends ServiceProvider
             OrderRepository::class);
         $this->app->singleton(OrderServiceInterface::class,
             OrderService::class);
+
+        $this->app->singleton(PostRepositoryInterface::class,
+            PostRepository::class);
+        $this->app->singleton(PostServiceInterface::class,
+            PostService::class);
     }
 
     /**
@@ -62,6 +71,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        View::share('houses' , House::all());
+        View::share('houses', House::all());
     }
 }
