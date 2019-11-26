@@ -9,6 +9,7 @@
     <!--  Page top end -->
 
     <!-- Breadcrumb -->
+{{--    <div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div>--}}
     <div class="site-breadcrumb">
         <div class="container">
             <a href=""><i class="fa fa-home"></i>Home</a>
@@ -154,20 +155,32 @@
                             </button>
 
                         </div>
-                        <div class="modal-body" style="overflow: hidden">
+                        <div class="modal-body" style="overflow: hidden;">
                             <strong id="alert"></strong>
                             <div class="col-md-offset-1 col-md-10">
                                 <form method="POST" id="OrderHouse">
                                     @csrf
-                                    <div class="form-group has-feedback">
-                                        <label>Số điện thoại: </label>
-                                        <input type="phone" name="phone" class="form-control"
-                                               placeholder="Nhập số điện thoại  ">
-                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                                        <span class="text-danger">
+                                    @if(Auth::user()->phone)
+                                        <div class="form-group has-feedback" style="display: none" >
+                                            <label>Số điện thoại: </label>
+                                            <input type="phone" name="phone" class="form-control"
+                                                   placeholder="Nhập số điện thoại  " value="{{Auth::user()->phone}}">
+                                            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                            <span class="text-danger">
                                 <strong id="phone-error"></strong>
                                         </span>
-                                    </div>
+                                        </div>
+                                    @else
+                                        <div class="form-group has-feedback">
+                                            <label>Số điện thoại: </label>
+                                            <input type="phone" name="phone" class="form-control"
+                                                   placeholder="Nhập số điện thoại  ">
+                                            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                            <span class="text-danger">
+                                <strong id="phone-error"></strong>
+                                        </span>
+                                        </div>
+                                        @endif
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
                                         <input type="text" name="checkin" class="form-control" id="checkin"
@@ -193,9 +206,9 @@
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
                                             <button type="button" id="submitOrderHouse"
+
                                                     class="btn btn-primary btn-prime white btn-flat">Đặt Ngay
                                             </button>
-
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
                                             </button>
                                         </div>
@@ -208,19 +221,13 @@
                     </div>
                 </div>
             </div>
-            {{--            <div class="fb-comment-embed"--}}
-            {{--                 data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942"--}}
-            {{--                 data-width="560" data-include-parent="false">--}}
-            {{--            </div>--}}
-            <div class="fb-comments" data-href="https://www.facebook.com/nguyenvan.vinh.585" data-width="30px"
-                 data-numposts="5"></div>
         </div>
-
     </section>
     <!-- Page end -->
     <script type="text/javascript">
 
         $(document).ready(function () {
+
             $("#checkout").prop("disabled", true);
             $('#checkin,#checkout').datepicker({
                 minDate: new Date()
@@ -278,6 +285,7 @@
             ;
 
         })
+
 
     </script>
 @endsection

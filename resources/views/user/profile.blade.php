@@ -65,18 +65,34 @@
                 <h3 align="center">Thông tin cá nhân</h3>
                 <div class="row" style="margin-top: 30px">
                     <div class="col-md-3">
-                        <div class="profile-img-container img-circle">
+                        <div class="col-md-12">
                             <img id="img" style="width: 200px; height: 200px;"
                                  src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
                                  class="img-thumbnail img-circle img-responsive rounded-circle" alt="ahihi"/>
                             @if ($errors->has('images'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
                             @endif
+                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
+                                <a href="" style="color: green" data-toggle="modal"
+                                   data-target="#ChangePassword"><i class="fa fa-key" style="font-size:24px"></i><b>Đổi
+                                        mật khẩu</b></a>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
+                                <a style="color: green" href="{{route('user.edit',['id'=>$user->id])}}"><i
+                                        class="fa fa-edit" style="font-size:20px"></i><b>Chỉnh sửa thông tin</b> </a>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
+                                <a style="color: green" href={{route('house.houseDetail', ['id'=>$user->id])}}>
+                                    <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i><b>Lịch sử
+                                        thuê nhà</b>
+                                </a>
+
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="col-md-2"></div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-7">
 
                         <div class="row">
                             <div class="col-md-12">
@@ -98,15 +114,7 @@
                                 <label>Địa chỉ:</label>
                                 <h5>{{$user->address}}</h5>
                             </div>
-                            <div style="margin-top: 15px" class='col-md-4'>
-                                    <a class="btn btn-primary" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
-                                            sửa thông tin cá nhân</b></a>
-                            </div>
                             <div class="col-md-3"></div>
-                            <div style="margin-top: 15px" class="col-md-3">
-                                <a href="" class="btn btn-primary" data-toggle="modal"
-                                   data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
-                            </div>
                         </div>
 
                     </div>
@@ -158,10 +166,15 @@
                         <div class="row">
                             <div class="col-xs-12 text-center">
                                 <button type="button" id="submitChangePass"
-                                        class="btn btn-primary btn-prime white btn-flat">Submit
+                                        class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
-
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                                <a class="btn btn-danger" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                   style="color: black">
+                                    Ok
+                                </a>
+                                {{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>--}}
                             </div>
                         </div>
                     </form>
