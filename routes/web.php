@@ -32,10 +32,16 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::prefix('/houses')->group(function () {
+
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store');
         Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
-        Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
+
+        Route::prefix('customer')->group(function () {
+            Route::get('{id}/approve', 'OrderController@checkApprove')->name('houses.customer.checkApprove');
+            Route::get('detail/approve/{id}', 'OrderController@approve')->name('houses.customer.approve');
+            Route::get('delete/{id}' , 'OrderController@delete')->name('houses.customer.delete');
+        });
     });
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');
@@ -57,4 +63,4 @@ Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
-//Route::post('test', 'HouseController@search')->name('search');
+Route::post('/search', 'HouseController@search')->name('search');

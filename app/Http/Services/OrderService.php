@@ -37,6 +37,7 @@ class OrderService implements OrderServiceInterface
             $customer->email = Auth::user()->email;
             $customer->phone = $request->phone;
             $customer->user_id = Auth::user()->id;
+            $customer->approved_at = null;
             $this->customer->create($customer);
 
             $order->customer_id = $customer->id;
@@ -49,6 +50,19 @@ class OrderService implements OrderServiceInterface
             }
         }
         $this->orderRepo->create($order);
+
+    }
+
+    public function findById($id)
+    {
+        // TODO: Implement findById() method.
+        return $this->orderRepo->getById($id);
+    }
+
+    public function destroy($id)
+    {
+        $order = $this->findById($id);
+        $this->orderRepo->destroy($order);
     }
 
     public function checkEmailCustomer($request)
@@ -82,5 +96,7 @@ class OrderService implements OrderServiceInterface
         $house = House::find($houseId);
         return $this->getDateOrder($request) * $house->price;
     }
+
+
 
 }

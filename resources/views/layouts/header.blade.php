@@ -50,15 +50,18 @@
 
                                 <a style="color: black" class="dropdown-item"
                                    href="{{route('user.profile',Auth::user()->id)}}">
+                                    <i class="fa fa-user-circle-o"></i>
                                     Thông tin cá nhân
                                 </a>
                                 <a style="color: black" class="dropdown-item"
                                    href="{{route('house.list',Auth::user()->id)}}">
+                                    <i class="fa fa-institution"></i>
                                     Nhà của tôi
                                 </a>
                                 @if(Auth::user()->admin == 1)
                                     <a style="color: black" class="dropdown-item"
                                        href="{{route('admin.index',Auth::user()->id)}}">
+                                        <i class="fa fa-drivers-license-o"></i>
                                         Trang Admin
                                     </a>
                                 @endif
@@ -66,6 +69,7 @@
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                                    style="color: black">
+                                    <i class="fa fa-power-off"></i>
                                     Đăng xuất
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"

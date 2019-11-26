@@ -60,12 +60,13 @@
                         <h3 class="sl-sp-title">Chi tiết căn hộ</h3>
                         <div class="row property-details-list">
                             <div class="col-md-4 col-sm-6">
+                                <p><i class="fa fa-user"></i>{{$house->user->name}}</p>
                                 <p><i class="fa fa-bed"></i>{{$house->totalBedRoom}} Phòng ngủ</p>
-                                <p><i class="fa fa-user"></i></p>
                             </div>
+
                             <div class="col-md-4 col-sm-6">
                                 <p><i class="fa fa-building-o"></i>{{$house->category->name}}</p>
-                                <p><i class="fa fa-clock-o"></i> 1 days ago</p>
+                                <p><i class="fa fa-clock-o"></i>{{date('d/m/Y', strtotime($house->approved_at))}}</p>
                             </div>
                             <div class="col-md-4">
                                 <p><i class="fa fa-bath"></i>{{$house->totalBathroom}} Phòng tắm</p>

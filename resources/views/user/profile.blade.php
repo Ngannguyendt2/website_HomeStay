@@ -99,14 +99,16 @@
                                 <h5>{{$user->address}}</h5>
                             </div>
                             <div style="margin-top: 15px" class='col-md-4'>
-                                    <a class="btn btn-primary" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
-                                            sửa thông tin cá nhân</b></a>
+                                <a class="btn btn-outline-secondary" href="{{route('user.edit',['id'=>$user->id])}}"><b>Chỉnh
+                                        sửa thông tin cá nhân</b></a>
                             </div>
-                            <div class="col-md-3"></div>
-                            <div style="margin-top: 15px" class="col-md-3">
-                                <a href="" class="btn btn-primary" data-toggle="modal"
-                                   data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
-                            </div>
+                            <div class="col-md-1"></div>
+                            @if(empty(Auth::user()->google_id) && empty(Auth::user()->provider_id))
+                                <div style="margin-top: 15px" class="col-md-3">
+                                    <a href="" class="btn btn-outline-info" data-toggle="modal"
+                                       data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
+                                </div>
+                            @endif
                         </div>
 
                     </div>
@@ -170,7 +172,10 @@
         </div>
     </div>
 </div>
-
+<form id="logout-form" action="{{ route('logout') }}" method="POST"
+      style="display: none;">
+    @csrf
+</form>
 <!-- Footer section -->
 @include('layouts.footer')
 <!-- Footer section end -->
@@ -193,6 +198,13 @@
     //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
     //     }
     // });
+
+    function Redirect() {
+        $(document).click(event.preventDefault(),
+            document.getElementById('logout-form').submit());
+
+    }
+
     $('body').on('click', '#submitChangePass', function () {
         // e.preventDefault();
         let changePasswordForm = $("#Password");
@@ -209,7 +221,7 @@
                     $('#alert').html(data.message).css('color', 'red');
                 }
                 if (data.status == 'success') {
-                    $('#alert').html(data.message).css('color', 'green');
+                    $('#alert').html(data.message).css('color', 'green').click(Redirect());
                 }
             },
             error: function (result) {

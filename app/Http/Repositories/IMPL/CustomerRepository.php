@@ -18,4 +18,5 @@ class CustomerRepository extends RepositoryEloquent implements CustomerRepositor
         $customer = Customer::class;
         return $customer;
     }
+
 }

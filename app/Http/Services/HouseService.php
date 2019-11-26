@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\DB;
 class HouseService implements HouseServiceInterface
 {
     protected $houseRepo;
+    protected $house;
 
-    public function __construct(HouseRepositoryInterface $houseRepo)
+    public function __construct(HouseRepositoryInterface $houseRepo,
+                                House $house)
     {
         $this->houseRepo = $houseRepo;
+        $this->house = $house;
     }
 
     public function create($request)
@@ -70,11 +73,51 @@ class HouseService implements HouseServiceInterface
     public function search($request)
     {
         // TODO: Implement search() method.
-//        if (empty($request)) {
-//            return $this->houseRepo->getAll();
-//        }
-//        $model = House::all();
+        if (empty($request->all())) {
+            return $this->houseRepo->getAll();
+        }
+        $model = $this->house;
+        if ($request->province_id) {
+            $datas[] = [
+                'column' => 'province_id',
+                'operator' => '=',
+                'value' => $request->province_id
+            ];
+        }
+        if ($request->district_id) {
+            $datas[] = [
+                'column' => 'district_id',
+                'operator' => '=',
+                'value' => $request->district_id
+            ];
+        }
+        if ($request->ward_id) {
+            $datas[] = [
+                'column' => 'ward_id',
+                'operator' => '=',
+                'value' => $request->ward_id
+            ];
+        }
+        if ($request->totalBathroom) {
+            $datas[] = [
+                'column' => 'totalBathroom',
+                'operator' => '=',
+                'value' => $request->totalBathroom
+            ];
+        }
+        if ($request->totalBedRoom) {
+            $datas[] = [
+                'column' => 'totalBathroom',
+                'operator' => '=',
+                'value' => $request->totalBedRoom
+            ];
+        }
 
+        foreach ($datas as $key => $data) {
+            $model = $model->where($data['column'], $data['value']);
+        }
+        $result = $model->orderBy('approved_at', 'DESC');
+        return $this->houseRepo->search($result);
 
     }
 
