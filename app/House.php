@@ -3,11 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use willvincent\Rateable\Rateable;
 
 class House extends Model
 {
     protected $fillable = ['approved_at'];
-
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -41,5 +41,8 @@ class House extends Model
     public function customers()
     {
         return $this->belongsToMany('App\Customer', 'orders');
+    }
+    public function posts(){
+        return $this->hasMany('App\Post');
     }
 }

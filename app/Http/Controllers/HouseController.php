@@ -10,6 +10,7 @@ use App\Order;
 use App\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use willvincent\Rateable\Rating;
 
 class HouseController extends Controller
 {
@@ -70,10 +71,19 @@ class HouseController extends Controller
     public function getHouseById($id)
     {
         $house = $this->house->getHouseById($id);
-        return view('web.detail', compact('house'));
+        $posts = $house->posts()->get();
+
+        $ratings = [];
+        foreach ($posts as $post) {
+            array_push($ratings, $post->ratings()->get()->toArray());
+        }
+//        dd($ratings);
+
+        return view('web.detail', compact('house', 'posts'));
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         return response()->json($request);
     }
 }
