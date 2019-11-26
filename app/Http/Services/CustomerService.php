@@ -31,4 +31,8 @@ class CustomerService implements CustomerServiceInterface
         $this->customerRepo->create($customer);
     }
 
+    public function getById($id)
+    {
+        return $this->customerRepo->getById($id);
+    }
 }

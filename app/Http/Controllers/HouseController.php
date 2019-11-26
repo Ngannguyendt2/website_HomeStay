@@ -50,15 +50,9 @@ class HouseController extends Controller
 
     public function housesManager($id)
     {
-        $houses = House::where('user_id', $id)->paginate(4);
-        return view('user.housesManager.list', compact('houses'));
-    }
-
-    public function detailCustomer($id)
-    {
-        $customers = $this->house->getHouseById($id)->customers;
-        $orders = Order::where('house_id', $id)->get();
-        return view('user.housesManager.detailCustomer', compact('customers', 'orders'));
+        $houses = House::where('user_id', $id)->paginate(5);
+        $orders = Order::all();
+        return view('user.housesManager.list', compact('houses', 'orders'));
     }
 
     public function checkApprove($id)
@@ -84,6 +78,14 @@ class HouseController extends Controller
 
     public function search(Request $request)
     {
-        return response()->json($request);
+        $items = $this->house->search($request);
+        foreach ($items as $item) {
+            $arrays[] = $item->toArray();
+            $province = $item->province->name;
+            $district = $item->district->name;
+            $ward = $item->ward->name;
+            $category = $item->category->name;
+        }
+        return response()->json($items);
     }
 }

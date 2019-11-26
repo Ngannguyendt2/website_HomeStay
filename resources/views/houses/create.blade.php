@@ -79,7 +79,7 @@
                 @csrf
                 <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}">
                 <div class="row">
-                    <div style="margin-bottom: 30px" class="col-md-12"><h4 align="center">Cho thuê/Đặt thuê nhà </h4>
+                    <div style="margin-bottom: 30px" class="col-md-12"><h4 align="center">Cho thuê nhà </h4>
                     </div>
                     <div class="col-md-8">
                         <div class="row">
@@ -190,18 +190,22 @@
                         </div>
                         <div class="row" style="margin-top: 20px">
                             <div class="col-md-3" style="margin-top: 8px">
-                                <strong>Giá/đêm:</strong>
+                                <strong>Giá/ngày:</strong>
                             </div>
                             <div class="col-md-8">
-                                <input name="price" id="price" type="number" class="form-control" placeholder="Giá theo đêm...">
-                                @if ($errors->has('price'))
+                                <div class="input-group">
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">VNĐ</span>
+                                    </div>
+                                </div>                                @if ($errors->has('price'))
                                     <p class="text text-danger">{{ $errors->first('price')}}</p>
                                 @endif
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">
                             <div class="col-md-3" style="margin-top: 8px">
-                                <strong>Trạng thái:</strong>
+                                <strong>Loại bất động sản:</strong>
                             </div>
                             <div class="col-md-8">
                                 <select name="status" class="form-control" id="status">
