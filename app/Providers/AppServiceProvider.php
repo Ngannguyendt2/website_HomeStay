@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\House;
+use App\Http\Repositories\CommentRepositoryInterface;
 use App\Http\Repositories\CustomerRepositoryInterface;
 use App\Http\Repositories\HouseRepositoryInterface;
+use App\Http\Repositories\IMPL\CommentRepository;
 use App\Http\Repositories\IMPL\CustomerRepository;
 use App\Http\Repositories\IMPL\HouseRepository;
 use App\Http\Repositories\IMPL\OrderRepository;
@@ -13,6 +15,8 @@ use App\Http\Repositories\IMPL\UserRepository;
 use App\Http\Repositories\OrderRepositoryInterface;
 use App\Http\Repositories\PostRepositoryInterface;
 use App\Http\Repositories\UserRepositoryInterface;
+use App\Http\Services\CommentService;
+use App\Http\Services\CommentServiceInterface;
 use App\Http\Services\CustomerService;
 use App\Http\Services\CustomerServiceInterface;
 use App\Http\Services\HouseServiceInterface;
@@ -61,6 +65,11 @@ class AppServiceProvider extends ServiceProvider
             PostRepository::class);
         $this->app->singleton(PostServiceInterface::class,
             PostService::class);
+
+        $this->app->singleton(CommentRepositoryInterface::class,
+            CommentRepository::class);
+        $this->app->singleton(CommentServiceInterface::class,
+            CommentService::class);
     }
 
     /**
