@@ -37,19 +37,21 @@ class CustomerService implements CustomerServiceInterface
         $order = $this->orderRepo->getById($orderId);
         $orderCheckin = Carbon::create($order->checkin);
         $now = new Carbon();
-        if (($now->diffInDays($orderCheckin)) <= '1') {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Bạn không thể hủy trong 1 ngày trước thời gian thuê '
-            ]);
-
+        if (($now->diffInDays($orderCheckin)) <= 1) {
+            $message = 'Bạn không thể hủy trong 1 ngày trước thời gian thuê';
+            session()->flash('error',$message);
         } else {
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Bạn đã hủy order thành công '
-            ]);
+            $this->orderRepo->destroy($order);
+
+            $error = 'Bạn đã hủy order thành công ';
+            session()->flash('success',$error);
         }
 
+    }
+
+    public function getById($id)
+    {
+        return $this->customerRepo->getById($id);
     }
 
 }

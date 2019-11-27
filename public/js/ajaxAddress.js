@@ -7,12 +7,13 @@ class Test {
             url: url,
             type: "GET",
             success: function (respone) {
-                $('#district_id').html(respone);
+                $('#district_id').empty();
+                $('#district_id').append('<option value="" selected>Quận/Huyện</option>');
                 $.each(respone, function (index, value) {
                     let option = '<option value="' + value.id + '">' + value.name + '</option>';
                     $('#district_id').append(option)
 
-                })
+                });
             },
             error: function (error) {
                 console.log(error)
@@ -28,8 +29,8 @@ class Test {
             url: url,
             type: "GET",
             success: function (respone) {
-                console.log(respone);
-                $('#ward_id').html(respone);
+                $('#ward_id').empty();
+                $('#ward_id').append('<option value="" selected>Xã/Phường</option>');
                 respone.forEach(function (value, index) {
                     let option = '<option value="' + value.id + '">' + value.name + '</option>';
                     $('#ward_id').append(option)

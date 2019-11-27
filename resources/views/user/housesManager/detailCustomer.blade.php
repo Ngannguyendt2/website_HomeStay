@@ -1,51 +1,87 @@
 @extends('layouts.master')
 @section('content')
-    <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
         <div class="container text-white">
             <h2>Nhà của bạn</h2>
         </div>
     </section>
-    <!--  Page top end -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <br>
-                <h3 align="center">Danh sách chi tiết khách hàng</h3>
+    <div class="site-breadcrumb">
 
-                <table style="margin-top: 20px" class="table table-hover">
+        <img src="{{asset("img/banner.jpg")}}">
+        <div style="margin-top: 20px" class="container">
+            <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
+            <span><i class="fa fa-angle-right"></i>Khách hàng của tôi</span>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        @if (session('message'))
+            <div align="center" class="alert alert-success" role="alert">
+                {{ session('message') }}
+            </div>
+        @endif
+
+        <h3 class="text-center">Danh sách khách hàng của tôi</h3>
+        <div class="row" style="margin: 30px 0 30px 5px">
+            <div class="col-md-3">
+                <div class="col-md-12 border border-dark " style="border-radius: 20px ;height: 600px">
+                    <p align="center" style="margin: 10px 0 10px 0">Xin chào: <strong>{{Auth::user()->name}}</strong>!
+                    </p>
+
+                    <div class="profile-img-container img-circle">
+                        <img style=" margin-left: 10px;width: 200px; height: 200px;"
+                             src="{{(Auth::user()->image)? asset('storage/'.Auth::user()->image) : asset('img/anhdaidien.jpg')}}"
+                             class="img-thumbnail img-circle img-responsive rounded-circle" alt="ahihi"/>
+                    </div>
+                    <hr>
+                    <div class="col-md-12">
+                        <a href="{{route('house.list', Auth::user()->id)}}" class="btn btn-block"><i
+                                    class="fa fa-institution"></i> Nhà của tôi</a>
+                    </div>
+                    <hr>
+{{--                    <div class="col-md-12">--}}
+{{--                        <a href="{{route('houses.customer.approve')}}" class="btn btn-block"><i--}}
+{{--                                    class="fa fa-battery"></i> Khách hàng của tôi</a>--}}
+{{--                    </div>--}}
+{{--                    <hr>--}}
+                </div>
+            </div>
+            <div class="col-md-9 border border-dark" style="border-radius: 20px">
+                <table style="margin-top: 20px; margin-bottom: 20px" class="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Tên đầy đủ</th>
+                        <th>Tên khách</th>
                         <th>Địa chỉ Email</th>
                         <th>Số điện thoại</th>
-                        <th>Ngày thuê dự kiến</th>
-                        <th>Ngày trả dự kiến</th>
-                        <th>Tổng số tiền</th>
+                        <th>Thời gian đặt</th>
+                        <th>Thời gian nhận phòng</th>
+                        <th>Thời gian trả phòng</th>
+                        <th>Tổng tiền <br> (VNĐ)</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($customers as $key => $customer)
+                    @foreach($orders as $key => $order)
                         <tr>
                             <td>{{++$key}}</td>
-                            <td>{{$customer->name}}</td>
-                            <td>{{$customer->email}}</td>
-                            <td>{{$customer->phone}}</td>
-                            @foreach($orders as $order)
-                                @if($customer->id == $order->customer_id)
-                                    <td>{{date('d/m/Y', strtotime($order->checkin))}}</td>
-                                    <td>{{date('d/m/Y', strtotime($order->checkout))}}</td>
-                                    <td>{{number_format($order->totalPrice)}} đồng</td>
-                                @endif
-                            @endforeach
+                            <td>{{$order->customer->name}}</td>
+                            <td>{{$order->customer->email}}</td>
+                            <td>{{$order->customer->phone}}</td>
+                            <td>{{$order->customer->created_at->diffForHumans()}}</td>
+                            <td>{{$order->checkin}}</td>
+                            <td>{{$order->checkout}}</td>
+                            <td>{{number_format($order->totalPrice)}}</td>
+                            <td><a href="{{route('houses.customer.checkApprove',['id'=>$order->id])}}">Xác nhận</a></td>
+                            <td><a href="{{route('houses.customer.delete', ['id'=>$order->id])}}">Hủy</a></td>
                         </tr>
                     @endforeach
+
                     </tbody>
                 </table>
-                <a href="{{route('house.list', Auth::user()->id)}}">Back</a>
+                {{$orders->links()}}
             </div>
         </div>
     </div>
+
 @endsection

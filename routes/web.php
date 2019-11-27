@@ -25,6 +25,7 @@ Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
 Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
+
 Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
@@ -33,12 +34,24 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::get('/{id}/destroy/order','CustomerController@destroyOrder')->name('user.destroyOrder');
     Route::prefix('/houses')->group(function () {
+
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store');
         Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
+
+        Route::prefix('customer')->group(function () {
+            Route::get('{id}/checkApprove', 'OrderController@checkApprove')->name('houses.customer.checkApprove');
+            Route::get('detail/approve/{id}', 'OrderController@approve')->name('houses.customer.approve');
+            Route::get('{id}/delete' , 'OrderController@delete')->name('houses.customer.delete');
+        });
+
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
+
+        Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
         Route::post('/review','PostController@create')->name('house.review');
     });
+
+
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');
         Route::get('/users', 'UserController@index')->name('admin.users.list');
@@ -59,4 +72,6 @@ Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
-//Route::post('test', 'HouseController@search')->name('search');
+
+Route::post('/search', 'HouseController@search')->name('search');
+
