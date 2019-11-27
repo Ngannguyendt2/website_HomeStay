@@ -66,13 +66,6 @@ class HouseController extends Controller
     {
         $house = $this->house->getHouseById($id);
         $posts = $house->posts()->get();
-
-        $ratings = [];
-        foreach ($posts as $post) {
-            array_push($ratings, $post->ratings()->get()->toArray());
-        }
-//        dd($ratings);
-
         return view('web.detail', compact('house', 'posts'));
     }
 

@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('content')
+
     <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
         <div class="container text-white">
@@ -83,11 +85,12 @@
                                     <div class="rating col-md-12">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p>{{$post->user->name}}</p>
+
                                                 <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
                                                      src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
                                                      class="img-thumbnail img-circle img-responsive rounded-circle"
                                                      alt="ahihi"/>
+                                                <p>{{$post->user->name}}</p>
                                             </div>
                                             <div class="col-md-9">
                                                 @foreach ($post->ratings()->get() as $rate)
@@ -98,6 +101,25 @@
                                                            disabled="">
                                                 @endforeach
                                                 <p>{{$post->body}}</p>
+                                                @foreach($post->comments()->get() as $comment)
+                                                        <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
+                                                             src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
+                                                             class="img-thumbnail img-circle img-responsive rounded-circle"
+                                                             alt="ahihi"/>
+                                                    <p class="text text-primary">{{$comment->user->name}}</p>
+                                                    <p>{{$comment->body}}</p>
+                                                @endforeach
+                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>
+                                                    <form method="POST" id="formComment">
+                                                        @csrf
+                                                        <input type="hidden" id="post_id" value="{{$post->id}}" name="post_id">
+                                                        <input type="text" id="body" style="display: none" width="300px"
+                                                               name="body">
+                                                        <button type="button" id="comment" class="btn btn-primary"
+                                                                style="display: none">Bình luận
+                                                        </button>
+                                                    </form>
+
                                             </div>
                                         </div>
                                     </div>
@@ -105,6 +127,7 @@
 
                                 @endforeach
                             </div>
+
                         </div>
                         <div class="row property-details-list">
                             <button type="button" class="btn btn-success" data-toggle="modal"
@@ -278,8 +301,6 @@
                                             <button type="button" id="submitReview" data-dismiss="modal"
                                                     class="btn btn-primary btn-prime white btn-flat">Nhận xét
                                             </button>
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
-                                            </button>
                                         </div>
                                     </div>
 
@@ -318,6 +339,28 @@
                     totalPrice = priceOneDay * datePrice;
                     $('#price').html(totalPrice);
                 });
+            });
+
+            $('#submitComment').click(function () {
+                $('#body').css('display', 'block');
+                $('#comment').css('display', 'block');
+            });
+            $('#comment').click(function () {
+                let formComment=$('#formComment');
+                let formData=formComment.serialize();
+
+               console.log(formData);
+                $.ajax({
+                    url: "{{route('post.comment')}}",
+                    type: 'POST',
+                    data: formData,
+                    success: function (result) {
+
+                    },
+                    error: function (err) {
+
+                    }
+                })
             });
             $('body').on('click', '#submitOrderHouse', function () {
                 // e.preventDefault();

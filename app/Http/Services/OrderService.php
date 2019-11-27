@@ -26,22 +26,20 @@ class OrderService implements OrderServiceInterface
     public function create($request, $houseId)
     {
         // TODO: Implement order() method.
-
         $order = new Order();
         $order->checkin = $this->getDateCheckinFromForm($request);
         $order->checkout = $this->getDateCheckoutFromForm($request);
         $order->totalPrice = $this->getPriceHouse($request, $houseId);
         $order->house_id = $houseId;
+//        $order->approved_at = null;
         if (!$this->checkEmailCustomer($request)) {
             $customer = new Customer;
             $customer->name = Auth::user()->name;
             $customer->email = Auth::user()->email;
             $customer->phone = $request->phone;
-            Auth::user()->phone = $request->phone;
-            Auth::user()->save();
             $customer->user_id = Auth::user()->id;
-            $this->customer->create($customer);
 
+            $this->customer->create($customer);
             $order->customer_id = $customer->id;
         } else {
             $customers = $this->customer->getAll();

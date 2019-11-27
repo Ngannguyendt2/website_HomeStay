@@ -77,4 +77,16 @@ class UserService implements UserServiceInterface
         $user = $this->profileRepo->getById($id);
         return $this->profileRepo->destroy($user);
     }
+
+    public function getUserByHouse($houseId)
+    {
+        // TODO: Implement getUserByHouse() method.
+        return $this->profileRepo->getUserByHouse($houseId);
+    }
+
+    public function getUserByCustomer($customerId)
+    {
+        // TODO: Implement getUserByCustomer() method.
+        return $this->profileRepo->getUserByCustomer($customerId);
+    }
 }
