@@ -13,7 +13,7 @@ $(document).ready(function () {
                    alert('Có lỗi xảy ra.Mời bạn nhập lại');
                 }
                 if (result.status == 'success') {
-                    alert('Da dang nhan xet cua ban');
+                    alert('Đã đăng nhận xét của bạn');
                 }
             },
             error: function (error) {

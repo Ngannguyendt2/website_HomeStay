@@ -40,13 +40,13 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::prefix('customer')->group(function () {
             Route::get('{id}/approve', 'OrderController@checkApprove')->name('houses.customer.checkApprove');
             Route::get('detail/approve/{id}', 'OrderController@approve')->name('houses.customer.approve');
-            Route::get('delete/{id}' , 'OrderController@delete')->name('houses.customer.delete');
+            Route::get('delete/{id}', 'OrderController@delete')->name('houses.customer.delete');
         });
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
 
         Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
-        Route::post('/review','PostController@create')->name('house.review');
+        Route::post('/review', 'PostController@create')->name('house.review');
     });
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');

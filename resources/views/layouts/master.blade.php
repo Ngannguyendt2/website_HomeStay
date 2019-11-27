@@ -39,7 +39,7 @@
             }
         });
     </script>
-{{--    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">--}}
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/js/star-rating.min.js"></script>
@@ -49,8 +49,8 @@
 </head>
 <body>
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=2016439725125503&autoLogAppEvents=1"></script>
+{{--<script async defer crossorigin="anonymous"--}}
+{{--        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=2016439725125503&autoLogAppEvents=1"></script>--}}
 <!-- Page Preloder -->
 <div id="preloder">
     <div class="loader"></div>

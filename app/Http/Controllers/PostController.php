@@ -24,7 +24,8 @@ class PostController extends Controller
                 'status' => 'success',
                 'message' => 'nhận xét thành công '
             ]);
-        } catch (\Exception $exception) {
+        } catch (\Exception $exception)
+        {
             return response()->json([
                 'status' => 'errors',
                 'message' => 'không nhận xét được '

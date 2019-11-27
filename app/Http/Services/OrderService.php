@@ -37,8 +37,9 @@ class OrderService implements OrderServiceInterface
             $customer->name = Auth::user()->name;
             $customer->email = Auth::user()->email;
             $customer->phone = $request->phone;
+            Auth::user()->phone = $request->phone;
+            Auth::user()->save();
             $customer->user_id = Auth::user()->id;
-            $customer->approved_at = null;
             $this->customer->create($customer);
 
             $order->customer_id = $customer->id;
@@ -50,6 +51,7 @@ class OrderService implements OrderServiceInterface
                 }
             }
         }
+
         $this->orderRepo->create($order);
 
     }
@@ -102,7 +104,7 @@ class OrderService implements OrderServiceInterface
     public function checkDate($request, $houseId)
     {
         $orders = $this->orderRepo->checkDate($this->getDateCheckinFromForm($request), $this->getDateCheckoutFromForm($request), $houseId);
-        foreach ($orders as $order){
+        foreach ($orders as $order) {
             if ($order) {
                 return true;
 
