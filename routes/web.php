@@ -32,23 +32,25 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/{id}/changePassword', 'UserController@changePassword')->name('user.changePassword');
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
-    Route::get('/{id}/destroy/order','CustomerController@destroyOrder')->name('user.destroyOrder');
+    Route::get('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
     Route::prefix('/houses')->group(function () {
 
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store');
         Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
+//        Route::post('/{id}/update', 'HouseController@update')->name('house.update');
+
+        Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
+        Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
+        Route::post('/review', 'PostController@create')->name('house.review');
+        Route::post('/comment', 'CommentController@create')->name('post.comment');
 
         Route::prefix('customer')->group(function () {
             Route::get('{id}/checkApprove', 'OrderController@checkApprove')->name('houses.customer.checkApprove');
             Route::get('detail/approve/{id}', 'OrderController@approve')->name('houses.customer.approve');
-            Route::get('{id}/delete' , 'OrderController@delete')->name('houses.customer.delete');
+            Route::get('{id}/delete', 'OrderController@delete')->name('houses.customer.delete');
         });
 
-        Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
-
-        Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
-        Route::post('/review','PostController@create')->name('house.review');
     });
 
 
