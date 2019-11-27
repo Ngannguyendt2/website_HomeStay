@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('content')
+
     <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
         <div class="container text-white">
@@ -105,6 +107,7 @@
 
                                 @endforeach
                             </div>
+
                         </div>
                         <div class="row property-details-list">
                             <button type="button" class="btn btn-success" data-toggle="modal"
@@ -277,8 +280,6 @@
                                         <div class="col-xs-12 text-center">
                                             <button type="button" id="submitReview" data-dismiss="modal"
                                                     class="btn btn-primary btn-prime white btn-flat">Nhận xét
-                                            </button>
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
                                             </button>
                                         </div>
                                     </div>

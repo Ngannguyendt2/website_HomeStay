@@ -32,15 +32,15 @@ class OrderService implements OrderServiceInterface
         $order->checkout = $this->getDateCheckoutFromForm($request);
         $order->totalPrice = $this->getPriceHouse($request, $houseId);
         $order->house_id = $houseId;
+//        $order->approved_at = null;
         if (!$this->checkEmailCustomer($request)) {
             $customer = new Customer;
             $customer->name = Auth::user()->name;
             $customer->email = Auth::user()->email;
             $customer->phone = $request->phone;
             $customer->user_id = Auth::user()->id;
-            $customer->approved_at = null;
-            $this->customer->create($customer);
 
+            $this->customer->create($customer);
             $order->customer_id = $customer->id;
         } else {
             $customers = $this->customer->getAll();
@@ -102,7 +102,7 @@ class OrderService implements OrderServiceInterface
     public function checkDate($request, $houseId)
     {
         $orders = $this->orderRepo->checkDate($this->getDateCheckinFromForm($request), $this->getDateCheckoutFromForm($request), $houseId);
-        foreach ($orders as $order){
+        foreach ($orders as $order) {
             if ($order) {
                 return true;
 

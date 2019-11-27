@@ -25,12 +25,14 @@ Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
 Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
+
 Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
     Route::post('/{id}/changePassword', 'UserController@changePassword')->name('user.changePassword');
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
+    Route::get('/{id}/destroy/order','CustomerController@destroyOrder')->name('user.destroyOrder');
     Route::prefix('/houses')->group(function () {
 
         Route::get('/create', 'HouseController@create')->name('house.create');
@@ -38,9 +40,9 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
 
         Route::prefix('customer')->group(function () {
-            Route::get('{id}/approve', 'OrderController@checkApprove')->name('houses.customer.checkApprove');
+            Route::get('{id}/checkApprove', 'OrderController@checkApprove')->name('houses.customer.checkApprove');
             Route::get('detail/approve/{id}', 'OrderController@approve')->name('houses.customer.approve');
-            Route::get('delete/{id}' , 'OrderController@delete')->name('houses.customer.delete');
+            Route::get('{id}/delete' , 'OrderController@delete')->name('houses.customer.delete');
         });
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
@@ -48,6 +50,8 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
         Route::post('/review','PostController@create')->name('house.review');
     });
+
+
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');
         Route::get('/users', 'UserController@index')->name('admin.users.list');
