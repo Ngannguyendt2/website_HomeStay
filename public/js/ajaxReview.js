@@ -5,7 +5,7 @@ $(document).ready(function () {
         let formData = reviewHouseForm.serialize();
         console.log(formData);
         $.ajax({
-            url: "http://localhost:8000/user/houses/review",
+            url: "/user/houses/review",
             type: 'POST',
             data: formData,
             success: function (result) {

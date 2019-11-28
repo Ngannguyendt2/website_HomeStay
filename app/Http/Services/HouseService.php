@@ -8,6 +8,7 @@ use App\House;
 use App\Http\Repositories\HouseRepositoryInterface;
 use App\Notifications\NewHouse;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class HouseService implements HouseServiceInterface
@@ -77,6 +78,7 @@ class HouseService implements HouseServiceInterface
             return $this->houseRepo->getAll();
         }
         $model = $this->house;
+        $model = $model->join('orders', 'houses.id', '=','orders.house_id');
         if ($request->province_id) {
             $datas[] = [
                 'column' => 'province_id',
@@ -98,6 +100,20 @@ class HouseService implements HouseServiceInterface
                 'value' => $request->ward_id
             ];
         }
+        if ($request->checkin) {
+            $datas[] = [
+                'column' => 'orders.checkin',
+                'operator' => '=',
+                'value' => Carbon::create($request->checkin)
+            ];
+        }
+        if ($request->checkout) {
+            $datas[] = [
+                'column' => 'orders.checkout',
+                'operator' => '=',
+                'value' => Carbon::create($request->checkout)
+            ];
+        }
         if ($request->totalBathroom) {
             $datas[] = [
                 'column' => 'totalBathroom',
@@ -112,11 +128,19 @@ class HouseService implements HouseServiceInterface
                 'value' => $request->totalBedRoom
             ];
         }
+        if ($request->price) {
+            $datas[] = [
+                'column' => 'price',
+                'operator' => '=',
+                'value' => $request->price
+            ];
+        }
 
         foreach ($datas as $key => $data) {
             $model = $model->where($data['column'], $data['value']);
         }
-        $result = $model->orderBy('approved_at', 'DESC');
+        $result = $model->orderBy('houses.approved_at', 'DESC');
+//        dd($result->get());
         return $this->houseRepo->search($result);
 
     }
