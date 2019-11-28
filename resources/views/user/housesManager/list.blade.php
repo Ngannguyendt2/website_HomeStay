@@ -91,63 +91,63 @@
             </div>
         </div>
     </div>
-{{--    <div id="updateHouse" class="modal" role="dialog" tabindex="-1">--}}
-{{--        <div class="modal-dialog">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <h3 class="modal-title text-center primecolor">Cập nhật trạng thái nhà của bạn  </h3>--}}
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
+    <div id="updateHouse" class="modal" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center primecolor">Cập nhật trạng thái nhà của bạn  </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
 
-{{--                </div>--}}
-{{--                <div class="modal-body" style="overflow: hidden;">--}}
-{{--                    <strong id="alert"></strong>--}}
-{{--                    <div class="col-md-offset-1 col-md-10">--}}
-{{--                        <form method="POST" id="update">--}}
-{{--                            @csrf--}}
-{{--                            <div class="form-group has-feedback">--}}
-{{--                                <input type="password" name="old_password" class="form-control"--}}
-{{--                                       placeholder="Nhập mật khẩu cũ ">--}}
-{{--                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>--}}
-{{--                                <span class="text-danger">--}}
-{{--                                <strong id="old_password-error"></strong>--}}
-{{--                            </span>--}}
+                </div>
+                <div class="modal-body" style="overflow: hidden;">
+                    <strong id="alert"></strong>
+                    <div class="col-md-offset-1 col-md-10">
+                        <form method="POST" id="update">
+                            @csrf
+                            <div class="form-group has-feedback">
+                                <input type="password" name="old_password" class="form-control"
+                                       placeholder="Nhập mật khẩu cũ ">
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                <span class="text-danger">
+                                <strong id="old_password-error"></strong>
+                            </span>
 
-{{--                            </div>--}}
-{{--                            <div class="form-group has-feedback">--}}
-{{--                                <input type="password" name="new_password" class="form-control"--}}
-{{--                                       placeholder="Nhập mật khẩu mới">--}}
-{{--                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>--}}
-{{--                                <span class="text-danger">--}}
-{{--                                <strong id="new_password-error"></strong>--}}
-{{--                            </span>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group has-feedback">--}}
-{{--                                <input type="password" name="password_confirmation" class="form-control"--}}
-{{--                                       placeholder="Nhập lại mật khẩu ">--}}
-{{--                                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>--}}
-{{--                            </div>--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col-xs-12 text-center">--}}
-{{--                                    <button type="button" id="submitChangePass"--}}
-{{--                                            class="btn btn-primary btn-prime white btn-flat">Xác nhận--}}
-{{--                                    </button>--}}
-{{--                                    <a class="btn btn-danger" href="{{ route('logout') }}"--}}
-{{--                                       onclick="event.preventDefault();--}}
-{{--                                                     document.getElementById('logout-form').submit();"--}}
-{{--                                       style="color: black">--}}
-{{--                                        Ok--}}
-{{--                                    </a>--}}
-{{--                                    --}}{{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" name="new_password" class="form-control"
+                                       placeholder="Nhập mật khẩu mới">
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                <span class="text-danger">
+                                <strong id="new_password-error"></strong>
+                            </span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" name="password_confirmation" class="form-control"
+                                       placeholder="Nhập lại mật khẩu ">
+                                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <button type="button" id="submitChangePass"
+                                            class="btn btn-primary btn-prime white btn-flat">Xác nhận
+                                    </button>
+                                    <a class="btn btn-danger" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                       style="color: black">
+                                        Ok
+                                    </a>
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript">
 
     </script>

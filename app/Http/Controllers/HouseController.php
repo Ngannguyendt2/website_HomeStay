@@ -7,6 +7,7 @@ use App\House;
 use App\Http\Requests\CreateHouseRequest;
 use App\Http\Services\HouseServiceInterface;
 use App\Order;
+use App\Post;
 use App\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;

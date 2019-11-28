@@ -83,7 +83,7 @@
                             <div class="row">
                                 @foreach($posts as $key => $post)
                                     <div class="rating col-md-12">
-                                        <div class="row">
+                                        <div class="row" id="post_id_{{ $post->id }}">
                                             <div class="col-md-3">
 
                                                 <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
@@ -286,11 +286,11 @@
                                         <input id="input-1" name="rate" class="rating rating-loading" data-min="0"
                                                data-max="5" data-step="1" data-size="xs"
                                                value="{{ $house->userAverageRating }}">
-                                        <input type="hidden" name="id" required="" value="{{ $house->id }}">
+                                        <input type="hidden" id="id-house-rating" name="id" required="" value="{{ $house->id }}">
                                     </div>
 
                                     <div class="form-group has-feedback">
-                                        <input type="text" name="body" class="form-control" id="body">
+                                        <input type="text" name="body" class="form-control" id="content">
                                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                         <span class="text-danger">
                                 <strong id="body-error"></strong>

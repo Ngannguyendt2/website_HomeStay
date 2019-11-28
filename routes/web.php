@@ -38,11 +38,11 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store');
         Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
-//        Route::post('/{id}/update', 'HouseController@update')->name('house.update');
+        Route::post('/{id}/update', 'HouseController@update')->name('house.update');
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
         Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
-        Route::post('/review', 'PostController@create')->name('house.review');
+        Route::post('review', 'PostController@create')->name('house.review');
         Route::post('/comment', 'CommentController@create')->name('post.comment');
 
         Route::prefix('customer')->group(function () {
