@@ -25,8 +25,10 @@ Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
 Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
+Route::post('{id}/post', 'HouseController@getPostAjax')->name('post');
 Route::prefix('/user')->middleware('auth')->group(function () {
 
+    Route::post('show_more/{id}', 'ShowMoreController@load_data')->name('user.load_data');
     Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
     Route::post('/{id}/changePassword', 'UserController@changePassword')->name('user.changePassword');
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');

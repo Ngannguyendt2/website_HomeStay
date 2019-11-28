@@ -125,8 +125,10 @@
                                 <input class="form-control" placeholder="Tên địa chỉ hoặc số điện thoại..."
                                        name="method">
                             </div>
-                            <div style="margin-top: 15px" class='col-md-12'>
+                            <div style="margin-top: 15px" class='col-md-6'>
                                 <button type="submit" class="btn btn-success">Cập nhật</button>
+                                <button style="margin-left: 10px" type="submit" onclick="return back()" class="btn btn-danger">Quay lại</button>
+
                             </div>
                         </div>
 

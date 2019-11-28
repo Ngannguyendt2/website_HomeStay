@@ -72,6 +72,7 @@ class HouseService implements HouseServiceInterface
 
     public function search($request)
     {
+//        dd($request->all());
         // TODO: Implement search() method.
         if (empty($request->all())) {
             return $this->houseRepo->getAll();
@@ -110,6 +111,13 @@ class HouseService implements HouseServiceInterface
                 'column' => 'totalBathroom',
                 'operator' => '=',
                 'value' => $request->totalBedRoom
+            ];
+        }
+        if ($request->price) {
+            $datas[] = [
+                'column' => 'price',
+                'operator' => '=',
+                'value' => $request->price
             ];
         }
 

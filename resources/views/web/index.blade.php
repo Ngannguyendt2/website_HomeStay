@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+
+
     <!-- Hero section -->
     <script src="{{asset('js/ajaxAddress.js')}}"></script>
 
@@ -53,7 +55,7 @@
                             html += '</div>';
                             html += '<div style="margin-top: 5px" class="price">';
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">' + numberFormat(value.price)
-                                + ' ' +'Đồng </a>';
+                                + ' ' + 'Đồng </a>';
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
@@ -72,7 +74,7 @@
         });
 
         function numberFormat(number) {
-            return String(number).replace(/(.)(?=(\d{3})+$)/g,'$1,')
+            return String(number).replace(/(.)(?=(\d{3})+$)/g, '$1,')
         }
 
     </script>
@@ -129,14 +131,7 @@
                                                placeholder="Số phòng ngủ...">
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input class="form-control" style="width: 100%">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" style="width: 100%">
-                                            </div>
-                                        </div>
+                                        <input type="date" class="form-control" style="width: 100%;">
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +146,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">VNĐ</span>
                                 </div>
-                                <input name="price" class="form-control"
+                                <input name="price" id="price" class="form-control"
                                        type="text" placeholder="Giá tiền...">
                             </div>
                         </div>
@@ -176,7 +171,7 @@
                 <h3>Căn hộ gần đây</h3>
                 <p>Khám phá những căn HomeStay mới nhất hot nhất thị trường đang được cho thuê</p>
             </div>
-{{--            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>--}}
+            {{--            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>--}}
 
             <div class="row" id="div">
                 @foreach($houses as $key => $house)
@@ -206,7 +201,6 @@
         </div>
     </section>
     <!-- Properties section end -->
-
 
     <!-- Services section -->
     <section class="services-section spad set-bg" data-setbg="img/service-bg.jpg">

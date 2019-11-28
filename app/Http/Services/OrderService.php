@@ -38,7 +38,6 @@ class OrderService implements OrderServiceInterface
             $customer->email = Auth::user()->email;
             $customer->phone = $request->phone;
             $customer->user_id = Auth::user()->id;
-            $customer->approved_at = null;
             $this->customer->create($customer);
 
             $order->customer_id = $customer->id;

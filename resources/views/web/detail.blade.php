@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('content')
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('css/preview.css') }}" rel="stylesheet">
+
     <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
         <div class="container text-white">
@@ -9,7 +12,6 @@
     <!--  Page top end -->
 
     <!-- Breadcrumb -->
-    {{--    <div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div>--}}
     <div class="site-breadcrumb">
         <div class="container">
             <a href=""><i class="fa fa-home"></i>Home</a>
@@ -78,34 +80,34 @@
                         </div>
                         <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
-                            <div class="row">
-                                @foreach($posts as $key => $post)
-                                    <div class="rating col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <p>{{$post->user->name}}</p>
-                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
-                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
-                                                     class="img-thumbnail img-circle img-responsive rounded-circle"
-                                                     alt="ahihi"/>
-                                            </div>
-                                            <div class="col-md-9">
-                                                @foreach ($post->ratings()->get() as $rate)
-                                                    <input id="input-1" name="input-1" class="rating rating-loading"
-                                                           data-min="0"
-                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"
-                                                           data-size="xs"
-                                                           disabled="">
-                                                @endforeach
-                                                <p>{{$post->body}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                @endforeach
+                            {{csrf_field()}}
+                            <div class="row" id="post_data">
+{{--                                @foreach($posts as $key => $post)--}}
+{{--                                    <div class="rating col-md-12">--}}
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-md-3">--}}
+{{--                                                <p style="margin-bottom: 0">{{$post->user->name}}</p>--}}
+{{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 30px"--}}
+{{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
+{{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
+{{--                                                     alt="ahihi"/>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-9">--}}
+{{--                                                @foreach ($post->ratings()->get() as $rate)--}}
+{{--                                                    <input id="input-1" name="input-1" class="rating"--}}
+{{--                                                           data-min="0"--}}
+{{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
+{{--                                                           data-size="xs"--}}
+{{--                                                           disabled>--}}
+{{--                                                @endforeach--}}
+{{--                                                <p>{{$post->body}}</p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
                             </div>
                         </div>
+                        <hr>
                         <div class="row property-details-list">
                             <button type="button" class="btn btn-success" data-toggle="modal"
                                     data-target="#review">Để lại nhận xét
@@ -118,7 +120,7 @@
                 <!-- sidebar -->
                 <div class="col-lg-4 col-md-7 sidebar">
                     <div class="author-card">
-                        <div class="author-img set-bg" data-setbg="{{asset('storage/'.$house->user->image)}}"></div>
+                        <div class="author-img set-bg" data-setbg="{{($house->user->image) ? asset('storage/'.$house->user->image) : asset('img/anhdaidien.jpg')}}"></div>
                         <div class="author-info">
                             <p>Người đăng</p>
                             <h5>{{$house->user->name}}</h5>
@@ -355,6 +357,32 @@
                 });
             });
         })
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            var _token = $('input[name="_token"]').val();
+
+            load_data('', _token);
+
+            function load_data(id = "", _token) {
+                $.ajax({
+                    url: "{{route('user.load_data', $house->id)}}",
+                    method: "POST",
+                    data: {id: id, _token: _token},
+                    success: function (data) {
+                        $('#load_more_button').remove();
+                        $('#post_data').append(data);
+                    }
+                });
+                $(document).on('click', '#load_more_button', function () {
+                    var id = $(this).data('id');
+                    $('#load_more_button').html('<b>Loading...</b>');
+                    load_data(id, _token);
+                })
+            }
+        });
+
 
     </script>
     <script src="{{asset('js/ajaxReview.js')}}"></script>
