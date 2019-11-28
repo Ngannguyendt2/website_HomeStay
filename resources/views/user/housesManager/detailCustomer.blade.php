@@ -72,8 +72,8 @@
                             <td>{{$order->checkin}}</td>
                             <td>{{$order->checkout}}</td>
                             <td>{{number_format($order->totalPrice)}}</td>
-                            <td><a href="{{route('houses.customer.checkApprove', $order->id)}}">Xác nhận</a></td>
-                            <td><a href="{{route('houses.customer.delete', $order->id)}}">Hủy</a></td>
+                            <td><a href="{{route('houses.customer.checkApprove',['id'=>$order->id])}}">Xác nhận</a></td>
+                            <td><a href="{{route('houses.customer.delete', ['id'=>$order->id])}}">Hủy</a></td>
                         </tr>
                     @endforeach
 

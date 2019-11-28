@@ -64,8 +64,8 @@ class HouseController extends Controller
     public function getHouseById($id)
     {
         $house = $this->house->getHouseById($id);
-        $posts = $house->posts()->get();
-        return view('web.detail', compact('house', 'posts'));
+//        $posts = $house->posts()->get();
+        return view('web.detail', compact('house'));
     }
 
     public function search(Request $request)

@@ -15,4 +15,6 @@ interface OrderServiceInterface
     public function checkDate($request, $houseId);
 
     public function getOrderByHouse($houseId);
+
+
 }

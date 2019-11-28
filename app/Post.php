@@ -9,6 +9,7 @@ class Post extends Model
 {
     //
     use Rateable;
+
     public function house()
     {
         return $this->belongsTo('App\House');
@@ -17,5 +18,10 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
     }
 }

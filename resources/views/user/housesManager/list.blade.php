@@ -32,16 +32,16 @@
                     <hr>
                     <div class="col-md-12">
                         <a href="{{route('house.list', Auth::user()->id)}}" class="btn btn-block"><i
-                                    class="fa fa-institution"></i> Nhà của tôi</a>
+                                class="fa fa-institution"></i> Nhà của tôi</a>
                     </div>
-{{--                    @if(count($houses) > 0)--}}
-{{--                        <hr>--}}
-{{--                        <div class="col-md-12">--}}
-{{--                            <a href="{{route('houses.customer.approve')}}" class="btn btn-block"><i--}}
-{{--                                        class="fa fa-battery"></i> Khách hàng của tôi</a>--}}
-{{--                        </div>--}}
-{{--                        <hr>--}}
-{{--                    @endif--}}
+                    {{--                    @if(count($houses) > 0)--}}
+                    {{--                        <hr>--}}
+                    {{--                        <div class="col-md-12">--}}
+                    {{--                            <a href="{{route('houses.customer.approve')}}" class="btn btn-block"><i--}}
+                    {{--                                        class="fa fa-battery"></i> Khách hàng của tôi</a>--}}
+                    {{--                        </div>--}}
+                    {{--                        <hr>--}}
+                    {{--                    @endif--}}
                 </div>
             </div>
             <div class="col-md-9 border border-dark" style="border-radius: 20px">
@@ -78,7 +78,9 @@
                                     <a style="color: black" href="{{route('houses.customer.approve', $house->id)}}">Chi
                                         tiết</a><br>Có {{count($house->customers)}} khách đặt
                                 </td>
-                                <td><a style="color: red" href="#">Hủy Đăng</a></td>
+                                <td><a href="#" class="fa fa-trash btn btn-danger"></a><a
+                                        class="fa fa-edit btn btn-primary" data-toggle="modal"
+                                        data-target="#updateHouse"></a></td>
                             </tr>
                         @endforeach
 
@@ -89,6 +91,65 @@
             </div>
         </div>
     </div>
+{{--    <div id="updateHouse" class="modal" role="dialog" tabindex="-1">--}}
+{{--        <div class="modal-dialog">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h3 class="modal-title text-center primecolor">Cập nhật trạng thái nhà của bạn  </h3>--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <span aria-hidden="true">&times;</span>--}}
+{{--                    </button>--}}
 
+{{--                </div>--}}
+{{--                <div class="modal-body" style="overflow: hidden;">--}}
+{{--                    <strong id="alert"></strong>--}}
+{{--                    <div class="col-md-offset-1 col-md-10">--}}
+{{--                        <form method="POST" id="update">--}}
+{{--                            @csrf--}}
+{{--                            <div class="form-group has-feedback">--}}
+{{--                                <input type="password" name="old_password" class="form-control"--}}
+{{--                                       placeholder="Nhập mật khẩu cũ ">--}}
+{{--                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>--}}
+{{--                                <span class="text-danger">--}}
+{{--                                <strong id="old_password-error"></strong>--}}
+{{--                            </span>--}}
+
+{{--                            </div>--}}
+{{--                            <div class="form-group has-feedback">--}}
+{{--                                <input type="password" name="new_password" class="form-control"--}}
+{{--                                       placeholder="Nhập mật khẩu mới">--}}
+{{--                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>--}}
+{{--                                <span class="text-danger">--}}
+{{--                                <strong id="new_password-error"></strong>--}}
+{{--                            </span>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group has-feedback">--}}
+{{--                                <input type="password" name="password_confirmation" class="form-control"--}}
+{{--                                       placeholder="Nhập lại mật khẩu ">--}}
+{{--                                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>--}}
+{{--                            </div>--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-xs-12 text-center">--}}
+{{--                                    <button type="button" id="submitChangePass"--}}
+{{--                                            class="btn btn-primary btn-prime white btn-flat">Xác nhận--}}
+{{--                                    </button>--}}
+{{--                                    <a class="btn btn-danger" href="{{ route('logout') }}"--}}
+{{--                                       onclick="event.preventDefault();--}}
+{{--                                                     document.getElementById('logout-form').submit();"--}}
+{{--                                       style="color: black">--}}
+{{--                                        Ok--}}
+{{--                                    </a>--}}
+{{--                                    --}}{{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+    <script type="text/javascript">
+
+    </script>
 @endsection
 

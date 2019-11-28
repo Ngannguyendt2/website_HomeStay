@@ -90,7 +90,6 @@
                                 <select name="demand" id="demand" class="form-control custom-select">
                                     <option value="" selected> =>Chọn nhu cầu<=</option>
                                     <option value="1">Cho thuê nhà</option>
-                                    <option value="0">Muốn thuê nhà</option>
                                 </select>
                                 @if ($errors->has('demand'))
                                     <p class="text text-danger">{{ $errors->first('demand')}}</p>
@@ -211,7 +210,6 @@
                                 <select name="status" class="form-control" id="status">
                                     <option value="" selected>=>Trạng thái<=</option>
                                     <option value="1">Cho thuê</option>
-                                    <option value="0">Bán</option>
                                 </select>
                                 @if ($errors->has('status'))
                                     <p class="text text-danger">{{ $errors->first('status')}}</p>

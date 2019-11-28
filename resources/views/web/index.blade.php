@@ -26,13 +26,17 @@
                 let bathroom = $('#totalBathroom').val();
                 let bedroom = $('#totalBedRoom').val();
                 let price = $('#price').val();
+                let checkin = $('#checkin').val();
+                let checkout = $('#checkout').val();
                 let data = {
                     province_id: province,
                     district_id: district,
                     ward_id: ward,
                     totalBathroom: bathroom,
                     totalBedRoom: bedroom,
-                    price: price
+                    price: price,
+                    checkin: checkin,
+                    checkout: checkout
                 };
                 let image;
                 $.ajax({
@@ -80,6 +84,7 @@
     </script>
 
 
+
     <!-- Filter form section -->
     <div class="filter-search">
         <div class="container">
@@ -121,23 +126,35 @@
                         <div style="margin-top: 10px" class="row">
                             <div class="col-sm-12">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input type="number" id="totalBathroom" class="form-control"
                                                style="border-radius: 5px ;width: 100%;" placeholder="Số phòng tắm...">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input type="number" class="form-control" id="totalBedRoom"
                                                style="border-radius: 5px ;width: 100%;"
                                                placeholder="Số phòng ngủ...">
                                     </div>
-                                    <div class="col-md-4">
-                                        <input type="date" class="form-control" style="width: 100%;">
+                                    <div class="col-md-3">
+                                        <input style="height: 20px;width: 100%; background-color: grey" type="text"
+                                               class="form-control text-center" value="Ngày nhận phòng" readonly>
+                                        <input style="height: 25px;width: 100%" type="text" name="checkin"
+                                               class="form-control text-center" id="checkin"
+                                               data-provide="datepicker">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input style="height: 20px;width: 100%; background-color: grey" type="text"
+                                               class="form-control text-center" value="Ngày trả phòng" readonly>
+                                        <input style="height: 25px;width: 100%" type="text" name="checkout"
+                                               class="form-control text-center" id="checkout"
+                                               data-provide="datepicker">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
 
                     <div class="col-sm-3">
                         <div class="col-sm-12">
@@ -594,5 +611,11 @@
 
 
 
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#checkin,#checkout').datepicker({
+                minDate: new Date()
+            });
+        })
+    </script>
 @endsection

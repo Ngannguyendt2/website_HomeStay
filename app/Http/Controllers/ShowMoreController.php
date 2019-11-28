@@ -106,20 +106,11 @@ class ShowMoreController extends Controller
                     </div>
                 </div>';
                     $last_id = $post->id;
-
-
                 }
-
                 $output .= '
                 <div id="load_more">
                     <button style="margin-left: 50px" name="load_more_button"
                             class="btn btn-outline-info" data-id="' . $last_id . '" id="load_more_button">Xem thêm</button>
-                </div>
-                ';
-            } else {
-                $output .= '
-                <div id="load_more">
-                    <button style="margin-left: 50px" class="btn btn-outline-danger" name="load_more_button" type="button">Không có dữ liệu</button>
                 </div>
                 ';
             }

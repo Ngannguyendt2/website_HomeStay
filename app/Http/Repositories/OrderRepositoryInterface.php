@@ -10,4 +10,6 @@ interface OrderRepositoryInterface extends RepositoryInterface
 
     public function getOrderByHouse($houseId);
 
+
+
 }
