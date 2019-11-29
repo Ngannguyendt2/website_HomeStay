@@ -84,9 +84,24 @@ class HouseController extends Controller
 
     public function houseDetail($id)
     {
-        $customers=Customer::where('user_id',$id)->get();
-        $customerId=$customers[0]->id;
+        $customers = Customer::where('user_id', $id)->get();
+        $customerId = $customers[0]->id;
         $orders = Order::where('customer_id', $customerId)->get();
         return view('user.houseDetail', compact('orders'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        return response()->json('ok');
+
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $house = House::findorfail($id);
+        $status = $request->status;
+        $house->status = $status;
+        $house->save();
+        return redirect()->route('web.index');
     }
 }

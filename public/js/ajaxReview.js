@@ -9,10 +9,10 @@ $(document).ready(function () {
             type: 'POST',
             data: formData,
             success: function (result) {
-                if (result.status == 'errors') {
+                if (result.status === 'errors') {
                    alert('Có lỗi xảy ra.Mời bạn nhập lại');
                 }
-                if (result.status == 'success') {
+                if (result.status === 'success') {
                     alert('Đã đăng nhận xét của bạn');
                 }
             },

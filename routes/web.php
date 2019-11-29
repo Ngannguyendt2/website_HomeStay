@@ -38,7 +38,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store');
         Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
-//        Route::post('/{id}/update', 'HouseController@update')->name('house.update');
+        Route::post('/{id}/update', 'HouseController@update')->name('house.update');
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
         Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
@@ -77,3 +77,4 @@ Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
 Route::post('/search', 'HouseController@search')->name('search');
 
+Route::post('/changeStatus/{id}','HouseController@changeStatus')->name('changeStatus');

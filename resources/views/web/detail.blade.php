@@ -102,23 +102,24 @@
                                                 @endforeach
                                                 <p>{{$post->body}}</p>
                                                 @foreach($post->comments()->get() as $comment)
-                                                        <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
-                                                             src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
-                                                             class="img-thumbnail img-circle img-responsive rounded-circle"
-                                                             alt="ahihi"/>
+                                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
+                                                         src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
+                                                         class="img-thumbnail img-circle img-responsive rounded-circle"
+                                                         alt="ahihi"/>
                                                     <p class="text text-primary">{{$comment->user->name}}</p>
                                                     <p>{{$comment->body}}</p>
                                                 @endforeach
                                                 <button id="submitComment" class="btn btn-primary">Trả lời</button>
-                                                    <form method="POST" id="formComment">
-                                                        @csrf
-                                                        <input type="hidden" id="post_id" value="{{$post->id}}" name="post_id">
-                                                        <input type="text" id="body" style="display: none" width="300px"
-                                                               name="body">
-                                                        <button type="button" id="comment" class="btn btn-primary"
-                                                                style="display: none">Bình luận
-                                                        </button>
-                                                    </form>
+                                                <form method="POST" id="formComment">
+                                                    @csrf
+                                                    <input type="hidden" id="post_id" value="{{$post->id}}"
+                                                           name="post_id">
+                                                    <input type="text" id="body" style="display: none" width="300px"
+                                                           name="body">
+                                                    <button type="button" id="comment" class="btn btn-primary"
+                                                            style="display: none">Bình luận
+                                                    </button>
+                                                </form>
 
                                             </div>
                                         </div>
@@ -346,10 +347,10 @@
                 $('#comment').css('display', 'block');
             });
             $('#comment').click(function () {
-                let formComment=$('#formComment');
-                let formData=formComment.serialize();
+                let formComment = $('#formComment');
+                let formData = formComment.serialize();
 
-               console.log(formData);
+                console.log(formData);
                 $.ajax({
                     url: "{{route('post.comment')}}",
                     type: 'POST',
@@ -401,5 +402,7 @@
 
     </script>
     <script src="{{asset('js/ajaxReview.js')}}"></script>
+    <script type="text/javascript">
+        let token = '{{ csrf_token() }}';
+    </script>
 @endsection
-

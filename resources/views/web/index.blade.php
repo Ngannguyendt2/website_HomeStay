@@ -185,7 +185,7 @@
                         <a href="{{route('web.detail',$house->id)}}">
                             <div style="border-radius: 15px" class="propertie-item set-bg"
                                  data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
-                                <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "Bán"}}</div>
+                                <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "Đã thuê"}}</div>
                                 <div class="propertie-info text-white">
                                     <div class="info-warp">
                                         <h5>{{$house->category->name}}</h5>
