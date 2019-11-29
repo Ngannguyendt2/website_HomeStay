@@ -47,15 +47,16 @@
 
                             <div class="col-sm-2 offset-xl-1">
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="text text-black-50" style="margin-top: 10px; width: 180px">
+                                            Giá: {{number_format($house->price)}} Đồng</p>
+
+                                    </div>
                                     <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary"
                                                               data-toggle="modal"
                                                               data-target="#Order">Đặt phòng</a>
                                     </div>
-                                    <div class="col-md-12">
-                                        <p class="btn btn-outline-dark" style="margin-top: 10px; width: 180px">
-                                            Giá: {{number_format($house->price)}} Đồng</p>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -232,9 +233,8 @@
                                     @endif
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
-                                        <input type="text" name="checkin" class="form-control" id="checkin"
-                                               data-provide="datepicker">
-                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <input type="text" name="checkin" id="checkin"
+                                               data-provide="datepicker" class="form-control">
                                         <span class="text-danger">
                                 <strong id="checkin-error"></strong>
                                         </span>
@@ -244,7 +244,6 @@
                                         <label>Ngày trả: </label>
                                         <input type="hidden" value="{{$house->id}}" id="house_id">
                                         <input type="text" name="checkout" class="form-control" id="checkout">
-                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                         <span class="text-danger">
                                 <strong id="checkout-error"></strong>
                                         </span>
@@ -342,7 +341,7 @@
                     let date = new Date();
                     let datePrice = date.setTime((dateCheckout - dateCheckin) / 1000 / 60 / 60 / 24);
                     let priceOneDay = parseInt({{$house->price}});
-                    totalPrice = priceOneDay * datePrice;
+                    totalPrice =priceOneDay * datePrice;
                     $('#price').html(totalPrice);
                 });
             });

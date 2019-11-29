@@ -34,7 +34,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/{id}/changePassword', 'UserController@changePassword')->name('user.changePassword');
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
-    Route::get('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
+    Route::post('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
     Route::get('historyRentHouse', 'UserController@historyRentHouse')->name('user.historyRentHouse');
     Route::prefix('/houses')->group(function () {
 
