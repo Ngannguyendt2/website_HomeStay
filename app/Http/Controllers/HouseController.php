@@ -10,7 +10,6 @@ use App\Order;
 use App\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use willvincent\Rateable\Rating;
 
 class HouseController extends Controller
 {
@@ -82,7 +81,8 @@ class HouseController extends Controller
         return response()->json($items);
     }
 
-    public function houseDetail($id)
+    public
+    function houseDetail($id)
     {
         $customers = Customer::where('user_id', $id)->get();
         $customerId = $customers[0]->id;

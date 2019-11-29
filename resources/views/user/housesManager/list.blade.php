@@ -58,7 +58,8 @@
                             <th>Mô tả</th>
                             <th>Chi tiết nhà</th>
                             <th style="background-color: burlywood">Giá/ngày (VNĐ)</th>
-                            <th>Trạng thái</th>
+                            <th>Khách đặt</th>
+                            <th>Cập nhật trạng thái nhà</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -78,9 +79,8 @@
                                     <a style="color: black" href="{{route('houses.customer.approve', $house->id)}}">Chi
                                         tiết</a><br>Có {{count($house->customers)}} khách đặt
                                 </td>
-                                <td><a href="#" class="fa fa-trash btn btn-danger"></a><a
-                                        class="fa fa-edit btn btn-primary offset-1" data-toggle="modal"
-                                        data-target="#updateHouse"></a></td>
+                                <td><a class="fa fa-edit btn btn-primary" data-toggle="modal"
+                                       data-target="#updateHouse"></a></td>
                             </tr>
                         @endforeach
 
@@ -110,6 +110,7 @@
                                 {{--                                <input type="radio" id="button2" class="choice" name="status" value="1">Cho thuê--}}
                                 <div>
                                     <select name="status" class="custom-select">
+                                        <option value="">==Trạng thái==</option>
                                         <option value="0">Đã thuê</option>
                                         <option value="1">Cho thuê</option>
                                     </select>

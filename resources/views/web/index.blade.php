@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+
+
     <!-- Hero section -->
     <script src="{{asset('js/ajaxAddress.js')}}"></script>
 
@@ -24,13 +26,17 @@
                 let bathroom = $('#totalBathroom').val();
                 let bedroom = $('#totalBedRoom').val();
                 let price = $('#price').val();
+                let checkin = $('#checkin').val();
+                let checkout = $('#checkout').val();
                 let data = {
                     province_id: province,
                     district_id: district,
                     ward_id: ward,
                     totalBathroom: bathroom,
                     totalBedRoom: bedroom,
-                    price: price
+                    price: price,
+                    checkin: checkin,
+                    checkout: checkout
                 };
                 let image;
                 $.ajax({
@@ -53,7 +59,7 @@
                             html += '</div>';
                             html += '<div style="margin-top: 5px" class="price">';
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">' + numberFormat(value.price)
-                                + ' ' +'Đồng </a>';
+                                + ' ' + 'Đồng </a>';
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
@@ -72,10 +78,11 @@
         });
 
         function numberFormat(number) {
-            return String(number).replace(/(.)(?=(\d{3})+$)/g,'$1,')
+            return String(number).replace(/(.)(?=(\d{3})+$)/g, '$1,')
         }
 
     </script>
+
 
 
     <!-- Filter form section -->
@@ -119,30 +126,35 @@
                         <div style="margin-top: 10px" class="row">
                             <div class="col-sm-12">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input type="number" id="totalBathroom" class="form-control"
                                                style="border-radius: 5px ;width: 100%;" placeholder="Số phòng tắm...">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input type="number" class="form-control" id="totalBedRoom"
                                                style="border-radius: 5px ;width: 100%;"
                                                placeholder="Số phòng ngủ...">
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input class="form-control" style="width: 100%">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input class="form-control" style="width: 100%">
-                                            </div>
-                                        </div>
+                                    <div class="col-md-3">
+                                        <input style="height: 20px;width: 100%; background-color: grey" type="text"
+                                               class="form-control text-center" value="Ngày nhận phòng" readonly>
+                                        <input style="height: 25px;width: 100%" type="text" name="checkin"
+                                               class="form-control text-center" id="checkin"
+                                               data-provide="datepicker">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input style="height: 20px;width: 100%; background-color: grey" type="text"
+                                               class="form-control text-center" value="Ngày trả phòng" readonly>
+                                        <input style="height: 25px;width: 100%" type="text" name="checkout"
+                                               class="form-control text-center" id="checkout"
+                                               data-provide="datepicker">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
 
                     <div class="col-sm-3">
                         <div class="col-sm-12">
@@ -151,7 +163,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">VNĐ</span>
                                 </div>
-                                <input name="price" class="form-control"
+                                <input name="price" id="price" class="form-control"
                                        type="text" placeholder="Giá tiền...">
                             </div>
                         </div>
@@ -176,7 +188,7 @@
                 <h3>Căn hộ gần đây</h3>
                 <p>Khám phá những căn HomeStay mới nhất hot nhất thị trường đang được cho thuê</p>
             </div>
-{{--            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>--}}
+            {{--            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>--}}
 
             <div class="row" id="div">
                 @foreach($houses as $key => $house)
@@ -206,7 +218,6 @@
         </div>
     </section>
     <!-- Properties section end -->
-
 
     <!-- Services section -->
     <section class="services-section spad set-bg" data-setbg="img/service-bg.jpg">
@@ -600,5 +611,11 @@
 
 
 
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#checkin,#checkout').datepicker({
+                minDate: new Date()
+            });
+        })
+    </script>
 @endsection

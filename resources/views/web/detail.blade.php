@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 
     <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
@@ -11,7 +12,6 @@
     <!--  Page top end -->
 
     <!-- Breadcrumb -->
-    {{--    <div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-width="560" data-include-parent="false"></div>--}}
     <div class="site-breadcrumb">
         <div class="container">
             <a href=""><i class="fa fa-home"></i>Home</a>
@@ -80,6 +80,7 @@
                         </div>
                         <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
+
                             <div class="row">
                                 @foreach($posts as $key => $post)
                                     <div class="rating col-md-12">
@@ -130,6 +131,7 @@
                             </div>
 
                         </div>
+                        <hr>
                         <div class="row property-details-list">
                             <button type="button" class="btn btn-success" data-toggle="modal"
                                     data-target="#review">Để lại nhận xét
@@ -142,7 +144,8 @@
                 <!-- sidebar -->
                 <div class="col-lg-4 col-md-7 sidebar">
                     <div class="author-card">
-                        <div class="author-img set-bg" data-setbg="{{asset('storage/'.$house->user->image)}}"></div>
+                        <div class="author-img set-bg"
+                             data-setbg="{{($house->user->image) ? asset('storage/'.$house->user->image) : asset('img/anhdaidien.jpg')}}"></div>
                         <div class="author-info">
                             <p>Người đăng</p>
                             <h5>{{$house->user->name}}</h5>
@@ -399,6 +402,32 @@
                 });
             });
         })
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            var _token = $('input[name="_token"]').val();
+
+            load_data('', _token);
+
+            function load_data(id = "", _token) {
+                $.ajax({
+                    url: "{{route('user.load_data', $house->id)}}",
+                    method: "POST",
+                    data: {id: id, _token: _token},
+                    success: function (data) {
+                        $('#load_more_button').remove();
+                        $('#post_data').append(data);
+                    }
+                });
+                $(document).on('click', '#load_more_button', function () {
+                    var id = $(this).data('id');
+                    $('#load_more_button').html('<b>Loading...</b>');
+                    load_data(id, _token);
+                })
+            }
+        });
+
 
     </script>
     <script src="{{asset('js/ajaxReview.js')}}"></script>

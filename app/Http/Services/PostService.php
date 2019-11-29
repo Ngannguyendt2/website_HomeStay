@@ -20,6 +20,7 @@ class PostService implements PostServiceInterface
 
     public function create($request)
     {
+
         // TODO: Implement create() method.;
         $post = new Post();
         $post->body = $request->body;
