@@ -79,3 +79,4 @@ Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
 Route::post('/search', 'HouseController@search')->name('search');
 
+Route::post('/changeStatus/{id}','HouseController@changeStatus')->name('changeStatus');

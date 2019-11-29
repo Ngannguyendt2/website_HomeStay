@@ -27,7 +27,6 @@ class OrderService implements OrderServiceInterface
     public function create($request, $houseId)
     {
         // TODO: Implement order() method.
-
         $order = new Order();
         $order->checkin = $this->getDateCheckinFromForm($request);
         $order->checkout = $this->getDateCheckoutFromForm($request);

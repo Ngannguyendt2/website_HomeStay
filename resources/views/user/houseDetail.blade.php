@@ -37,7 +37,7 @@
                     <tbody>
                     @if(count($orders) == 0)
                         <tr>
-                            <td colspan="7">Bạn chưa thuê nhà</td>
+                            <td colspan="7" class="text-center">Bạn chưa thuê nhà</td>
                         </tr>
                     @else
                         @foreach($orders as $key => $order)
