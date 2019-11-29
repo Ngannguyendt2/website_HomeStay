@@ -66,7 +66,9 @@ class HouseController extends Controller
     {
         $house = $this->house->getHouseById($id);
         $posts = $house->posts()->get();
-        return view('web.detail', compact('house','posts'));
+
+        return view('web.detail', compact('house', 'posts'));
+
     }
 
     public function search(Request $request)
@@ -82,4 +84,20 @@ class HouseController extends Controller
         return response()->json($items);
     }
 
+    public function houseDetail($id)
+    {
+        $customers = Customer::where('user_id', $id)->get();
+        $customerId = $customers[0]->id;
+        $orders = Order::where('customer_id', $customerId)->get();
+        return view('user.houseDetail', compact('orders'));
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $house = House::findorfail($id);
+        $status = $request->status;
+        $house->status = $status;
+        $house->save();
+        return redirect()->route('web.index');
+    }
 }

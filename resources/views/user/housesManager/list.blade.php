@@ -51,14 +51,16 @@
                     <table style="margin-top: 20px; margin-bottom: 20px" class="table table-striped">
                         <thead>
                         <tr>
-                            <th scope="row">#</th>
-                            <th scope="row">Nhu cầu</th>
-                            <th scope="row">Loại nhà</th>
-                            <th scope="row">Địa chỉ</th>
-                            <th scope="row">Mô tả</th>
-                            <th scope="row">Chi tiết nhà</th>
-                            <th  style="background-color: burlywood" scope="row">Giá/ngày (VNĐ)</th>
-                            <th scope="row">Trạng thái</th>
+                            <th>#</th>
+                            <th>Nhu cầu</th>
+                            <th>Loại nhà</th>
+                            <th>Địa chỉ</th>
+                            <th>Mô tả</th>
+                            <th>Chi tiết nhà</th>
+                            <th style="background-color: burlywood">Giá/ngày (VNĐ)</th>
+                            <th>Khách đặt</th>
+                            <th>Cập nhật trạng thái nhà</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -78,9 +80,8 @@
                                     <a style="color: black" href="{{route('houses.customer.approve', $house->id)}}">Chi
                                         tiết</a><br>Có {{count($house->customers)}} khách đặt
                                 </td>
-                                <td><a href="#" class="fa fa-trash btn btn-danger"></a><a
-                                        class="fa fa-edit btn btn-primary" data-toggle="modal"
-                                        data-target="#updateHouse"></a></td>
+                                <td><a class="fa fa-edit btn btn-primary" data-toggle="modal"
+                                       data-target="#updateHouse"></a></td>
                             </tr>
                         @endforeach
 
@@ -91,65 +92,136 @@
             </div>
         </div>
     </div>
-    <div id="updateHouse" class="modal" role="dialog" tabindex="-1">
+    <div id="updateHouse" class="modal large" role="dialog" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title text-center primecolor">Cập nhật trạng thái nhà của bạn  </h3>
+                    <h3 class="modal-title text-center primecolor">Cập nhật trạng thái nhà của bạn </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">x</span>
                     </button>
-
                 </div>
-                <div class="modal-body" style="overflow: hidden;">
+                <div class="modal-body">
                     <strong id="alert"></strong>
                     <div class="col-md-offset-1 col-md-10">
-                        <form method="POST" id="update">
+                        <form method="POST" id="update" action="{{route('changeStatus', $house->id)}}">
                             @csrf
                             <div class="form-group has-feedback">
-                                <input type="password" name="old_password" class="form-control"
-                                       placeholder="Nhập mật khẩu cũ ">
-                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                <span class="text-danger">
-                                <strong id="old_password-error"></strong>
-                            </span>
-
-                            </div>
-                            <div class="form-group has-feedback">
-                                <input type="password" name="new_password" class="form-control"
-                                       placeholder="Nhập mật khẩu mới">
-                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                <span class="text-danger">
-                                <strong id="new_password-error"></strong>
-                            </span>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <input type="password" name="password_confirmation" class="form-control"
-                                       placeholder="Nhập lại mật khẩu ">
-                                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                {{--                                <input type="radio" id="button1" class="choice" name="status" value="0">Đã thuê<br>--}}
+                                {{--                                <input type="radio" id="button2" class="choice" name="status" value="1">Cho thuê--}}
+                                <div>
+                                    <select name="status" class="custom-select">
+                                        <option value="">==Trạng thái==</option>
+                                        <option value="0">Đã thuê</option>
+                                        <option value="1">Cho thuê</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <button type="button" id="submitChangePass"
+                                    <button type="submit" id="submitChangeStatus"
                                             class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                     </button>
-                                    <a class="btn btn-danger" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
-                                       style="color: black">
-                                        Ok
-                                    </a>
-                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
                                 </div>
                             </div>
                         </form>
+                        <script type="text/javascript">
+
+                            $("button").click(function () {
+                                var selValue = $("input[type='radio']:checked").val();
+                            });
+
+                        </script>
                     </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+
+    {{--    <div id="updateHouse" class="modal" role="dialog" tabindex="-1">--}}
+    {{--        <div class="modal-dialog">--}}
+    {{--            <div class="modal-content">--}}
+    {{--                <div class="modal-header">--}}
+    {{--                    <h3 class="modal-title text-center primecolor">Cập nhật trạng thái nhà của bạn  </h3>--}}
+    {{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+    {{--                        <span aria-hidden="true">&times;</span>--}}
+    {{--                    </button>--}}
+
+    {{--                </div>--}}
+    {{--                <div class="modal-body" style="overflow: hidden;">--}}
+    {{--                    <strong id="alert"></strong>--}}
+    {{--                    <div class="col-md-offset-1 col-md-10">--}}
+    {{--                        <form method="POST" id="update">--}}
+    {{--                            @csrf--}}
+    {{--                            <div class="form-group has-feedback">--}}
+    {{--                                <input type="password" name="old_password" class="form-control"--}}
+    {{--                                       placeholder="Nhập mật khẩu cũ ">--}}
+    {{--                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>--}}
+    {{--                                <span class="text-danger">--}}
+    {{--                                <strong id="old_password-error"></strong>--}}
+    {{--                            </span>--}}
+
+    {{--                            </div>--}}
+    {{--                            <div class="form-group has-feedback">--}}
+    {{--                                <input type="password" name="new_password" class="form-control"--}}
+    {{--                                       placeholder="Nhập mật khẩu mới">--}}
+    {{--                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>--}}
+    {{--                                <span class="text-danger">--}}
+    {{--                                <strong id="new_password-error"></strong>--}}
+    {{--                            </span>--}}
+    {{--                            </div>--}}
+    {{--                            <div class="form-group has-feedback">--}}
+    {{--                                <input type="password" name="password_confirmation" class="form-control"--}}
+    {{--                                       placeholder="Nhập lại mật khẩu ">--}}
+    {{--                                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>--}}
+    {{--                            </div>--}}
+    {{--                            <div class="row">--}}
+    {{--                                <div class="col-xs-12 text-center">--}}
+    {{--                                    <button type="button" id="submitChangePass"--}}
+    {{--                                            class="btn btn-primary btn-prime white btn-flat">Xác nhận--}}
+    {{--                                    </button>--}}
+    {{--                                    <a class="btn btn-danger" href="{{ route('logout') }}"--}}
+    {{--                                       onclick="event.preventDefault();--}}
+    {{--                                                     document.getElementById('logout-form').submit();"--}}
+    {{--                                       style="color: black">--}}
+    {{--                                        Ok--}}
+    {{--                                    </a>--}}
+    {{--                                    --}}{{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </form>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
+    {{--    <script type="text/javascript">--}}
+    {{--        $(document).ready(function() {--}}
+    {{--            $('#submitChangeStatus').click(function() {--}}
+    {{--                let value;--}}
+    {{--                if($('#button1').is(':checked')){--}}
+    {{--                    value = $('#button1').val();--}}
+    {{--                }--}}
+    {{--                if($('#button2').is(':checked')){--}}
+    {{--                    value = $('#button2').val();--}}
+
+    {{--                }--}}
+    {{--                let formData = new FormData();--}}
+    {{--                formData.append('checked', value);--}}
+    {{--                $.ajax({--}}
+    {{--                    url: 'http://localhost:8000/user/houses/' + 3 + '/update',--}}
+    {{--                    type: 'POST',--}}
+    {{--                    success: function(data) {--}}
+    {{--                        console.log(data);--}}
+
+
     <script type="text/javascript">
 
-    </script>
+      </script>-
 @endsection
 

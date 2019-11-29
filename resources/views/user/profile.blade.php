@@ -176,13 +176,8 @@
                                 <button type="button" id="submitChangePass"
                                         class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
-                                <a class="btn btn-danger" href="{{ route('login') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('login-form').submit();"
-                                   style="color: black">
-                                    Hủy
-                                </a>
-                                {{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>--}}
+
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
                             </div>
                         </div>
                     </form>
@@ -218,12 +213,6 @@
     //     }
     // });
 
-    function Redirect() {
-        $(document).click(event.preventDefault(),
-            document.getElementById('logout-form').submit());
-
-    }
-
     $('body').on('click', '#submitChangePass', function () {
         // e.preventDefault();
         let changePasswordForm = $("#Password");
@@ -240,7 +229,7 @@
                     $('#alert').html(data.message).css('color', 'red');
                 }
                 if (data.status == 'success') {
-                    $('#alert').html(data.message).css('color', 'green').click(Redirect());
+                    $('#alert').html(data.message).css('color', 'green').click(location.reload());
                 }
             },
             error: function (result) {
