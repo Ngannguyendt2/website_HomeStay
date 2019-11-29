@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\House;
 use App\Http\Requests\CreateFormOrder;
+use App\Http\Services\HouseServiceInterface;
 use App\Http\Services\OrderServiceInterface;
 use App\Http\Services\UserServiceInterface;
 use App\Notifications\YouHasNewEmail;
@@ -17,11 +18,15 @@ class OrderController extends Controller
     //
     protected $order;
     protected $user;
+    protected $house;
 
-    public function __construct(OrderServiceInterface $order, UserServiceInterface $user)
+    public function __construct(OrderServiceInterface $order,
+                                UserServiceInterface $user,
+                                HouseServiceInterface $houseService)
     {
         $this->order = $order;
         $this->user = $user;
+        $this->house = $houseService;
     }
 
     public function order(CreateFormOrder $request, $id)
@@ -51,7 +56,7 @@ class OrderController extends Controller
 
     public function delete($orderId)
     {
-        $order=$this->order->findById($orderId);
+        $order = $this->order->findById($orderId);
         $this->order->destroy($orderId);
         $this->sendNotificationCancelOrder($order->customer_id);
         return redirect()->back()->withMessage('Đã xóa khách hàng thành công');
@@ -68,7 +73,7 @@ class OrderController extends Controller
     public function approve($id)
     {
 
-        $house = House::find($id);
+        $house = $this->house->getHouseById($id);
         $orders = Order::whereNull('approved_at')->where('house_id', $id)->paginate(10);
         return view('user.housesManager.detailCustomer', compact('orders', 'house'));
     }

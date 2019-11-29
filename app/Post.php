@@ -8,6 +8,7 @@ use willvincent\Rateable\Rateable;
 class Post extends Model
 {
     //
+    protected $fillable = ['body','house_id','user_id'];
     use Rateable;
 
     public function house()

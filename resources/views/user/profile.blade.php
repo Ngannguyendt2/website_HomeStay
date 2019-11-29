@@ -87,7 +87,7 @@
                                 </a>
                             </div>
                             <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
-                                <a style="color: green" href={{route('house.houseDetail', ['id'=>$user->id])}}>
+                                <a style="color: green" href={{route('user.historyRentHouse')}}>
                                     <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i><b>Lịch sử
                                         thuê nhà</b>
                                 </a>
@@ -176,6 +176,7 @@
                                 <button type="button" id="submitChangePass"
                                         class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
+
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
                             </div>
                         </div>

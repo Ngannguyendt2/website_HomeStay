@@ -90,4 +90,10 @@ class UserService implements UserServiceInterface
         // TODO: Implement getUserByCustomer() method.
         return $this->profileRepo->getUserByCustomer($customerId);
     }
+
+    public function historyRentHouse()
+    {
+        // TODO: Implement historyRentHouse() method.
+        return $this->profileRepo->historyRentHouse();
+    }
 }

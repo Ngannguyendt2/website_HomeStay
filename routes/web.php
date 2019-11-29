@@ -35,6 +35,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::get('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
+    Route::get('historyRentHouse', 'UserController@historyRentHouse')->name('user.historyRentHouse');
     Route::prefix('/houses')->group(function () {
 
         Route::get('/create', 'HouseController@create')->name('house.create');
@@ -43,8 +44,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::post('/{id}/update', 'HouseController@update')->name('house.update');
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
-        Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
-        Route::post('/review', 'PostController@create')->name('house.review');
+        Route::post('review', 'PostController@create')->name('house.review');
         Route::post('/comment', 'CommentController@create')->name('post.comment');
 
         Route::prefix('customer')->group(function () {

@@ -218,9 +218,9 @@
     {{--                    success: function(data) {--}}
     {{--                        console.log(data);--}}
 
-    {{--                    }--}}
-    {{--                });--}}
-    {{--        });--}}
-    {{--    </script>--}}
+
+    <script type="text/javascript">
+
+      </script>-
 @endsection
 

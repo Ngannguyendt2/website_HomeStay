@@ -16,20 +16,22 @@ class PostController extends Controller
         $this->post = $post;
     }
 
-    public function create(CreateFormReview $request)
+    public function create(Request $request)
     {
         try {
-            $this->post->create($request);
-            return response()->json([
-                'status' => 'success',
-                'message' => 'nhận xét thành công '
-            ]);
-        } catch (\Exception $exception)
-        {
+            $post = $this->post->create($request);
+            $post->user;
+            $post->ratings;
+        } catch (\Exception $exception) {
             return response()->json([
                 'status' => 'errors',
                 'message' => 'không nhận xét được '
             ]);
         }
+        return response()->json([
+            'status' => 'success',
+            'message' => 'nhận xét thành công',
+            'data' => $post
+        ]);
     }
 }

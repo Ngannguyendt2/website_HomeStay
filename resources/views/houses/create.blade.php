@@ -105,8 +105,8 @@
 
                                     <option value="" selected> =>Chọn loại nhà<=</option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                    @endforeach
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
                                 </select>
                                 @if ($errors->has('category_id'))
                                     <p class="text text-danger">{{ $errors->first('category_id')}}</p>
@@ -120,8 +120,7 @@
                             <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <select onchange="javascript:test.filterCity()" name="province_id"
-                                                id="province_id"
+                                        <select onchange="javascript:test.filterCity()" name="province_id" id="province_id"
                                                 class="form-control">
                                             <option value="" selected>Thành phố</option>
                                             @foreach($provinces as $province)
@@ -162,8 +161,7 @@
                                 @endif
                             </div>
                             <div class="col-md-4">
-                                <input style="margin-top: 15px" name="house_number" id="house_number"
-                                       class="form-control"
+                                <input style="margin-top: 15px" name="house_number" id="house_number" class="form-control"
                                        placeholder="Số nhà...">
                                 @if ($errors->has('house_number'))
                                     <p class="text text-danger">{{ $errors->first('house_number')}}</p>
@@ -195,7 +193,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price">
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
@@ -207,7 +205,7 @@
                         </div>
                         <div class="row" style="margin-top: 20px">
                             <div class="col-md-3" style="margin-top: 8px">
-                                <strong>Loại bất động sản:</strong>
+                                <strong>Trạng thái :</strong>
                             </div>
                             <div class="col-md-8">
                                 <select name="status" class="form-control" id="status">
@@ -224,15 +222,13 @@
                         <input type="file" name="image[]" id="file-input" multiple>
                         @if ($errors->has('image'))
                             <p class="text text-danger">{{ $errors->first('image')}}</p>
-                        @endif
-                        <div id="thumb-output"></div>
+                        @endif                        <div id="thumb-output"></div>
                     </div>
                     <div class="col-md-2" style="margin-top: 50px">
                         <strong>Mô tả chung:</strong>
                     </div>
                     <div class="col-md-10" style="margin-top: 20px">
-                    <textarea name="description" id="description" class="form-control"
-                              placeholder='Viết mô tả của bạn về ngôi nhà...'
+                    <textarea name="description" id="description" class="form-control" placeholder='Viết mô tả của bạn về ngôi nhà...'
                               style="height: 100px"></textarea>
                         @if ($errors->has('description'))
                             <p class="text text-danger">{{ $errors->first('description')}}</p>
@@ -261,6 +257,12 @@
 <script src="{{asset('js/main.js')}}"></script>
 
 <!-- load for map -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.12.1/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    CKEDITOR.replace('description');
+</script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
 <script src="{{asset('js/map.js')}}"></script>
 <script>
@@ -268,22 +270,22 @@
     $(document).ready(function () {
         $('#file-input').on('change', function () { //on file input change
 
-            let data = $(this)[0].files; //this file data
+                let data = $(this)[0].files; //this file data
 
-            $.each(data, function (index, file) { //loop though each file
-                if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
-                    let fileRead = new FileReader(); //new filereader
-                    fileRead.onload = (function (file) { //trigger function on successful read
-                        return function (e) {
-                            let img = $('<img/>').addClass('thumb').attr('src', e.target.result).css('width', '250px'); //create image element
-                            $('#thumb-output').append(img); //append image to output element
-                        };
-                    })(file);
-                    fileRead.readAsDataURL(file); //URL representing the file's data.
-                }
-            });
-
+                $.each(data, function (index, file) { //loop though each file
+                    if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
+                        let fileRead = new FileReader(); //new filereader
+                        fileRead.onload = (function (file) { //trigger function on successful read
+                            return function (e) {
+                                let img = $('<img id="img"/>').addClass('thumb').attr('src', e.target.result).css('width','250px'); //create image element
+                                $('#thumb-output').append(img); //append image to output element
+                            };
+                        })(file);
+                        fileRead.readAsDataURL(file); //URL representing the file's data.
+                    }
+                });
         });
+
     });
 
 </script>
