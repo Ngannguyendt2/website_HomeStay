@@ -80,55 +80,57 @@
                         </div>
                         <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
-                            {{csrf_field()}}
-                            <div class="row" id="post_data"></div>
-                            {{--                            <div class="row">--}}
-                            {{--                                @foreach($posts as $key => $post)--}}
-                            {{--                                    <div class="rating col-md-12">--}}
-                            {{--                                        <div class="row">--}}
-                            {{--                                            <div class="col-md-3">--}}
+                            <div class="row">
+                                @foreach($posts as $key => $post)
+                                    <div class="rating col-md-12">
+                                        <div class="row" id="post_id_{{ $post->id }}">
+                                            <div class="col-md-3">
 
-                            {{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                     alt="ahihi"/>--}}
-                            {{--                                                <p>{{$post->user->name}}</p>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="col-md-9">--}}
-                            {{--                                                @foreach ($post->ratings()->get() as $rate)--}}
-                            {{--                                                    <input id="input-1" name="input-1" class="rating rating-loading"--}}
-                            {{--                                                           data-min="0"--}}
-                            {{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
-                            {{--                                                           data-size="xs"--}}
-                            {{--                                                           disabled="">--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <p>{{$post->body}}</p>--}}
-                            {{--                                                @foreach($post->comments()->get() as $comment)--}}
-                            {{--                                                        <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                             src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                             class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                             alt="ahihi"/>--}}
-                            {{--                                                    <p class="text text-primary">{{$comment->user->name}}</p>--}}
-                            {{--                                                    <p>{{$comment->body}}</p>--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>--}}
-                            {{--                                                    <form method="POST" id="formComment">--}}
-                            {{--                                                        @csrf--}}
-                            {{--                                                        <input type="hidden" id="post_id" value="{{$post->id}}" name="post_id">--}}
-                            {{--                                                        <input type="text" id="body" style="display: none" width="300px"--}}
-                            {{--                                                               name="body">--}}
-                            {{--                                                        <button type="button" id="comment" class="btn btn-primary"--}}
-                            {{--                                                                style="display: none">Bình luận--}}
-                            {{--                                                        </button>--}}
-                            {{--                                                    </form>--}}
+                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
+                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
+                                                     class="img-thumbnail img-circle img-responsive rounded-circle"
+                                                     alt="ahihi"/>
+                                                <p>{{$post->user->name}}</p>
+                                            </div>
+                                            <div class="col-md-9">
+                                                @foreach ($post->ratings()->get() as $rate)
+                                                    <input id="input-1" name="input-1" class="rating rating-loading"
+                                                           data-min="0"
+                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"
+                                                           data-size="xs"
+                                                           disabled="">
+                                                @endforeach
+                                                <p>{{$post->body}}</p>
+                                                @foreach($post->comments()->get() as $comment)
+                                                        <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
+                                                             src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
+                                                             class="img-thumbnail img-circle img-responsive rounded-circle"
+                                                             alt="ahihi"/>
+                                                    <p class="text text-primary">{{$comment->user->name}}</p>
+                                                    <p>{{$comment->body}}</p>
+                                                @endforeach
+                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>
+                                                    <form method="POST" id="formComment">
+                                                        @csrf
+                                                        <input type="hidden" id="post_id" value="{{$post->id}}" name="post_id">
+                                                        <input type="text" id="body" style="display: none" width="300px"
+                                                               name="body">
+                                                        <button type="button" id="comment" class="btn btn-primary"
+                                                                style="display: none">Bình luận
+                                                        </button>
+                                                    </form>
 
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-                            {{--                                @endforeach--}}
-                            {{--                            </div>--}}
+                                @endforeach
+                            </div>
+
+{{--                            {{csrf_field()}}--}}
+{{--                            <div class="row" id="post_data"></div>--}}
+
 
                         </div>
                         <hr>
@@ -290,11 +292,11 @@
                                         <input id="input-1" name="rate" class="rating rating-loading" data-min="0"
                                                data-max="5" data-step="1" data-size="xs"
                                                value="{{ $house->userAverageRating }}">
-                                        <input type="hidden" name="id" required="" value="{{ $house->id }}">
+                                        <input type="hidden" id="id-house-rating" name="id" required="" value="{{ $house->id }}">
                                     </div>
 
                                     <div class="form-group has-feedback">
-                                        <input type="text" name="body" class="form-control" id="body">
+                                        <input type="text" name="body" class="form-control" id="content">
                                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                         <span class="text-danger">
                                 <strong id="body-error"></strong>

@@ -76,4 +76,10 @@ class UserController extends Controller
         return redirect()->route('admin.users.list');
     }
 
+    public function historyRentHouse()
+    {
+        $orders = $this->profileService->historyRentHouse();
+        return view('user/houseDetail', compact('orders'));
+    }
+
 }

@@ -32,5 +32,7 @@ class PostService implements PostServiceInterface
         $rating->user_id = Auth::user()->id;
         $rating->post_id = $post->id;
         $post->ratings()->save($rating);
+
+        return $post;
     }
 }

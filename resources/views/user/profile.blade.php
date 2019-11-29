@@ -87,7 +87,7 @@
                                 </a>
                             </div>
                             <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
-                                <a style="color: green" href={{route('house.houseDetail', ['id'=>$user->id])}}>
+                                <a style="color: green" href={{route('user.historyRentHouse')}}>
                                     <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i><b>Lịch sử
                                         thuê nhà</b>
                                 </a>
@@ -176,11 +176,11 @@
                                 <button type="button" id="submitChangePass"
                                         class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
-                                <a class="btn btn-danger" href="{{ route('logout') }}"
+                                <a class="btn btn-danger" href="{{ route('login') }}"
                                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
+                                                     document.getElementById('login-form').submit();"
                                    style="color: black">
-                                    Ok
+                                    Hủy
                                 </a>
                                 {{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>--}}
                             </div>

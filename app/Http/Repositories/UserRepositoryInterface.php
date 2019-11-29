@@ -11,4 +11,6 @@ interface UserRepositoryInterface extends RepositoryInterface
     public function getUserByHouse($houseId);
 
     public function getUserByCustomer($customerId);
+
+    public function historyRentHouse();
 }
