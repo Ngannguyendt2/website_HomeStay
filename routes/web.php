@@ -50,7 +50,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::prefix('customer')->group(function () {
             Route::get('{id}/checkApprove', 'OrderController@checkApprove')->name('houses.customer.checkApprove');
             Route::get('detail/approve/{id}', 'OrderController@approve')->name('houses.customer.approve');
-            Route::get('{id}/delete', 'OrderController@delete')->name('houses.customer.delete');
+            Route::post('{id}/delete', 'OrderController@delete')->name('houses.customer.delete');
         });
 
     });
