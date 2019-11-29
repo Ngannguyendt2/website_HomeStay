@@ -25,14 +25,17 @@ Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
 Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
+Route::post('{id}/post', 'HouseController@getPostAjax')->name('post');
 
 Route::prefix('/user')->middleware('auth')->group(function () {
 
+    Route::post('show_more/{id}', 'ShowMoreController@load_data')->name('user.load_data');
     Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
     Route::post('/{id}/changePassword', 'UserController@changePassword')->name('user.changePassword');
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::get('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
+    Route::get('historyRentHouse', 'UserController@historyRentHouse')->name('user.historyRentHouse');
     Route::prefix('/houses')->group(function () {
 
         Route::get('/create', 'HouseController@create')->name('house.create');
@@ -41,7 +44,6 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::post('/{id}/update', 'HouseController@update')->name('house.update');
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
-        Route::get('{id}/houseDetail', 'HouseController@houseDetail')->name('house.houseDetail');
         Route::post('review', 'PostController@create')->name('house.review');
         Route::post('/comment', 'CommentController@create')->name('post.comment');
 

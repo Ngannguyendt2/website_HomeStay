@@ -11,7 +11,6 @@ use App\Post;
 use App\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use willvincent\Rateable\Rating;
 
 class HouseController extends Controller
 {
@@ -67,7 +66,7 @@ class HouseController extends Controller
     {
         $house = $this->house->getHouseById($id);
         $posts = $house->posts()->get();
-        return view('web.detail', compact('house', 'posts'));
+        return view('web.detail', compact('house','posts'));
     }
 
     public function search(Request $request)
@@ -83,11 +82,4 @@ class HouseController extends Controller
         return response()->json($items);
     }
 
-    public function houseDetail($id)
-    {
-        $customers=Customer::where('user_id',$id)->get();
-        $customerId=$customers[0]->id;
-        $orders = Order::where('customer_id', $customerId)->get();
-        return view('user.houseDetail', compact('orders'));
-    }
 }

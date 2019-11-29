@@ -64,25 +64,30 @@
             <div class="col-md-12" style="margin-top: 20px">
                 <h3 align="center">Thông tin cá nhân</h3>
                 <div class="row" style="margin-top: 30px">
-                    <div class="col-md-3">
+                    <div class="col-md-4" style="border-radius: 20px; height: 400px">
                         <div class="col-md-12">
-                            <img id="img" style="width: 200px; height: 200px;"
+                            <img id="img" style="width: 200px; height: 200px; margin-left: 50px"
                                  src="{{($user->image)? asset('storage/'.$user->image) : asset('img/anhdaidien.jpg')}}"
                                  class="img-thumbnail img-circle img-responsive rounded-circle" alt="ahihi"/>
                             @if ($errors->has('images'))
                                 <p class="text text-danger">{{ $errors->first('image')}}</p>
                             @endif
-                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
-                                <a href="" style="color: green" data-toggle="modal"
-                                   data-target="#ChangePassword"><i class="fa fa-key" style="font-size:24px"></i><b>Đổi
-                                        mật khẩu</b></a>
-                            </div>
-                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
+                            @if(empty(Auth::user()->google_id) && empty(Auth::user()->provider_id))
+                                <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
+                                    <a href="" style="color: green" data-toggle="modal"
+                                       data-target="#ChangePassword"><i class="fa fa-key" style="font-size:24px"></i><b>Đổi
+                                            mật khẩu</b></a>
+
+                                </div>
+                            @endif
+
+                            <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
                                 <a style="color: green" href="{{route('user.edit',['id'=>$user->id])}}"><i
-                                        class="fa fa-edit" style="font-size:20px"></i><b>Chỉnh sửa thông tin</b> </a>
+                                            class="fa fa-edit" style="font-size:20px"></i><b>Chỉnh sửa thông tin</b>
+                                </a>
                             </div>
-                            <div class="col-md-12" style="margin-top: 15px; margin-left: 15px">
-                                <a style="color: green" href={{route('house.houseDetail', ['id'=>$user->id])}}>
+                            <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
+                                <a style="color: green" href={{route('user.historyRentHouse')}}>
                                     <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i><b>Lịch sử
                                         thuê nhà</b>
                                 </a>
@@ -90,9 +95,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2"></div>
-
-                    <div class="col-md-7">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7" style="border-radius: 20px ; height: 400px">
 
                         <div class="row">
                             <div class="col-md-12">
@@ -118,12 +122,7 @@
                             <div class="col-md-3"></div>
                             <div class="col-md-3"></div>
                             <div class="col-md-1"></div>
-                            @if(empty(Auth::user()->google_id) && empty(Auth::user()->provider_id))
-                                <div style="margin-top: 15px" class="col-md-3">
-                                    <a href="" class="btn btn-outline-info" data-toggle="modal"
-                                       data-target="#ChangePassword"><b>Đổi mật khẩu</b></a>
-                                </div>
-                            @endif
+
                         </div>
 
                     </div>
@@ -177,11 +176,11 @@
                                 <button type="button" id="submitChangePass"
                                         class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
-                                <a class="btn btn-danger" href="{{ route('logout') }}"
+                                <a class="btn btn-danger" href="{{ route('login') }}"
                                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
+                                                     document.getElementById('login-form').submit();"
                                    style="color: black">
-                                    Ok
+                                    Hủy
                                 </a>
                                 {{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>--}}
                             </div>

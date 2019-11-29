@@ -9,6 +9,7 @@ use App\House;
 use App\Http\Repositories\Eloquent\RepositoryEloquent;
 use App\Http\Repositories\UserRepositoryInterface;
 use App\User;
+use Auth;
 
 class UserRepository extends RepositoryEloquent implements UserRepositoryInterface
 {
@@ -36,7 +37,15 @@ class UserRepository extends RepositoryEloquent implements UserRepositoryInterfa
     public function getUserByCustomer($customerId)
     {
         // TODO: Implement getUserByCustomer() method.
-        $customer=Customer::find($customerId);
+        $customer = Customer::find($customerId);
         return $customer->user;
+    }
+
+    public function historyRentHouse()
+    {
+        // TODO: Implement historyRentHouse() method.
+        $user = Auth::user();
+        $customer = $user->customer()->first();
+        return $customer->orders;
     }
 }
