@@ -57,6 +57,7 @@ class UserService implements UserServiceInterface
             if (Hash::check($newPass, $currentPass)) {
                 $object->password = Hash::make($request->new_password);;
                 $this->profileRepo->updatePassword($object);
+                Auth::logout();
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Đổi mật khẩu thành công'
