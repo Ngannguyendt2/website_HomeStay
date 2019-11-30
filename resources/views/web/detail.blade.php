@@ -82,53 +82,54 @@
                         <div class="row property-details-list">
                             {{csrf_field()}}
                             <div class="row" id="post_data"></div>
-                            {{--                            <div class="row">--}}
-                            {{--                                @foreach($posts as $key => $post)--}}
-                            {{--                                    <div class="rating col-md-12">--}}
-                            {{--                                        <div class="row">--}}
-                            {{--                                            <div class="col-md-3">--}}
+{{--                            <div class="row">--}}
+{{--                                @foreach($posts as $key => $post)--}}
+{{--                                    <div class="rating col-md-12">--}}
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-md-3">--}}
 
-                            {{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                     alt="ahihi"/>--}}
-                            {{--                                                <p>{{$post->user->name}}</p>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="col-md-9">--}}
-                            {{--                                                @foreach ($post->ratings()->get() as $rate)--}}
-                            {{--                                                    <input id="input-1" name="input-1" class="rating rating-loading"--}}
-                            {{--                                                           data-min="0"--}}
-                            {{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
-                            {{--                                                           data-size="xs"--}}
-                            {{--                                                           disabled="">--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <p>{{$post->body}}</p>--}}
-                            {{--                                                @foreach($post->comments()->get() as $comment)--}}
-                            {{--                                                        <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                             src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                             class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                             alt="ahihi"/>--}}
-                            {{--                                                    <p class="text text-primary">{{$comment->user->name}}</p>--}}
-                            {{--                                                    <p>{{$comment->body}}</p>--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>--}}
-                            {{--                                                    <form method="POST" id="formComment">--}}
-                            {{--                                                        @csrf--}}
-                            {{--                                                        <input type="hidden" id="post_id" value="{{$post->id}}" name="post_id">--}}
-                            {{--                                                        <input type="text" id="body" style="display: none" width="300px"--}}
-                            {{--                                                               name="body">--}}
-                            {{--                                                        <button type="button" id="comment" class="btn btn-primary"--}}
-                            {{--                                                                style="display: none">Bình luận--}}
-                            {{--                                                        </button>--}}
-                            {{--                                                    </form>--}}
+{{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
+{{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
+{{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
+{{--                                                     alt="ahihi"/>--}}
+{{--                                                <p>{{$post->user->name}}</p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-9">--}}
+{{--                                                @foreach ($post->ratings()->get() as $rate)--}}
+{{--                                                    <input id="input-1" name="input-1" class="rating rating-loading"--}}
+{{--                                                           data-min="0"--}}
+{{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
+{{--                                                           data-size="xs"--}}
+{{--                                                           disabled="">--}}
+{{--                                                @endforeach--}}
+{{--                                                <p>{{$post->body}}</p>--}}
+{{--                                                @foreach($post->comments()->get() as $comment)--}}
+{{--                                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
+{{--                                                         src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
+{{--                                                         class="img-thumbnail img-circle img-responsive rounded-circle"--}}
+{{--                                                         alt="ahihi"/>--}}
+{{--                                                    <p class="text text-primary">{{$comment->user->name}}</p>--}}
+{{--                                                    <p>{{$comment->body}}</p>--}}
+{{--                                                @endforeach--}}
+{{--                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>--}}
+{{--                                                <form method="POST" id="formComment">--}}
+{{--                                                    @csrf--}}
+{{--                                                    <input type="hidden" id="post_id" value="{{$post->id}}"--}}
+{{--                                                           name="post_id">--}}
+{{--                                                    <input type="text" id="body" style="display: none" width="300px"--}}
+{{--                                                           name="body">--}}
+{{--                                                    <button type="button" id="comment" class="btn btn-primary"--}}
+{{--                                                            style="display: none">Bình luận--}}
+{{--                                                    </button>--}}
+{{--                                                </form>--}}
 
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
 
-                            {{--                                @endforeach--}}
-                            {{--                            </div>--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
 
                         </div>
                         <hr>
@@ -431,5 +432,28 @@
 
     </script>
     <script src="{{asset('js/ajaxReview.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.submitComment').click(function () {
+                console.log('ok')
+            });
+            let body = $('#body').val();
+            let post_id = $('#post_id').val();
+            let data = {
+                body: body,
+                post_id: post_id
+            };
+            $.ajax({
+                url: '{{route('post.comment')}}',
+                type: 'POST',
+                data: data,
+                success: function (response) {
+                    console.log(response)
+                }
+
+            })
+
+        })
+    </script>
 @endsection
 

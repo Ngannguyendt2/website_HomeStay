@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/category', 'HomeStayController@category')->name('web.category');
 Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
 Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
+Route::get('/fetch_data', 'HomeStayController@fetch_data');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('', 'HomeStayController@index')->name('web.index');
 
@@ -78,4 +79,4 @@ Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
 
 Route::post('/search', 'HouseController@search')->name('search');
-
+Route::post('/index', 'HomeStayController@display')->name('display');

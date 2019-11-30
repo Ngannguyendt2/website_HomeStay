@@ -29,7 +29,7 @@ class HouseRepository extends RepositoryEloquent implements HouseRepositoryInter
 
     public function search($model)
     {
-        return $model->paginate(4);
+        return $model->paginate(6);
         // TODO: Implement searchFilter() method.
     }
 }

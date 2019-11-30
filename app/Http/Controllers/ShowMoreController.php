@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Rating;
 use App\User;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class ShowMoreController extends Controller
             }
             $users = User::all();
             $ratings = Rating::all();
+            $comments = Comment::all();
             $output = '';
             $last_id = '';
             if (!$posts->isEmpty()) {
@@ -101,8 +103,41 @@ class ShowMoreController extends Controller
 
                         }
                     }
-                    $output .= '<p>' . $post->body . '</p>
-                        </div>
+                    $output .= '<p>' . $post->body . '</p>';
+                    foreach ($comments as $comment) {
+                        foreach ($users as $user) {
+                            if ($comment->post_id === $post->id) {
+                                if ($user->image) {
+                                    $output .= '
+                                        <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
+                                                         src="' . $user->image . '"
+                                                         class="img-thumbnail img-circle img-responsive rounded-circle"
+                                                         alt="ahihi"/>';
+                                    $output .= '<p class="text text-primary">' . $user->name . '</p>';
+                                    $output .= '<p>' . $comment->body . '</p>';
+                                } else {
+                                    $output .= '
+                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
+                                                         src="http://127.0.0.1:8000/img/anhdaidien.jpg"
+                                                         class="img-thumbnail img-circle img-responsive rounded-circle"
+                                                         alt="ahihi"/>';
+                                    $output .= '<p class="text text-primary">' . $user->name . '</p>';
+                                    $output .= '<p>' . $comment->body . '</p>';
+                                }
+
+                            }
+                        }
+
+                    }
+                    $output .= '<button  class="btn btn-primary submitComment">Trả lời</button>';
+                    $output .= '<input type="hidden" id="post_id" value="' . $post->id . '"
+                                                           name="post_id">
+                                                    <input type="text" id="body" style="display: none" width="300px"
+                                                           name="body">
+                                                    <button type="button" id="comment" class="btn btn-primary"
+                                                            style="display: none">Bình luận
+                                                    </button>';
+                    $output .= '</div>
                     </div>
                 </div>';
                     $last_id = $post->id;
@@ -118,4 +153,3 @@ class ShowMoreController extends Controller
         }
     }
 }
-

@@ -193,7 +193,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <input type="text" class="form-control" name="price" aria-label="Amount (to the nearest dollar)">
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
