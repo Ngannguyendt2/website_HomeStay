@@ -53,8 +53,11 @@ class OrderService implements OrderServiceInterface
     {
         $customers = $this->customer->getAll();
         foreach ($customers as $customer) {
-            if (Auth::user()->phone!=null && $customer->user_id==Auth::user()->id) {
-                return Auth::user();
+            if (Auth::user()->phone!=null ) {
+                if ($customer->user_id==Auth::user()->id){
+                    return $customer;
+                }
+
             } else {
                 $customer = new Customer;
                 $customer->name = Auth::user()->name;

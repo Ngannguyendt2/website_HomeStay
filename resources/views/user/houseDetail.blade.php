@@ -12,7 +12,7 @@
                 @if(Session::has('error'))
                     <div class="alert alert-danger alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong > {{Session::get('error')}}</strong>
+                        <strong> {{Session::get('error')}}</strong>
                     </div>
                 @endif
                 @if(Session::has('success'))
@@ -21,69 +21,121 @@
                         <strong> {{Session::get('success')}}</strong>
                     </div>
                 @endif
-
-                <table style="margin-top: 20px; margin-bottom: 20px" class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Loại nhà</th>
-                        <th>Địa chỉ</th>
-                        <th>Ngày thuê dự kiến</th>
-                        <th>Ngày trả dự kiến</th>
-                        <th>Tổng số tiền(VNĐ)</th>
-                        <th>Hủy thuê</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if(count($orders) == 0)
+                <div class="table-responsive text-nowrap">
+                    <table style="margin-top: 20px; margin-bottom: 20px" class="table table-striped">
+                        <thead>
                         <tr>
-                            <td colspan="7" class="text-center">Bạn chưa thuê nhà</td>
+                            <th>#</th>
+                            <th>Loại nhà</th>
+                            <th>Địa chỉ</th>
+                            <th>Ngày thuê dự kiến</th>
+                            <th>Ngày trả dự kiến</th>
+                            <th>Tổng số tiền(VNĐ)</th>
+                            <th>Hủy thuê</th>
+                            <th></th>
+                            <th></th>
                         </tr>
-                    @else
-                        @foreach($orders as $key => $order)
+                        </thead>
+                        <tbody>
+                        @if(count($orders) == 0)
                             <tr>
-                                <td>{{++$key}}</td>
-                                <td>{{$order->house->category->name}}</td>
-                                <td>{{$order->house->ward->name}}, {{$order->house->district->name}}
-                                    , {{$order->house->province->name}}</td>
-                                <td>{{$order->checkin}}</td>
-                                <td>{{$order->checkout}}</td>
-                                <td>{{number_format($order->totalPrice)}}</td>
-                                <td>
-                                    <a class="fa fa-trash btn btn-danger"
-                                            id="destroyOrder" onclick="return confirm('Bạn có thật sự muốn hủy thuê nhà ')" href="{{route('user.destroyOrder',['id'=>$order->id])}}"></a>
-                                </td>
+                                <td colspan="9">Bạn chưa thuê nhà</td>
                             </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
+                        @else
+                            @foreach($orders as $key => $order)
+                                <tr>
+                                    <td>{{++$key}}</td>
+                                    <td>{{$order->house->category->name}}</td>
+                                    <td>{{$order->house->ward->name}}, {{$order->house->district->name}}
+                                        , {{$order->house->province->name}}</td>
+                                    <td>{{$order->checkin}}</td>
+                                    <td>{{$order->checkout}}</td>
+                                    <td>{{number_format($order->totalPrice)}}</td>
+                                    <td>
+                                        <button class="fa fa-trash btn btn-danger"
+                                           data-toggle="modal"
+                                           data-target="#clearOrder"></button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-{{--    <script type="text/javascript">--}}
-{{--        $(document).ready(function () {--}}
-{{--            $('body').on('click', '#destroyOrder', function () {--}}
+    <div id="clearOrder" class="modal" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="text-align: center">Lý do hủy thuê nhà </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
 
-{{--                $.ajax({--}}
-{{--                    url: "{{route('user.destroyOrder',['id'=>$order->id])}}",--}}
-{{--                    type: 'GET',--}}
-{{--                    success: function (result) {--}}
-{{--                        if (result.status == 'errors') {--}}
-{{--                            alert('Bạn không thể hủy trong 1 ngày trước thời gian thuê');--}}
-{{--                        }--}}
-{{--                        if (result.status == 'success') {--}}
-{{--                            alert('Bạn đã hủy order thành công ');--}}
-{{--                        }--}}
-{{--                    },--}}
-{{--                    error: function (error) {--}}
-{{--                        let err = JSON.parse(error.responseText);--}}
-{{--                      console.log(error);--}}
-{{--                    }--}}
-{{--                });--}}
+                </div>
+                <div class="modal-body" style="overflow: hidden;">
+                    <strong id="alert"></strong>
+                    <div class="col-md-12">
+                        <form method="POST" id="formCancelOrder">
+                            @csrf
+                            <div class="form-group has-feedback">
+                                <input type="checkbox" name="reasons[]" id="reasons[]"
+                                       value="Tôi đặt sai lịch">Tôi đặt sai lịch <br>
+                                <input type="checkbox" name="reasons[]" id="reasons[]"
+                                       value="Tôi đặt sai địa chỉ "> Tôi đặt sai địa chỉ
+                                <br>
+                                <input type="checkbox" name="reasons[]" id="reasons[]"
+                                       value="Tôi không có nhu cầu thuê nữa"> Tôi không có nhu cầu thuê nữa
+                                <br>
+                                <label>Lý do khác </label>
+                                <textarea name="reasons[]" style="width: 400px" id="reasons[]"></textarea>
+                            </div>
 
-{{--            })--}}
-{{--        })--}}
-{{--    </script>--}}
+                            <div class="form-group">
+                                <div class="col-md-12" style="text-align: center">
+                                    <button type="button" id="submitCancelOrder"
+                                            class="btn btn-primary btn-prime white btn-flat" onclick="return confirm('Bạn có thật sự muốn hủy')">Xác nhận
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('body').on('click', '#submitCancelOrder', function () {
+                // e.preventDefault();
+                let formCancelOrder = $("#formCancelOrder");
+                let formData = formCancelOrder.serialize();
+                console.log(formData)
+                $.ajax({
+                    url: "{{route('user.destroyOrder',['id'=>$order->id])}}",
+                    type: 'POST',
+                    data: formData,
+                    success: function (result) {
+                        if (result.status == 'success') {
+                            alert(result.message);
+                            location.reload();
+                        }
+                    },
+                    error: function (error) {
+                        let err = JSON.parse(error.responseText);
+
+                    }
+                });
+            });
+        })
+
+    </script>
 @endsection

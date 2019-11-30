@@ -28,7 +28,10 @@ class CustomerController extends Controller
         $order = Order::find($orderId);
         $this->customer->destroyOrder($orderId);
         $this->sendNotificationCancelOrder($order->house_id);
-        return redirect()->route('house.houseDetail', ['id' => Auth::user()->id]);
+        return response()->json([
+            'status'=>'success',
+            'message'=>'Bạn đã hủy thuê nhà '
+        ]);
     }
 
     public function sendNotificationCancelOrder($houseId)
