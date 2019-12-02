@@ -9,6 +9,7 @@ use App\House;
 use App\Http\Repositories\CustomerRepositoryInterface;
 use App\Http\Repositories\OrderRepositoryInterface;
 use App\Order;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,6 @@ class OrderService implements OrderServiceInterface
     public function create($request, $houseId)
     {
         // TODO: Implement order() method.
-
         $order = new Order();
         $order->checkin = $this->getDateCheckinFromForm($request);
         $order->checkout = $this->getDateCheckoutFromForm($request);
@@ -52,6 +52,8 @@ class OrderService implements OrderServiceInterface
                 }
             }
         }
+
+        $order->customer_id = $this->checkEmailCustomer($request)->id;
         $this->orderRepo->create($order);
 
     }
@@ -72,11 +74,25 @@ class OrderService implements OrderServiceInterface
     {
         $customers = $this->customer->getAll();
         foreach ($customers as $customer) {
-            if ((Auth::user()->email == $customer->email) && ($request->phone == $customer->phone)) {
-                return true;
+            if (Auth::user()->phone != null) {
+                if ($customer->user_id == Auth::user()->id) {
+                    return $customer;
+                }
+
+            } else {
+                $customer = new Customer;
+                $customer->name = Auth::user()->name;
+                $customer->email = Auth::user()->email;
+                $customer->phone = $request->phone;
+                $customer->user_id = Auth::user()->id;
+                $this->customer->create($customer);
+                $user = User::find(Auth::user()->id);
+                $user->phone = $request->phone;
+                $user->save();
+                return $customer;
             }
         }
-        return false;
+
     }
 
     public function getDateOrder($request)

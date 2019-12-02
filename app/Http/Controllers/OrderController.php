@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\House;
 use App\Http\Requests\CreateFormOrder;
+use App\Http\Services\HouseServiceInterface;
 use App\Http\Services\OrderServiceInterface;
 use App\Http\Services\UserServiceInterface;
 use App\Notifications\YouHasNewEmail;
@@ -17,11 +18,15 @@ class OrderController extends Controller
     //
     protected $order;
     protected $user;
+    protected $house;
 
-    public function __construct(OrderServiceInterface $order, UserServiceInterface $user)
+    public function __construct(OrderServiceInterface $order,
+                                UserServiceInterface $user,
+                                HouseServiceInterface $houseService)
     {
         $this->order = $order;
         $this->user = $user;
+        $this->house = $houseService;
     }
 
     public function order(CreateFormOrder $request, $id)
@@ -32,7 +37,7 @@ class OrderController extends Controller
                 $this->sendNotificationNewOrder($id);
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'order thành công'
+                    'message' => 'đặt lịch thành công'
                 ]);
             } else {
 
@@ -49,12 +54,21 @@ class OrderController extends Controller
         }
     }
 
-    public function delete($orderId)
+    public function delete($orderId, Request $request)
     {
-        $order=$this->order->findById($orderId);
+        $order = $this->order->findById($orderId);
         $this->order->destroy($orderId);
-        $this->sendNotificationCancelOrder($order->customer_id);
-        return redirect()->back()->withMessage('Đã xóa khách hàng thành công');
+        $reasons = $request->reasons;
+        foreach ($reasons as $reason) {
+            if ($reason != null) {
+                $this->sendNotificationCancelOrder($order->customer_id, $reason);
+            }
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'hủy thành công'
+        ]);
     }
 
     public function checkApprove($orderId)
@@ -68,7 +82,7 @@ class OrderController extends Controller
     public function approve($id)
     {
 
-        $house = House::find($id);
+        $house = $this->house->getHouseById($id);
         $orders = Order::whereNull('approved_at')->where('house_id', $id)->paginate(10);
         return view('user.housesManager.detailCustomer', compact('orders', 'house'));
     }
@@ -105,12 +119,12 @@ class OrderController extends Controller
         $user->notify(new YouHasNewEmail($details));
     }
 
-    public function sendNotificationCancelOrder($customerId)
+    public function sendNotificationCancelOrder($customerId, $message)
     {
         $user = $this->user->getUserByCustomer($customerId);
         $details = [
             'greeting' => 'Hi Customer',
-            'body' => 'Your order has been cancel from websiteHomestay.com',
+            'body' => $message,
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),

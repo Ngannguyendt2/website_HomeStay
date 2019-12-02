@@ -43,7 +43,7 @@ class CustomerService implements CustomerServiceInterface
         } else {
             $this->orderRepo->destroy($order);
 
-            $error = 'Bạn đã hủy order thành công ';
+            $error = 'Bạn đã hủy thuê nhà thành công ';
             session()->flash('success',$error);
         }
 

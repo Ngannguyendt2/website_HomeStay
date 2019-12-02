@@ -19,4 +19,6 @@ interface UserServiceInterface
     public function getUserByHouse($houseId);
 
     public function getUserByCustomer($customerId);
+
+    public function historyRentHouse();
 }

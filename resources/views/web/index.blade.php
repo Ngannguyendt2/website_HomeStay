@@ -121,6 +121,7 @@
             {{--            <p class="text-dark">Tìm thấy {{count($houses)}} nhà.</p>--}}
             <div id="table_paginate">
                 @include('web.paginate')
+
             </div>
             <div id="search"></div>
         </div>
@@ -554,18 +555,18 @@
                     type: 'POST',
                     data: data,
                     success: function (response) {
-                        $.each(response.data, function (index, value) {
-                            console.log(response.data);
+                        console.log(response)
+                        $.each(response, function (index, value) {
                             html += '<div class="col-md-6">';
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">';
                             html += '<div style="border-radius: 15px; background-image: url( ' + 'http://127.0.0.1:8000/storage/images/' + JSON.parse(value.image)[0] + ') " class="propertie-item set-bg" ' + '>';
                             html += '<div class="sale-notic">' + "Cho thuê" + '</div>';
                             html += '<div class="propertie-info text-white">';
                             html += '<div class="info-warp">';
-                            html += '<h5>' + value.category.name + '</h5>';
+                            html += '<h5>' + value.category_id + '</h5>';
                             html += '<p><i class="fa fa-map-marker"></i>' +
-                                ' ' + value.ward.name + '\n' +
-                                ', ' + value.district.name + '<br>' + value.province.name + '</p>';
+                                ' ' + value.ward_id + '\n' +
+                                ', ' + value.district_id + '<br>' + value.province_id + '</p>';
                             html += '</div>';
                             html += '<div style="margin-top: 5px" class="price">';
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">' + numberFormat(value.price)

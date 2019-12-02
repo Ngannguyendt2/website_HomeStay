@@ -47,15 +47,16 @@
 
                             <div class="col-sm-2 offset-xl-1">
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="text text-black-50" style="margin-top: 10px; width: 180px">
+                                            Giá: {{number_format($house->price)}} Đồng</p>
+
+                                    </div>
                                     <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary"
                                                               data-toggle="modal"
                                                               data-target="#Order">Đặt phòng</a>
                                     </div>
-                                    <div class="col-md-12">
-                                        <p class="btn btn-outline-dark" style="margin-top: 10px; width: 180px">
-                                            Giá: {{number_format($house->price)}} Đồng</p>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,57 +81,85 @@
                         </div>
                         <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
-                            {{csrf_field()}}
-                            <div class="row" id="post_data"></div>
-{{--                            <div class="row">--}}
-{{--                                @foreach($posts as $key => $post)--}}
-{{--                                    <div class="rating col-md-12">--}}
-{{--                                        <div class="row">--}}
-{{--                                            <div class="col-md-3">--}}
 
-{{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-{{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-{{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-{{--                                                     alt="ahihi"/>--}}
-{{--                                                <p>{{$post->user->name}}</p>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-md-9">--}}
-{{--                                                @foreach ($post->ratings()->get() as $rate)--}}
-{{--                                                    <input id="input-1" name="input-1" class="rating rating-loading"--}}
-{{--                                                           data-min="0"--}}
-{{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
-{{--                                                           data-size="xs"--}}
-{{--                                                           disabled="">--}}
-{{--                                                @endforeach--}}
-{{--                                                <p>{{$post->body}}</p>--}}
-{{--                                                @foreach($post->comments()->get() as $comment)--}}
-{{--                                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-{{--                                                         src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-{{--                                                         class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-{{--                                                         alt="ahihi"/>--}}
-{{--                                                    <p class="text text-primary">{{$comment->user->name}}</p>--}}
-{{--                                                    <p>{{$comment->body}}</p>--}}
-{{--                                                @endforeach--}}
-{{--                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>--}}
-{{--                                                <form method="POST" id="formComment">--}}
-{{--                                                    @csrf--}}
-{{--                                                    <input type="hidden" id="post_id" value="{{$post->id}}"--}}
-{{--                                                           name="post_id">--}}
-{{--                                                    <input type="text" id="body" style="display: none" width="300px"--}}
-{{--                                                           name="body">--}}
-{{--                                                    <button type="button" id="comment" class="btn btn-primary"--}}
-{{--                                                            style="display: none">Bình luận--}}
-{{--                                                    </button>--}}
-{{--                                                </form>--}}
+                            {{--                            {{csrf_field()}}--}}
+                            {{--                            <div class="row" id="post_data"></div>--}}
+                            {{--                            <div class="row">--}}
+                            {{--                                @foreach($posts as $key => $post)--}}
+                            {{--                                    <div class="rating col-md-12">--}}
+                            {{--                                        <div class="row">--}}
+                            {{--                                            <div class="col-md-3">--}}
 
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                            {{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
+                            {{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
+                            {{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
+                            {{--                                                     alt="ahihi"/>--}}
+                            {{--                                                <p>{{$post->user->name}}</p>--}}
+                            {{--                                            </div>--}}
+                            {{--                                            <div class="col-md-9">--}}
+                            {{--                                                @foreach ($post->ratings()->get() as $rate)--}}
+                            {{--                                                    <input id="input-1" name="input-1" class="rating rating-loading"--}}
+                            {{--                                                           data-min="0"--}}
+                            {{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
+                            {{--                                                           data-size="xs"--}}
+                            {{--                                                           disabled="">--}}
+                            {{--                                                @endforeach--}}
+                            {{--                                                <p>{{$post->body}}</p>--}}
+                            {{--                                                @foreach($post->comments()->get() as $comment)--}}
+                            {{--                                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
+                            {{--                                                         src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
+                            {{--                                                         class="img-thumbnail img-circle img-responsive rounded-circle"--}}
+                            {{--                                                         alt="ahihi"/>--}}
+                            {{--                                                    <p class="text text-primary">{{$comment->user->name}}</p>--}}
+                            {{--                                                    <p>{{$comment->body}}</p>--}}
+                            {{--                                                @endforeach--}}
+                            {{--                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>--}}
+                            {{--                                                <form method="POST" id="formComment">--}}
+                            {{--                                                    @csrf--}}
+                            {{--                                                    <input type="hidden" id="post_id" value="{{$post->id}}"--}}
+                            {{--                                                           name="post_id">--}}
+                            {{--                                                    <input type="text" id="body" style="display: none" width="300px"--}}
+                            {{--                                                           name="body">--}}
+                            {{--                                                    <button type="button" id="comment" class="btn btn-primary"--}}
+                            {{--                                                            style="display: none">Bình luận--}}
+                            {{--                                                    </button>--}}
+                            {{--                                                </form>--}}
+
+                            {{--                                            </div>--}}
+                            {{--                                        </div>--}}
+                            {{--                                    </div>--}}
 
 
-{{--                                @endforeach--}}
-{{--                            </div>--}}
+                            {{--                                @endforeach--}}
+                            {{--                            </div>--}}
 
+                            <div class="container">
+                                <form method="POST" id="comment_form">
+                                    <input type="hidden" id="house_id" name="house_id" value="{{$house->id}}">
+                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}">
+
+                                    <div class="form-group">
+                                        <div class="rating">
+                                            <input id="input-1" name="rate" class="rating rating-loading"
+                                                   data-min="0"
+                                                   data-max="5" data-step="1" data-size="xs"
+                                                   value="{{ $house->userAverageRating }}">
+                                            <input type="hidden" id="id-house-rating" name="id" required=""
+                                                   value="{{ $house->id }}">
+                                        </div>
+                                        <textarea name="body" id="body" class="form-control" placeholder="Enter Comment"
+                                                  rows="5"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="comment_id" id="comment_id" value="0"/>
+                                        <input type="submit" name="submit" id="submit" class="btn btn-info"
+                                               value="Bình luận"/>
+                                    </div>
+                                </form>
+                                <span id="comment_message"></span>
+                                <br/>
+                                <div id="display_comment"></div>
+                            </div>
                         </div>
                         <hr>
                         <div class="row property-details-list">
@@ -231,9 +260,8 @@
                                     @endif
                                     <div class="form-group has-feedback">
                                         <label>Ngày ở: </label>
-                                        <input type="text" name="checkin" class="form-control" id="checkin"
-                                               data-provide="datepicker">
-                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                        <input type="text" name="checkin" id="checkin"
+                                               data-provide="datepicker" class="form-control">
                                         <span class="text-danger">
                                 <strong id="checkin-error"></strong>
                                         </span>
@@ -243,7 +271,6 @@
                                         <label>Ngày trả: </label>
                                         <input type="hidden" value="{{$house->id}}" id="house_id">
                                         <input type="text" name="checkout" class="form-control" id="checkout">
-                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                         <span class="text-danger">
                                 <strong id="checkout-error"></strong>
                                         </span>
@@ -291,11 +318,12 @@
                                         <input id="input-1" name="rate" class="rating rating-loading" data-min="0"
                                                data-max="5" data-step="1" data-size="xs"
                                                value="{{ $house->userAverageRating }}">
-                                        <input type="hidden" name="id" required="" value="{{ $house->id }}">
+                                        <input type="hidden" id="id-house-rating" name="id" required=""
+                                               value="{{ $house->id }}">
                                     </div>
 
                                     <div class="form-group has-feedback">
-                                        <input type="text" name="body" class="form-control" id="body">
+                                        <input type="text" name="body" class="form-control" id="content">
                                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                         <span class="text-danger">
                                 <strong id="body-error"></strong>
@@ -342,7 +370,7 @@
                     let datePrice = date.setTime((dateCheckout - dateCheckin) / 1000 / 60 / 60 / 24);
                     let priceOneDay = parseInt({{$house->price}});
                     totalPrice = priceOneDay * datePrice;
-                    $('#price').html(totalPrice);
+                    $('#price').html(numberFormat(totalPrice));
                 });
             });
 
@@ -402,36 +430,13 @@
                     }
                 });
             });
-        })
-
-    </script>
-    <script>
-        $(document).ready(function () {
-            var _token = $('input[name="_token"]').val();
-
-            load_data('', _token);
-
-            function load_data(id = "", _token) {
-                $.ajax({
-                    url: "{{route('user.load_data', $house->id)}}",
-                    method: "POST",
-                    data: {id: id, _token: _token},
-                    success: function (data) {
-                        $('#load_more_button').remove();
-                        $('#post_data').append(data);
-                    }
-                });
-                $(document).on('click', '#load_more_button', function () {
-                    var id = $(this).data('id');
-                    $('#load_more_button').html('<b>Loading...</b>');
-                    load_data(id, _token);
-                })
-            }
         });
+        function numberFormat(number) {
+            return String(number).replace(/(.)(?=(\d{3})+$)/g, '$1,')
+        }
 
 
     </script>
-    <script src="{{asset('js/ajaxReview.js')}}"></script>
     <script>
         $(document).ready(function () {
             $('.submitComment').click(function () {
@@ -455,5 +460,60 @@
 
         })
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#comment_form').on('submit', function (event) {
+                event.preventDefault();
+                var form_data = $(this).serialize();
+
+                var data = {
+                    form_data: form_data,
+                    _token: "{{ csrf_token() }}",
+
+                };
+                $.ajax({
+                    url: '{{route('post')}}',
+                    data: data,
+                    method: 'POST',
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data.error !== '') {
+                            $('#comment_form')[0].reset();
+                            $('#comment_message').html(data.error);
+                            $('#comment_id').val('0');
+                            load_comment();
+
+                        } else {
+                            alert('Đã đăng nhận xét thành công');
+                            $('#comment_message').html(data.error);
+                            load_comment();
+
+                        }
+                    }
+                })
+            });
+            $(document).on('click', '.reply', function () {
+                var comment_id = $(this).attr("id");
+                $('#comment_id').val(comment_id);
+                $('#body').focus();
+                load_comment();
+            });
+        });
+
+        load_comment();
+
+        function load_comment() {
+            $.ajax({
+                url: "{{route('getAll', $house->id)}}",
+                type: "POST",
+                data: {_token: "{{ csrf_token() }}"},
+                success: function (data) {
+                    $('#display_comment').html(data);
+                }
+            })
+        }
+
+    </script>
+
 @endsection
 

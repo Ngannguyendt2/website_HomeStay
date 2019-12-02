@@ -193,18 +193,21 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="input-group">
+
                                     <input type="text" class="form-control" name="price" aria-label="Amount (to the nearest dollar)">
+
                                     <div class="input-group-append">
                                         <span class="input-group-text">VNĐ</span>
                                     </div>
-                                </div>                                @if ($errors->has('price'))
+                                </div>
+                                @if ($errors->has('price'))
                                     <p class="text text-danger">{{ $errors->first('price')}}</p>
                                 @endif
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">
                             <div class="col-md-3" style="margin-top: 8px">
-                                <strong>Loại bất động sản:</strong>
+                                <strong>Trạng thái :</strong>
                             </div>
                             <div class="col-md-8">
                                 <select name="status" class="form-control" id="status">
@@ -256,6 +259,12 @@
 <script src="{{asset('js/main.js')}}"></script>
 
 <!-- load for map -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.12.1/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    CKEDITOR.replace('description');
+</script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
 <script src="{{asset('js/map.js')}}"></script>
 <script>
@@ -270,15 +279,15 @@
                         let fileRead = new FileReader(); //new filereader
                         fileRead.onload = (function (file) { //trigger function on successful read
                             return function (e) {
-                                let img = $('<img/>').addClass('thumb').attr('src', e.target.result).css('width','250px'); //create image element
+                                let img = $('<img id="img"/>').addClass('thumb').attr('src', e.target.result).css('width','250px'); //create image element
                                 $('#thumb-output').append(img); //append image to output element
                             };
                         })(file);
                         fileRead.readAsDataURL(file); //URL representing the file's data.
                     }
                 });
-
         });
+
     });
 
 </script>
