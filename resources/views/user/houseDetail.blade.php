@@ -39,7 +39,7 @@
                         <tbody>
                         @if(count($orders) == 0)
                             <tr>
-                                <td colspan="9">Bạn chưa thuê nhà</td>
+                                <td colspan="9" style="text-align: center">Bạn chưa thuê nhà</td>
                             </tr>
                         @else
                             @foreach($orders as $key => $order)
@@ -58,6 +58,33 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <script type="text/javascript">
+
+                                $(document).ready(function () {
+                                    $('body').on('click', '#submitCancelOrder', function () {
+                                        // e.preventDefault();
+                                        let formCancelOrder = $("#formCancelOrder");
+                                        let formData = formCancelOrder.serialize();
+                                        console.log(formData)
+                                        $.ajax({
+                                            url: "{{route('user.destroyOrder',['id'=>$order->id])}}",
+                                            type: 'POST',
+                                            data: formData,
+                                            success: function (result) {
+                                                if (result.status == 'success') {
+                                                    alert(result.message);
+                                                    location.reload();
+                                                }
+                                            },
+                                            error: function (error) {
+                                                let err = JSON.parse(error.responseText);
+
+                                            }
+                                        });
+                                    });
+                                })
+
+                            </script>
                         @endif
                         </tbody>
 
@@ -111,31 +138,5 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
 
-        $(document).ready(function () {
-            $('body').on('click', '#submitCancelOrder', function () {
-                // e.preventDefault();
-                let formCancelOrder = $("#formCancelOrder");
-                let formData = formCancelOrder.serialize();
-                console.log(formData)
-                $.ajax({
-                    url: "{{route('user.destroyOrder',['id'=>$order->id])}}",
-                    type: 'POST',
-                    data: formData,
-                    success: function (result) {
-                        if (result.status == 'success') {
-                            alert(result.message);
-                            location.reload();
-                        }
-                    },
-                    error: function (error) {
-                        let err = JSON.parse(error.responseText);
-
-                    }
-                });
-            });
-        })
-
-    </script>
 @endsection

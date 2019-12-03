@@ -23,30 +23,36 @@ class CustomerController extends Controller
         $this->user = $user;
     }
 
-    public function destroyOrder($orderId)
+    public function destroyOrder($orderId,Request $request)
     {
         $order = Order::find($orderId);
         $this->customer->destroyOrder($orderId);
-        $this->sendNotificationCancelOrder($order->house_id);
+        $reasons = $request->reasons;
+        foreach ($reasons as $reason) {
+            if ($reason != null) {
+                $this->sendNotificationCancelOrder($order->house_id,$reason);
+            }
+        }
+
         return response()->json([
             'status'=>'success',
             'message'=>'Bạn đã hủy thuê nhà '
         ]);
     }
 
-    public function sendNotificationCancelOrder($houseId)
+    public function sendNotificationCancelOrder($houseId,$message)
     {
         $user = $this->user->getUserByHouse($houseId);
 
         $details = [
             'greeting' => 'Hi House Owner',
-            'body' => 'Your order has been cancel from websiteHomestay.com',
+            'body' => $message,
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
             'order_id' => 101
         ];
-
-        $user->notify(new YouHasNewEmail($details));
+        $when = now()->addSeconds(10);
+        $user->notify((new YouHasNewEmail($details))->delay($when));
     }
 }

@@ -77,13 +77,12 @@
                                     <a href="" style="color: green" data-toggle="modal"
                                        data-target="#ChangePassword"><i class="fa fa-key" style="font-size:24px"></i><b>Đổi
                                             mật khẩu</b></a>
-
                                 </div>
                             @endif
 
                             <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
-                                <a style="color: green" href="{{route('user.edit',['id'=>$user->id])}}"><i
-                                            class="fa fa-edit" style="font-size:20px"></i><b>Chỉnh sửa thông tin</b>
+                                <a style="color: green" href="{{route('user.edit')}}"><i
+                                        class="fa fa-edit" style="font-size:20px"></i><b>Chỉnh sửa thông tin</b>
                                 </a>
                             </div>
                             <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
@@ -91,8 +90,16 @@
                                     <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i><b>Lịch sử
                                         thuê nhà</b>
                                 </a>
-
                             </div>
+                            @if(count($user->houses)==0)
+                            @else
+                                <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
+                                    <a href="" style="color: green" data-toggle="modal"
+                                       data-target="#monthlyIncome"><i class="fa fa-money"
+                                                                       style="font-size:24px"></i><b>Thu nhập của
+                                            bạn </b></a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-1"></div>
@@ -134,6 +141,7 @@
 
     </div>
 </div>
+
 <div id="ChangePassword" class="modal" role="dialog" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -171,16 +179,75 @@
                                    placeholder="Nhập lại mật khẩu ">
                             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12 text-center">
+
+                        <div class="form-group">
+                            <div class="col-md-12" style="text-align: center">
                                 <button type="button" id="submitChangePass"
                                         class="btn btn-primary btn-prime white btn-flat">Xác nhận
                                 </button>
-
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
+                                </button>
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{--count money owner house--}}
+
+<div id="monthlyIncome" class="modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-center primecolor">Kiểm tra thu nhập của bạn </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <strong id="alert"></strong>
+                <div class="col-md-offset-1 col-md-10">
+                    <form method="POST" id="moneyOfOwnerHouse">
+                        @csrf
+                        <div class="form-group has-feedback">
+                            <label>Chọn tháng bạn muốn kiểm tra : </label>
+                            <input type="month" name="month" id="month" class="form-control">
+                            <span class="text-danger">
+                                <strong id="date-error"></strong>
+                                        </span>
+                        </div>
+                        <div class="form-group has-feedback" style="display: none" id="date">
+                            <div class="row">
+                                <div class="col-md-9" id="checkout">
+
+                                </div>
+                                <div class="col-md-3" id="moneyOfDay">
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group has-feedback" style="display: none" id="money">
+                            <b><label style="color: #17a2b8">Tổng số tiền trong tháng:</label></b>
+                            <b><label id="totalMoney" style="color: #00aced"></label><label
+                                    style="color: #00aced">VND</label></b>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12" style="text-align: center">
+                                <button type="button" id="submitCalculatorMoney"
+                                        class="btn btn-primary btn-prime white btn-flat">Xác nhận
+                                </button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -201,50 +268,79 @@
 <script src="{{asset('js/masonry.pkgd.min.js')}}"></script>
 <script src="{{asset('js/magnific-popup.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
-
 <!-- load for map -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
 <script src="{{asset('js/map.js')}}"></script>
 
 <script type="text/javascript">
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-    //     }
-    // });
+    $(document).ready(function () {
 
-    $('body').on('click', '#submitChangePass', function () {
-        // e.preventDefault();
-        let changePasswordForm = $("#Password");
-        let formData = changePasswordForm.serialize();
-        $('#old_password-error').html("");
-        $('#new_password-error').html("");
-        $('#alert').html("");
-        $.ajax({
-            url: "{{ route('user.changePassword', $user->id) }}",
-            type: 'POST',
-            data: formData,
-            success: function (data) {
-                if (data.status == 'errors') {
-                    $('#alert').html(data.message).css('color', 'red');
-                }
-                if (data.status == 'success') {
-                    $('#alert').html(data.message).css('color', 'green').click(location.reload());
-                }
-            },
-            error: function (result) {
 
-                let err = JSON.parse(result.responseText);
-                if (err.errors.old_password) {
-                    $('#old_password-error').html(err.errors.old_password[0]);
-                }
-
-                if (err.errors.new_password) {
-                    $('#new_password-error').html(err.errors.new_password[0]);
-                }
-            }
+        $('#month').change(function () {
+            $('#date').css('display', 'block');
         });
-    });
+        $('body').on('click', '#submitCalculatorMoney', function () {
+
+
+            let calculatorMoney = $('#moneyOfOwnerHouse');
+            let formData = calculatorMoney.serialize();
+            $('#totalMoney').html('');
+            $('#checkout').html('');
+            $('#moneyOfDay').html('');
+            $.ajax({
+                url: "{{route('user.monthlyIncome')}}",
+                type: 'POST',
+                data: formData,
+                success: function (result) {
+
+                    $('#totalMoney').html(result.data);
+                    $('#money').css('display', 'block');
+                    for (let i = 0; i < result.orders.length; i++) {
+
+                        $('#checkout').append('<b>' + result.orders[i].checkout + '<b><br>');
+                        $('#moneyOfDay').append('<b>' + result.orders[i].totalPrice + '<b><br>');
+
+                    }
+                },
+                error: function (err) {
+
+                }
+            })
+        });
+
+        $('body').on('click', '#submitChangePass', function () {
+            // e.preventDefault();
+            let changePasswordForm = $("#Password");
+            let formData = changePasswordForm.serialize();
+            $('#old_password-error').html("");
+            $('#new_password-error').html("");
+            $('#alert').html("");
+            $.ajax({
+                url: "{{ route('user.changePassword') }}",
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    if (data.status == 'errors') {
+                        $('#alert').html(data.message).css('color', 'red');
+                    }
+                    if (data.status == 'success') {
+                        $('#alert').html(data.message).css('color', 'green').click(location.reload());
+                    }
+                },
+                error: function (result) {
+
+                    let err = JSON.parse(result.responseText);
+                    if (err.errors.old_password) {
+                        $('#old_password-error').html(err.errors.old_password[0]);
+                    }
+
+                    if (err.errors.new_password) {
+                        $('#new_password-error').html(err.errors.new_password[0]);
+                    }
+                }
+            });
+        })
+    })
 
 
 </script>

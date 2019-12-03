@@ -30,17 +30,18 @@ Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->m
 Route::prefix('/user')->middleware('auth')->group(function () {
 
     Route::post('show_more/{id}', 'ShowMoreController@load_data')->name('user.load_data');
-    Route::get('/{id}/profile', 'UserController@getById')->name('user.profile');
-    Route::post('/{id}/changePassword', 'UserController@changePassword')->name('user.changePassword');
-    Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
+    Route::get('/profile', 'UserController@getById')->name('user.profile');
+    Route::post('/changePassword', 'UserController@changePassword')->name('user.changePassword');
+    Route::get('/updateProfile', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
     Route::post('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
     Route::get('historyRentHouse', 'UserController@historyRentHouse')->name('user.historyRentHouse');
+    Route::post('/monthlyIncome','UserController@getMonthlyIncome')->name('user.monthlyIncome');
     Route::prefix('/houses')->group(function () {
 
         Route::get('/create', 'HouseController@create')->name('house.create');
         Route::post('/create', 'HouseController@store')->name('house.store');
-        Route::get('/list/{id}', 'HouseController@housesManager')->name('house.list');
+        Route::get('/list', 'HouseController@housesManager')->name('house.list');
         Route::post('/{id}/update', 'HouseController@update')->name('house.update');
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');

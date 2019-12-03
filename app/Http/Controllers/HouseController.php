@@ -9,6 +9,7 @@ use App\Http\Services\HouseServiceInterface;
 use App\Order;
 use App\Post;
 use App\Province;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -48,11 +49,12 @@ class HouseController extends Controller
         return redirect()->route('house.create');
     }
 
-    public function housesManager($id)
+    public function housesManager()
     {
-        $houses = House::where('user_id', $id)->paginate(5);
+        $id = Auth::user()->id;
+        $houseOwner = House::where('user_id', $id)->paginate(5);
         $orders = Order::all();
-        return view('user.housesManager.list', compact('houses', 'orders'));
+        return view('user.housesManager.list', compact('houseOwner', 'orders'));
     }
 
     public function checkApprove($id)
