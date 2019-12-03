@@ -370,7 +370,7 @@
                     let datePrice = date.setTime((dateCheckout - dateCheckin) / 1000 / 60 / 60 / 24);
                     let priceOneDay = parseInt({{$house->price}});
                     totalPrice = priceOneDay * datePrice;
-                    $('#price').html(numberFormat(totalPrice));
+                    $('#price').html(numberFormat(totalPrice) + ' Đồng');
                 });
             });
 
