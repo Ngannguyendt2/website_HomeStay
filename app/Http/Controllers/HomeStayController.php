@@ -21,11 +21,17 @@ class HomeStayController extends Controller
 
     public function index()
     {
-
         $provinces = Province::all();
-        $houses = House::whereNotNull('approved_at')->orderBy('approved_at', 'DESC')->paginate(4);
-        return view('web.index', compact('houses', 'provinces'));
-
+        $houses = House::whereNotNull('approved_at')->orderBy('approved_at', 'DESC')->paginate(6);
+        return view('web.index', compact('provinces', 'houses'));
+    }
+    function fetch_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $houses = House::whereNotNull('approved_at')->orderBy('approved_at', 'DESC')->paginate(6);
+            return view('web.paginate', compact('houses'))->render();
+        }
     }
 
     public function comingSoon()
