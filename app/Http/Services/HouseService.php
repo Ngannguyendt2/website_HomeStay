@@ -102,20 +102,6 @@ class HouseService implements HouseServiceInterface
                 'value' => $request->ward_id
             ];
         }
-//        if($request->checkin) {
-//            $datas[] = [
-//                'column' => 'orders.checkin',
-//                'operator' => '<>',
-//                'value' => ''
-//            ];
-//        }
-//        if($request->checkout) {
-//            $datas[] = [
-//                'column' => 'orders.checkout',
-//                'operator' => '<>',
-//                'value' => $request->checkout
-//            ];
-//        }
         if ($request->totalBathroom) {
             $datas[] = [
                 'column' => 'totalBathroom',
@@ -139,15 +125,24 @@ class HouseService implements HouseServiceInterface
         }
 
         foreach ($datas as $key => $data) {
-            $model = $model->where($data['column'], $data['operator'], $data['value'])
-                ->whereNull('orders.checkin')
-                ->orWhere('orders.checkin', '<>', $checkin)
-                ->where('orders.checkout', '<>', $checkout)
-                ->whereNotBetween('orders.checkin', array($checkin, $checkout))
-                ->whereNotBetween('orders.checkout', array($checkin, $checkout))
-                ->where($data['column'], $data['operator'], $data['value'])
-                ->where('orders.checkin', '<>', now())
-                ->where('orders.checkout', '<>', now());
+
+            if($request->checkin || $request->checkout) {
+                $model = $model->where($data['column'], $data['operator'], $data['value'])
+                    ->whereNull('orders.checkin')
+                    ->orWhere('orders.checkin', '<>', $checkin)
+                    ->where('orders.checkout', '<>', $checkout)
+                    ->whereNotBetween('orders.checkin', array($checkin, $checkout))
+                    ->whereNotBetween('orders.checkout', array($checkin, $checkout))
+                    ->where($data['column'], $data['operator'], $data['value'])
+                    ->where('orders.checkin', '<>', now())
+                    ->where('orders.checkout', '<>', now())
+                    ->whereRaw("? NOT BETWEEN orders.checkin AND orders.checkout", [$checkin])
+                    ->whereRaw("? NOT BETWEEN orders.checkin AND orders.checkout", [$checkout]);
+
+            } else {
+                $model = $model->where($data['column'], $data['value']);
+            }
+
 
         }
         $result = $model->orderBy('houses.approved_at', 'DESC');
