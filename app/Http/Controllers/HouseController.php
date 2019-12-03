@@ -74,12 +74,26 @@ class HouseController extends Controller
     public function search(Request $request)
     {
         $items = $this->house->search($request);
+//        dd($items);
         foreach ($items as $item) {
-            $arrays[] = $item->toArray();
-            $province = $item->province->name;
-            $district = $item->district->name;
-            $ward = $item->ward->name;
-            $category = $item->category->name;
+            foreach (House::all() as $house) {
+                if ($house->province_id == $item->province_id
+                    && $house->district_id == $item->district_id
+                    && $house->ward_id == $item->ward_id
+                    && $house->category_id == $item->category_id)
+                {
+                    $item->province_id = $house->province->name;
+                    $item->district_id = $house->district->name;
+                    $item->ward_id = $house->ward->name;
+                    $item->category_id = $house->category->name;
+
+                }
+            }
+//            $arrays[] = $item->toArray();
+//            $province = $item->province->name;
+//            $district = $item->district->name;
+//            $ward = $item->ward->name;
+//            $category = $item->category->name;
         }
         return response()->json($items);
     }

@@ -20,12 +20,12 @@ Auth::routes();
 Route::get('/category', 'HomeStayController@category')->name('web.category');
 Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
 Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
+Route::get('/fetch_data', 'HomeStayController@fetch_data');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
 Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
-Route::post('{id}/post', 'HouseController@getPostAjax')->name('post');
 
 Route::prefix('/user')->middleware('auth')->group(function () {
 
@@ -78,5 +78,10 @@ Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
 
 Route::post('/search', 'HouseController@search')->name('search');
+Route::post('/index', 'HomeStayController@display')->name('display');
 
 Route::post('/changeStatus/{id}','HouseController@changeStatus')->name('changeStatus');
+
+Route::post('display/{id}', 'PostController@display')->name('getAll');
+Route::post('post', 'PostController@post')->name('post');
+Route::post('comment', 'PostController@comment')->name('comment');

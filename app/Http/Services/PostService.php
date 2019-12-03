@@ -24,9 +24,9 @@ class PostService implements PostServiceInterface
         // TODO: Implement create() method.;
         $post = new Post();
         $post->body = $request->body;
-        $post->house_id=$request->id;
-        $post->user_id=Auth::user()->id;
-        $this->postRepo->create($post);
+        $post->house_id = $request->id;
+        $post->user_id = Auth::user()->id;
+//       $this->postRepo->create($post);
 
         $rating = new \willvincent\Rateable\Rating;
         $rating->rating = $request->rate;
