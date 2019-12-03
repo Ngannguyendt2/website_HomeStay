@@ -162,11 +162,6 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row property-details-list">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#review">Để lại nhận xét
-                            </button>
-                        </div>
                         <h3 class="sl-sp-title bd-no">Vị trí</h3>
                         <div id="map" style="width:500px;height:500px;" class="img-fluid">
                             <iframe src="{{$house->map}}" width="600" height="450" frameborder="0" style="border:0"
