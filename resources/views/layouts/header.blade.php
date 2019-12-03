@@ -49,18 +49,18 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 <a style="color: black" class="dropdown-item"
-                                   href="{{route('user.profile',Auth::user()->id)}}">
+                                   href="{{route('user.profile')}}">
                                     <i class="fa fa-user-circle-o"></i>
                                     Thông tin cá nhân
                                 </a>
                                 <a style="color: black" class="dropdown-item"
-                                   href="{{route('house.list',Auth::user()->id)}}">
+                                   href="{{route('house.list')}}">
                                     <i class="fa fa-institution"></i>
                                     Nhà của tôi
                                 </a>
                                 @if(Auth::user()->admin == 1)
                                     <a style="color: black" class="dropdown-item"
-                                       href="{{route('admin.index',Auth::user()->id)}}">
+                                       href="{{route('admin.index')}}">
                                         <i class="fa fa-drivers-license-o"></i>
                                         Trang Admin
                                     </a>

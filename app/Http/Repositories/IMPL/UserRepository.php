@@ -10,6 +10,7 @@ use App\Http\Repositories\Eloquent\RepositoryEloquent;
 use App\Http\Repositories\UserRepositoryInterface;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserRepository extends RepositoryEloquent implements UserRepositoryInterface
 {
@@ -47,5 +48,19 @@ class UserRepository extends RepositoryEloquent implements UserRepositoryInterfa
         $user = Auth::user();
         $customer = $user->customer()->first();
         return $customer->orders;
+    }
+
+    public function getMonthlyIncome($startDate, $endDate)
+    {
+        // TODO: Implement getMonthlyIncome() method.
+
+        $money = DB::table('users')->join('houses', 'users.id', '=', 'houses.user_id')
+            ->join('orders', 'houses.id', '=', 'orders.house_id')
+            ->where('orders.checkin', '<=', $endDate)
+            ->where('orders.checkout', '>=', $startDate)
+            ->where('orders.checkout', '<=', $endDate)
+            ->where('users.id', '=', Auth::user()->id)
+            ->sum('orders.totalPrice');
+        return $money;
     }
 }

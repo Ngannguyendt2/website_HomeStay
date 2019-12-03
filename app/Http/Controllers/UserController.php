@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Services\OrderServiceInterface;
 use App\Http\Services\UserServiceInterface;
 use App\User;
+use Carbon\Carbon;
+use Egulias\EmailValidator\Exception\DotAtStart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -27,14 +30,16 @@ class UserController extends Controller
         return view('admin.users.list', compact('users'));
     }
 
-    public function getById($id)
+    public function getById()
     {
+        $id = Auth::user()->id;
         $user = $this->profileService->getUserById($id);
-        return view('user.profile', compact('user'));
+        return view('user.profile', compact('user', 'orders'));
     }
 
-    public function edit($id)
+    public function edit()
     {
+        $id = Auth::user()->id;
         $user = $this->profileService->getUserById($id);
         return view('user.update', compact('user'));
     }
@@ -54,8 +59,9 @@ class UserController extends Controller
         return redirect()->route('user.profile', $user->id);
     }
 
-    public function changePassword($id, UpdatePasswordRequest $request)
+    public function changePassword(UpdatePasswordRequest $request)
     {
+        $id = Auth::user()->id;
         $user = $this->profileService->getUserById($id);
         return $this->profileService->updatePassword($user, $request);
     }
@@ -80,6 +86,20 @@ class UserController extends Controller
     {
         $orders = $this->profileService->historyRentHouse();
         return view('user/houseDetail', compact('orders'));
+    }
+
+    public function getMonthlyIncome(Request $request)
+    {
+
+        $money = $this->profileService->getMonthlyIncome($request);
+        $orders = $this->profileService->getOrderByDate($request);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'thanh cong',
+            'data' => $money,
+            'orders'=>$orders
+        ]);
+
     }
 
 }

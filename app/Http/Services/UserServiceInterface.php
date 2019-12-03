@@ -21,4 +21,8 @@ interface UserServiceInterface
     public function getUserByCustomer($customerId);
 
     public function historyRentHouse();
+
+    public function getMonthlyIncome($request);
+
+    public function getOrderByDate($request);
 }

@@ -32,7 +32,7 @@ class OrderService implements OrderServiceInterface
         $order->checkout = $this->getDateCheckoutFromForm($request);
         $order->totalPrice = $this->getPriceHouse($request, $houseId);
         $order->house_id = $houseId;
-       $order->customer_id=$this->checkEmailCustomer($request)->id ;
+        $order->customer_id = $this->checkEmailCustomer($request)->id;
         $this->orderRepo->create($order);
 
     }
@@ -53,8 +53,8 @@ class OrderService implements OrderServiceInterface
     {
         $customers = $this->customer->getAll();
         foreach ($customers as $customer) {
-            if (Auth::user()->phone!=null ) {
-                if ($customer->user_id==Auth::user()->id){
+            if (Auth::user()->phone != null) {
+                if ($customer->user_id == Auth::user()->id) {
                     return $customer;
                 }
 
@@ -113,5 +113,11 @@ class OrderService implements OrderServiceInterface
     {
         // TODO: Implement getOrderByHouse() method.
         return $this->orderRepo->getOrderByHouse($houseId);
+    }
+
+    public function getOrderByUser()
+    {
+        // TODO: Implement getOrderByUser() method.
+        return $this->orderRepo->getOrderByUser();
     }
 }
