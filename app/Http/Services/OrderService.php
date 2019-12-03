@@ -32,7 +32,28 @@ class OrderService implements OrderServiceInterface
         $order->checkout = $this->getDateCheckoutFromForm($request);
         $order->totalPrice = $this->getPriceHouse($request, $houseId);
         $order->house_id = $houseId;
-        $order->customer_id=$this->checkEmailCustomer($request)->id;
+//        $order->approved_at = null;
+        if (!$this->checkEmailCustomer($request)) {
+            $customer = new Customer;
+            $customer->name = Auth::user()->name;
+            $customer->email = Auth::user()->email;
+            $customer->phone = $request->phone;
+            Auth::user()->phone = $request->phone;
+            Auth::user()->save();
+            $customer->user_id = Auth::user()->id;
+
+            $this->customer->create($customer);
+            $order->customer_id = $customer->id;
+        } else {
+            $customers = $this->customer->getAll();
+            foreach ($customers as $customer) {
+                if ($customer->email == Auth::user()->email) {
+                    $order->customer_id = $customer->id;
+                }
+            }
+        }
+
+        $order->customer_id = $this->checkEmailCustomer($request)->id;
         $this->orderRepo->create($order);
 
     }
@@ -53,8 +74,11 @@ class OrderService implements OrderServiceInterface
     {
         $customers = $this->customer->getAll();
         foreach ($customers as $customer) {
-            if (Auth::user()->phone!=null) {
-                return $customer;
+            if (Auth::user()->phone != null) {
+                if ($customer->user_id == Auth::user()->id) {
+                    return $customer;
+                }
+
             } else {
                 $customer = new Customer;
                 $customer->name = Auth::user()->name;

@@ -44,11 +44,11 @@
                     {{--                    @endif--}}
                 </div>
             </div>
-            <div class="col-md-9 border border-dark" style="border-radius: 20px">
+            <div class="col-md-9 table-responsive text-nowrap" style="border-radius: 20px">
                 @if(count($houses) == 0)
                     <h3 style="color: blueviolet; margin-top: 250px" align="center">Bạn không có nhà đăng</h3>
                 @else
-                    <table style="margin-top: 20px; margin-bottom: 20px" class="table table-bordered table-hover">
+                    <table style="margin-top: 20px; margin-bottom: 20px" class="table table-striped">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -60,6 +60,7 @@
                             <th style="background-color: burlywood">Giá/ngày (VNĐ)</th>
                             <th>Khách đặt</th>
                             <th>Cập nhật trạng thái nhà</th>
+
                         </tr>
                         </thead>
                         <tbody>

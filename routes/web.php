@@ -20,12 +20,12 @@ Auth::routes();
 Route::get('/category', 'HomeStayController@category')->name('web.category');
 Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
 Route::get('/contact', 'HomeStayController@contact')->name('web.contact');
+Route::get('/fetch_data', 'HomeStayController@fetch_data');
 Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoon');
 Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
 Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
-Route::post('{id}/post', 'HouseController@getPostAjax')->name('post');
 
 Route::prefix('/user')->middleware('auth')->group(function () {
 
@@ -34,7 +34,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/{id}/changePassword', 'UserController@changePassword')->name('user.changePassword');
     Route::get('/{id}/update', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
-    Route::get('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
+    Route::post('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
     Route::get('historyRentHouse', 'UserController@historyRentHouse')->name('user.historyRentHouse');
     Route::prefix('/houses')->group(function () {
 
@@ -50,7 +50,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::prefix('customer')->group(function () {
             Route::get('{id}/checkApprove', 'OrderController@checkApprove')->name('houses.customer.checkApprove');
             Route::get('detail/approve/{id}', 'OrderController@approve')->name('houses.customer.approve');
-            Route::get('{id}/delete', 'OrderController@delete')->name('houses.customer.delete');
+            Route::post('{id}/delete', 'OrderController@delete')->name('houses.customer.delete');
         });
 
     });
@@ -78,5 +78,10 @@ Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
 
 Route::post('/search', 'HouseController@search')->name('search');
+Route::post('/index', 'HomeStayController@display')->name('display');
 
 Route::post('/changeStatus/{id}','HouseController@changeStatus')->name('changeStatus');
+
+Route::post('display/{id}', 'PostController@display')->name('getAll');
+Route::post('post', 'PostController@post')->name('post');
+Route::post('comment', 'PostController@comment')->name('comment');

@@ -77,8 +77,10 @@ class HouseService implements HouseServiceInterface
         if (empty($request->all())) {
             return $this->houseRepo->getAll();
         }
-        $model = $this->house;
-        $model = $model->join('orders', 'houses.id', '=','orders.house_id');
+        $checkin = Carbon::create($request->checkin);
+        $checkout = Carbon::create($request->checkout);
+        $model = DB::table('houses')->select('houses.*');
+        $model = $model->leftJoin('orders', 'houses.id', '=', 'orders.house_id')->distinct();
         if ($request->province_id) {
             $datas[] = [
                 'column' => 'province_id',
@@ -100,20 +102,20 @@ class HouseService implements HouseServiceInterface
                 'value' => $request->ward_id
             ];
         }
-        if ($request->checkin) {
-            $datas[] = [
-                'column' => 'orders.checkin',
-                'operator' => '=',
-                'value' => Carbon::create($request->checkin)
-            ];
-        }
-        if ($request->checkout) {
-            $datas[] = [
-                'column' => 'orders.checkout',
-                'operator' => '=',
-                'value' => Carbon::create($request->checkout)
-            ];
-        }
+//        if($request->checkin) {
+//            $datas[] = [
+//                'column' => 'orders.checkin',
+//                'operator' => '<>',
+//                'value' => ''
+//            ];
+//        }
+//        if($request->checkout) {
+//            $datas[] = [
+//                'column' => 'orders.checkout',
+//                'operator' => '<>',
+//                'value' => $request->checkout
+//            ];
+//        }
         if ($request->totalBathroom) {
             $datas[] = [
                 'column' => 'totalBathroom',
@@ -137,7 +139,16 @@ class HouseService implements HouseServiceInterface
         }
 
         foreach ($datas as $key => $data) {
-            $model = $model->where($data['column'], $data['value']);
+            $model = $model->where($data['column'], $data['operator'], $data['value'])
+                ->whereNull('orders.checkin')
+                ->orWhere('orders.checkin', '<>', $checkin)
+                ->where('orders.checkout', '<>', $checkout)
+                ->whereNotBetween('orders.checkin', array($checkin, $checkout))
+                ->whereNotBetween('orders.checkout', array($checkin, $checkout))
+                ->where($data['column'], $data['operator'], $data['value'])
+                ->where('orders.checkin', '<>', now())
+                ->where('orders.checkout', '<>', now());
+
         }
         $result = $model->orderBy('houses.approved_at', 'DESC');
 //        dd($result->get());
