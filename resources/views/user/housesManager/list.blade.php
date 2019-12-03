@@ -45,26 +45,29 @@
                 </div>
             </div>
             <div class="col-md-9 table-responsive text-nowrap" style="border-radius: 20px">
-                @if(count($houses) == 0)
-                    <h3 style="color: blueviolet; margin-top: 250px" align="center">Bạn không có nhà đăng</h3>
-                @else
-                    <table style="margin-top: 20px; margin-bottom: 20px" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nhu cầu</th>
-                            <th>Loại nhà</th>
-                            <th>Địa chỉ</th>
-                            <th>Mô tả</th>
-                            <th>Chi tiết nhà</th>
-                            <th style="background-color: burlywood">Giá/ngày (VNĐ)</th>
-                            <th>Khách đặt</th>
-                            <th>Cập nhật trạng thái nhà</th>
 
+                <table style="margin-top: 20px; margin-bottom: 20px" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nhu cầu</th>
+                        <th>Loại nhà</th>
+                        <th>Địa chỉ</th>
+                        <th>Mô tả</th>
+                        <th>Chi tiết nhà</th>
+                        <th style="background-color: burlywood">Giá/ngày (VNĐ)</th>
+                        <th>Khách đặt</th>
+                        <th>Cập nhật trạng thái nhà</th>
+
+                    </tr>
+                    </thead>
+                    <tbody style="text-align: center">
+                    @if(count($houseOwner) == 0)
+                        <tr>
+                            <td colspan="9">Bạn không có nhà cho thuê</td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($houses as $key => $house)
+                    @else
+                        @foreach($houseOwner as $key => $house)
                             <tr>
                                 <td>{{++$key}}</td>
                                 <td>{{$house->demand == 1 ? 'Cho thuê': 'Bán'}}</td>
@@ -81,67 +84,75 @@
                                         tiết</a><br>Có {{count($house->customers)}} khách đặt
                                 </td>
                                 <td><a class="fa fa-edit btn btn-primary" data-toggle="modal"
-                                       data-target="#updateHouse"></a></td>
+                                       data-target="#updateHouse">Cập nhật </a></td>
                             </tr>
                         @endforeach
 
-                        </tbody>
-                    </table>
-                @endif
-                {{$houses->links()}}
+                        <div id="updateHouse" class="modal large" role="dialog" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title text-center primecolor">Cập nhật trạng thái nhà của
+                                            bạn </h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">x</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <strong id="alert"></strong>
+                                        <div class="col-md-offset-1 col-md-10">
+                                            <form method="POST" id="update"
+                                                  action="{{route('changeStatus', $house->id)}}">
+                                                @csrf
+                                                <div class="form-group has-feedback">
+                                                    {{--                                <input type="radio" id="button1" class="choice" name="status" value="0">Đã thuê<br>--}}
+                                                    {{--                                <input type="radio" id="button2" class="choice" name="status" value="1">Cho thuê--}}
+                                                    <div>
+                                                        <select name="status" class="custom-select">
+                                                            <option value="">==Trạng thái==</option>
+                                                            <option value="0">Đã thuê</option>
+                                                            <option value="1">Cho thuê</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 text-center">
+                                                        <button type="submit" id="submitChangeStatus"
+                                                                class="btn btn-primary btn-prime white btn-flat">Xác
+                                                            nhận
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Hủy
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <script type="text/javascript">
+
+                                                $("button").click(function () {
+                                                    var selValue = $("input[type='radio']:checked").val();
+                                                });
+
+                                            </script>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tbody>
+                    @endif
+                </table>
+
+                {{$houseOwner->links()}}
             </div>
         </div>
     </div>
-    <div id="updateHouse" class="modal large" role="dialog" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title text-center primecolor">Cập nhật trạng thái nhà của bạn </h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">x</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <strong id="alert"></strong>
-                    <div class="col-md-offset-1 col-md-10">
-                        <form method="POST" id="update" action="{{route('changeStatus', $house->id)}}">
-                            @csrf
-                            <div class="form-group has-feedback">
-                                {{--                                <input type="radio" id="button1" class="choice" name="status" value="0">Đã thuê<br>--}}
-                                {{--                                <input type="radio" id="button2" class="choice" name="status" value="1">Cho thuê--}}
-                                <div>
-                                    <select name="status" class="custom-select">
-                                        <option value="">==Trạng thái==</option>
-                                        <option value="0">Đã thuê</option>
-                                        <option value="1">Cho thuê</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12 text-center">
-                                    <button type="submit" id="submitChangeStatus"
-                                            class="btn btn-primary btn-prime white btn-flat">Xác nhận
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                                </div>
-                            </div>
-                        </form>
-                        <script type="text/javascript">
 
-                            $("button").click(function () {
-                                var selValue = $("input[type='radio']:checked").val();
-                            });
-
-                        </script>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     {{--    <div id="updateHouse" class="modal" role="dialog" tabindex="-1">--}}
     {{--        <div class="modal-dialog">--}}
@@ -222,6 +233,6 @@
 
     <script type="text/javascript">
 
-      </script>-
+    </script>-
 @endsection
 

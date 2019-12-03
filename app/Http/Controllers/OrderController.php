@@ -99,8 +99,8 @@ class OrderController extends Controller
             'actionURL' => url('/'),
             'order_id' => 101
         ];
-
-        $user->notify(new YouHasNewEmail($details));
+        $when = now()->addSeconds(10);
+        $user->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function sendNotificationConfirmOrder($customerId)
@@ -115,8 +115,8 @@ class OrderController extends Controller
             'actionURL' => url('/'),
             'order_id' => 101
         ];
-
-        $user->notify(new YouHasNewEmail($details));
+        $when = now()->addSeconds(10);
+        $user->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function sendNotificationCancelOrder($customerId, $message)
@@ -130,7 +130,7 @@ class OrderController extends Controller
             'actionURL' => url('/'),
             'order_id' => 101
         ];
-
-        $user->notify(new YouHasNewEmail($details));
+        $when = now()->addSeconds(10);
+        $user->notify((new YouHasNewEmail($details))->delay($when));
     }
 }
