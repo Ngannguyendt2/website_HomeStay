@@ -102,23 +102,24 @@
                                                 @endforeach
                                                 <p>{{$post->body}}</p>
                                                 @foreach($post->comments()->get() as $comment)
-                                                        <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
-                                                             src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
-                                                             class="img-thumbnail img-circle img-responsive rounded-circle"
-                                                             alt="ahihi"/>
+                                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"
+                                                         src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"
+                                                         class="img-thumbnail img-circle img-responsive rounded-circle"
+                                                         alt="ahihi"/>
                                                     <p class="text text-primary">{{$comment->user->name}}</p>
                                                     <p>{{$comment->body}}</p>
                                                 @endforeach
                                                 <button id="submitComment" class="btn btn-primary">Trả lời</button>
-                                                    <form method="POST" id="formComment">
-                                                        @csrf
-                                                        <input type="hidden" id="post_id" value="{{$post->id}}" name="post_id">
-                                                        <input type="text" id="body" style="display: none" width="300px"
-                                                               name="body">
-                                                        <button type="button" id="comment" class="btn btn-primary"
-                                                                style="display: none">Bình luận
-                                                        </button>
-                                                    </form>
+                                                <form method="POST" id="formComment">
+                                                    @csrf
+                                                    <input type="hidden" id="post_id" value="{{$post->id}}"
+                                                           name="post_id">
+                                                    <input type="text" id="body" style="display: none" width="300px"
+                                                           name="body">
+                                                    <button type="button" id="comment" class="btn btn-primary"
+                                                            style="display: none">Bình luận
+                                                    </button>
+                                                </form>
 
                                             </div>
                                         </div>
@@ -128,8 +129,8 @@
                                 @endforeach
                             </div>
 
-{{--                            {{csrf_field()}}--}}
-{{--                            <div class="row" id="post_data"></div>--}}
+                            {{--                            {{csrf_field()}}--}}
+                            {{--                            <div class="row" id="post_data"></div>--}}
 
 
                         </div>
@@ -140,7 +141,14 @@
                             </button>
                         </div>
                         <h3 class="sl-sp-title bd-no">Vị trí</h3>
-                        <div class="pos-map" id="map-canvas"></div>
+                        <div class="col-12">
+                            <div id="map" style="width: 600px; height: 500px;">
+                                <iframe
+                                    src="{{$house->map}}"
+                                    width="600" height="450" frameborder="0" style="border:0;"
+                                    allowfullscreen="" class="ml-5"></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- sidebar -->
@@ -292,7 +300,8 @@
                                         <input id="input-1" name="rate" class="rating rating-loading" data-min="0"
                                                data-max="5" data-step="1" data-size="xs"
                                                value="{{ $house->userAverageRating }}">
-                                        <input type="hidden" id="id-house-rating" name="id" required="" value="{{ $house->id }}">
+                                        <input type="hidden" id="id-house-rating" name="id" required=""
+                                               value="{{ $house->id }}">
                                     </div>
 
                                     <div class="form-group has-feedback">

@@ -103,7 +103,7 @@
                 <div class="modal-body">
                     <strong id="alert"></strong>
                     <div class="col-md-offset-1 col-md-10">
-                        <form method="POST" id="update" action="{{route('changeStatus', $house->id)}}">
+                        <form method="POST" id="update">
                             @csrf
                             <div class="form-group has-feedback">
                                 {{--                                <input type="radio" id="button1" class="choice" name="status" value="0">Đã thuê<br>--}}
@@ -221,6 +221,6 @@
 
     <script type="text/javascript">
 
-      </script>-
+    </script>-
 @endsection
 
