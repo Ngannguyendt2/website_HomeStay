@@ -53,10 +53,6 @@ class HouseService implements HouseServiceInterface
         $house->category_id = $request->category_id;
         $this->houseRepo->create($house);
 
-//        $admin = User::where('admin', 1)->first();
-//        if ($admin) {
-//            $admin->notify(new NewHouse($house));
-//        }
     }
 
     public function getCategoryHouse()
@@ -80,7 +76,7 @@ class HouseService implements HouseServiceInterface
         $checkin = Carbon::create($request->checkin);
         $checkout = Carbon::create($request->checkout);
         $model = DB::table('houses')->select('houses.*');
-        $model = $model->leftJoin('orders', 'houses.id', '=', 'orders.house_id')->distinct();
+//        $model = $model->leftJoin('orders', 'houses.id', '=', 'orders.house_id')->distinct();
         if ($request->province_id) {
             $datas[] = [
                 'column' => 'province_id',
@@ -111,7 +107,7 @@ class HouseService implements HouseServiceInterface
         }
         if ($request->totalBedRoom) {
             $datas[] = [
-                'column' => 'totalBathroom',
+                'column' => 'totalBedRoom',
                 'operator' => '=',
                 'value' => $request->totalBedRoom
             ];
@@ -126,27 +122,21 @@ class HouseService implements HouseServiceInterface
 
         foreach ($datas as $key => $data) {
 
-            if($request->checkin || $request->checkout) {
-                $model = $model->where($data['column'], $data['operator'], $data['value'])
-                    ->whereNull('orders.checkin')
-                    ->orWhere('orders.checkin', '<>', $checkin)
-                    ->where('orders.checkout', '<>', $checkout)
-                    ->whereNotBetween('orders.checkin', array($checkin, $checkout))
-                    ->whereNotBetween('orders.checkout', array($checkin, $checkout))
-                    ->where($data['column'], $data['operator'], $data['value'])
-                    ->where('orders.checkin', '<>', now())
-                    ->where('orders.checkout', '<>', now())
-                    ->whereRaw("? NOT BETWEEN orders.checkin AND orders.checkout", [$checkin])
-                    ->whereRaw("? NOT BETWEEN orders.checkin AND orders.checkout", [$checkout]);
-
+            if ($request->checkin || $request->checkout) {
+                $houses = DB::table('houses')->select('houses.id')
+                    ->join('orders', 'houses.id', '=', 'orders.house_id')
+                    ->whereBetween('orders.checkin', array($checkin, $checkout))
+                    ->whereBetween('orders.checkout', array($checkin, $checkout))->get();
+                $array =[];
+                foreach ($houses as $house) {
+                    array_push($array, $house->id);
+                }
+                $model->where($data['column'], $data['value'])->whereNotIn('houses.id', $array);
             } else {
                 $model = $model->where($data['column'], $data['value']);
             }
-
-
         }
         $result = $model->orderBy('houses.approved_at', 'DESC');
-//        dd($result->get());
         return $this->houseRepo->search($result);
 
     }

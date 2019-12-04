@@ -555,8 +555,8 @@
                     type: 'POST',
                     data: data,
                     success: function (response) {
-                        console.log(response)
-                        $.each(response, function (index, value) {
+                        console.log(response);
+                        $.each(response.data, function (index, value) {
                             html += '<div class="col-md-6">';
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">';
                             html += '<div style="border-radius: 15px; background-image: url( ' + 'http://127.0.0.1:8000/storage/images/' + JSON.parse(value.image)[0] + ') " class="propertie-item set-bg" ' + '>';
@@ -578,7 +578,6 @@
                             html += '</a>';
                             html += '</div>';
                         });
-
                         $('#div').html(html)
 
                     },
@@ -614,7 +613,6 @@
                     }
                 });
             }
-
         });
     </script>
 @endsection

@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $id = Auth::user()->id;
         $user = $this->profileService->getUserById($id);
-        return view('user.profile', compact('user', 'orders'));
+        return view('user.profile', compact('user'));
     }
 
     public function edit()

@@ -2,7 +2,7 @@
 
 @section('content')
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
-
+    <style></style>
     <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
         <div class="container text-white">
@@ -158,15 +158,12 @@
                                 </form>
                                 <span id="comment_message"></span>
                                 <br/>
+                                {{ csrf_field() }}
                                 <div id="display_comment"></div>
                             </div>
                         </div>
                         <hr>
-                        <div class="row property-details-list">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#review">Để lại nhận xét
-                            </button>
-                        </div>
+
                         <h3 class="sl-sp-title bd-no">Vị trí</h3>
                         <div class="pos-map" id="map-canvas"></div>
                     </div>
@@ -233,7 +230,7 @@
 
                         </div>
                         <div class="modal-body" style="overflow: hidden;">
-                            <strong id="alert"></strong>
+                            <strong style="margin-left: 50px" id="alert"></strong>
                             <div class="col-md-offset-1 col-md-10">
                                 <form method="POST" id="OrderHouse">
                                     @csrf
@@ -296,55 +293,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-            <div id="review" class="modal" role="dialog" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title text-center primecolor">Nhận xét </h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
-                        </div>
-                        <div class="modal-body" style="overflow: hidden;">
-                            <strong id="alert"></strong>
-                            <div class="col-md-offset-1 col-md-10">
-                                <form method="POST" id="reviewHouse">
-                                    @csrf
-                                    <div class="rating">
-                                        <input id="input-1" name="rate" class="rating rating-loading" data-min="0"
-                                               data-max="5" data-step="1" data-size="xs"
-                                               value="{{ $house->userAverageRating }}">
-                                        <input type="hidden" id="id-house-rating" name="id" required=""
-                                               value="{{ $house->id }}">
-                                    </div>
-
-                                    <div class="form-group has-feedback">
-                                        <input type="text" name="body" class="form-control" id="content">
-                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                                        <span class="text-danger">
-                                <strong id="body-error"></strong>
-                                        </span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <button type="button" id="submitReview" data-dismiss="modal"
-                                                    class="btn btn-primary btn-prime white btn-flat">Nhận xét
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -431,34 +379,12 @@
                 });
             });
         });
+
         function numberFormat(number) {
             return String(number).replace(/(.)(?=(\d{3})+$)/g, '$1,')
         }
 
 
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('.submitComment').click(function () {
-                console.log('ok')
-            });
-            let body = $('#body').val();
-            let post_id = $('#post_id').val();
-            let data = {
-                body: body,
-                post_id: post_id
-            };
-            $.ajax({
-                url: '{{route('post.comment')}}',
-                type: 'POST',
-                data: data,
-                success: function (response) {
-                    console.log(response)
-                }
-
-            })
-
-        })
     </script>
     <script>
         $(document).ready(function () {
@@ -481,12 +407,12 @@
                             $('#comment_form')[0].reset();
                             $('#comment_message').html(data.error);
                             $('#comment_id').val('0');
-                            load_comment();
+                            load_data('', _token);
 
                         } else {
                             alert('Đã đăng nhận xét thành công');
                             $('#comment_message').html(data.error);
-                            load_comment();
+                            load_data('', _token);
 
                         }
                     }
@@ -496,22 +422,37 @@
                 var comment_id = $(this).attr("id");
                 $('#comment_id').val(comment_id);
                 $('#body').focus();
-                load_comment();
+                load_data('', _token);
             });
         });
 
-        load_comment();
 
-        function load_comment() {
+        var _token = $('input[name="_token"]').val();
+
+        load_data('', _token);
+
+        function load_data(id = "", _token) {
             $.ajax({
-                url: "{{route('getAll', $house->id)}}",
-                type: "POST",
-                data: {_token: "{{ csrf_token() }}"},
+                url: "{{ route('getAll', $house->id) }}",
+                method: "POST",
+                data: {id: id, _token: _token},
                 success: function (data) {
-                    $('#display_comment').html(data);
+                    $('#load_more_button').remove();
+
+                    $('#display_comment').append(data);
+
+
+
                 }
             })
         }
+
+        $(document).on('click', '#load_more_button', function () {
+            var id = $(this).data('id');
+            $('#load_more_button').html('<b>Loading...</b>');
+            load_data(id, _token);
+        });
+
 
     </script>
 
