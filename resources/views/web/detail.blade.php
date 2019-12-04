@@ -52,9 +52,13 @@
                                             Giá: {{number_format($house->price)}} Đồng</p>
 
                                     </div>
-                                    <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary"
-                                                              data-toggle="modal"
-                                                              data-target="#Order">Đặt phòng</a>
+                                    <div class="col-md-12">
+                                        @if($house->status==1)
+                                            <a style="width: 180px" href="#" class="btn btn-primary"
+                                               data-toggle="modal"
+                                               data-target="#Order">Đặt phòng</a>
+                                        @else
+                                        @endif
                                     </div>
 
                                 </div>
@@ -162,13 +166,11 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row property-details-list">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#review">Để lại nhận xét
-                            </button>
-                        </div>
                         <h3 class="sl-sp-title bd-no">Vị trí</h3>
-                        <div class="pos-map" id="map-canvas"></div>
+                        <div id="map" style="width:500px;height:500px;" class="img-fluid">
+                            <iframe src="{{$house->map}}" width="600" height="450" frameborder="0" style="border:0"
+                                    allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
                 <!-- sidebar -->
@@ -430,6 +432,7 @@
                 });
             });
         });
+
         function numberFormat(number) {
             return String(number).replace(/(.)(?=(\d{3})+$)/g, '$1,')
         }
