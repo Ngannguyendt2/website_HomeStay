@@ -52,25 +52,40 @@ class OrderService implements OrderServiceInterface
     public function checkEmailCustomer($request)
     {
         $customers = $this->customer->getAll();
-        foreach ($customers as $customer) {
-            if (Auth::user()->phone != null) {
-                if ($customer->user_id == Auth::user()->id) {
+        if (count($customers)!=0){
+            foreach ($customers as $customer) {
+                if (Auth::user()->phone != null) {
+                    if ($customer->user_id == Auth::user()->id) {
+                        return $customer;
+                    }
+
+                } else {
+                    $customer = new Customer;
+                    $customer->name = Auth::user()->name;
+                    $customer->email = Auth::user()->email;
+                    $customer->phone = $request->phone;
+                    $customer->user_id = Auth::user()->id;
+                    $this->customer->create($customer);
+                    $user = User::find(Auth::user()->id);
+                    $user->phone = $request->phone;
+                    $user->save();
                     return $customer;
                 }
-
-            } else {
-                $customer = new Customer;
-                $customer->name = Auth::user()->name;
-                $customer->email = Auth::user()->email;
-                $customer->phone = $request->phone;
-                $customer->user_id = Auth::user()->id;
-                $this->customer->create($customer);
-                $user = User::find(Auth::user()->id);
-                $user->phone = $request->phone;
-                $user->save();
-                return $customer;
             }
         }
+        else{
+            $customer = new Customer;
+            $customer->name = Auth::user()->name;
+            $customer->email = Auth::user()->email;
+            $customer->phone = $request->phone;
+            $customer->user_id = Auth::user()->id;
+            $this->customer->create($customer);
+            $user = User::find(Auth::user()->id);
+            $user->phone = $request->phone;
+            $user->save();
+            return $customer;
+        }
+
 
     }
 
