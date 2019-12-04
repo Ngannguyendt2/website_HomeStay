@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCommentIdToPosts extends Migration
+class AddCommentIdToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,7 @@ class AddCommentIdToPosts extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->integer('comment_id')->after('id');
+
         });
     }
 

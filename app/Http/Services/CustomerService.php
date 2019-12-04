@@ -37,7 +37,7 @@ class CustomerService implements CustomerServiceInterface
         $order = $this->orderRepo->getById($orderId);
         $orderCheckin = Carbon::create($order->checkin);
         $now = new Carbon();
-        if (($now->diffInDays($orderCheckin)) <= 1) {
+        if (($now->diffInDays($orderCheckin)) < 1) {
             $message = 'Bạn không thể hủy trong 1 ngày trước thời gian thuê';
             session()->flash('error',$message);
         } else {

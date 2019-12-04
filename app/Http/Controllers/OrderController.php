@@ -32,7 +32,9 @@ class OrderController extends Controller
     public function order(CreateFormOrder $request, $id)
     {
         try {
+
             if (!$this->order->checkDate($request, $id)) {
+
                 $this->order->create($request, $id);
                 $this->sendNotificationNewOrder($id);
                 return response()->json([
