@@ -86,57 +86,6 @@
                         <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
 
-                            {{--                            {{csrf_field()}}--}}
-                            {{--                            <div class="row" id="post_data"></div>--}}
-                            {{--                            <div class="row">--}}
-                            {{--                                @foreach($posts as $key => $post)--}}
-                            {{--                                    <div class="rating col-md-12">--}}
-                            {{--                                        <div class="row">--}}
-                            {{--                                            <div class="col-md-3">--}}
-
-                            {{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                     alt="ahihi"/>--}}
-                            {{--                                                <p>{{$post->user->name}}</p>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="col-md-9">--}}
-                            {{--                                                @foreach ($post->ratings()->get() as $rate)--}}
-                            {{--                                                    <input id="input-1" name="input-1" class="rating rating-loading"--}}
-                            {{--                                                           data-min="0"--}}
-                            {{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
-                            {{--                                                           data-size="xs"--}}
-                            {{--                                                           disabled="">--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <p>{{$post->body}}</p>--}}
-                            {{--                                                @foreach($post->comments()->get() as $comment)--}}
-                            {{--                                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                         src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                         class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                         alt="ahihi"/>--}}
-                            {{--                                                    <p class="text text-primary">{{$comment->user->name}}</p>--}}
-                            {{--                                                    <p>{{$comment->body}}</p>--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>--}}
-                            {{--                                                <form method="POST" id="formComment">--}}
-                            {{--                                                    @csrf--}}
-                            {{--                                                    <input type="hidden" id="post_id" value="{{$post->id}}"--}}
-                            {{--                                                           name="post_id">--}}
-                            {{--                                                    <input type="text" id="body" style="display: none" width="300px"--}}
-                            {{--                                                           name="body">--}}
-                            {{--                                                    <button type="button" id="comment" class="btn btn-primary"--}}
-                            {{--                                                            style="display: none">Bình luận--}}
-                            {{--                                                    </button>--}}
-                            {{--                                                </form>--}}
-
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-
-
-                            {{--                                @endforeach--}}
-                            {{--                            </div>--}}
-
                             <div class="container">
                                 <form method="POST" id="comment_form">
                                     <input type="hidden" id="house_id" name="house_id" value="{{$house->id}}">
@@ -191,36 +140,21 @@
                     </div>
                     <div class="related-properties">
                         <h2>Related Property</h2>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/1.jpg')}}">
-                                <div class="sale-notic">FOR SALE</div>
+                        @foreach($categories as $category)
+                            <div class="rp-item">
+                                <div class="rp-pic set-bg"
+                                     style="background-image: url('{{asset('storage/images/'.(json_decode($house->image))[0])}}');"
+                                     data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
+                                    <div class="sale-notic">{{($category->status == 1 ? 'Cho thuê' : 'Đang sửa chữa' )}}</div>
+                                </div>
+                                <div class="rp-info">
+                                    <h5>{{$category->category->name}}</h5>
+                                    <p><i class="fa fa-map-marker"></i>{{$category->ward->name}}
+                                        ,{{$category->district->name}}, {{$category->province->name}}</p>
+                                </div>
+                                <a href="{{route('web.detail', ['id'=>$house->id, 'category_id' => $house->category_id])}}" class="rp-price">{{number_format($category->price)}} Đồng/ngày</a>
                             </div>
-                            <div class="rp-info">
-                                <h5>1963 S Crescent Heights Blvd</h5>
-                                <p><i class="fa fa-map-marker"></i>Los Angeles, CA 90034</p>
-                            </div>
-                            <a href="#" class="rp-price">$1,200,000</a>
-                        </div>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/2.jpg')}}">
-                                <div class="rent-notic">FOR Rent</div>
-                            </div>
-                            <div class="rp-info">
-                                <h5>17 Sturges Road, Wokingham</h5>
-                                <p><i class="fa fa-map-marker"></i> Newtown, CT 06470</p>
-                            </div>
-                            <a href="#" class="rp-price">$2,500/month</a>
-                        </div>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/4.jpg')}}">
-                                <div class="sale-notic">FOR SALE</div>
-                            </div>
-                            <div class="rp-info">
-                                <h5>28 Quaker Ridge Road, Manhasset</h5>
-                                <p><i class="fa fa-map-marker"></i>28 Quaker Ridge Road, Manhasset</p>
-                            </div>
-                            <a href="#" class="rp-price">$5,600,000</a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -446,7 +380,6 @@
                     $('#load_more_button').remove();
 
                     $('#display_comment').append(data);
-
 
 
                 }

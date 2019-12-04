@@ -4,7 +4,7 @@
             @foreach($houses as $key => $house)
                 <div class="col-lg-4 col-md-6">
                     <!-- feature -->
-                    <a href="{{route('web.detail', $house->id)}}">
+                    <a href="{{route('web.detail', ['id' => $house->id, 'category_id' => $house->category_id])}}">
                         <div class="feature-item">
                             <div class="feature-pic set-bg"
                                  style="background-image: url('{{asset('storage/images/'.(json_decode($house->image))[0])}}');"
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('web.detail', $house->id)}}"
+                                <a href="{{route('web.detail', ['id' => $house->id, 'category_id' => $house->category_id])}}"
                                    class="room-price">{{number_format($house->price)}}
                                     Đồng/Đêm</a>
                             </div>
