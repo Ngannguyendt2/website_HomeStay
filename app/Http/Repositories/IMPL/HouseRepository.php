@@ -24,12 +24,11 @@ class HouseRepository extends RepositoryEloquent implements HouseRepositoryInter
         // TODO: Implement getCategoryHouse() method.
         $categories = Category::all();
         return $categories;
-
     }
 
     public function search($model)
     {
-        return $model->get();
+        return $model->paginate(22);
         // TODO: Implement searchFilter() method.
     }
 }

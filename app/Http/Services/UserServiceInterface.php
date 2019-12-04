@@ -24,5 +24,7 @@ interface UserServiceInterface
 
     public function getMonthlyIncome($request);
 
-    public function getOrderByDate($request);
+    public function getDateOfOrder($request);
+
+    public function getMoneyOfOrder($request);
 }

@@ -32,7 +32,7 @@
                     <hr>
                     <div class="col-md-12">
                         <a href="{{route('house.list', Auth::user()->id)}}" class="btn btn-block"><i
-                                class="fa fa-institution"></i> Nhà của tôi</a>
+                                    class="fa fa-institution"></i> Nhà của tôi</a>
                     </div>
                     {{--                    @if(count($houses) > 0)--}}
                     {{--                        <hr>--}}
@@ -79,8 +79,11 @@
                                 </td>
                                 <td style="background-color: burlywood">{{number_format($house->price)}}</td>
                                 <td style="{{count($house->customers) == 0 ? 'background-color: red' : 'background-color: green'}}">
-                                    <a style="color: black" href="{{route('houses.customer.approve', $house->id)}}">Chi
-                                        tiết</a><br>Có {{count($house->customers)}} khách đặt
+                                    @if(count($house->customers) > 0)
+                                        <a style="color: black" href="{{route('houses.customer.approve', $house->id)}}">Chi
+                                            tiết</a>
+                                    @endif
+                                        <br>Có {{count($house->customers)}} khách đặt
                                 </td>
                                 <td>{{$house->status == 1 ? 'Cho thuê': 'Đang sửa chữa'}}</td>
                                 <td><a class="fa fa-edit btn btn-primary" data-toggle="modal"

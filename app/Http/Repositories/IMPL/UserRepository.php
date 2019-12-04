@@ -47,13 +47,17 @@ class UserRepository extends RepositoryEloquent implements UserRepositoryInterfa
         // TODO: Implement historyRentHouse() method.
         $user = Auth::user();
         $customer = $user->customer()->first();
-        return $customer->orders;
+        if ($customer) {
+            return $customer->orders;
+        } else {
+            return null;
+        }
+
     }
 
     public function getMonthlyIncome($startDate, $endDate)
     {
         // TODO: Implement getMonthlyIncome() method.
-
         $money = DB::table('users')->join('houses', 'users.id', '=', 'houses.user_id')
             ->join('orders', 'houses.id', '=', 'orders.house_id')
             ->where('orders.checkin', '<=', $endDate)

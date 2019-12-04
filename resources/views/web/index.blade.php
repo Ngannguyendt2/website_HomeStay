@@ -555,11 +555,10 @@
                     type: 'POST',
                     data: data,
                     success: function (response) {
-                        console.log(response)
-                        $.each(response, function (index, value) {
+                        $.each(response.data, function (index, value) {
                             html += '<div class="col-lg-4 col-md-6">';
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">';
-                            html += '<div class="feature-item">'
+                            html += '<div class="feature-item">';
                             html += '<div class="feature-pic set-bg" style="background-image: url( ' + 'http://127.0.0.1:8000/storage/images/' + JSON.parse(value.image)[0] + ') " ' + '>';
                             html += '<div class="sale-notic">' + "Cho thuê" + '</div>';
                             html += '</div>';
@@ -570,16 +569,16 @@
                                 ' ' + value.ward_id + '\n' +
                                 ', ' + value.district_id + '\n' + ', ' + value.province_id + '</p>';
                             html += '</div>';
-                            html += '<div class="room-info-warp">'
-                            html += '<div class="room-info">'
-                            html += '<div class="rf-left">'
+                            html += '<div class="room-info-warp">';
+                            html += '<div class="room-info">';
+                            html += '<div class="rf-left">';
                             html += '<p><i class="fa fa-bed"></i>' + value.totalBedRoom + ' ' + 'Phòng ngủ' + '</p>';
-                            html += '</div>'
-                            html += '<div class="rf-right">'
+                            html += '</div>';
+                            html += '<div class="rf-right">';
                             html += '<p><i class="fa fa-bath"></i>' + value.totalBathroom + ' ' + 'Phòng tắm' + '</p>';
-                            html += '</div>'
-                            html += '</div>'
-                            html += '</div>'
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail" class="room-price">' + numberFormat(value.price)
                                 + ' ' + 'Đồng </a>';
                             html += '</div>';
@@ -587,7 +586,6 @@
                             html += '</a>';
                             html += '</div>';
                         });
-
                         $('#div').html(html)
 
                     },
@@ -623,7 +621,6 @@
                     }
                 });
             }
-
         });
     </script>
 @endsection
