@@ -32,27 +32,6 @@ class OrderService implements OrderServiceInterface
         $order->checkout = $this->getDateCheckoutFromForm($request);
         $order->totalPrice = $this->getPriceHouse($request, $houseId);
         $order->house_id = $houseId;
-//        $order->approved_at = null;
-        if (!$this->checkEmailCustomer($request)) {
-            $customer = new Customer;
-            $customer->name = Auth::user()->name;
-            $customer->email = Auth::user()->email;
-            $customer->phone = $request->phone;
-            Auth::user()->phone = $request->phone;
-            Auth::user()->save();
-            $customer->user_id = Auth::user()->id;
-
-            $this->customer->create($customer);
-            $order->customer_id = $customer->id;
-        } else {
-            $customers = $this->customer->getAll();
-            foreach ($customers as $customer) {
-                if ($customer->email == Auth::user()->email) {
-                    $order->customer_id = $customer->id;
-                }
-            }
-        }
-
         $order->customer_id = $this->checkEmailCustomer($request)->id;
         $this->orderRepo->create($order);
 
@@ -134,5 +113,11 @@ class OrderService implements OrderServiceInterface
     {
         // TODO: Implement getOrderByHouse() method.
         return $this->orderRepo->getOrderByHouse($houseId);
+    }
+
+    public function getOrderByUser()
+    {
+        // TODO: Implement getOrderByUser() method.
+        return $this->orderRepo->getOrderByUser();
     }
 }

@@ -111,7 +111,7 @@ class HouseService implements HouseServiceInterface
         }
         if ($request->totalBedRoom) {
             $datas[] = [
-                'column' => 'totalBathroom',
+                'column' => 'totalBedRoom',
                 'operator' => '=',
                 'value' => $request->totalBedRoom
             ];

@@ -52,9 +52,13 @@
                                             Giá: {{number_format($house->price)}} Đồng</p>
 
                                     </div>
-                                    <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary"
-                                                              data-toggle="modal"
-                                                              data-target="#Order">Đặt phòng</a>
+                                    <div class="col-md-12">
+                                        @if($house->status==1)
+                                            <a style="width: 180px" href="#" class="btn btn-primary"
+                                               data-toggle="modal"
+                                               data-target="#Order">Đặt phòng</a>
+                                        @else
+                                        @endif
                                     </div>
 
                                 </div>

@@ -4,7 +4,9 @@
 namespace App\Http\Services;
 
 
+use App\Http\Repositories\OrderRepositoryInterface;
 use App\Http\Repositories\UserRepositoryInterface;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -12,10 +14,12 @@ use Illuminate\Support\Facades\Request;
 class UserService implements UserServiceInterface
 {
     protected $profileRepo;
+    protected $orderRepo;
 
-    public function __construct(UserRepositoryInterface $profileRepo)
+    public function __construct(UserRepositoryInterface $profileRepo, OrderRepositoryInterface $orderRepo)
     {
         $this->profileRepo = $profileRepo;
+        $this->orderRepo = $orderRepo;
     }
 
     public function getAll()
@@ -95,5 +99,80 @@ class UserService implements UserServiceInterface
     {
         // TODO: Implement historyRentHouse() method.
         return $this->profileRepo->historyRentHouse();
+    }
+
+    public function getAreDate($request)
+    {
+        // TODO: Implement getMonthlyIncome() method.
+        $checkMonths = $this->checkMonth($request);
+        $day = 0;
+        switch ($checkMonths) {
+            case 1:
+                $day += 30;
+                break;
+            case 2:
+                $day += 29;
+                break;
+            case 3:
+                $day += 28;
+                break;
+            default:
+                break;
+        }
+        return $day;
+    }
+
+    public function getMonthlyIncome($request)
+    {
+        return $this->profileRepo->getMonthlyIncome($this->getStartDate($request), $this->getEndDate($request, $this->getAreDate($request)));
+    }
+
+    public function getStartDate($request)
+    {
+        return Carbon::create($request->month);
+    }
+
+    public function getEndDate($request, $areDay)
+    {
+
+        $endDate = Carbon::create($request->month);
+        $endDate->addDays($areDay);
+
+        return $endDate;
+    }
+
+    public function checkMonth($request)
+    {
+        $date = Carbon::create($request->month);
+        $month = $date->month;
+        $checkDate = 0;
+        switch ($month) {
+            case '1':
+            case '3':
+            case '5':
+            case '7':
+            case '8':
+            case '10':
+            case '12':
+                $checkDate = 1;
+                break;
+            case '4':
+            case '6':
+            case '9':
+            case '11':
+                $checkDate = 2;
+                break;
+            case '2':
+                $checkDate = 3;
+                break;
+            default:
+                break;
+        }
+        return $checkDate;
+    }
+
+    public function getOrderByDate($request)
+    {
+        return $this->orderRepo->getOrderByUser($this->getStartDate($request), $this->getEndDate($request, $this->getAreDate($request)));
     }
 }
