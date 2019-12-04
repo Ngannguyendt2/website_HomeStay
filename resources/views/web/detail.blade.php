@@ -188,42 +188,29 @@
                         </div>
                     </div>
                     <div class="related-properties">
-                        <h2>Related Property</h2>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/1.jpg')}}">
-                                <div class="sale-notic">FOR SALE</div>
-                            </div>
-                            <div class="rp-info">
-                                <h5>1963 S Crescent Heights Blvd</h5>
-                                <p><i class="fa fa-map-marker"></i>Los Angeles, CA 90034</p>
-                            </div>
-                            <a href="#" class="rp-price">$1,200,000</a>
-                        </div>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/2.jpg')}}">
-                                <div class="rent-notic">FOR Rent</div>
-                            </div>
-                            <div class="rp-info">
-                                <h5>17 Sturges Road, Wokingham</h5>
-                                <p><i class="fa fa-map-marker"></i> Newtown, CT 06470</p>
-                            </div>
-                            <a href="#" class="rp-price">$2,500/month</a>
-                        </div>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/4.jpg')}}">
-                                <div class="sale-notic">FOR SALE</div>
-                            </div>
-                            <div class="rp-info">
-                                <h5>28 Quaker Ridge Road, Manhasset</h5>
-                                <p><i class="fa fa-map-marker"></i>28 Quaker Ridge Road, Manhasset</p>
-                            </div>
-                            <a href="#" class="rp-price">$5,600,000</a>
-                        </div>
+                        <h2>Căn hộ tương tự</h2>
+                        @foreach($houses as $key => $house)
+                            <a href="{{route('web.detail', $house->id)}}">
+                                <div class="rp-item">
+                                    <div class="rp-pic set-bg"
+                                         style="background-image: url('{{asset('storage/images/'.(json_decode($house->image))[0])}}');"
+                                         data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
+                                        <div
+                                            class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : 'Đang sửa chữa'}}</div>
+                                    </div>
+                                    <div class="rp-info">
+                                        <h5>{{$house->category->name}}</h5>
+                                        <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}
+                                            , {{$house->district->name}}, {{$house->province->name}}</p>
+                                    </div>
+                                    <a href="{{route('web.detail', $house->id)}}"
+                                       class="rp-price">{{number_format($house->price)}} Đồng/đêm</a>
+                                </div>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
-
-
             <div id="Order" class="modal" role="dialog" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
