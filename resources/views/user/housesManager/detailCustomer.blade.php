@@ -145,7 +145,6 @@
                 // e.preventDefault();
                 let formCancelOrder = $("#formCancelOrder");
                 let formData = formCancelOrder.serialize();
-                console.log(formData)
                 $.ajax({
                     url: "{{route('houses.customer.delete', ['id'=>$order->id])}}",
                     type: 'POST',

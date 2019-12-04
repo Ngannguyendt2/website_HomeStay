@@ -57,7 +57,6 @@ Route::prefix('/user')->middleware('auth')->group(function () {
 
     });
 
-
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');
         Route::get('/users', 'UserController@index')->name('admin.users.list');
@@ -82,7 +81,7 @@ Route::get('/auth/{provider}/callback', 'SocialController@callback');
 Route::post('/search', 'HouseController@search')->name('search');
 Route::post('/index', 'HomeStayController@display')->name('display');
 
-Route::post('/changeStatus/{id}','HouseController@changeStatus')->name('changeStatus');
+Route::post('/changeStatus/{id}', 'HouseController@changeStatus')->name('changeStatus');
 
 Route::post('display/{id}', 'PostController@display')->name('getAll');
 Route::post('post', 'PostController@post')->name('post');

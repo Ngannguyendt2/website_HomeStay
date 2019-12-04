@@ -60,7 +60,8 @@ class ShowMoreController extends Controller
                     foreach ($ratings as $rating) {
 
                         if ($rating->post_id == $post->id) {
-                            $output .= '<span class="review-stars" style="color: #1e88e5;">';
+                            $output .= '<style>.s</style>
+                                        <span class="review-stars" style="color: #1e88e5;">';
                             if ($rating->rating <= 0) {
                                 $output .= '<i class="fa fa-star-o" aria-hidden="true"></i>
                                         <i class="fa fa-star-o" aria-hidden="true"></i>

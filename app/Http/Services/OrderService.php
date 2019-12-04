@@ -52,7 +52,8 @@ class OrderService implements OrderServiceInterface
     public function checkEmailCustomer($request)
     {
         $customers = $this->customer->getAll();
-        if (count($customers)!=0){
+
+        if (count($customers) != 0) {
             foreach ($customers as $customer) {
                 if (Auth::user()->phone != null) {
                     if ($customer->user_id == Auth::user()->id) {
@@ -72,8 +73,7 @@ class OrderService implements OrderServiceInterface
                     return $customer;
                 }
             }
-        }
-        else{
+        } else {
             $customer = new Customer;
             $customer->name = Auth::user()->name;
             $customer->email = Auth::user()->email;

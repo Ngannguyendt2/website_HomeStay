@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
-use App\House;
 use App\Http\Requests\CreateFormOrder;
 use App\Http\Services\HouseServiceInterface;
 use App\Http\Services\OrderServiceInterface;
 use App\Http\Services\UserServiceInterface;
 use App\Notifications\OrderHouse;
 use App\Notifications\YouHasNewEmail;
+
 use App\User;
 use Illuminate\Notifications\Notification;
 use App\Order;
@@ -101,7 +100,6 @@ class OrderController extends Controller
     public function sendNotificationNewOrder($houseId)
     {
         $user = $this->user->getUserByHouse($houseId);
-
         $details = [
             'greeting' => 'Hi House Owner',
             'body' => 'You has new order from websiteHomestay.com',
