@@ -40,7 +40,7 @@ class OrderRepository extends RepositoryEloquent implements OrderRepositoryInter
             ->where('orders.checkin', '<=', $endDate)
             ->where('orders.checkout', '>=', $startDate)
             ->where('orders.checkout', '<=', $endDate)
-            ->where('users.id', '=', Auth::user()->id)->get();
+            ->where('users.id', '=', Auth::user()->id)->orderBy('orders.checkout','asc')->get();
         return $orders;
     }
 }

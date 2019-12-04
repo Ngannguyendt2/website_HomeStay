@@ -85,21 +85,31 @@ class UserController extends Controller
     public function historyRentHouse()
     {
         $orders = $this->profileService->historyRentHouse();
-        return view('user/houseDetail', compact('orders'));
+        if ($orders) {
+            return view('user/houseDetail', compact('orders'));
+        } else {
+            return redirect()->route('user.profile');
+        }
     }
 
     public function getMonthlyIncome(Request $request)
     {
 
         $money = $this->profileService->getMonthlyIncome($request);
-        $orders = $this->profileService->getOrderByDate($request);
+        $orders = $this->profileService->getDateOfOrder($request);
+        $moneyDay = $this->profileService->getMoneyOfOrder($request);
         return response()->json([
             'status' => 'success',
             'message' => 'thanh cong',
             'data' => $money,
-            'orders'=>$orders
+            'orders' => $orders,
+            'moneyDay'=>$moneyDay
         ]);
 
     }
 
+    public function showPersonalIncome()
+    {
+        return view('user.chartMonthlyIncome');
+    }
 }

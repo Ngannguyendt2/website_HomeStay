@@ -37,6 +37,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
     Route::get('historyRentHouse', 'UserController@historyRentHouse')->name('user.historyRentHouse');
     Route::post('/monthlyIncome','UserController@getMonthlyIncome')->name('user.monthlyIncome');
+    Route::get('/personalIncome','UserController@showPersonalIncome')->name('user.personalIncome');
     Route::prefix('/houses')->group(function () {
 
         Route::get('/create', 'HouseController@create')->name('house.create');

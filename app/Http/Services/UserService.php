@@ -171,8 +171,36 @@ class UserService implements UserServiceInterface
         return $checkDate;
     }
 
-    public function getOrderByDate($request)
+    public function getDateOfOrder($request)
     {
-        return $this->orderRepo->getOrderByUser($this->getStartDate($request), $this->getEndDate($request, $this->getAreDate($request)));
+        $orders = $this->orderRepo->getOrderByUser($this->getStartDate($request), $this->getEndDate($request, $this->getAreDate($request)));
+        $orderOfDay = [];
+        for ($i = 1; $i <= $this->getAreDate($request) + 1; $i++) {
+            array_push($orderOfDay, $i);
+        }
+        return $orderOfDay;
+    }
+
+    public function getMoneyOfOrder($request)
+    {
+        // TODO: Implement getMoneyOfOrder() method.
+        $orders = $this->orderRepo->getOrderByUser($this->getStartDate($request), $this->getEndDate($request, $this->getAreDate($request)));
+        $moneyOfDate = [];
+        $count = 1;
+        foreach ($orders as $key => $order) {
+            $date = Carbon::create($order->checkout);
+
+            for ($i = $count; $i <= $this->getAreDate($request) + 1; $i++) {
+                if ($i == $date->day) {
+                    array_push($moneyOfDate, $order->totalPrice);
+                    $count = $date->day;
+                    break;
+                } else {
+                    array_push($moneyOfDate, 0);
+                    $count++;
+                }
+            }
+        }
+        return $moneyOfDate;
     }
 }

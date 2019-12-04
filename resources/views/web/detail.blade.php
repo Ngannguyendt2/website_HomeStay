@@ -249,7 +249,6 @@
                                             <label>Số điện thoại: </label>
                                             <input type="phone" name="phone" class="form-control"
                                                    placeholder="Nhập số điện thoại  ">
-                                            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                                             <span class="text-danger">
                                 <strong id="phone-error"></strong>
                                         </span>
