@@ -15,7 +15,7 @@
 
             <div class="form-control agileinfo">
                 <input type="password" class="lock @error('password') is-invalid @enderror" name="password"
-                       placeholder="Password" id="password1">
+                       placeholder="Mật khẩu" id="password1">
                 @error('password')
                 <span class="invalid-feedback" role="alert">
                 <p style="color:red; margin-left: 50px; margin-bottom: 10px">{{ $message }}</p>
@@ -29,14 +29,14 @@
                                id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                         <label class="form-check-label" for="remember" style="color: white">
-                            {{ __('Remember Me') }}
+                            {{ __('Nhớ mật khẩu') }}
                         </label>
                     </div>
                 </div>
             </div>
 
             <div>
-                <input type="submit" class="register" value="Login">
+                <input type="submit" class="register" value="Đăng nhập">
                 @if (Route::has('password.request'))
                     <a style="margin-left: 120px; color: orange" class="btn btn-link"
                        href="{{ route('password.request') }}">

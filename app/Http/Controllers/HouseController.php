@@ -105,10 +105,10 @@ class HouseController extends Controller
 
     public function changeStatus(Request $request, $id)
     {
-        $house = House::findorfail($id);
+        $house = $this->house->getHouseById($id);
         $status = $request->status;
         $house->status = $status;
         $house->save();
-        return redirect()->route('web.index');
+        return back();
     }
 }

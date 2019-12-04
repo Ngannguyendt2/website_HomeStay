@@ -6,7 +6,11 @@ use App\Http\Requests\CreateFormOrder;
 use App\Http\Services\HouseServiceInterface;
 use App\Http\Services\OrderServiceInterface;
 use App\Http\Services\UserServiceInterface;
+use App\Notifications\OrderHouse;
 use App\Notifications\YouHasNewEmail;
+
+use App\User;
+use Illuminate\Notifications\Notification;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -28,6 +32,7 @@ class OrderController extends Controller
 
     public function order(CreateFormOrder $request, $id)
     {
+
         try {
 
             if (!$this->order->checkDate($request, $id)) {
@@ -51,6 +56,12 @@ class OrderController extends Controller
                 'message' => $e->getMessage()
             ]);
         }
+//        $house = House::findorfail($id);
+//        $owner_id = $house->user_id;
+//        $owner = User::findorfail($owner_id);
+//        $customer = Auth::user();
+//
+//        $owner->notify(new OrderHouse($house, $customer));
     }
 
     public function delete($orderId, Request $request)

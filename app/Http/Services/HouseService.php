@@ -126,8 +126,8 @@ class HouseService implements HouseServiceInterface
                 $houses = DB::table('houses')->select('houses.id')
                     ->join('orders', 'houses.id', '=', 'orders.house_id')
                     ->whereBetween('orders.checkin', array($checkin, $checkout))
-                    ->whereBetween('orders.checkout', array($checkin, $checkout))->get();
-                $array =[];
+                    ->orWhereBetween('orders.checkout', array($checkin, $checkout))->get();
+                $array = [];
                 foreach ($houses as $house) {
                     array_push($array, $house->id);
                 }

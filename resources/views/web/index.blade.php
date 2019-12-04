@@ -173,226 +173,226 @@
 
 
     <!-- feature section -->
-    <section class="feature-section spad">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>Danh sách nhà đẹp</h3>
-                <p>Duyệt nhà và căn hộ để bán và cho thuê trong khu vực của bạn</p>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <!-- feature -->
-                    <div class="feature-item">
-                        <div class="feature-pic set-bg" data-setbg="img/feature/1.jpg">
-                            <div class="sale-notic">FOR SALE</div>
-                        </div>
-                        <div class="feature-text">
-                            <div class="text-center feature-title">
-                                <h5>1963 S Crescent Heights Blvd</h5>
-                                <p><i class="fa fa-map-marker"></i> Los Angeles, CA 90034</p>
-                            </div>
-                            <div class="room-info-warp">
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-th-large"></i> 800 Square foot</p>
-                                        <p><i class="fa fa-bed"></i> 10 Bedrooms</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-car"></i> 2 Garages</p>
-                                        <p><i class="fa fa-bath"></i> 6 Bathrooms</p>
-                                    </div>
-                                </div>
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-user"></i> Tony Holland</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-clock-o"></i> 1 days ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="room-price">$1,200,000</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- feature -->
-                    <div class="feature-item">
-                        <div class="feature-pic set-bg" data-setbg="img/feature/2.jpg">
-                            <div class="sale-notic">FOR SALE</div>
-                        </div>
-                        <div class="feature-text">
-                            <div class="text-center feature-title">
-                                <h5>305 North Palm Drive</h5>
-                                <p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>
-                            </div>
-                            <div class="room-info-warp">
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-th-large"></i> 1500 Square foot</p>
-                                        <p><i class="fa fa-bed"></i> 16 Bedrooms</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-car"></i> 2 Garages</p>
-                                        <p><i class="fa fa-bath"></i> 8 Bathrooms</p>
-                                    </div>
-                                </div>
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-user"></i> Gina Wesley</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-clock-o"></i> 1 days ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="room-price">$4,500,000</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- feature -->
-                    <div class="feature-item">
-                        <div class="feature-pic set-bg" data-setbg="img/feature/3.jpg">
-                            <div class="rent-notic">FOR Rent</div>
-                        </div>
-                        <div class="feature-text">
-                            <div class="text-center feature-title">
-                                <h5>305 North Palm Drive</h5>
-                                <p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>
-                            </div>
-                            <div class="room-info-warp">
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-th-large"></i> 1500 Square foot</p>
-                                        <p><i class="fa fa-bed"></i> 16 Bedrooms</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-car"></i> 2 Garages</p>
-                                        <p><i class="fa fa-bath"></i> 8 Bathrooms</p>
-                                    </div>
-                                </div>
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-user"></i> Gina Wesley</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-clock-o"></i> 1 days ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="room-price">$2,500/month</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- feature -->
-                    <div class="feature-item">
-                        <div class="feature-pic set-bg" data-setbg="img/feature/4.jpg">
-                            <div class="sale-notic">FOR SALE</div>
-                        </div>
-                        <div class="feature-text">
-                            <div class="text-center feature-title">
-                                <h5>28 Quaker Ridge Road, Manhasset</h5>
-                                <p><i class="fa fa-map-marker"></i> 28 Quaker Ridge Road, Manhasset</p>
-                            </div>
-                            <div class="room-info-warp">
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-th-large"></i> 1200 Square foot</p>
-                                        <p><i class="fa fa-bed"></i> 12 Bedrooms</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-car"></i> 3 Garages</p>
-                                        <p><i class="fa fa-bath"></i> 8 Bathrooms</p>
-                                    </div>
-                                </div>
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-user"></i> Sasha Gordon </p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-clock-o"></i> 8 days ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="room-price">$5,600,000</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- feature -->
-                    <div class="feature-item">
-                        <div class="feature-pic set-bg" data-setbg="img/feature/5.jpg">
-                            <div class="rent-notic">FOR Rent</div>
-                        </div>
-                        <div class="feature-text">
-                            <div class="text-center feature-title">
-                                <h5>Sofi Berryessa 750 N King Road</h5>
-                                <p><i class="fa fa-map-marker"></i> San Jose, CA 95133</p>
-                            </div>
-                            <div class="room-info-warp">
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-th-large"></i> 500 Square foot</p>
-                                        <p><i class="fa fa-bed"></i> 4 Bedrooms</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-car"></i> 1 Garages</p>
-                                        <p><i class="fa fa-bath"></i> 2 Bathrooms</p>
-                                    </div>
-                                </div>
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-user"></i> Gina Wesley</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-clock-o"></i> 8 days ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="room-price">$1,600/month</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <!-- feature -->
-                    <div class="feature-item">
-                        <div class="feature-pic set-bg" data-setbg="img/feature/6.jpg">
-                            <div class="sale-notic">FOR SALE</div>
-                        </div>
-                        <div class="feature-text">
-                            <div class="text-center feature-title">
-                                <h5>1203 Orren Street, Northeast</h5>
-                                <p><i class="fa fa-map-marker"></i> Washington, DC 20002</p>
-                            </div>
-                            <div class="room-info-warp">
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-th-large"></i> 700 Square foot</p>
-                                        <p><i class="fa fa-bed"></i> 7 Bedrooms</p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-car"></i> 1 Garages</p>
-                                        <p><i class="fa fa-bath"></i> 7 Bathrooms</p>
-                                    </div>
-                                </div>
-                                <div class="room-info">
-                                    <div class="rf-left">
-                                        <p><i class="fa fa-user"></i> Sasha Gordon </p>
-                                    </div>
-                                    <div class="rf-right">
-                                        <p><i class="fa fa-clock-o"></i> 8 days ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="room-price">$1,600,000</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{{--    <section class="feature-section spad">--}}
+{{--        <div class="container">--}}
+{{--            <div class="section-title text-center">--}}
+{{--                <h3>Danh sách nhà đẹp</h3>--}}
+{{--                <p>Duyệt nhà và căn hộ để bán và cho thuê trong khu vực của bạn</p>--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-lg-4 col-md-6">--}}
+{{--                    <!-- feature -->--}}
+{{--                    <div class="feature-item">--}}
+{{--                        <div class="feature-pic set-bg" data-setbg="img/feature/1.jpg">--}}
+{{--                            <div class="sale-notic">FOR SALE</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="feature-text">--}}
+{{--                            <div class="text-center feature-title">--}}
+{{--                                <h5>1963 S Crescent Heights Blvd</h5>--}}
+{{--                                <p><i class="fa fa-map-marker"></i> Los Angeles, CA 90034</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="room-info-warp">--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-th-large"></i> 800 Square foot</p>--}}
+{{--                                        <p><i class="fa fa-bed"></i> 10 Bedrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-car"></i> 2 Garages</p>--}}
+{{--                                        <p><i class="fa fa-bath"></i> 6 Bathrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-user"></i> Tony Holland</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-clock-o"></i> 1 days ago</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <a href="#" class="room-price">$1,200,000</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-4 col-md-6">--}}
+{{--                    <!-- feature -->--}}
+{{--                    <div class="feature-item">--}}
+{{--                        <div class="feature-pic set-bg" data-setbg="img/feature/2.jpg">--}}
+{{--                            <div class="sale-notic">FOR SALE</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="feature-text">--}}
+{{--                            <div class="text-center feature-title">--}}
+{{--                                <h5>305 North Palm Drive</h5>--}}
+{{--                                <p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="room-info-warp">--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-th-large"></i> 1500 Square foot</p>--}}
+{{--                                        <p><i class="fa fa-bed"></i> 16 Bedrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-car"></i> 2 Garages</p>--}}
+{{--                                        <p><i class="fa fa-bath"></i> 8 Bathrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-user"></i> Gina Wesley</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-clock-o"></i> 1 days ago</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <a href="#" class="room-price">$4,500,000</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-4 col-md-6">--}}
+{{--                    <!-- feature -->--}}
+{{--                    <div class="feature-item">--}}
+{{--                        <div class="feature-pic set-bg" data-setbg="img/feature/3.jpg">--}}
+{{--                            <div class="rent-notic">FOR Rent</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="feature-text">--}}
+{{--                            <div class="text-center feature-title">--}}
+{{--                                <h5>305 North Palm Drive</h5>--}}
+{{--                                <p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="room-info-warp">--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-th-large"></i> 1500 Square foot</p>--}}
+{{--                                        <p><i class="fa fa-bed"></i> 16 Bedrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-car"></i> 2 Garages</p>--}}
+{{--                                        <p><i class="fa fa-bath"></i> 8 Bathrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-user"></i> Gina Wesley</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-clock-o"></i> 1 days ago</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <a href="#" class="room-price">$2,500/month</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-4 col-md-6">--}}
+{{--                    <!-- feature -->--}}
+{{--                    <div class="feature-item">--}}
+{{--                        <div class="feature-pic set-bg" data-setbg="img/feature/4.jpg">--}}
+{{--                            <div class="sale-notic">FOR SALE</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="feature-text">--}}
+{{--                            <div class="text-center feature-title">--}}
+{{--                                <h5>28 Quaker Ridge Road, Manhasset</h5>--}}
+{{--                                <p><i class="fa fa-map-marker"></i> 28 Quaker Ridge Road, Manhasset</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="room-info-warp">--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-th-large"></i> 1200 Square foot</p>--}}
+{{--                                        <p><i class="fa fa-bed"></i> 12 Bedrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-car"></i> 3 Garages</p>--}}
+{{--                                        <p><i class="fa fa-bath"></i> 8 Bathrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-user"></i> Sasha Gordon </p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-clock-o"></i> 8 days ago</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <a href="#" class="room-price">$5,600,000</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-4 col-md-6">--}}
+{{--                    <!-- feature -->--}}
+{{--                    <div class="feature-item">--}}
+{{--                        <div class="feature-pic set-bg" data-setbg="img/feature/5.jpg">--}}
+{{--                            <div class="rent-notic">FOR Rent</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="feature-text">--}}
+{{--                            <div class="text-center feature-title">--}}
+{{--                                <h5>Sofi Berryessa 750 N King Road</h5>--}}
+{{--                                <p><i class="fa fa-map-marker"></i> San Jose, CA 95133</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="room-info-warp">--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-th-large"></i> 500 Square foot</p>--}}
+{{--                                        <p><i class="fa fa-bed"></i> 4 Bedrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-car"></i> 1 Garages</p>--}}
+{{--                                        <p><i class="fa fa-bath"></i> 2 Bathrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-user"></i> Gina Wesley</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-clock-o"></i> 8 days ago</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <a href="#" class="room-price">$1,600/month</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-4 col-md-6">--}}
+{{--                    <!-- feature -->--}}
+{{--                    <div class="feature-item">--}}
+{{--                        <div class="feature-pic set-bg" data-setbg="img/feature/6.jpg">--}}
+{{--                            <div class="sale-notic">FOR SALE</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="feature-text">--}}
+{{--                            <div class="text-center feature-title">--}}
+{{--                                <h5>1203 Orren Street, Northeast</h5>--}}
+{{--                                <p><i class="fa fa-map-marker"></i> Washington, DC 20002</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="room-info-warp">--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-th-large"></i> 700 Square foot</p>--}}
+{{--                                        <p><i class="fa fa-bed"></i> 7 Bedrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-car"></i> 1 Garages</p>--}}
+{{--                                        <p><i class="fa fa-bath"></i> 7 Bathrooms</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="room-info">--}}
+{{--                                    <div class="rf-left">--}}
+{{--                                        <p><i class="fa fa-user"></i> Sasha Gordon </p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="rf-right">--}}
+{{--                                        <p><i class="fa fa-clock-o"></i> 8 days ago</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <a href="#" class="room-price">$1,600,000</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
     <!-- feature section end -->
 
 
@@ -555,24 +555,32 @@
                     type: 'POST',
                     data: data,
                     success: function (response) {
-                        console.log(response);
                         $.each(response.data, function (index, value) {
-                            html += '<div class="col-md-6">';
+                            html += '<div class="col-lg-4 col-md-6">';
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">';
-                            html += '<div style="border-radius: 15px; background-image: url( ' + 'http://127.0.0.1:8000/storage/images/' + JSON.parse(value.image)[0] + ') " class="propertie-item set-bg" ' + '>';
+                            html += '<div class="feature-item">';
+                            html += '<div class="feature-pic set-bg" style="background-image: url( ' + 'http://127.0.0.1:8000/storage/images/' + JSON.parse(value.image)[0] + ') " ' + '>';
                             html += '<div class="sale-notic">' + "Cho thuê" + '</div>';
-                            html += '<div class="propertie-info text-white">';
-                            html += '<div class="info-warp">';
+                            html += '</div>';
+                            html += '<div class="feature-text"">';
+                            html += '<div class="text-center feature-title">';
                             html += '<h5>' + value.category_id + '</h5>';
                             html += '<p><i class="fa fa-map-marker"></i>' +
                                 ' ' + value.ward_id + '\n' +
-                                ', ' + value.district_id + '<br>' + value.province_id + '</p>';
+                                ', ' + value.district_id + '\n' + ', ' + value.province_id + '</p>';
                             html += '</div>';
-                            html += '<div style="margin-top: 5px" class="price">';
-                            html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">' + numberFormat(value.price)
+                            html += '<div class="room-info-warp">';
+                            html += '<div class="room-info">';
+                            html += '<div class="rf-left">';
+                            html += '<p><i class="fa fa-bed"></i>' + value.totalBedRoom + ' ' + 'Phòng ngủ' + '</p>';
+                            html += '</div>';
+                            html += '<div class="rf-right">';
+                            html += '<p><i class="fa fa-bath"></i>' + value.totalBathroom + ' ' + 'Phòng tắm' + '</p>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail" class="room-price">' + numberFormat(value.price)
                                 + ' ' + 'Đồng </a>';
-                            html += '</div>';
-                            html += '</div>';
                             html += '</div>';
                             html += '</div>';
                             html += '</a>';
