@@ -138,6 +138,7 @@ class OrderService implements OrderServiceInterface
     public function getOrderHadCancel()
     {
         // TODO: Implement getOrderHadCancel() method.
+
         return $this->orderRepo->getOrderHadCancel();
     }
 }

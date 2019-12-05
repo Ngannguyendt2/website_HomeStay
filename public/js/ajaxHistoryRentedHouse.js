@@ -5,8 +5,8 @@ $(document).ready(function () {
             type: 'GET',
             data: 'JSON',
             success: function (result) {
-                $('#rentedHouse').empty();
                 $('#clearOrder').empty();
+                $('#rentedHouse').empty();
                 if (result.data.length > 0) {
                     for (let i = 0; i <= result.data.length; i++) {
                         let html = '<tr id="historyRentHouse"><td>' + +(i + 1) + '</td><td>' + result.data[i].house.category.name + '</td><td>' + result.data[i].house.ward.name + '' +

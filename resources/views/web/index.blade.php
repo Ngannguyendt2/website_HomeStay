@@ -354,7 +354,7 @@
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
-                            html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail/"' + value.category_id + ' class="room-price">' + numberFormat(value.price)
+                            html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail/' + value.category_id + '" class="room-price">' + numberFormat(value.price)
                                 + ' ' + 'Đồng </a>';
                             html += '</div>';
                             html += '</div>';

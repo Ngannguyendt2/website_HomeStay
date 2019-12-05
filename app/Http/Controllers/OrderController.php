@@ -145,6 +145,7 @@ class OrderController extends Controller
 
     public function getOrderHadCancel()
     {
+
         try {
             $orders = $this->order->getOrderHadCancel();
             foreach ($orders as $order) {
