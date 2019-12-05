@@ -218,7 +218,7 @@ class UserService implements UserServiceInterface
         foreach ($orders as $key => $order) {
             $date = Carbon::create($order->checkout);
 
-            for ($i = $count; $i <= $this->getAreDate($request) + 1; $i++) {
+            for ($i = $count; $i <= $this->getDateOfOrder($request); $i++) {
                 if ($i == $date->day) {
                     array_push($moneyOfDate, $order->totalPrice);
                     $count ++;

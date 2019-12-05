@@ -379,7 +379,7 @@
                 success: function (data) {
                     $('#load_more_button').remove();
 
-                    $('#display_comment').append(data);
+                    $('#display_comment').html(data);
 
 
                 }
