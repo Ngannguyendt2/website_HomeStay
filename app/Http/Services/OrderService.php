@@ -52,7 +52,6 @@ class OrderService implements OrderServiceInterface
     public function checkEmailCustomer($request)
     {
         $customers = $this->customer->getAll();
-
         if (count($customers) != 0) {
             foreach ($customers as $customer) {
                 if (Auth::user()->phone != null) {
@@ -134,5 +133,12 @@ class OrderService implements OrderServiceInterface
     {
         // TODO: Implement getOrderByUser() method.
         return $this->orderRepo->getOrderByUser();
+    }
+
+    public function getOrderHadCancel()
+    {
+        // TODO: Implement getOrderHadCancel() method.
+
+        return $this->orderRepo->getOrderHadCancel();
     }
 }

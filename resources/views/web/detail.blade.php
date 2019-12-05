@@ -385,6 +385,8 @@
                         $('#display_comment').html(data);
                     }
 
+
+
                 }
             })
         }

@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
 use App\Http\Requests\CreateFormReview;
 use App\Http\Services\PostServiceInterface;
 use App\Post;
 use App\Rating;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -41,7 +39,6 @@ class PostController extends Controller
                     ->limit(3)
                     ->get();
             }
-//            $posts = DB::table('posts')->where('comment_id', '=', 0)->where('house_id', $id)->orderBy('created_at', 'DESC')->get();
             $ratings = Rating::all();
             $users = User::all();
             $output = '';

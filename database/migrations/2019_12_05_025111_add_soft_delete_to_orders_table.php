@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCommentIdToPostsTable extends Migration
+class AddSoftDeleteToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddCommentIdToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('comment_id')->after('id');
-
+        Schema::table('orders', function (Blueprint $table) {
+            //
         });
     }
 
@@ -26,8 +25,9 @@ class AddCommentIdToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             //
+            $table->dropSoftDeletes();
         });
     }
 }

@@ -94,13 +94,8 @@
                             @if(count($user->houses)==0)
                             @else
                                 <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
-{{--                                    <a href="" style="color: green" data-toggle="modal"--}}
-{{--                                       data-target="#monthlyIncome"><i class="fa fa-money"--}}
-{{--                                                                       style="font-size:24px"></i><b>Thu nhập của--}}
-{{--                                            bạn </b></a>--}}
-
                                     <a style="color: green" href={{route('user.personalIncome')}}>
-                                        <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i><b>Thu nhập cá nhân </b>
+                                        <i class="fa fa-money" aria-hidden="true" style="font-size:20px"></i><b>Thu nhập cá nhân </b>
                                     </a>
                                 </div>
                             @endif
@@ -199,64 +194,7 @@
         </div>
     </div>
 </div>
-{{--count money owner house--}}
 
-{{--<div id="monthlyIncome" class="modal" role="dialog" tabindex="-1">--}}
-{{--    <div class="modal-dialog">--}}
-{{--        <div class="modal-content">--}}
-{{--            <div class="modal-header">--}}
-{{--                <h3 class="modal-title text-center primecolor">Kiểm tra thu nhập của bạn </h3>--}}
-{{--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                    <span aria-hidden="true">&times;</span>--}}
-{{--                </button>--}}
-
-{{--            </div>--}}
-{{--            <div class="modal-body" style="overflow: hidden;">--}}
-{{--                <strong id="alert"></strong>--}}
-{{--                <div class="col-md-offset-1 col-md-10">--}}
-{{--                    <form method="POST" id="moneyOfOwnerHouse">--}}
-{{--                        @csrf--}}
-{{--                        <div class="form-group has-feedback">--}}
-{{--                            <label>Chọn tháng bạn muốn kiểm tra : </label>--}}
-{{--                            <input type="month" name="month" id="month" class="form-control">--}}
-{{--                            <span class="text-danger">--}}
-{{--                                <strong id="date-error"></strong>--}}
-{{--                                        </span>--}}
-{{--                        </div>--}}
-{{--                        <div class="form-group has-feedback" style="display: none" id="date">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-9" id="checkout">--}}
-
-{{--                                </div>--}}
-{{--                                <div class="col-md-3" id="moneyOfDay">--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-
-{{--                        </div>--}}
-{{--                        <div class="form-group has-feedback" style="display: none" id="money">--}}
-{{--                            <b><label style="color: #17a2b8">Tổng số tiền trong tháng:</label></b>--}}
-{{--                            <b><label id="totalMoney" style="color: #00aced"></label><label--}}
-{{--                                    style="color: #00aced">VND</label></b>--}}
-{{--                        </div>--}}
-{{--                        <div class="form-group">--}}
-{{--                            <div class="col-md-12" style="text-align: center">--}}
-{{--                                <button type="button" id="submitCalculatorMoney"--}}
-{{--                                        class="btn btn-primary btn-prime white btn-flat">Xác nhận--}}
-{{--                                </button>--}}
-{{--                                <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy--}}
-{{--                                </button>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                    </form>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
 <form id="logout-form" action="{{ route('logout') }}" method="POST"
       style="display: none;">
     @csrf
@@ -278,40 +216,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
-
-        {{--$('#month').change(function () {--}}
-        {{--    $('#date').css('display', 'block');--}}
-        {{--});--}}
-        {{--$('body').on('click', '#submitCalculatorMoney', function () {--}}
-
-
-        {{--    let calculatorMoney = $('#moneyOfOwnerHouse');--}}
-        {{--    let formData = calculatorMoney.serialize();--}}
-        {{--    $('#totalMoney').html('');--}}
-        {{--    $('#checkout').html('');--}}
-        {{--    $('#moneyOfDay').html('');--}}
-        {{--    $.ajax({--}}
-        {{--        url: "{{route('user.monthlyIncome')}}",--}}
-        {{--        type: 'POST',--}}
-        {{--        data: formData,--}}
-        {{--        success: function (result) {--}}
-
-        {{--            $('#totalMoney').html(result.data);--}}
-        {{--            $('#money').css('display', 'block');--}}
-        {{--            for (let i = 0; i < result.orders.length; i++) {--}}
-
-        {{--                $('#checkout').append('<b>' + result.orders[i].checkout + '<b><br>');--}}
-        {{--                $('#moneyOfDay').append('<b>' + result.orders[i].totalPrice + '<b><br>');--}}
-
-        {{--            }--}}
-        {{--        },--}}
-        {{--        error: function (err) {--}}
-
-        {{--        }--}}
-        {{--    })--}}
-        {{--});--}}
-
         $('body').on('click', '#submitChangePass', function () {
             // e.preventDefault();
             let changePasswordForm = $("#Password");
