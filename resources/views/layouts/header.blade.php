@@ -1,4 +1,5 @@
 <header class="header-section">
+    {{--    {{dd(count(\Illuminate\Support\Facades\Auth::user()->unreadNotifications))}}--}}
     <div class="header-top">
         <div class="container">
             <div class="row">
@@ -18,17 +19,41 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7 text-lg-right header-top-right">
+                <div class="col-lg-6 text-lg-right header-top-right">
                     <div class="top-social">
-                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a>
-                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a>
-                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-instagram"></i></a>
-                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-pinterest"></i></a>
-                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-linkedin"></i></a>
-                        <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b class="text text-light">Đăng
+                        {{--                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a>--}}
+                        {{--                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a>--}}
+                        {{--                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-instagram"></i></a>--}}
+                        {{--                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-pinterest"></i></a>--}}
+                        @if(Auth::check())
+                            <a id="navbarDropdown" class="" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fa fa-bell"></i><span class="badge badge-danger"
+                                                                 id="count-notification"><span
+                                        class="caret"> {{count(\Illuminate\Support\Facades\Auth::user()->unreadNotifications)}}</span></span><span
+                                    class="caret"></span></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @if(auth()->user()->unreadNotifications->count())
+                                    @foreach(auth()->user()->unreadNotifications as $notification)
+                                        <a class="dropdown-item" href="{{route('house.list')}}">
+                                            {{$notification->data['name']}} đã thuê phòng có
+                                            id {{$notification->data['house_id']}}
+                                        </a>
+                                    @endforeach
+                                @else
+                                    <a class="dropdown-item" href="#">
+                                        No notification
+                                    </a>
+                                @endif
+                            </div>
+
+                        @endif
+                        <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b
+                                class="text text-light">Đăng
                                 tin</b></a>
                     </div>
-                    <div class="user-panel">                         <!-- Authentication Links -->
+                    <div class="user-panel">
+                        <!-- Authentication Links -->
                         @guest
                             <div class="row">
                                 <div class="col-lg-4">

@@ -11,7 +11,7 @@ class OrderHouse extends Notification
 {
     use Queueable;
     protected $house;
-    public $customer;
+    protected $customer;
 
     /**
      * Create a new notification instance.

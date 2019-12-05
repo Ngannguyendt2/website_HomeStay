@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p class="text text-black-50" style="margin-top: 10px; width: 180px; font-weight: bold">
-                                            Giá: {{number_format($house->price)}} Đồng</p>
+                                            Giá: {{number_format($house->price)}} Đồng/ngày</p>
 
                                     </div>
                                     <div class="col-md-12">

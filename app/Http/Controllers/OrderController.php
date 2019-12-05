@@ -13,6 +13,7 @@ use App\User;
 use Illuminate\Notifications\Notification;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -38,7 +39,8 @@ class OrderController extends Controller
             if (!$this->order->checkDate($request, $id)) {
 
                 $this->order->create($request, $id);
-                $this->sendNotificationNewOrder($id);
+//                $this->sendNotificationNewOrder($id);
+                $this->sendNotification($id);
                 return response()->json([
                     'status' => 'success',
                     'message' => 'đặt lịch thành công'
@@ -166,6 +168,16 @@ class OrderController extends Controller
                 'data' => $exception->getCode()
             ]);
         }
+
+    }
+    public function sendNotification($houseId)
+    {
+        $house = $this->house->getHouseById($houseId);
+        $houseOwner_id = $house->user_id;
+        $houseOwner = $this->user->getUserById($houseOwner_id);
+        $customer = Auth::user();
+        $houseOwner->notify(new OrderHouse($house, $customer));
+
 
     }
 }
