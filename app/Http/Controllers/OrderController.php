@@ -142,4 +142,30 @@ class OrderController extends Controller
         $when = now()->addSeconds(10);
         $user->notify((new YouHasNewEmail($details))->delay($when));
     }
+
+    public function getOrderHadCancel()
+    {
+        try {
+            $orders = $this->order->getOrderHadCancel();
+            foreach ($orders as $order) {
+                $order->house->category;
+                $order->house->district;
+                $order->house->ward;
+                $order->house->province;
+            }
+            return response()->json([
+                'status' => 'success',
+                'message' => 'thành công',
+                'data' => $orders
+            ]);
+
+        } catch (\Exception $exception) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'lỗi rồi ',
+                'data' => $exception->getCode()
+            ]);
+        }
+
+    }
 }

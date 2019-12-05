@@ -10,6 +10,7 @@ interface OrderRepositoryInterface extends RepositoryInterface
 
     public function getOrderByHouse($houseId);
 
-    public function getOrderByUser($startDate,$endDate);
+    public function getOrderByUser($startDate, $endDate);
 
+    public function getOrderHadCancel();
 }
