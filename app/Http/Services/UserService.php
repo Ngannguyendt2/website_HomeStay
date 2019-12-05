@@ -98,7 +98,34 @@ class UserService implements UserServiceInterface
     public function historyRentHouse()
     {
         // TODO: Implement historyRentHouse() method.
-        return $this->profileRepo->historyRentHouse();
+        $orders = $this->profileRepo->historyRentHouse();
+        $orderWait = [];
+        if ($orders) {
+            foreach ($orders as $order) {
+                $now = new Carbon();
+                $orderCheckin = Carbon::create($order->checkin);
+                if ($orderCheckin->greaterThan($now)) {
+                    array_push($orderWait, $order);
+                }
+            }
+        }
+        return $orderWait;
+    }
+
+    public function getRentedHouse()
+    {
+        $orders = $this->profileRepo->historyRentHouse();
+        $orderPass = [];
+        if ($orders) {
+            foreach ($orders as $order) {
+                $now = new Carbon();
+                $orderCheckin = Carbon::create($order->checkin);
+                if (!$orderCheckin->greaterThan($now)) {
+                    array_push($orderPass, $order);
+                }
+            }
+        }
+        return $orderPass;
     }
 
     public function getAreDate($request)
@@ -187,14 +214,16 @@ class UserService implements UserServiceInterface
         $orders = $this->orderRepo->getOrderByUser($this->getStartDate($request), $this->getEndDate($request, $this->getAreDate($request)));
         $moneyOfDate = [];
         $count = 1;
+
         foreach ($orders as $key => $order) {
             $date = Carbon::create($order->checkout);
 
             for ($i = $count; $i <= $this->getAreDate($request) + 1; $i++) {
                 if ($i == $date->day) {
                     array_push($moneyOfDate, $order->totalPrice);
-                    $count = $date->day;
+                    $count ++;
                     break;
+
                 } else {
                     array_push($moneyOfDate, 0);
                     $count++;

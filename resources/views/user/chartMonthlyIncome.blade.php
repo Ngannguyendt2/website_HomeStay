@@ -134,6 +134,14 @@ nd -->
 
                     $('#totalMoney').html(result.data);
                     $('#showMoneyTotal').css('display', 'block');
+                    let moneys = result.moneyDay;
+                    let orders = result.orders;
+                    console.log(orders);
+                    for (let i = 1; i <= orders.length; i++) {
+                        if (i > moneys.length) {
+                            moneys.push(0);
+                        }
+                    }
                     Chart.defaults.global.defaultFontColor = '#000000';
                     Chart.defaults.global.defaultFontFamily = 'Arial';
                     let lineChart = document.getElementById('line-chart');
@@ -144,7 +152,7 @@ nd -->
                             datasets: [
                                 {
                                     label: 'Thu nhập cá nhân ',
-                                    data: result.moneyDay,
+                                    data: moneys,
                                     backgroundColor: 'rgba(0, 128, 128, 0.3)',
                                     borderColor: 'rgba(0, 128, 128, 0.7)',
                                     borderWidth: 1
