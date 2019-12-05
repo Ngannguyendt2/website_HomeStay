@@ -40,7 +40,13 @@ class OrderRepository extends RepositoryEloquent implements OrderRepositoryInter
             ->where('orders.checkin', '<=', $endDate)
             ->where('orders.checkout', '>=', $startDate)
             ->where('orders.checkout', '<=', $endDate)
-            ->where('users.id', '=', Auth::user()->id)->orderBy('orders.checkout','asc')->get();
+            ->where('users.id', '=', Auth::user()->id)->orderBy('orders.checkout', 'asc')->get();
         return $orders;
+    }
+
+    public function getOrderHadCancel()
+    {
+        // TODO: Implement getOrderHadCancel() method.
+        return Order::onlyTrashed()->get();
     }
 }

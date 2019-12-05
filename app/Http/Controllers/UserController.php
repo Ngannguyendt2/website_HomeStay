@@ -92,6 +92,31 @@ class UserController extends Controller
         }
     }
 
+    public function getRentedHouse()
+    {
+        $orders = $this->profileService->getRentedHouse();
+        foreach ($orders as $order){
+            $order->house->category;
+            $order->house->district;
+            $order->house->ward;
+            $order->house->province;
+        }
+
+        if ($orders) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'thành công rồi ',
+                'data' => $orders
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'bạn chưa từng thuê ngôi nhà này ',
+                'data' => null
+            ]);
+        }
+    }
+
     public function getMonthlyIncome(Request $request)
     {
 
@@ -103,7 +128,7 @@ class UserController extends Controller
             'message' => 'thanh cong',
             'data' => $money,
             'orders' => $orders,
-            'moneyDay'=>$moneyDay
+            'moneyDay' => $moneyDay
         ]);
 
     }

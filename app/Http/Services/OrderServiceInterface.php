@@ -17,4 +17,6 @@ interface OrderServiceInterface
     public function getOrderByHouse($houseId);
 
     public function getOrderByUser();
+
+    public function getOrderHadCancel();
 }

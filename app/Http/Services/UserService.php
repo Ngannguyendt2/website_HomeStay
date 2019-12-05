@@ -98,7 +98,34 @@ class UserService implements UserServiceInterface
     public function historyRentHouse()
     {
         // TODO: Implement historyRentHouse() method.
-        return $this->profileRepo->historyRentHouse();
+        $orders = $this->profileRepo->historyRentHouse();
+        $orderWait = [];
+        if ($orders) {
+            foreach ($orders as $order) {
+                $now = new Carbon();
+                $orderCheckin = Carbon::create($order->checkin);
+                if ($orderCheckin->greaterThan($now)) {
+                    array_push($orderWait, $order);
+                }
+            }
+        }
+        return $orderWait;
+    }
+
+    public function getRentedHouse()
+    {
+        $orders = $this->profileRepo->historyRentHouse();
+        $orderPass = [];
+        if ($orders) {
+            foreach ($orders as $order) {
+                $now = new Carbon();
+                $orderCheckin = Carbon::create($order->checkin);
+                if (!$orderCheckin->greaterThan($now)) {
+                    array_push($orderPass, $order);
+                }
+            }
+        }
+        return $orderPass;
     }
 
     public function getAreDate($request)

@@ -22,6 +22,8 @@ interface UserServiceInterface
 
     public function historyRentHouse();
 
+    public function getRentedHouse();
+
     public function getMonthlyIncome($request);
 
     public function getDateOfOrder($request);
