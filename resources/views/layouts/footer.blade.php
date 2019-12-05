@@ -27,18 +27,18 @@
                 <div class="double-menu-widget">
                     <h5 class="fw-title">Địa chỉ phổ biến</h5>
                     <ul>
-                        <li><a href="">Florida</a></li>
-                        <li><a href="">New York</a></li>
-                        <li><a href="">Washington</a></li>
-                        <li><a href="">Los Angeles</a></li>
-                        <li><a href="">Chicago</a></li>
+                        <li><a href="">Đà Lạt</a></li>
+                        <li><a href="">Hà Nội</a></li>
+                        <li><a href="">Quảng Ninh</a></li>
+                        <li><a href="">Hồ Chí Minh</a></li>
+                        <li><a href="">Huế</a></li>
                     </ul>
                     <ul>
-                        <li><a href="">St Louis</a></li>
-                        <li><a href="">Jacksonville</a></li>
-                        <li><a href="">San Jose</a></li>
-                        <li><a href="">San Diego</a></li>
-                        <li><a href="">Houston</a></li>
+                        <li><a href="">Vinh</a></li>
+                        <li><a href="">Hải Dương</a></li>
+                        <li><a href="">Thái Bình</a></li>
+                        <li><a href="">Nam Định</a></li>
+                        <li><a href="">Mai Châu</a></li>
                     </ul>
                 </div>
             </div>

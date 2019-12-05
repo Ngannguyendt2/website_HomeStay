@@ -48,7 +48,7 @@
                             <div class="col-sm-2 offset-xl-1">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p class="text text-black-50" style="margin-top: 10px; width: 180px">
+                                        <p class="text text-black-50" style="margin-top: 10px; width: 180px; font-weight: bold">
                                             Giá: {{number_format($house->price)}} Đồng</p>
 
                                     </div>
@@ -85,57 +85,6 @@
                         </div>
                         <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
-
-                            {{--                            {{csrf_field()}}--}}
-                            {{--                            <div class="row" id="post_data"></div>--}}
-                            {{--                            <div class="row">--}}
-                            {{--                                @foreach($posts as $key => $post)--}}
-                            {{--                                    <div class="rating col-md-12">--}}
-                            {{--                                        <div class="row">--}}
-                            {{--                                            <div class="col-md-3">--}}
-
-                            {{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                     alt="ahihi"/>--}}
-                            {{--                                                <p>{{$post->user->name}}</p>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="col-md-9">--}}
-                            {{--                                                @foreach ($post->ratings()->get() as $rate)--}}
-                            {{--                                                    <input id="input-1" name="input-1" class="rating rating-loading"--}}
-                            {{--                                                           data-min="0"--}}
-                            {{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
-                            {{--                                                           data-size="xs"--}}
-                            {{--                                                           disabled="">--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <p>{{$post->body}}</p>--}}
-                            {{--                                                @foreach($post->comments()->get() as $comment)--}}
-                            {{--                                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                         src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                         class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                         alt="ahihi"/>--}}
-                            {{--                                                    <p class="text text-primary">{{$comment->user->name}}</p>--}}
-                            {{--                                                    <p>{{$comment->body}}</p>--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>--}}
-                            {{--                                                <form method="POST" id="formComment">--}}
-                            {{--                                                    @csrf--}}
-                            {{--                                                    <input type="hidden" id="post_id" value="{{$post->id}}"--}}
-                            {{--                                                           name="post_id">--}}
-                            {{--                                                    <input type="text" id="body" style="display: none" width="300px"--}}
-                            {{--                                                           name="body">--}}
-                            {{--                                                    <button type="button" id="comment" class="btn btn-primary"--}}
-                            {{--                                                            style="display: none">Bình luận--}}
-                            {{--                                                    </button>--}}
-                            {{--                                                </form>--}}
-
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-
-
-                            {{--                                @endforeach--}}
-                            {{--                            </div>--}}
 
                             <div class="container">
                                 <form method="POST" id="comment_form">
@@ -191,28 +140,26 @@
                     </div>
                     <div class="related-properties">
                         <h2>Căn hộ tương tự</h2>
-                        @foreach($houses as $key => $house)
-                            <a href="{{route('web.detail', $house->id)}}">
-                                <div class="rp-item">
-                                    <div class="rp-pic set-bg"
-                                         style="background-image: url('{{asset('storage/images/'.(json_decode($house->image))[0])}}');"
-                                         data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
-                                        <div
-                                            class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : 'Đang sửa chữa'}}</div>
-                                    </div>
-                                    <div class="rp-info">
-                                        <h5>{{$house->category->name}}</h5>
-                                        <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}
-                                            , {{$house->district->name}}, {{$house->province->name}}</p>
-                                    </div>
-                                    <a href="{{route('web.detail', $house->id)}}"
-                                       class="rp-price">{{number_format($house->price)}} Đồng/đêm</a>
+                        @foreach($categories as $category)
+                            <div class="rp-item">
+                                <div class="rp-pic set-bg"
+                                     style="background-image: url('{{asset('storage/images/'.(json_decode($house->image))[0])}}');"
+                                     data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
+                                    <div class="sale-notic">{{($category->status == 1 ? 'Cho thuê' : 'Đang sửa chữa' )}}</div>
                                 </div>
-                            </a>
+                                <div class="rp-info">
+                                    <h5>{{$category->category->name}}</h5>
+                                    <p><i class="fa fa-map-marker"></i>{{$category->ward->name}}
+                                        ,{{$category->district->name}}, {{$category->province->name}}</p>
+                                </div>
+                                <a href="{{route('web.detail', ['id'=>$house->id, 'category_id' => $house->category_id])}}" class="rp-price">{{number_format($category->price)}} Đồng/ngày</a>
+                            </div>
                         @endforeach
                     </div>
                 </div>
             </div>
+
+
             <div id="Order" class="modal" role="dialog" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -433,7 +380,6 @@
                     $('#load_more_button').remove();
 
                     $('#display_comment').append(data);
-
 
 
                 }
