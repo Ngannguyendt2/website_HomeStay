@@ -83,7 +83,7 @@
                                         <a style="color: black" href="{{route('houses.customer.approve', $house->id)}}">Chi
                                             tiết</a>
                                     @endif
-                                        <br>Có {{count($house->customers)}} khách đặt
+                                        <br>Có {{count($house->orders)}} khách đặt
                                 </td>
                                 <td>{{$house->status == 1 ? 'Cho thuê': 'Đang sửa chữa'}}</td>
                                 <td><a class="fa fa-edit btn btn-primary" data-toggle="modal"
