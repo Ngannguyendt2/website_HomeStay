@@ -34,14 +34,12 @@
                         <a href="{{route('house.list', Auth::user()->id)}}" class="btn btn-block"><i
                                     class="fa fa-institution"></i> Nhà của tôi</a>
                     </div>
-                    {{--                    @if(count($houses) > 0)--}}
-                    {{--                        <hr>--}}
-                    {{--                        <div class="col-md-12">--}}
-                    {{--                            <a href="{{route('houses.customer.approve')}}" class="btn btn-block"><i--}}
-                    {{--                                        class="fa fa-battery"></i> Khách hàng của tôi</a>--}}
-                    {{--                        </div>--}}
-                    {{--                        <hr>--}}
-                    {{--                    @endif--}}
+                    <hr>
+                    <div class="col-md-12">
+                        <a href="{{route('house.myCustomer', Auth::user()->id)}}" class="btn btn-block"><i
+                                    class="fa fa-user"></i> Khách hàng của tôi</a>
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-9 table-responsive text-nowrap" style="border-radius: 20px">
@@ -81,9 +79,9 @@
                                 <td style="{{count($house->customers) == 0 ? 'background-color: red' : 'background-color: green'}}">
                                     @if(count($house->customers) > 0)
                                         <a style="color: black" href="{{route('houses.customer.approve', $house->id)}}">Chi
-                                            tiết</a>
+                                            tiết</a><br>Có {{count($house->orders)}} khách đặt
+
                                     @endif
-                                        <br>Có {{count($house->orders)}} khách đặt
                                 </td>
                                 <td>{{$house->status == 1 ? 'Cho thuê': 'Đang sửa chữa'}}</td>
                                 <td><a class="fa fa-edit btn btn-primary" data-toggle="modal"
@@ -107,8 +105,6 @@
                                                       action="{{route('changeStatus', $house->id)}}">
                                                     @csrf
                                                     <div class="form-group has-feedback">
-                                                        {{--                                <input type="radio" id="button1" class="choice" name="status" value="0">Đã thuê<br>--}}
-                                                        {{--                                <input type="radio" id="button2" class="choice" name="status" value="1">Cho thuê--}}
                                                         <div>
                                                             <select name="status" class="custom-select">
                                                                 <option value="">==Trạng thái==</option>

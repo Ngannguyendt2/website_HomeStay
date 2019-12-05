@@ -331,7 +331,11 @@
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">';
                             html += '<div class="feature-item">';
                             html += '<div class="feature-pic set-bg" style="background-image: url( ' + 'http://127.0.0.1:8000/storage/images/' + JSON.parse(value.image)[0] + ') " ' + '>';
-                            html += '<div class="sale-notic">' + "Cho thuê" + '</div>';
+                            if (value.status == 1) {
+                                html += '<div class="sale-notic">' + "Cho thuê" + '</div>';
+                            } else {
+                                html += '<div class="sale-notic">' + "Đang sửa chữa" + '</div>';
+                            }
                             html += '</div>';
                             html += '<div class="feature-text">';
                             html += '<div class="text-center feature-title">';

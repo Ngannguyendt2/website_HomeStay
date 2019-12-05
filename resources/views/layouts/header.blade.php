@@ -23,12 +23,31 @@
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-instagram"></i></a>
-                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-pinterest"></i></a>
-                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-linkedin"></i></a>
-                        <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b class="text text-light">Đăng
+                        @if(Auth::check())
+                            <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false" href="#">
+                                <i class="fa fa-bell"></i>
+                                @if(count(Auth::user()->unreadNotifications) > 0)
+                                    <span class="badge badge-primary">{{count(Auth::user()->unreadNotifications)}}</span>
+                                @endif
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                @if(count(Auth::user()->unreadNotifications) == 0)
+                                    <li class="dropdown-item">Bạn không có thông báo mới!</li>
+                                @endif
+                                @foreach(Auth::user()->unreadNotifications as $notification)
+                                    <li class="dropdown-item"><strong>{{$notification->data['house']}}</strong> đã
+                                        được
+                                        cho <strong>{{$notification->data['user']}}</strong> thuê
+                                        {{$notification->markAsRead()}}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b
+                                    class="text text-light">Đăng
                                 tin</b></a>
                     </div>
-                    <div class="user-panel">                         <!-- Authentication Links -->
+                    <div class="user-panel">
                         @guest
                             <div class="row">
                                 <div class="col-lg-4">
