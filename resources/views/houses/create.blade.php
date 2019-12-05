@@ -10,7 +10,7 @@
     <link href="{{asset('img/favicon.ico')}}" rel="shortcut icon"/>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=vietnamese' rel='stylesheet' type='text/css'>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>

@@ -83,10 +83,12 @@
                         <div class="description">
                             <p>{{$house->description}}</p>
                         </div>
+
                         <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
 
                             <div class="container">
+                                @if((Auth::user()->id)!=$house->user_id)
                                 <form method="POST" id="comment_form">
                                     <input type="hidden" id="house_id" name="house_id" value="{{$house->id}}">
                                     <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}">
@@ -109,6 +111,7 @@
                                                value="Bình luận"/>
                                     </div>
                                 </form>
+                                @endif
                                 <span id="comment_message"></span>
                                 <br/>
                                 {{ csrf_field() }}
