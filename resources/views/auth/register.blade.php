@@ -5,11 +5,11 @@
         @csrf
         <div class="form-control w3layouts">
             <input type="text" id="firstname" name="name" class="@error('name') is-invalid @enderror"
-                   placeholder="nhập tên đầy đủ"
+                   placeholder="nhập tên đầy đủ "
                    title="Please enter a full name">
             @error('name')
             <span class="invalid-feedback" role="alert">
-                <p style="color:red; margin-left: 50px; margin-bottom: 10px">{{ $message }}</p>
+                <p style="color:red; margin-left: 100px; margin-bottom: 10px">{{ $message }}</p>
             </span>
             @enderror
         </div>
@@ -19,7 +19,7 @@
                    title="Please enter a valid email">
             @error('email')
             <span class="invalid-feedback" role="alert">
-                <p style="color:red; margin-left: 50px; margin-bottom: 10px">{{ $message }}</p>
+                <p style="color:red; margin-left: 100px; margin-bottom: 10px">{{ $message }}</p>
             </span>
             @enderror
         </div>
@@ -29,7 +29,7 @@
                    placeholder="mật khẩu" id="password1">
             @error('password')
             <span class="invalid-feedback" role="alert">
-                <p style="color:red; margin-left: 50px; margin-bottom: 10px">{{ $message }}</p>
+                <p style="color:red; margin-left: 100px; margin-bottom: 10px">{{ $message }}</p>
             </span>
             @enderror
         </div>
@@ -40,9 +40,9 @@
         </div>
         @error('password')
         <span class="invalid-feedback" role="alert">
-                <p style="color:red; margin-left: 50px; margin-bottom: 10px">{{ $message }}</p>
+                <p style="color:red; margin-left: 100px; margin-bottom: 10px">{{ $message }}</p>
             </span>
         @enderror
-        <input type="submit" class="register" value="Register">
+        <input type="submit" class="register" value="Đăng ký">
     </form>
 @endsection
