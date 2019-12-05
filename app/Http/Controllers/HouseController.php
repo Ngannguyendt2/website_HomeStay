@@ -64,38 +64,33 @@ class HouseController extends Controller
         return redirect()->route('admin.houses.approve')->withMessage('Nhà đã xác nhận được phép đăng');
     }
 
-    public function getHouseById($id)
+    public function getHouseById($id, $category_id)
     {
         $house = $this->house->getHouseById($id);
+        $categories = House::where('category_id', $category_id)->limit(3)->get();
         $posts = $house->posts()->get();
 
-        return view('web.detail', compact('house', 'posts'));
+        return view('web.detail', compact('house', 'posts', 'categories'));
 
     }
 
     public function search(Request $request)
     {
         $items = $this->house->search($request);
-//        dd($items);
         foreach ($items as $item) {
             foreach (House::all() as $house) {
                 if ($house->province_id == $item->province_id
                     && $house->district_id == $item->district_id
                     && $house->ward_id == $item->ward_id
-                    && $house->category_id == $item->category_id)
-                {
+                    && $house->category_id == $item->category_id) {
                     $item->province_id = $house->province->name;
                     $item->district_id = $house->district->name;
                     $item->ward_id = $house->ward->name;
-                    $item->category_id = $house->category->name;
+                    $item->category = $house->category->name;
 
                 }
             }
-//            $arrays[] = $item->toArray();
-//            $province = $item->province->name;
-//            $district = $item->district->name;
-//            $ward = $item->ward->name;
-//            $category = $item->category->name;
+
         }
         return response()->json($items);
     }
@@ -110,10 +105,10 @@ class HouseController extends Controller
 
     public function changeStatus(Request $request, $id)
     {
-        $house = House::findorfail($id);
+        $house = $this->house->getHouseById($id);
         $status = $request->status;
         $house->status = $status;
         $house->save();
-        return redirect()->route('web.index');
+        return back();
     }
 }

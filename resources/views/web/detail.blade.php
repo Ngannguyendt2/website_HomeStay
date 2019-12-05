@@ -2,7 +2,7 @@
 
 @section('content')
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
-
+    <style></style>
     <!-- Page top section -->
     <section class="page-top-section set-bg" data-setbg="{{asset('img/page-top-bg.jpg')}}">
         <div class="container text-white">
@@ -52,9 +52,13 @@
                                             Giá: {{number_format($house->price)}} Đồng</p>
 
                                     </div>
-                                    <div class="col-md-12"><a style="width: 180px" href="#" class="btn btn-primary"
-                                                              data-toggle="modal"
-                                                              data-target="#Order">Đặt phòng</a>
+                                    <div class="col-md-12">
+                                        @if($house->status==1)
+                                            <a style="width: 180px" href="#" class="btn btn-primary"
+                                               data-toggle="modal"
+                                               data-target="#Order">Đặt phòng</a>
+                                        @else
+                                        @endif
                                     </div>
 
                                 </div>
@@ -82,57 +86,6 @@
                         <h3 class="sl-sp-title">Nhận xét </h3>
                         <div class="row property-details-list">
 
-                            {{--                            {{csrf_field()}}--}}
-                            {{--                            <div class="row" id="post_data"></div>--}}
-                            {{--                            <div class="row">--}}
-                            {{--                                @foreach($posts as $key => $post)--}}
-                            {{--                                    <div class="rating col-md-12">--}}
-                            {{--                                        <div class="row">--}}
-                            {{--                                            <div class="col-md-3">--}}
-
-                            {{--                                                <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                     src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                     class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                     alt="ahihi"/>--}}
-                            {{--                                                <p>{{$post->user->name}}</p>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="col-md-9">--}}
-                            {{--                                                @foreach ($post->ratings()->get() as $rate)--}}
-                            {{--                                                    <input id="input-1" name="input-1" class="rating rating-loading"--}}
-                            {{--                                                           data-min="0"--}}
-                            {{--                                                           data-max="5" data-step="0.1" value="{{ $rate->rating }}"--}}
-                            {{--                                                           data-size="xs"--}}
-                            {{--                                                           disabled="">--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <p>{{$post->body}}</p>--}}
-                            {{--                                                @foreach($post->comments()->get() as $comment)--}}
-                            {{--                                                    <img id="img" style="width: 50px; height: 50px; margin-bottom: 50px"--}}
-                            {{--                                                         src="{{($post->user->image)? asset('storage/'.$post->user->image) : asset('img/anhdaidien.jpg')}}"--}}
-                            {{--                                                         class="img-thumbnail img-circle img-responsive rounded-circle"--}}
-                            {{--                                                         alt="ahihi"/>--}}
-                            {{--                                                    <p class="text text-primary">{{$comment->user->name}}</p>--}}
-                            {{--                                                    <p>{{$comment->body}}</p>--}}
-                            {{--                                                @endforeach--}}
-                            {{--                                                <button id="submitComment" class="btn btn-primary">Trả lời</button>--}}
-                            {{--                                                <form method="POST" id="formComment">--}}
-                            {{--                                                    @csrf--}}
-                            {{--                                                    <input type="hidden" id="post_id" value="{{$post->id}}"--}}
-                            {{--                                                           name="post_id">--}}
-                            {{--                                                    <input type="text" id="body" style="display: none" width="300px"--}}
-                            {{--                                                           name="body">--}}
-                            {{--                                                    <button type="button" id="comment" class="btn btn-primary"--}}
-                            {{--                                                            style="display: none">Bình luận--}}
-                            {{--                                                    </button>--}}
-                            {{--                                                </form>--}}
-
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-
-
-                            {{--                                @endforeach--}}
-                            {{--                            </div>--}}
-
                             <div class="container">
                                 <form method="POST" id="comment_form">
                                     <input type="hidden" id="house_id" name="house_id" value="{{$house->id}}">
@@ -158,17 +111,17 @@
                                 </form>
                                 <span id="comment_message"></span>
                                 <br/>
+                                {{ csrf_field() }}
                                 <div id="display_comment"></div>
                             </div>
                         </div>
                         <hr>
-                        <div class="row property-details-list">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#review">Để lại nhận xét
-                            </button>
-                        </div>
+
                         <h3 class="sl-sp-title bd-no">Vị trí</h3>
-                        <div class="pos-map" id="map-canvas"></div>
+                        <div id="map" style="width:500px;height:500px;" class="img-fluid">
+                            <iframe src="{{$house->map}}" width="600" height="450" frameborder="0" style="border:0"
+                                    allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
                 <!-- sidebar -->
@@ -187,36 +140,21 @@
                     </div>
                     <div class="related-properties">
                         <h2>Related Property</h2>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/1.jpg')}}">
-                                <div class="sale-notic">FOR SALE</div>
+                        @foreach($categories as $category)
+                            <div class="rp-item">
+                                <div class="rp-pic set-bg"
+                                     style="background-image: url('{{asset('storage/images/'.(json_decode($house->image))[0])}}');"
+                                     data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
+                                    <div class="sale-notic">{{($category->status == 1 ? 'Cho thuê' : 'Đang sửa chữa' )}}</div>
+                                </div>
+                                <div class="rp-info">
+                                    <h5>{{$category->category->name}}</h5>
+                                    <p><i class="fa fa-map-marker"></i>{{$category->ward->name}}
+                                        ,{{$category->district->name}}, {{$category->province->name}}</p>
+                                </div>
+                                <a href="{{route('web.detail', ['id'=>$house->id, 'category_id' => $house->category_id])}}" class="rp-price">{{number_format($category->price)}} Đồng/ngày</a>
                             </div>
-                            <div class="rp-info">
-                                <h5>1963 S Crescent Heights Blvd</h5>
-                                <p><i class="fa fa-map-marker"></i>Los Angeles, CA 90034</p>
-                            </div>
-                            <a href="#" class="rp-price">$1,200,000</a>
-                        </div>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/2.jpg')}}">
-                                <div class="rent-notic">FOR Rent</div>
-                            </div>
-                            <div class="rp-info">
-                                <h5>17 Sturges Road, Wokingham</h5>
-                                <p><i class="fa fa-map-marker"></i> Newtown, CT 06470</p>
-                            </div>
-                            <a href="#" class="rp-price">$2,500/month</a>
-                        </div>
-                        <div class="rp-item">
-                            <div class="rp-pic set-bg" data-setbg="{{asset('img/feature/4.jpg')}}">
-                                <div class="sale-notic">FOR SALE</div>
-                            </div>
-                            <div class="rp-info">
-                                <h5>28 Quaker Ridge Road, Manhasset</h5>
-                                <p><i class="fa fa-map-marker"></i>28 Quaker Ridge Road, Manhasset</p>
-                            </div>
-                            <a href="#" class="rp-price">$5,600,000</a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -233,7 +171,7 @@
 
                         </div>
                         <div class="modal-body" style="overflow: hidden;">
-                            <strong id="alert"></strong>
+                            <strong style="margin-left: 50px" id="alert"></strong>
                             <div class="col-md-offset-1 col-md-10">
                                 <form method="POST" id="OrderHouse">
                                     @csrf
@@ -295,55 +233,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-            <div id="review" class="modal" role="dialog" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title text-center primecolor">Nhận xét </h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
-                        </div>
-                        <div class="modal-body" style="overflow: hidden;">
-                            <strong id="alert"></strong>
-                            <div class="col-md-offset-1 col-md-10">
-                                <form method="POST" id="reviewHouse">
-                                    @csrf
-                                    <div class="rating">
-                                        <input id="input-1" name="rate" class="rating rating-loading" data-min="0"
-                                               data-max="5" data-step="1" data-size="xs"
-                                               value="{{ $house->userAverageRating }}">
-                                        <input type="hidden" id="id-house-rating" name="id" required=""
-                                               value="{{ $house->id }}">
-                                    </div>
-
-                                    <div class="form-group has-feedback">
-                                        <input type="text" name="body" class="form-control" id="content">
-                                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                                        <span class="text-danger">
-                                <strong id="body-error"></strong>
-                                        </span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <button type="button" id="submitReview" data-dismiss="modal"
-                                                    class="btn btn-primary btn-prime white btn-flat">Nhận xét
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -430,34 +319,12 @@
                 });
             });
         });
+
         function numberFormat(number) {
             return String(number).replace(/(.)(?=(\d{3})+$)/g, '$1,')
         }
 
 
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('.submitComment').click(function () {
-                console.log('ok')
-            });
-            let body = $('#body').val();
-            let post_id = $('#post_id').val();
-            let data = {
-                body: body,
-                post_id: post_id
-            };
-            $.ajax({
-                url: '{{route('post.comment')}}',
-                type: 'POST',
-                data: data,
-                success: function (response) {
-                    console.log(response)
-                }
-
-            })
-
-        })
     </script>
     <script>
         $(document).ready(function () {
@@ -480,12 +347,12 @@
                             $('#comment_form')[0].reset();
                             $('#comment_message').html(data.error);
                             $('#comment_id').val('0');
-                            load_comment();
+                            load_data('', _token);
 
                         } else {
                             alert('Đã đăng nhận xét thành công');
                             $('#comment_message').html(data.error);
-                            load_comment();
+                            load_data('', _token);
 
                         }
                     }
@@ -495,22 +362,36 @@
                 var comment_id = $(this).attr("id");
                 $('#comment_id').val(comment_id);
                 $('#body').focus();
-                load_comment();
+                load_data('', _token);
             });
         });
 
-        load_comment();
 
-        function load_comment() {
+        var _token = $('input[name="_token"]').val();
+
+        load_data('', _token);
+
+        function load_data(id = "", _token) {
             $.ajax({
-                url: "{{route('getAll', $house->id)}}",
-                type: "POST",
-                data: {_token: "{{ csrf_token() }}"},
+                url: "{{ route('getAll', $house->id) }}",
+                method: "POST",
+                data: {id: id, _token: _token},
                 success: function (data) {
-                    $('#display_comment').html(data);
+                    $('#load_more_button').remove();
+
+                    $('#display_comment').append(data);
+
+
                 }
             })
         }
+
+        $(document).on('click', '#load_more_button', function () {
+            var id = $(this).data('id');
+            $('#load_more_button').html('<b>Loading...</b>');
+            load_data(id, _token);
+        });
+
 
     </script>
 

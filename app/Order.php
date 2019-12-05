@@ -9,7 +9,7 @@ class Order extends Model
 {
     use SoftDeletes;
     protected $fillable = ['approved_at'];
-
+    protected $dates = ['deleted_at'];
     public function customer()
     {
         return $this->belongsTo('App\Customer');

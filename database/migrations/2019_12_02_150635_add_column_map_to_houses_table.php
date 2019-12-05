@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCommentIdToPostsTable extends Migration
+class AddColumnMapToHousesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddCommentIdToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('comment_id')->after('id');
-
+        Schema::table('houses', function (Blueprint $table) {
+            $table->text('map');
         });
     }
 
@@ -26,7 +25,7 @@ class AddCommentIdToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('houses', function (Blueprint $table) {
             //
         });
     }

@@ -17,7 +17,7 @@
 
     <div class="container-fluid">
         @if (session('message'))
-            <div align="center" class="alert alert-success" role="alert">
+            <div class="alert alert-success" role="alert">
                 {{ session('message') }}
             </div>
         @endif
@@ -145,7 +145,6 @@
                 // e.preventDefault();
                 let formCancelOrder = $("#formCancelOrder");
                 let formData = formCancelOrder.serialize();
-                console.log(formData)
                 $.ajax({
                     url: "{{route('houses.customer.delete', ['id'=>$order->id])}}",
                     type: 'POST',

@@ -25,7 +25,7 @@ Route::get('/coming-soon', 'HomeStayController@comingSoon')->name('web.comingSoo
 Route::get('', 'HomeStayController@index')->name('web.index');
 
 Route::post('/{id}/order', 'OrderController@order')->name('customer.order');
-Route::get('{id}/detail', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
+Route::get('{id}/detail/{category_id}', "HouseController@getHouseById")->name('web.detail')->middleware('auth');
 
 Route::prefix('/user')->middleware('auth')->group(function () {
 
@@ -38,6 +38,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::get('/historyRentHouse', 'UserController@historyRentHouse')->name('user.historyRentHouse');
     Route::get('/historyRentedHouse','UserController@getRentedHouse')->name('user.historyRentedHouse');
     Route::get('/orderHadCancel','OrderController@getOrderHadCancel')->name('user.orderHadCancel');
+    Route::get('/historyOrder','UserController@getHistoryOrderForAjax')->name('user.historyOrder');
     Route::post('/monthlyIncome', 'UserController@getMonthlyIncome')->name('user.monthlyIncome');
     Route::get('/personalIncome', 'UserController@showPersonalIncome')->name('user.personalIncome');
     Route::prefix('/houses')->group(function () {
@@ -58,7 +59,6 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         });
 
     });
-
 
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('', 'UserController@admin')->name('admin.index');

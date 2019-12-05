@@ -22,68 +22,129 @@ class PostController extends Controller
         $this->post = $post;
     }
 
-    public function display($id)
+    public function display(Request $request, $id)
     {
-        $posts = DB::table('posts')->where('comment_id', '=', 0)->where('house_id', $id)->orderBy('created_at', 'DESC')->get();
-        $ratings = Rating::all();
-        $users = User::all();
-        $output = '';
-        foreach ($posts as $post) {
-            $output .= '
-                        <div class="col-md-2">';
-            foreach ($users as $user) {
-                if ($user->id == $post->user_id) {
-                    if ($user->image) {
-                        $output .= '<img id="img" style="width: 80px; height: 70px; margin-bottom: 30px"
+        if ($request->ajax()) {
+            if ($request->id > 0) {
+                $posts = DB::table('posts')
+                    ->where('id', '<', $request->id)
+                    ->where('house_id', $id)
+                    ->where('comment_id', '=', 0)
+                    ->orderBy('created_at', 'DESC')
+                    ->limit(3)
+                    ->get();
+            } else {
+                $posts = DB::table('posts')
+                    ->orderBy('id', 'DESC')
+                    ->where('house_id', $id)
+                    ->where('comment_id', '=', 0)
+                    ->limit(3)
+                    ->get();
+            }
+//            $posts = DB::table('posts')->where('comment_id', '=', 0)->where('house_id', $id)->orderBy('created_at', 'DESC')->get();
+            $ratings = Rating::all();
+            $users = User::all();
+            $output = '';
+            $last_id = '';
+            if (!$posts->isEmpty()) {
+                foreach ($posts as $post) {
+                    $output .= '
+                        <div class="col-md-2">
+                        <div class="row">
+                        <div class="col-md-12">';
+                    foreach ($users as $user) {
+                        if ($user->id == $post->user_id) {
+                            if ($user->image) {
+                                $output .= '<img id="img" style="width: 80px; height: 70px; margin-bottom: 30px"
                                                      src="http://127.0.0.1:8000/storage/' . $user->image . '"
                                                      class="img-thumbnail img-circle img-responsive rounded-circle"
                                                      alt="ahihi"/>';
-                    } else {
-                        $output .= '<img id="img" style="width: 80px; height: 80px; margin-bottom: 30px"
+                            } else {
+                                $output .= '<img id="img" style="width: 70px; height: 70px; margin-bottom: 30px"
                                                      src="http://127.0.0.1:8000/img/anhdaidien.jpg"
                                                      class="img-thumbnail img-circle img-responsive rounded-circle"
                                                      alt="ahihi"/>';
+                            }
+                        }
                     }
-                }
-            }
+                    $output .= '</div>
+                        <div class="col-md-12">';
+                    foreach ($ratings as $rating) {
+                        if ($rating->post_id == $post->id) {
+                            $output .= '
+                                        <span class="review-stars" style="color: #1e88e5;">';
+                            if ($rating->rating <= 0) {
+                                $output .= '<i class="fa fa-star-o s" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o s" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o s" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o s" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o s" aria-hidden="true"></i>';
+                            } elseif ($rating->rating === 1) {
+                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >';
+                            } elseif ($rating->rating === 2) {
+                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >';
 
-
-            $output .= '</div>
-                        <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-12">';
-            foreach ($ratings as $rating) {
-                if ($rating->post_id == $post->id) {
-                    $output .= '<input id="input-1" name="input-1" class="rating rating-loading"
-                                data-min="0"
-                                data-max="5" data-step="0.1" value="' . $rating->rating . '"
-                                data-size="xs"
-                                disabled="">';
-                }
-            }
-            $output .= '</div>';
-            foreach ($users as $user) {
-                if ($user->id == $post->user_id) {
-                    $output .= '<div class="col-md-12">
+                            } elseif ($rating->rating === 3) {
+                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >';
+                            } elseif ($rating->rating === 4) {
+                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >';
+                            } elseif ($rating->rating >= 5) {
+                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i >';
+                            }
+                            $output .= '</span>';
+                        }
+                    }
+                    $output .= '</div></div></div></div>
+                        <div class="col-md-10">';
+                    foreach ($users as $user) {
+                        if ($user->id == $post->user_id) {
+                            $output .= '
                                <div class="panel panel-default" style="width: 100%; margin-left: 17px">
                                    <div class="panel-heading">Đăng bởi: <b>' . $user->name . '</b> on <i>' . $post->created_at . '</i></div>
                                    <div id="body" class="panel-body">' . $post->body . '</div>
                                    <div class="panel-footer" align="right"><button type="button" class="btn btn-default reply" id="' . $post->id . '">Phản hồi</button></div>
-                               </div>
-                            </div>';
+                               </div>';
+                        }
+                    }
+
+                    $output .= '</div>
+                                               <div class="col-md-12">';
+
+                    $output .= $this->get_reply_comment($post->id);
+                    $output .= '</div>';
+
+                    $last_id = $post->id;
+
                 }
+                $output .= '
+       <div id="load_more">
+        <button type="button" name="load_more_button" class="btn btn-link form-control" data-id="' . $last_id . '" id="load_more_button">Load More</button>
+       </div>
+       ';
             }
-
-            $output .= '</div>
-                       
-                        </div>
-                        <div class="col-md-12">';
-
-            $output .= $this->get_reply_comment($post->id);
-            $output .= '</div>';
-
+            echo $output;
         }
-        echo $output;
+
     }
 
     public function get_reply_comment($comment_id = 0)
@@ -99,12 +160,12 @@ class PostController extends Controller
             foreach ($users as $user) {
                 if ($user->id == $comment->user_id) {
                     if ($user->image) {
-                        $output .= '<img id="img" style="width: 50px; height: 50px; margin-left: 50px"
+                        $output .= '<img id="img" style="width: 50px; height: 50px; margin-left: 80px"
                                                      src="http://127.0.0.1:8000/storage/' . $user->image . '"
                                                      class="img-thumbnail img-circle img-responsive rounded-circle"
                                                      alt="ahihi"/>';
                     } else {
-                        $output .= '<img id="img" style="width: 50px; height: 50px; margin-left: 50px"
+                        $output .= '<img id="img" style="width: 50px; height: 50px; margin-left: 80px"
                                                      src="http://127.0.0.1:8000/img/anhdaidien.jpg"
                                                      class="img-thumbnail img-circle img-responsive rounded-circle"
                                                      alt="ahihi"/>';
@@ -116,7 +177,7 @@ class PostController extends Controller
             $output .= '  
                     </div>
                     <div class="col-md-10">
-                        <div class="panel panel-default" style="margin-left: 48px; width: 100%">';
+                        <div class="panel panel-default" style="margin-left: 68px; width: 96%">';
             foreach ($users as $user) {
                 if ($user->id == $comment->user_id) {
                     $output .= '<div class="panel-heading">Đăng bởi: <b>' . $user->name . '</b> on <i>' . $comment->created_at . '</i></div>';
@@ -147,7 +208,7 @@ class PostController extends Controller
             $post->save();
         }
 
-        $postID =  DB::table('posts')->where('id', DB::raw("(select max(`id`) from posts)"))->get();
+        $postID = DB::table('posts')->where('id', DB::raw("(select max(`id`) from posts)"))->get();
         $rating = new \willvincent\Rateable\Rating;
         if ($params['comment_id'] > 0) {
             $error .= '<p class="text-success">Gửi phàn hồi thành công</p>';

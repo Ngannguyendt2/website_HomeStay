@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $id = Auth::user()->id;
         $user = $this->profileService->getUserById($id);
-        return view('user.profile', compact('user', 'orders'));
+        return view('user.profile', compact('user'));
     }
 
     public function edit()
@@ -92,10 +92,34 @@ class UserController extends Controller
         }
     }
 
+    public function getHistoryOrderForAjax()
+    {
+        $orders = $this->profileService->historyRentHouse();
+        foreach ($orders as $order) {
+            $order->house->category;
+            $order->house->district;
+            $order->house->ward;
+            $order->house->province;
+        }
+        if ($orders) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'thành công rồi ',
+                'data' => $orders
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'bạn chưa từng thuê ngôi nhà này ',
+                'data' => null
+            ]);
+        }
+    }
+
     public function getRentedHouse()
     {
         $orders = $this->profileService->getRentedHouse();
-        foreach ($orders as $order){
+        foreach ($orders as $order) {
             $order->house->category;
             $order->house->district;
             $order->house->ward;
@@ -123,6 +147,7 @@ class UserController extends Controller
         $money = $this->profileService->getMonthlyIncome($request);
         $orders = $this->profileService->getDateOfOrder($request);
         $moneyDay = $this->profileService->getMoneyOfOrder($request);
+
         return response()->json([
             'status' => 'success',
             'message' => 'thanh cong',
