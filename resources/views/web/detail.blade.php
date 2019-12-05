@@ -53,8 +53,8 @@
 
                                     </div>
                                     <div class="col-md-12">
-                                        @if($house->status==1)
-                                            <a style="width: 180px" href="#" class="btn btn-primary"
+                                        @if($house->status == 1)
+                                            <a style="width: 150px; margin-right: 15px" href="#" class="btn btn-primary"
                                                data-toggle="modal"
                                                data-target="#Order">Đặt phòng</a>
                                         @else
@@ -152,7 +152,8 @@
                                     <p><i class="fa fa-map-marker"></i>{{$category->ward->name}}
                                         ,{{$category->district->name}}, {{$category->province->name}}</p>
                                 </div>
-                                <a href="{{route('web.detail', ['id'=>$house->id, 'category_id' => $house->category_id])}}" class="rp-price">{{number_format($category->price)}} Đồng/ngày</a>
+                                <a href="{{route('web.detail', ['id'=>$house->id, 'category_id' => $house->category_id])}}"
+                                   class="rp-price">{{number_format($category->price)}} Đồng/ngày</a>
                             </div>
                         @endforeach
                     </div>
@@ -214,7 +215,7 @@
                                     </div>
                                     <div class="form-group has-feedback">
                                         <label>Tổng số tiền:</label>
-                                        <p id="price"></p>
+                                        <strong id="price"></strong>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
@@ -347,12 +348,12 @@
                             $('#comment_form')[0].reset();
                             $('#comment_message').html(data.error);
                             $('#comment_id').val('0');
-                            load_data('', _token);
+                            load_data('', _token, false);
 
                         } else {
                             alert('Đã đăng nhận xét thành công');
                             $('#comment_message').html(data.error);
-                            load_data('', _token);
+                            load_data('', _tokenm, false);
 
                         }
                     }
@@ -362,7 +363,7 @@
                 var comment_id = $(this).attr("id");
                 $('#comment_id').val(comment_id);
                 $('#body').focus();
-                load_data('', _token);
+                load_data('', _token, false);
             });
         });
 
@@ -371,16 +372,18 @@
 
         load_data('', _token);
 
-        function load_data(id = "", _token) {
+        function load_data(id = "", _token, load_more) {
             $.ajax({
                 url: "{{ route('getAll', $house->id) }}",
                 method: "POST",
                 data: {id: id, _token: _token},
                 success: function (data) {
                     $('#load_more_button').remove();
-
-                    $('#display_comment').append(data);
-
+                    if (load_more) {
+                        $('#display_comment').append(data);
+                    } else {
+                        $('#display_comment').html(data);
+                    }
 
                 }
             })
@@ -389,7 +392,7 @@
         $(document).on('click', '#load_more_button', function () {
             var id = $(this).data('id');
             $('#load_more_button').html('<b>Loading...</b>');
-            load_data(id, _token);
+            load_data(id, _token, true);
         });
 
 

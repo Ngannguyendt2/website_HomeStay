@@ -74,42 +74,42 @@ class PostController extends Controller
                             $output .= '
                                         <span class="review-stars" style="color: #1e88e5;">';
                             if ($rating->rating <= 0) {
-                                $output .= '<i class="fa fa-star-o s" aria-hidden="true"></i>
+                                $output .= '<div class="rating"><i class="fa fa-star-o s" aria-hidden="true"></i>
                                         <i class="fa fa-star-o s" aria-hidden="true"></i>
                                         <i class="fa fa-star-o s" aria-hidden="true"></i>
                                         <i class="fa fa-star-o s" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o s" aria-hidden="true"></i>';
+                                        <i class="fa fa-star-o s" aria-hidden="true"></i></div>';
                             } elseif ($rating->rating === 1) {
-                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                $output .= '<div class="rating"><i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star-o s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star-o s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star-o s" aria-hidden = "true" ></i >
-                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >';
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i ></div>';
                             } elseif ($rating->rating === 2) {
-                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                $output .= '<div class="rating"><i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star-o s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star-o s" aria-hidden = "true" ></i >
-                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >';
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i ></div>';
 
                             } elseif ($rating->rating === 3) {
-                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                $output .= '<div class="rating"><i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star-o s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star-o s" aria-hidden = "true" ></i >
-                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >';
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i ></div>';
                             } elseif ($rating->rating === 4) {
-                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                $output .= '<div class="rating"><i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star s" aria-hidden = "true" ></i >
-                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i >';
+                                            <i class="fa fa-star-o s" aria-hidden = "true" ></i ></div>';
                             } elseif ($rating->rating >= 5) {
-                                $output .= '<i class="fa fa-star s" aria-hidden = "true" ></i >
+                                $output .= '<div class="rating"><i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star s" aria-hidden = "true" ></i >
                                             <i class="fa fa-star s" aria-hidden = "true" ></i >
-                                            <i class="fa fa-star s" aria-hidden = "true" ></i >';
+                                            <i class="fa fa-star s" aria-hidden = "true" ></i ></div>';
                             }
                             $output .= '</span>';
                         }
