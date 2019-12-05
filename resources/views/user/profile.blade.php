@@ -85,12 +85,14 @@
                                         class="fa fa-edit" style="font-size:20px"></i><b>Chỉnh sửa thông tin</b>
                                 </a>
                             </div>
+                            @if($user->customer)
                             <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">
                                 <a style="color: green" href={{route('user.historyRentHouse')}}>
                                     <i class="fa fa-history" aria-hidden="true" style="font-size:20px"></i><b>Lịch sử
                                         thuê nhà</b>
                                 </a>
                             </div>
+                            @endif
                             @if(count($user->houses)==0)
                             @else
                                 <div class="col-md-12" style="margin-top: 15px; margin-left: 50px">

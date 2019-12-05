@@ -9,8 +9,8 @@ $(document).ready(function () {
                 $('#rentedHouse').empty();
                 if (result.data.length > 0) {
                     for (let i = 0; i <= result.data.length; i++) {
-                        let html = '<tr id="historyRentHouse"><td>' + +(i + 1) + '</td><td>' + result.data[i].house.category.name + '</td><td>' + result.data[i].house.ward.name + '' +
-                            '' + result.data[i].house.district.name + '' + result.data[i].house.province.name + '</td><td>' + result.data[i].checkin + '</td><td>' + result.data[i].checkout + '</td>' +
+                        let html = '<tr id="historyRentHouse"><td>' + +(i + 1) + '</td><td>' + result.data[i].house.category.name + '</td><td>' + result.data[i].house.ward.name + '-' +
+                            '' + result.data[i].house.district.name + '-' + result.data[i].house.province.name + '</td><td>' + result.data[i].checkin + '</td><td>' + result.data[i].checkout + '</td>' +
                             '<td>' + result.data[i].totalPrice + '</td></tr>';
                         $('#rentedHouse').append(html);
                     }

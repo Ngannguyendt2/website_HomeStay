@@ -63,6 +63,7 @@ class UserRepository extends RepositoryEloquent implements UserRepositoryInterfa
             ->where('orders.checkin', '<=', $endDate)
             ->where('orders.checkout', '>=', $startDate)
             ->where('orders.checkout', '<=', $endDate)
+            ->where('orders.deleted_at', '=', null)
             ->where('users.id', '=', Auth::user()->id)
             ->sum('orders.totalPrice');
         return $money;

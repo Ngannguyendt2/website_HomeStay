@@ -50,14 +50,14 @@
                     <div class="user-panel">
                         @guest
                             <div class="row">
-                                <div class="col-lg-4">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </div>
-                                <div class="col-lg-4">
+
+                                    <a class="nav-link" href="{{ route('login') }}">Đăng nhập </a>
+
+
                                     @if (Route::has('register'))
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="nav-link" href="{{ route('register') }}">Đăng ký </a>
                                     @endif
-                                </div>
+
                             </div>
                         @else
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
