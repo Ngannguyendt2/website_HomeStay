@@ -144,10 +144,11 @@ class UserController extends Controller
     public function getMonthlyIncome(Request $request)
     {
 
-        $money = $this->profileService->getMonthlyIncome($request);
+        $totalMoney = $this->profileService->getMonthlyIncome($request);
         $orders = $this->profileService->getDateOfOrder($request);
         $moneyDay = $this->profileService->getMoneyOfOrder($request);
 
+        $money = number_format($totalMoney);
         return response()->json([
             'status' => 'success',
             'message' => 'thanh cong',

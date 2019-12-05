@@ -10,7 +10,7 @@
             <h2>Dự án cuối module của nhóm Chị Dậu "Dậu homestay"</h2>
             <p>Trang web giúp bạn tìm kiếm, cho thuê homestay nổi tiếng nhất Việt Nam.<br>Cuộc sống hiện tiện nghi nằm
                 trong lòng bàn tay của bạn!.</p>
-            <a href="{{route('web.comingSoon')}}" class="site-btn">VIEW DETAIL</a>
+            <a href="{{route('web.comingSoon')}}" class="site-btn">Chi tiết </a>
         </div>
     </section>
     <!-- Hero section end -->
@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-sm-12" style="margin-top: 10px">
                             <button style="border-radius: 5px;width: 92%;height: 46px; padding-bottom: 20px"
-                                    id="btn" class="site-btn fs-submit">SEARCH
+                                    id="btn" class="site-btn fs-submit">Tìm kiếm
                             </button>
                         </div>
                     </div>
