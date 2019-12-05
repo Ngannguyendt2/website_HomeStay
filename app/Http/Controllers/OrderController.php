@@ -114,6 +114,7 @@ class OrderController extends Controller
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
             'house' =>  House::where('id', $houseId)->get()[0]->category->name,
+            'price' => House::where('id', $houseId)->get()[0]->price,
             'user' =>  $user->name
         ];
         $when = now()->addSeconds(5);
@@ -130,7 +131,7 @@ class OrderController extends Controller
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
-            'user' => 'Bạn ' . $user->name
+            'user' => $user->name
         ];
         $when = now()->addSeconds(5);
         $user->notify((new YouHasNewEmail($details))->delay($when));
@@ -145,7 +146,7 @@ class OrderController extends Controller
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
-            'user' => 'Bạn ' . $user->name
+            'user' => $user->name
         ];
         $when = now()->addSeconds(5);
         $user->notify((new YouHasNewEmail($details))->delay($when));

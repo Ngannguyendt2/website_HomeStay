@@ -60,7 +60,7 @@ class YouHasNewEmail extends Notification implements ShouldQueue
             //
             'house' => $this->details['house'],
             'user' => $this->details['user'],
-
+            'price' => $this->details['price'],
         ];
     }
 }

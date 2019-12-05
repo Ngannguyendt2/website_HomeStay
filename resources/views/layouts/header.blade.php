@@ -36,10 +36,13 @@
                                     <li class="dropdown-item">Bạn không có thông báo mới!</li>
                                 @endif
                                 @foreach(Auth::user()->unreadNotifications as $notification)
-                                    <li class="dropdown-item"><strong>{{$notification->data['house']}}</strong> đã
-                                        được
-                                        cho <strong>{{$notification->data['user']}}</strong> thuê
-                                        {{$notification->markAsRead()}}
+                                    <li class="dropdown-item">
+                                        <a style="color:black;"
+                                           href="{{route('house.list')}}"><strong>{{$notification->data['user']}}</strong>
+                                            đã đặt thuê <strong>{{$notification->data['house']}}</strong>
+                                            có giá là <strong>{{number_format($notification->data['price'])}}
+                                                đồng</strong>
+                                            {{$notification->markAsRead()}}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -51,12 +54,12 @@
                         @guest
                             <div class="row">
 
-                                    <a class="nav-link" href="{{ route('login') }}">Đăng nhập </a>
+                                <a class="nav-link" href="{{ route('login') }}">Đăng nhập </a>
 
 
-                                    @if (Route::has('register'))
-                                        <a class="nav-link" href="{{ route('register') }}">Đăng ký </a>
-                                    @endif
+                                @if (Route::has('register'))
+                                    <a class="nav-link" href="{{ route('register') }}">Đăng ký </a>
+                                @endif
 
                             </div>
                         @else
