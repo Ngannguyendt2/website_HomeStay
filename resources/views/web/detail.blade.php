@@ -53,7 +53,7 @@
 
                                     </div>
                                     <div class="col-md-12">
-                                        @if($house->status == 1)
+                                        @if($house->status == 1 && (Auth::user()->id!=$house->user_id))
                                             <a style="width: 150px; margin-right: 15px" href="#" class="btn btn-primary"
                                                data-toggle="modal"
                                                data-target="#Order">Đặt phòng</a>
