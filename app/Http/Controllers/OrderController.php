@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    //
     protected $order;
     protected $user;
     protected $house;
@@ -58,12 +57,6 @@ class OrderController extends Controller
                 'message' => $e->getMessage()
             ]);
         }
-//        $house = House::findorfail($id);
-//        $owner_id = $house->user_id;
-//        $owner = User::findorfail($owner_id);
-//        $customer = Auth::user();
-//
-//        $owner->notify(new OrderHouse($house, $customer));
     }
 
     public function delete($orderId, Request $request)
@@ -107,7 +100,10 @@ class OrderController extends Controller
 
     public function sendNotificationNewOrder($houseId)
     {
-        $user = $this->user->getUserByHouse($houseId);
+        $house = $this->house->getHouseById($houseId);
+        $houseOwner_id = $house->user_id;
+        $houseOwner = $this->user->getUserById($houseOwner_id);
+        $customer = Auth::user();
         $details = [
             'greeting' => 'Hi House Owner',
             'body' => 'You has new order from websiteHomestay.com',
@@ -116,10 +112,10 @@ class OrderController extends Controller
             'actionURL' => url('/'),
             'house' => House::where('id', $houseId)->get()[0]->category->name,
             'price' => House::where('id', $houseId)->get()[0]->price,
-            'user' => $user->name
+            'customer' => $customer->name
         ];
         $when = now()->addSeconds(5);
-        $user->notify((new YouHasNewEmail($details))->delay($when));
+        $houseOwner->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function sendNotificationConfirmOrder($customerId)

@@ -25,36 +25,36 @@
                         {{--                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a>--}}
                         {{--                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-instagram"></i></a>--}}
                         {{--                        <a href="{{route('web.comingSoon')}}"><i class="fa fa-pinterest"></i></a>--}}
-{{--                        @if(Auth::check())--}}
-{{--                            <a id="navbarDropdown" class="" href="#" role="button"--}}
-{{--                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i--}}
-{{--                                    class="fa fa-bell"></i><span class="badge badge-danger"--}}
-{{--                                                                 id="count-notification"><span--}}
-{{--                                        class="caret"> {{count(\Illuminate\Support\Facades\Auth::user()->unreadNotifications)}}</span></span><span--}}
-{{--                                    class="caret"></span></a>--}}
-{{--                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
-{{--                                @if(auth()->user()->unreadNotifications->count())--}}
-{{--                                    @foreach(auth()->user()->unreadNotifications as $notification)--}}
-{{--                                        <a class="dropdown-item" href="{{route('house.list')}}">--}}
-{{--                                            {{$notification->data['name']}} đã thuê phòng có--}}
-{{--                                            id {{$notification->data['house_id']}}--}}
-{{--                                        </a>--}}
-{{--                                    @endforeach--}}
-{{--                                @else--}}
-{{--                                    <a class="dropdown-item" href="#">--}}
-{{--                                        No notification--}}
-{{--                                    </a>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
+                        {{--                        @if(Auth::check())--}}
+                        {{--                            <a id="navbarDropdown" class="" href="#" role="button"--}}
+                        {{--                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i--}}
+                        {{--                                    class="fa fa-bell"></i><span class="badge badge-danger"--}}
+                        {{--                                                                 id="count-notification"><span--}}
+                        {{--                                        class="caret"> {{count(\Illuminate\Support\Facades\Auth::user()->unreadNotifications)}}</span></span><span--}}
+                        {{--                                    class="caret"></span></a>--}}
+                        {{--                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+                        {{--                                @if(auth()->user()->unreadNotifications->count())--}}
+                        {{--                                    @foreach(auth()->user()->unreadNotifications as $notification)--}}
+                        {{--                                        <a class="dropdown-item" href="{{route('house.list')}}">--}}
+                        {{--                                            {{$notification->data['name']}} đã thuê phòng có--}}
+                        {{--                                            id {{$notification->data['house_id']}}--}}
+                        {{--                                        </a>--}}
+                        {{--                                    @endforeach--}}
+                        {{--                                @else--}}
+                        {{--                                    <a class="dropdown-item" href="#">--}}
+                        {{--                                        No notification--}}
+                        {{--                                    </a>--}}
+                        {{--                                @endif--}}
+                        {{--                            </div>--}}
 
-{{--                        @endif--}}
-{{--                        <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b--}}
-{{--                                class="text text-light">Đăng--}}
-{{--                                tin</b></a>--}}
-{{--                    </div>--}}
-{{--                    <div class="user-panel">--}}
-{{--                        <!-- Authentication Links -->--}}
-{{--=======--}}
+                        {{--                        @endif--}}
+                        {{--                        <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b--}}
+                        {{--                                class="text text-light">Đăng--}}
+                        {{--                                tin</b></a>--}}
+                        {{--                    </div>--}}
+                        {{--                    <div class="user-panel">--}}
+                        {{--                        <!-- Authentication Links -->--}}
+                        {{--=======--}}
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-facebook"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-twitter"></i></a>
                         <a href="{{route('web.comingSoon')}}"><i class="fa fa-instagram"></i></a>
@@ -63,26 +63,27 @@
                                aria-haspopup="true" aria-expanded="false" href="#">
                                 <i class="fa fa-bell"></i>
                                 @if(count(Auth::user()->unreadNotifications) > 0)
-                                    <span class="badge badge-primary">{{count(Auth::user()->unreadNotifications)}}</span>
+                                    <span
+                                        class="badge badge-primary">{{count(Auth::user()->unreadNotifications)}}</span>
                                 @endif
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 @if(count(Auth::user()->unreadNotifications) == 0)
-                                    <li class="dropdown-item">Bạn không có thông báo mới!</li>
+                                    <li class="dropdown-item" style="text-align: center">Bạn không có thông báo mới!</li>
                                 @endif
                                 @foreach(Auth::user()->unreadNotifications as $notification)
                                     <li class="dropdown-item">
-                                        <a style="color:black;"
-                                           href="{{route('house.list')}}"><strong>{{$notification->data['user']}}</strong>
-                                            đã đặt thuê <strong>{{$notification->data['house']}}</strong>
-                                            có giá là <strong>{{number_format($notification->data['price'])}}
-                                                đồng</strong>
-                                            {{$notification->markAsRead()}}</a>
+                                            <a style="color:black;"
+                                               href="{{route('house.list')}}"><strong>{{$notification->data['customer']}}</strong><br>
+                                                đã đặt thuê <strong>{{$notification->data['house']}}</strong>
+                                                có giá là <strong>{{number_format($notification->data['price'])}}
+                                                    đồng</strong>
+                                                {{$notification->markAsRead()}}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         @endif <a class="btn btn-outline-primary" href="{{route('house.create')}}"><b
-                                    class="text text-light">Đăng
+                                class="text text-light">Đăng
                                 tin</b></a>
                     </div>
                     <div class="user-panel">
