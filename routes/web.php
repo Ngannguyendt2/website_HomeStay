@@ -29,6 +29,10 @@ Route::get('{id}/detail/{category_id}', "HouseController@getHouseById")->name('w
 
 Route::prefix('/user')->middleware('auth')->group(function () {
 
+    Route::post('display/{id}', 'PostController@display')->name('getAll');
+    Route::post('post', 'PostController@post')->name('post');
+    Route::post('comment', 'PostController@comment')->name('comment');
+
     Route::post('show_more/{id}', 'ShowMoreController@load_data')->name('user.load_data');
     Route::get('/profile', 'UserController@getById')->name('user.profile');
     Route::post('/changePassword', 'UserController@changePassword')->name('user.changePassword');
@@ -49,6 +53,7 @@ Route::prefix('/user')->middleware('auth')->group(function () {
         Route::post('/{id}/update', 'HouseController@update')->name('house.update');
 
         Route::get('detailCustomer/{id}', 'HouseController@detailCustomer')->name('house.detailCustomer');
+        Route::get('myCustomer/{id}', 'OrderController@myCustomer')->name('house.myCustomer');
         Route::post('review', 'PostController@create')->name('house.review');
         Route::post('/comment', 'CommentController@create')->name('post.comment');
 
@@ -86,6 +91,4 @@ Route::post('/index', 'HomeStayController@display')->name('display');
 
 Route::post('/changeStatus/{id}', 'HouseController@changeStatus')->name('changeStatus');
 
-Route::post('display/{id}', 'PostController@display')->name('getAll');
-Route::post('post', 'PostController@post')->name('post');
-Route::post('comment', 'PostController@comment')->name('comment');
+

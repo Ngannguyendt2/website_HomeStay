@@ -40,7 +40,7 @@
                                 </div>
                                 <a href="{{route('web.detail', ['id' => $house->id, 'category_id' => $house->category_id])}}"
                                    class="room-price">{{number_format($house->price)}}
-                                    Đồng/Đêm</a>
+                                    Đồng/Ngày</a>
                             </div>
                         </div>
                     </a>
@@ -51,30 +51,6 @@
     </div>
     {{$houses->links()}}
 </div>
-
-{{--            @foreach($houses as $key => $house)--}}
-
-{{--                <div class="col-md-6">--}}
-{{--                    <a href="{{route('web.detail',$house->id)}}">--}}
-{{--                        <div--}}
-{{--                            style="border-radius: 15px; background-image: url('{{asset('storage/images/'.(json_decode($house->image))[0])}}');"--}}
-{{--                            class="propertie-item set-bg"--}}
-{{--                            data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">--}}
-{{--                            <div class="sale-notic">{{$house->status == 1 ? 'Cho thuê' : "đã thuê"}}</div>--}}
-{{--                            <div class="propertie-info text-white">--}}
-{{--                                <div class="info-warp">--}}
-{{--                                    <h5>{{$house->category->name}}</h5>--}}
-{{--                                    <p><i class="fa fa-map-marker"></i>{{$house->ward->name}}--}}
-{{--                                        , {{$house->district->name}} <br> {{$house->province->name}}</p>--}}
-{{--                                </div>--}}
-{{--                                <div style="margin-top: 5px" class="price"><a--}}
-{{--                                        href="{{route('web.detail',$house->id)}}">{{number_format($house->price)}}--}}
-{{--                                        Đồng</a></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--            @endforeach--}}
 
 
 

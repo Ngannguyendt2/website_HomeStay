@@ -11,7 +11,7 @@
         <img src="{{asset("img/banner.jpg")}}">
         <div style="margin-top: 20px" class="container">
             <a href="{{route('web.index')}}"><i class="fa fa-home"></i>Trang chủ</a>
-            <span><i class="fa fa-angle-right"></i>Khách hàng của tôi</span>
+            <span><i class="fa fa-angle-right"></i>Khách hàng chờ chấp thuận</span>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <h3 class="text-center">Danh sách khách hàng của tôi</h3>
+        <h3 class="text-center">Khách hàng chờ chấp thuận</h3>
         <div class="row" style="margin: 30px 0 30px 5px">
             <div class="col-md-3">
                 <div class="col-md-12 border border-dark " style="border-radius: 20px ;height: 600px">
@@ -40,11 +40,11 @@
                                 class="fa fa-institution"></i> Nhà của tôi</a>
                     </div>
                     <hr>
-                    {{--                    <div class="col-md-12">--}}
-                    {{--                        <a href="{{route('houses.customer.approve')}}" class="btn btn-block"><i--}}
-                    {{--                                    class="fa fa-battery"></i> Khách hàng của tôi</a>--}}
-                    {{--                    </div>--}}
-                    {{--                    <hr>--}}
+                    <div class="col-md-12">
+                        <a href="{{route('house.myCustomer', Auth::user()->id)}}" class="btn btn-block"><i
+                                    class="fa fa-user"></i>Khách hàng của tôi</a>
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-9 table-responsive text-nowrap" style="border-radius: 20px">
@@ -85,6 +85,33 @@
                                             data-target="#clearOrder"></button>
                                 </td>
                             </tr>
+                            <script type="text/javascript">
+
+                                $(document).ready(function () {
+                                    $('body').on('click', '#submitCancelOrder', function () {
+                                        // e.preventDefault();
+                                        let formCancelOrder = $("#formCancelOrder");
+                                        let formData = formCancelOrder.serialize();
+                                        $.ajax({
+                                            url: "{{route('houses.customer.delete', ['id'=>$order->id])}}",
+                                            type: 'POST',
+                                            data: formData,
+                                            success: function (result) {
+                                                if (result.status == 'success') {
+                                                    alert(result.message);
+                                                    location.reload();
+                                                }
+                                            },
+                                            error: function (error) {
+                                                let err = JSON.parse(error.responseText);
+
+                                            }
+                                        });
+                                    });
+                                })
+
+                            </script>
+
                         @endforeach
                     @endif
                     </tbody>
@@ -138,30 +165,4 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('body').on('click', '#submitCancelOrder', function () {
-                // e.preventDefault();
-                let formCancelOrder = $("#formCancelOrder");
-                let formData = formCancelOrder.serialize();
-                $.ajax({
-                    url: "{{route('houses.customer.delete', ['id'=>$order->id])}}",
-                    type: 'POST',
-                    data: formData,
-                    success: function (result) {
-                        if (result.status == 'success') {
-                            alert(result.message);
-                            location.reload();
-                        }
-                    },
-                    error: function (error) {
-                        let err = JSON.parse(error.responseText);
-
-                    }
-                });
-            });
-        })
-
-    </script>
 @endsection

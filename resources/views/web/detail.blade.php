@@ -53,7 +53,7 @@
 
                                     </div>
                                     <div class="col-md-12">
-                                        @if($house->status == 1)
+                                        @if($house->status == 1 && (Auth::user()->id!=$house->user_id))
                                             <a style="width: 150px; margin-right: 15px" href="#" class="btn btn-primary"
                                                data-toggle="modal"
                                                data-target="#Order">Đặt phòng</a>
@@ -122,7 +122,7 @@
 
                         <h3 class="sl-sp-title bd-no">Vị trí</h3>
                         <div id="map" style="width:500px;height:500px;" class="img-fluid">
-                            <iframe src="{{$house->map}}" width="600" height="450" frameborder="0" style="border:0"
+                            <iframe src="{{$house->map}}" width="550" height="450" frameborder="0" style="border:0"
                                     allowfullscreen></iframe>
                         </div>
                     </div>
