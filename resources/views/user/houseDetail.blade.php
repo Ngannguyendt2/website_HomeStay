@@ -64,8 +64,8 @@
                                 <tr id="historyRentHouse">
                                     <td>{{++$key}}</td>
                                     <td>{{$order->house->category->name}}</td>
-                                    <td>{{$order->house->ward->name}}, {{$order->house->district->name}}
-                                        , {{$order->house->province->name}}</td>
+                                    <td>{{$order->house->ward->name}} - {{$order->house->district->name}}
+                                        - {{$order->house->province->name}}</td>
                                     <td>{{$order->checkin}}</td>
                                     <td>{{$order->checkout}}</td>
                                     <td>{{number_format($order->totalPrice)}}</td>
@@ -151,7 +151,6 @@
     </div>
     <script src="{{asset('js/ajaxHistoryRentedHouse.js')}}"></script>
     <script src="{{asset('js/ajaxHistoryCancelOrder.js')}}"></script>
-    <script src="{{asset('js/ajaxHistoryOrder.js')}}"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -186,8 +185,8 @@
                             $('#rentedHouse').empty();
                             if (result.data.length > 0) {
                                 for (let i = 0; i <= result.data.length; i++) {
-                                    let html = '<tr id="historyRentHouse"><td>' + +(i + 1) + '</td><td>' + result.data[i].house.category.name + '</td><td>' + result.data[i].house.ward.name + '' +
-                                        '' + result.data[i].house.district.name + '' + result.data[i].house.province.name + '</td><td>' + result.data[i].checkin + '</td><td>' + result.data[i].checkout + '</td>' +
+                                    let html = '<tr id="historyRentHouse"><td>' + +(i + 1) + '</td><td>' + result.data[i].house.category.name + '</td><td>' + result.data[i].house.ward.name + '-' +
+                                        '' + result.data[i].house.district.name + '-' + result.data[i].house.province.name + '</td><td>' + result.data[i].checkin + '</td><td>' + result.data[i].checkout + '</td>' +
                                         '<td>' + result.data[i].totalPrice + '</td><td><button class="fa fa-trash btn btn-danger"\n' +
                                         '                                                data-toggle="modal"\n' +
                                         '                                                data-target="#clearOrder{{$order->id}}" type="button"></button></td></tr>';

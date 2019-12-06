@@ -14,10 +14,9 @@
             window.scrollTo(0, 1);
         } </script>
     <link href="{{asset('img/favicon.ico')}}" rel="shortcut icon"/>
-
-    <!-- fonts -->
-    <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=vietnamese' rel='stylesheet' type='text/css'>
+{{--    <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">--}}
+{{--    <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">--}}
     <!-- /fonts -->
     <!-- css -->
     <link href="{{asset('authen/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" media="all"/>

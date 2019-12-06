@@ -57,8 +57,9 @@ class HouseController extends Controller
 
         $id = Auth::user()->id;
         $houseOwner = House::where('user_id', $id)->paginate(5);
-        $orders = Order::all();
-        return view('user.housesManager.list', compact('houseOwner', 'orders'));
+        $array = [];
+        $orders = Order::where('deleted_at',null)->get();
+        return view('user.housesManager.list', compact('houseOwner', 'orders', 'array'));
     }
 
     public function checkApprove($id)

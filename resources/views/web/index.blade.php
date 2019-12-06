@@ -10,7 +10,7 @@
             <h2>Dự án cuối module của nhóm Chị Dậu "Dậu homestay"</h2>
             <p>Trang web giúp bạn tìm kiếm, cho thuê homestay nổi tiếng nhất Việt Nam.<br>Cuộc sống hiện tiện nghi nằm
                 trong lòng bàn tay của bạn!.</p>
-            <a href="{{route('web.comingSoon')}}" class="site-btn">VIEW DETAIL</a>
+            <a href="{{route('web.comingSoon')}}" class="site-btn">Chi tiết </a>
         </div>
     </section>
     <!-- Hero section end -->
@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-sm-12" style="margin-top: 10px">
                             <button style="border-radius: 5px;width: 92%;height: 46px; padding-bottom: 20px"
-                                    id="btn" class="site-btn fs-submit">SEARCH
+                                    id="btn" class="site-btn fs-submit">Tìm kiếm
                             </button>
                         </div>
                     </div>
@@ -180,20 +180,23 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 f-cata">
-                    <img src="{{asset('img/feature-cate/1.jpg')}}" alt="">
+                    <img style="height: 194px; width: 100%;" src="{{asset('img/nhaong1.jpg')}}" alt="">
                     <h5>Nhà tầng</h5>
                 </div>
                 <div class="col-lg-3 col-md-6 f-cata">
                     <img src="{{asset('img/feature-cate/2.jpg')}}" alt="">
-                    <h5>Biệt thự Villa</h5>
+                    <h5>Biệt thự villa</h5>
                 </div>
                 <div class="col-lg-3 col-md-6 f-cata">
-                    <img src="{{asset('img/feature-cate/3.jpg')}}" alt="">
+                    <img src="{{asset('img/nhasan.jpeg')}}" alt="">
                     <h5>Nhà sàn</h5>
                 </div>
                 <div class="col-lg-3 col-md-6 f-cata">
                     <img src="{{asset('img/feature-cate/4.jpg')}}" alt="">
+
                     <h5>Nhà ống</h5>
+
+                    <h5>Căn hộ Condo</h5>
                 </div>
             </div>
         </div>
@@ -262,28 +265,24 @@
             </div>
             <div class="gallery">
                 <div class="grid-sizer"></div>
-                <a href="#" class="gallery-item grid-long set-bg" data-setbg="img/gallery/1.jpg">
+                <a class="gallery-item grid-long set-bg" data-setbg="{{asset('img/HCM.jpg')}}">
                     <div class="gi-info">
-                        <h3>New York</h3>
-                        <p>118 Properties</p>
+                        <h3>Hồ Chí Minh</h3>
                     </div>
                 </a>
-                <a href="#" class="gallery-item grid-wide set-bg" data-setbg="img/gallery/2.jpg">
+                <a class="gallery-item grid-wide set-bg" data-setbg="{{asset('img/hanoicity.jpg')}}">
                     <div class="gi-info">
-                        <h3>Florida</h3>
-                        <p>112 Properties</p>
+                        <h3>Hà Nội</h3>
                     </div>
                 </a>
-                <a href="#" class="gallery-item set-bg" data-setbg="img/gallery/3.jpg">
+                <a class="gallery-item set-bg" data-setbg="{{asset('img/DaLat.jpg')}}">
                     <div class="gi-info">
-                        <h3>San Jose</h3>
-                        <p>72 Properties</p>
+                        <h3>Đà Lạt</h3>
                     </div>
                 </a>
-                <a href="#" class="gallery-item set-bg" data-setbg="img/gallery/4.jpg">
+                <a class="gallery-item set-bg" data-setbg="{{asset('img/quangninh.jpg')}}">
                     <div class="gi-info">
-                        <h3>St Louis</h3>
-                        <p>50 Properties</p>
+                        <h3>Quảng Ninh</h3>
                     </div>
                 </a>
 
@@ -335,9 +334,13 @@
                             html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail">';
                             html += '<div class="feature-item">';
                             html += '<div class="feature-pic set-bg" style="background-image: url( ' + 'http://127.0.0.1:8000/storage/images/' + JSON.parse(value.image)[0] + ') " ' + '>';
-                            html += '<div class="sale-notic">' + "Cho thuê" + '</div>';
+                            if (value.status == 1) {
+                                html += '<div class="sale-notic">' + "Cho thuê" + '</div>';
+                            } else {
+                                html += '<div class="sale-notic">' + "Đang sửa chữa" + '</div>';
+                            }
                             html += '</div>';
-                            html += '<div class="feature-text"">';
+                            html += '<div class="feature-text">';
                             html += '<div class="text-center feature-title">';
                             html += '<h5>' + value.category + '</h5>';
                             html += '<p><i class="fa fa-map-marker"></i>' +
@@ -354,7 +357,7 @@
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
-                            html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail/"' + value.category_id + ' class="room-price">' + numberFormat(value.price)
+                            html += '<a href="http://127.0.0.1:8000/' + value.id + '/detail/' + value.category_id + '" class="room-price">' + numberFormat(value.price)
                                 + ' ' + 'Đồng </a>';
                             html += '</div>';
                             html += '</div>';
