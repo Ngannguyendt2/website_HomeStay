@@ -1,5 +1,4 @@
 <header class="header-section">
-    {{--    {{dd(count(\Illuminate\Support\Facades\Auth::user()->unreadNotifications))}}--}}
     <div class="header-top">
         <div class="container">
             <div class="row">

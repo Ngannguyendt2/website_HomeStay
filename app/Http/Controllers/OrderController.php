@@ -40,8 +40,7 @@ class OrderController extends Controller
             if (!$this->order->checkDate($request, $id)) {
 
                 $this->order->create($request, $id);
-//                $this->sendNotificationNewOrder($id);
-                $this->sendNotification($id);
+                $this->sendNotificationNewOrder($id);
                 return response()->json([
                     'status' => 'success',
                     'message' => 'đặt lịch thành công'
@@ -115,9 +114,9 @@ class OrderController extends Controller
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
-            'house' =>  House::where('id', $houseId)->get()[0]->category->name,
+            'house' => House::where('id', $houseId)->get()[0]->category->name,
             'price' => House::where('id', $houseId)->get()[0]->price,
-            'user' =>  $user->name
+            'user' => $user->name
         ];
         $when = now()->addSeconds(5);
         $user->notify((new YouHasNewEmail($details))->delay($when));
@@ -180,6 +179,7 @@ class OrderController extends Controller
         }
 
     }
+
     public function sendNotification($houseId)
     {
         $house = $this->house->getHouseById($houseId);
