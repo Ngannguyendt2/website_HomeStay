@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\House;
 use App\Http\Requests\CreateFormOrder;
 use App\Http\Services\HouseServiceInterface;
 use App\Http\Services\OrderServiceInterface;
@@ -84,6 +85,7 @@ class OrderController extends Controller
     public function checkApprove($orderId)
     {
         $order = $this->order->findById($orderId);
+
         $this->sendNotificationConfirmOrder($order->customer_id);
         $order->update(['approved_at' => now()]);
         return redirect()->route('houses.customer.approve', $order->house->id)->withMessage('Đã thêm khách hàng thành công');
@@ -91,10 +93,15 @@ class OrderController extends Controller
 
     public function approve($id)
     {
-
         $house = $this->house->getHouseById($id);
         $orders = Order::whereNull('approved_at')->where('house_id', $id)->paginate(10);
         return view('user.housesManager.detailCustomer', compact('orders', 'house'));
+    }
+
+    public function myCustomer($id)
+    {
+        $orders = Order::whereNotNull('approved_at')->where('checkin', '>', now())->paginate(10);
+        return view('user.housesManager.myCustomer', compact('orders'));
     }
 
     public function sendNotificationNewOrder($houseId)
@@ -106,9 +113,11 @@ class OrderController extends Controller
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
-            'order_id' => 101
+            'house' =>  House::where('id', $houseId)->get()[0]->category->name,
+            'price' => House::where('id', $houseId)->get()[0]->price,
+            'user' =>  $user->name
         ];
-        $when = now()->addSeconds(10);
+        $when = now()->addSeconds(5);
         $user->notify((new YouHasNewEmail($details))->delay($when));
     }
 
@@ -122,9 +131,9 @@ class OrderController extends Controller
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
-            'order_id' => 101
+            'user' => $user->name
         ];
-        $when = now()->addSeconds(10);
+        $when = now()->addSeconds(5);
         $user->notify((new YouHasNewEmail($details))->delay($when));
     }
 
@@ -137,9 +146,9 @@ class OrderController extends Controller
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
-            'order_id' => 101
+            'user' => $user->name
         ];
-        $when = now()->addSeconds(10);
+        $when = now()->addSeconds(5);
         $user->notify((new YouHasNewEmail($details))->delay($when));
     }
 
