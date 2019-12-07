@@ -48,8 +48,9 @@
                             <div class="col-sm-2 offset-xl-1">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p class="text text-black-50" style="margin-top: 10px; width: 180px">
-                                            Giá: {{number_format($house->price)}} Đồng</p>
+                                        <p class="text text-black-50"
+                                           style="margin-top: 10px; width: 180px; font-weight: bold">
+                                            Giá: {{number_format($house->price)}} Đồng/ngày</p>
 
                                     </div>
                                     <div class="col-md-12">
@@ -81,7 +82,7 @@
                         </div>
                         <h3 class="sl-sp-title">Mô tả</h3>
                         <div class="description">
-                            <p>{{$house->description}}</p>
+                            {{$house->description}}
                         </div>
 
                         <h3 class="sl-sp-title">Nhận xét </h3>
@@ -89,28 +90,29 @@
 
                             <div class="container">
                                 @if((Auth::user()->id)!=$house->user_id)
-                                <form method="POST" id="comment_form">
-                                    <input type="hidden" id="house_id" name="house_id" value="{{$house->id}}">
-                                    <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}">
+                                    <form method="POST" id="comment_form">
+                                        <input type="hidden" id="house_id" name="house_id" value="{{$house->id}}">
+                                        <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id}}">
 
-                                    <div class="form-group">
-                                        <div class="rating">
-                                            <input id="input-1" name="rate" class="rating rating-loading"
-                                                   data-min="0"
-                                                   data-max="5" data-step="1" data-size="xs"
-                                                   value="{{ $house->userAverageRating }}">
-                                            <input type="hidden" id="id-house-rating" name="id" required=""
-                                                   value="{{ $house->id }}">
+                                        <div class="form-group">
+                                            <div class="rating">
+                                                <input id="input-1" name="rate" class="rating rating-loading"
+                                                       data-min="0"
+                                                       data-max="5" data-step="1" data-size="xs"
+                                                       value="{{ $house->userAverageRating }}">
+                                                <input type="hidden" id="id-house-rating" name="id" required=""
+                                                       value="{{ $house->id }}">
+                                            </div>
+                                            <textarea name="body" id="body" class="form-control"
+                                                      placeholder="Enter Comment"
+                                                      rows="5"></textarea>
                                         </div>
-                                        <textarea name="body" id="body" class="form-control" placeholder="Enter Comment"
-                                                  rows="5"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="hidden" name="comment_id" id="comment_id" value="0"/>
-                                        <input type="submit" name="submit" id="submit" class="btn btn-info"
-                                               value="Bình luận"/>
-                                    </div>
-                                </form>
+                                        <div class="form-group">
+                                            <input type="hidden" name="comment_id" id="comment_id" value="0"/>
+                                            <input type="submit" name="submit" id="submit" class="btn btn-info"
+                                                   value="Bình luận"/>
+                                        </div>
+                                    </form>
                                 @endif
                                 <span id="comment_message"></span>
                                 <br/>
@@ -119,12 +121,12 @@
                             </div>
                         </div>
                         <hr>
-
                         <h3 class="sl-sp-title bd-no">Vị trí</h3>
-                        <div id="map" style="width:500px;height:500px;" class="img-fluid">
-                            <iframe src="{{$house->map}}" width="550" height="450" frameborder="0" style="border:0"
+                        <div>
+                            <iframe src="{{$house->map}}" width="690" height="550" frameborder="0" style="border:0"
                                     allowfullscreen></iframe>
                         </div>
+
                     </div>
                 </div>
                 <!-- sidebar -->
@@ -142,13 +144,14 @@
                         </div>
                     </div>
                     <div class="related-properties">
-                        <h2>Related Property</h2>
+                        <h2>Căn hộ tương tự</h2>
                         @foreach($categories as $category)
                             <div class="rp-item">
                                 <div class="rp-pic set-bg"
                                      style="background-image: url('{{asset('storage/images/'.(json_decode($house->image))[0])}}');"
                                      data-setbg="{{asset('storage/images/'.(json_decode($house->image))[0])}}">
-                                    <div class="sale-notic">{{($category->status == 1 ? 'Cho thuê' : 'Đang sửa chữa' )}}</div>
+                                    <div
+                                        class="sale-notic">{{($category->status == 1 ? 'Cho thuê' : 'Đang sửa chữa' )}}</div>
                                 </div>
                                 <div class="rp-info">
                                     <h5>{{$category->category->name}}</h5>
@@ -387,7 +390,6 @@
                     } else {
                         $('#display_comment').html(data);
                     }
-
 
 
                 }

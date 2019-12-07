@@ -14,10 +14,10 @@ use App\User;
 use Illuminate\Notifications\Notification;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    //
     protected $order;
     protected $user;
     protected $house;
@@ -57,12 +57,6 @@ class OrderController extends Controller
                 'message' => $e->getMessage()
             ]);
         }
-//        $house = House::findorfail($id);
-//        $owner_id = $house->user_id;
-//        $owner = User::findorfail($owner_id);
-//        $customer = Auth::user();
-//
-//        $owner->notify(new OrderHouse($house, $customer));
     }
 
     public function delete($orderId, Request $request)
@@ -106,19 +100,22 @@ class OrderController extends Controller
 
     public function sendNotificationNewOrder($houseId)
     {
-        $user = $this->user->getUserByHouse($houseId);
+        $house = $this->house->getHouseById($houseId);
+        $houseOwner_id = $house->user_id;
+        $houseOwner = $this->user->getUserById($houseOwner_id);
+        $customer = Auth::user();
         $details = [
             'greeting' => 'Hi House Owner',
             'body' => 'You has new order from websiteHomestay.com',
             'thanks' => 'Thank you for using websiteHomestay.com tuto!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
-            'house' =>  House::where('id', $houseId)->get()[0]->category->name,
+            'house' => House::where('id', $houseId)->get()[0]->category->name,
             'price' => House::where('id', $houseId)->get()[0]->price,
-            'user' =>  $user->name
+            'customer' => $customer->name
         ];
         $when = now()->addSeconds(5);
-        $user->notify((new YouHasNewEmail($details))->delay($when));
+        $houseOwner->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function sendNotificationConfirmOrder($customerId)
@@ -176,6 +173,17 @@ class OrderController extends Controller
                 'data' => $exception->getCode()
             ]);
         }
+
+    }
+
+    public function sendNotification($houseId)
+    {
+        $house = $this->house->getHouseById($houseId);
+        $houseOwner_id = $house->user_id;
+        $houseOwner = $this->user->getUserById($houseOwner_id);
+        $customer = Auth::user();
+        $houseOwner->notify(new OrderHouse($house, $customer));
+
 
     }
 }

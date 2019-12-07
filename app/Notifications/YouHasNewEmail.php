@@ -30,7 +30,7 @@ class YouHasNewEmail extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail','database'];
     }
 
     /**
@@ -59,7 +59,7 @@ class YouHasNewEmail extends Notification implements ShouldQueue
         return [
             //
             'house' => $this->details['house'],
-            'user' => $this->details['user'],
+            'customer' => $this->details['customer'],
             'price' => $this->details['price'],
         ];
     }

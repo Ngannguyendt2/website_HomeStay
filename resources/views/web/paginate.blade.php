@@ -39,8 +39,7 @@
                                     </div>
                                 </div>
                                 <a href="{{route('web.detail', ['id' => $house->id, 'category_id' => $house->category_id])}}"
-                                   class="room-price">{{number_format($house->price)}}
-                                    Đồng/Ngày</a>
+                                   class="room-price">{{number_format($house->price)}} Đồng/Ngày</a>
                             </div>
                         </div>
                     </a>

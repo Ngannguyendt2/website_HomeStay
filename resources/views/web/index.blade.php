@@ -193,6 +193,9 @@
                 </div>
                 <div class="col-lg-3 col-md-6 f-cata">
                     <img src="{{asset('img/feature-cate/4.jpg')}}" alt="">
+
+                    <h5>Nhà ống</h5>
+
                     <h5>Căn hộ Condo</h5>
                 </div>
             </div>
