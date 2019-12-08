@@ -23,32 +23,32 @@ class CustomerController extends Controller
         $this->user = $user;
     }
 
-    public function destroyOrder($orderId,Request $request)
+    public function destroyOrder($orderId, Request $request)
     {
         $order = Order::find($orderId);
         $this->customer->destroyOrder($orderId);
         $reasons = $request->reasons;
         foreach ($reasons as $reason) {
             if ($reason != null) {
-                $this->sendNotificationCancelOrder($order->house_id,$reason);
+                $this->sendNotificationCancelOrder($order->house_id, $reason);
             }
         }
 
         return response()->json([
-            'status'=>'success',
-            'message'=>'Bạn đã hủy thuê nhà '
+            'status' => 'success',
+            'message' => 'Bạn đã hủy thuê nhà '
         ]);
     }
 
-    public function sendNotificationCancelOrder($houseId,$message)
+    public function sendNotificationCancelOrder($houseId, $message)
     {
         $user = $this->user->getUserByHouse($houseId);
-
+        $customer = Auth::user()->name;
         $details = [
-            'greeting' => 'Hi House Owner',
-            'body' => $message,
-            'thanks' => 'Thank you for using websiteHomestay.com tuto!',
-            'actionText' => 'View My Site',
+            'greeting' => 'Xin chào ' . $user->name,
+            'body' => 'Đơn hàng từ '.$customer.' đã bị hủy với lý do ' . $message,
+            'thanks' => 'Cảm ơn bạn đã tin tưởng và lựa chọn chúng tôi!',
+            'actionText' => 'Xem chi tiết ',
             'actionURL' => url('/'),
             'order_id' => 101
         ];

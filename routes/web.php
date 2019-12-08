@@ -38,11 +38,12 @@ Route::prefix('/user')->middleware('auth')->group(function () {
     Route::post('/changePassword', 'UserController@changePassword')->name('user.changePassword');
     Route::get('/updateProfile', 'UserController@edit')->name('user.edit');
     Route::post('/{id}/update', 'UserController@update')->name('user.update');
+    Route::post('/{id}/deleteOrderSoftDelete', 'OrderController@deleteOrderSoftDelete')->name('user.deleteOrderSoftDelete');
     Route::post('/{id}/destroy/order', 'CustomerController@destroyOrder')->name('user.destroyOrder');
     Route::get('/historyRentHouse', 'UserController@historyRentHouse')->name('user.historyRentHouse');
-    Route::get('/historyRentedHouse','UserController@getRentedHouse')->name('user.historyRentedHouse');
-    Route::get('/orderHadCancel','OrderController@getOrderHadCancel')->name('user.orderHadCancel');
-    Route::get('/historyOrder','UserController@getHistoryOrderForAjax')->name('user.historyOrder');
+    Route::get('/historyRentedHouse', 'UserController@getRentedHouse')->name('user.historyRentedHouse');
+    Route::get('/orderHadCancel', 'OrderController@getOrderHadCancel')->name('user.orderHadCancel');
+    Route::get('/historyOrder', 'UserController@getHistoryOrderForAjax')->name('user.historyOrder');
     Route::post('/monthlyIncome', 'UserController@getMonthlyIncome')->name('user.monthlyIncome');
     Route::get('/personalIncome', 'UserController@showPersonalIncome')->name('user.personalIncome');
     Route::prefix('/houses')->group(function () {

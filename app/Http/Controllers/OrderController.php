@@ -11,6 +11,7 @@ use App\Notifications\OrderHouse;
 use App\Notifications\YouHasNewEmail;
 
 use App\User;
+use Auth;
 use Illuminate\Notifications\Notification;
 use App\Order;
 use Illuminate\Http\Request;
@@ -57,12 +58,6 @@ class OrderController extends Controller
                 'message' => $e->getMessage()
             ]);
         }
-//        $house = House::findorfail($id);
-//        $owner_id = $house->user_id;
-//        $owner = User::findorfail($owner_id);
-//        $customer = Auth::user();
-//
-//        $owner->notify(new OrderHouse($house, $customer));
     }
 
     public function delete($orderId, Request $request)
@@ -107,15 +102,16 @@ class OrderController extends Controller
     public function sendNotificationNewOrder($houseId)
     {
         $user = $this->user->getUserByHouse($houseId);
+        $customer = Auth::user()->name;
         $details = [
-            'greeting' => 'Hi House Owner',
-            'body' => 'You has new order from websiteHomestay.com',
-            'thanks' => 'Thank you for using websiteHomestay.com tuto!',
-            'actionText' => 'View My Site',
+            'greeting' => 'Xin chào ' . $user->name,
+            'body' => 'Bạn có đơn hàng mới từ ' . $customer,
+            'thanks' => 'Cảm ơn bạn đã tin tưởng và lựa chọn chúng tôi!',
+            'actionText' => 'Xem chi tiết ',
             'actionURL' => url('/'),
-            'house' =>  House::where('id', $houseId)->get()[0]->category->name,
+            'house' => House::where('id', $houseId)->get()[0]->category->name,
             'price' => House::where('id', $houseId)->get()[0]->price,
-            'user' =>  $user->name
+            'user' => $user->name
         ];
         $when = now()->addSeconds(5);
         $user->notify((new YouHasNewEmail($details))->delay($when));
@@ -123,33 +119,34 @@ class OrderController extends Controller
 
     public function sendNotificationConfirmOrder($customerId)
     {
-        $user = $this->user->getUserByCustomer($customerId);
-
+        $customer = $this->user->getUserByCustomer($customerId);
+        $user = Auth::user()->name;
         $details = [
-            'greeting' => 'Hi Customer',
-            'body' => 'Your order has been confirmed from websiteHomestay.com',
-            'thanks' => 'Thank you for using websiteHomestay.com tuto!',
-            'actionText' => 'View My Site',
+            'greeting' => 'Xin chào ' . $customer->name,
+            'body' => 'Đơn hàng của bạn đã được chủ nhà ' . $user . 'xác nhận ',
+            'thanks' => 'Cảm ơn bạn đã tin tưởng và lựa chọn sự giới thiệu từ chúng tôi! ',
+            'actionText' => 'Xem chi tiết ',
             'actionURL' => url('/'),
-            'user' => $user->name
+            'user' => $customer->name
         ];
         $when = now()->addSeconds(5);
-        $user->notify((new YouHasNewEmail($details))->delay($when));
+        $customer->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function sendNotificationCancelOrder($customerId, $message)
     {
-        $user = $this->user->getUserByCustomer($customerId);
+        $customer = $this->user->getUserByCustomer($customerId);
+        $user = Auth::user()->name;
         $details = [
-            'greeting' => 'Hi Customer',
-            'body' => $message,
-            'thanks' => 'Thank you for using websiteHomestay.com tuto!',
-            'actionText' => 'View My Site',
+            'greeting' => 'Xin chào ' . $customer->name,
+            'body' => 'Đơn hàng của bạn đã bị chủ nhà ' . $user . ' hủy với lý do ' . $message,
+            'thanks' => 'Cảm ơn bạn đã tin tưởng và lựa chọn sự giới thiệu từ chúng tôi!',
+            'actionText' => 'Xem chi tiết ',
             'actionURL' => url('/'),
-            'user' => $user->name
+            'user' => $customer->name
         ];
         $when = now()->addSeconds(5);
-        $user->notify((new YouHasNewEmail($details))->delay($when));
+        $customer->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function getOrderHadCancel()
@@ -177,5 +174,23 @@ class OrderController extends Controller
             ]);
         }
 
+    }
+
+    public function deleteOrderSoftDelete($id)
+    {
+        try {
+            $order = $this->order->deleteOrderSoftDelete($id);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'thành công',
+                'data' => $order
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'lỗi rồi ',
+                'data' => $exception->getCode()
+            ]);
+        }
     }
 }

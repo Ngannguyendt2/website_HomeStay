@@ -200,7 +200,7 @@ class UserService implements UserServiceInterface
 
     public function getDateOfOrder($request)
     {
-        $orders = $this->orderRepo->getOrderByUser($this->getStartDate($request), $this->getEndDate($request, $this->getAreDate($request)));
+//        $orders = $this->orderRepo->getOrderByUser($this->getStartDate($request), $this->getEndDate($request, $this->getAreDate($request)));
         $orderOfDay = [];
         for ($i = 1; $i <= $this->getAreDate($request) + 1; $i++) {
             array_push($orderOfDay, $i);
@@ -220,7 +220,7 @@ class UserService implements UserServiceInterface
 
             for ($i = $count; $i <= $this->getDateOfOrder($request); $i++) {
                 if ($i == $date->day) {
-                    array_push($moneyOfDate, $order->totalPrice);
+                    array_push($moneyOfDate, $order->totalPrice/1000);
                     $count ++;
                     break;
 

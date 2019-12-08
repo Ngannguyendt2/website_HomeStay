@@ -35,12 +35,13 @@ class OrderRepository extends RepositoryEloquent implements OrderRepositoryInter
     public function getOrderByUser($startDate, $endDate)
     {
         // TODO: Implement getOrderByUser() method.
+
         $orders = DB::table('users')->join('houses', 'users.id', '=', 'houses.user_id')
             ->join('orders', 'houses.id', '=', 'orders.house_id')
             ->where('orders.checkin', '<=', $endDate)
             ->where('orders.checkout', '>=', $startDate)
             ->where('orders.checkout', '<=', $endDate)
-            ->where('orders.deleted_at','=',null)
+            ->where('orders.deleted_at', '=', null)
             ->where('users.id', '=', Auth::user()->id)->orderBy('orders.checkout', 'asc')->get();
         return $orders;
     }
@@ -49,5 +50,11 @@ class OrderRepository extends RepositoryEloquent implements OrderRepositoryInter
     {
         // TODO: Implement getOrderHadCancel() method.
         return Order::onlyTrashed()->get();
+    }
+
+    public function deleteOrderSoftDelete($object)
+    {
+        // TODO: Implement deleteOrderSoftDelete() method.
+        $object->forceDelete();
     }
 }
