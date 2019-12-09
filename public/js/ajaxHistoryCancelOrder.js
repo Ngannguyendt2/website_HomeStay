@@ -11,7 +11,7 @@ $(document).ready(function () {
                     for (let i = 0; i <= result.data.length; i++) {
                         let html = '<tr id="historyRentHouse"><td>' + +(i + 1) + '</td><td>' + result.data[i].house.category.name + '</td><td>' + result.data[i].house.ward.name + '-' +
                             '' + result.data[i].house.district.name + '-' + result.data[i].house.province.name + '</td><td>' + result.data[i].checkin + '</td><td>' + result.data[i].checkout + '</td>' +
-                            '<td>' + result.data[i].totalPrice + '</td></tr>';
+                            '<td>' + result.data[i].totalPrice + '</td><td><a href="http://localhost:8000/user/'+result.data[i].id+'/deleteOrderSoftDelete" class="fa fa-trash btn btn-danger cancelOrder"></a></td></tr>';
                         $('#rentedHouse').append(html);
                     }
 
@@ -25,4 +25,5 @@ $(document).ready(function () {
             }
         })
     })
+
 });

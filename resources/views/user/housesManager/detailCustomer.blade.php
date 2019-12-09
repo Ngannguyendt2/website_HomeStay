@@ -138,10 +138,10 @@
                             @csrf
                             <div class="form-group has-feedback">
                                 <input type="checkbox" name="reasons[]" id="reasons[]"
-                                       value="The house is in the process of repairing"> Nhà đang trong quá trình sửa
+                                       value="Nhà đang trong quá trình sửa chữa "> Nhà đang trong quá trình sửa
                                 chữa <br>
                                 <input type="checkbox" name="reasons[]" id="reasons[]"
-                                       value="Has transferred ownership to others"> Đã bàn giao quyền sở hữu cho người
+                                       value="Đã bàn giao quyền sở hữu cho người khác "> Đã bàn giao quyền sở hữu cho người
                                 khác
                                 <br>
                                 <label>Lý do khác </label>

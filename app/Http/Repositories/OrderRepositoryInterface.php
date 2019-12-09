@@ -13,4 +13,6 @@ interface OrderRepositoryInterface extends RepositoryInterface
     public function getOrderByUser($startDate, $endDate);
 
     public function getOrderHadCancel();
+
+    public function deleteOrderSoftDelete($id);
 }

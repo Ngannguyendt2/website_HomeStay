@@ -64,38 +64,45 @@ nd -->
 <!-- Breadcrumb -->
 <div class="container">
     <div class="container">
-        <form method="post" id="formCheckDate">
-            @csrf
-            <div class="row">
-
-                <div class="col-md-4">
-                    <b>Chọn tháng bạn muốn kiểm tra </b>
-                </div>
-                <div class="col-md-3">
-                    <input type="month" name="month" id="month" class="form-control">
-                </div>
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-primary" id="submitCheckDate">Xác nhận</button>
-                </div>
-
-
-            </div>
-        </form>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-5">
+                <form method="post" id="formCheckDate">
+                    @csrf
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <b>Chọn tháng </b>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="month" name="month" id="month" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" id="submitCheckDate">Xác nhận</button>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;margin-top: 50px" id="showMoneyTotal">
+                        <h6>Tổng thu nhập tháng (VND):</h6>
+                        <h6><b id="totalMoney" class="text text-center"></b></h6>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-7">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Thu nhập/ngày (VND)</div>
+                    <div class="panel-heading">Thu nhập/ngày (nghìn đồng )</div>
                     <div class="panel-body">
-                        <canvas id="line-chart" width="800" height="450"></canvas>
+                        <canvas id="line-chart"  style="width: 500px;height: 300px"></canvas>
                     </div>
                 </div>
             </div>
         </div>
+
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-7>--}}
+{{--              --}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
-    <div class="row" style="display: none;margin-top: 50px" id="showMoneyTotal">
-        <h5>Tổng thu nhập tháng (VND):</h5>
-        <h5><b id="totalMoney" class="text text-center"></b></h5>
-    </div>
+
 
 </div>
 @include('layouts.footer')

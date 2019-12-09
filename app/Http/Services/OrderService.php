@@ -27,6 +27,7 @@ class OrderService implements OrderServiceInterface
     public function create($request, $houseId)
     {
         // TODO: Implement order() method.
+
         $order = new Order();
         $order->checkin = $this->getDateCheckinFromForm($request);
         $order->checkout = $this->getDateCheckoutFromForm($request);
@@ -51,6 +52,7 @@ class OrderService implements OrderServiceInterface
 
     public function checkEmailCustomer($request)
     {
+
         $customers = $this->customer->getAll();
         if (count($customers) != 0) {
             foreach ($customers as $customer) {
@@ -58,7 +60,6 @@ class OrderService implements OrderServiceInterface
                     if ($customer->user_id == Auth::user()->id) {
                         return $customer;
                     }
-
                 } else {
                     $customer = new Customer;
                     $customer->name = Auth::user()->name;
@@ -129,16 +130,25 @@ class OrderService implements OrderServiceInterface
         return $this->orderRepo->getOrderByHouse($houseId);
     }
 
-    public function getOrderByUser()
-    {
-        // TODO: Implement getOrderByUser() method.
-        return $this->orderRepo->getOrderByUser();
-    }
+//    public function getOrderByUser()
+//    {
+//        // TODO: Implement getOrderByUser() method.
+//        return $this->orderRepo->getOrderByUser();
+//    }
 
     public function getOrderHadCancel()
     {
         // TODO: Implement getOrderHadCancel() method.
 
         return $this->orderRepo->getOrderHadCancel();
+    }
+
+    public function deleteOrderSoftDelete($id)
+    {
+        // TODO: Implement deleteOrderSoftDelete() method.
+
+
+        $this->orderRepo->deleteOrderSoftDelete($id);
+
     }
 }

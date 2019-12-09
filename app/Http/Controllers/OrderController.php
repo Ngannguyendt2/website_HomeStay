@@ -11,10 +11,11 @@ use App\Notifications\OrderHouse;
 use App\Notifications\YouHasNewEmail;
 
 use App\User;
+use Auth;
 use Illuminate\Notifications\Notification;
 use App\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 class OrderController extends Controller
 {
@@ -100,18 +101,20 @@ class OrderController extends Controller
 
     public function sendNotificationNewOrder($houseId)
     {
+        $user = $this->user->getUserByHouse($houseId);
         $house = $this->house->getHouseById($houseId);
         $houseOwner_id = $house->user_id;
         $houseOwner = $this->user->getUserById($houseOwner_id);
         $customer = Auth::user();
         $details = [
-            'greeting' => 'Hi House Owner',
-            'body' => 'You has new order from websiteHomestay.com',
-            'thanks' => 'Thank you for using websiteHomestay.com tuto!',
-            'actionText' => 'View My Site',
+            'greeting' => 'Xin chào ' . $user->name,
+            'body' => 'Bạn có đơn hàng mới từ ' . $customer->name,
+            'thanks' => 'Cảm ơn bạn đã tin tưởng và lựa chọn chúng tôi!',
+            'actionText' => 'Xem chi tiết ',
             'actionURL' => url('/'),
             'house' => House::where('id', $houseId)->get()[0]->category->name,
             'price' => House::where('id', $houseId)->get()[0]->price,
+//            'user' => $user->name
             'customer' => $customer->name
         ];
         $when = now()->addSeconds(5);
@@ -120,33 +123,34 @@ class OrderController extends Controller
 
     public function sendNotificationConfirmOrder($customerId)
     {
-        $user = $this->user->getUserByCustomer($customerId);
-
+        $customer = $this->user->getUserByCustomer($customerId);
+        $user = Auth::user()->name;
         $details = [
-            'greeting' => 'Hi Customer',
-            'body' => 'Your order has been confirmed from websiteHomestay.com',
-            'thanks' => 'Thank you for using websiteHomestay.com tuto!',
-            'actionText' => 'View My Site',
+            'greeting' => 'Xin chào ' . $customer->name,
+            'body' => 'Đơn hàng của bạn đã được chủ nhà ' . $user . 'xác nhận ',
+            'thanks' => 'Cảm ơn bạn đã tin tưởng và lựa chọn sự giới thiệu từ chúng tôi! ',
+            'actionText' => 'Xem chi tiết ',
             'actionURL' => url('/'),
-            'user' => $user->name
+            'user' => $customer->name
         ];
         $when = now()->addSeconds(5);
-        $user->notify((new YouHasNewEmail($details))->delay($when));
+        $customer->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function sendNotificationCancelOrder($customerId, $message)
     {
-        $user = $this->user->getUserByCustomer($customerId);
+        $customer = $this->user->getUserByCustomer($customerId);
+        $user = Auth::user()->name;
         $details = [
-            'greeting' => 'Hi Customer',
-            'body' => $message,
-            'thanks' => 'Thank you for using websiteHomestay.com tuto!',
-            'actionText' => 'View My Site',
+            'greeting' => 'Xin chào ' . $customer->name,
+            'body' => 'Đơn hàng của bạn đã bị chủ nhà ' . $user . ' hủy với lý do ' . $message,
+            'thanks' => 'Cảm ơn bạn đã tin tưởng và lựa chọn sự giới thiệu từ chúng tôi!',
+            'actionText' => 'Xem chi tiết ',
             'actionURL' => url('/'),
-            'user' => $user->name
+            'user' => $customer->name
         ];
         $when = now()->addSeconds(5);
-        $user->notify((new YouHasNewEmail($details))->delay($when));
+        $customer->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function getOrderHadCancel()
@@ -176,14 +180,10 @@ class OrderController extends Controller
 
     }
 
-    public function sendNotification($houseId)
+    public function deleteOrderSoftDelete($id)
     {
-        $house = $this->house->getHouseById($houseId);
-        $houseOwner_id = $house->user_id;
-        $houseOwner = $this->user->getUserById($houseOwner_id);
-        $customer = Auth::user();
-        $houseOwner->notify(new OrderHouse($house, $customer));
 
-
+        $this->order->deleteOrderSoftDelete($id);
+       return redirect()->route('user.profile');
     }
 }

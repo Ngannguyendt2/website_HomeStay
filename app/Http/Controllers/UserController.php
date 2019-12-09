@@ -95,6 +95,7 @@ class UserController extends Controller
 
     public function getHistoryOrderForAjax()
     {
+
         $orders = $this->profileService->historyRentHouse();
         foreach ($orders as $order) {
             $order->house->category;
@@ -148,7 +149,6 @@ class UserController extends Controller
         $totalMoney = $this->profileService->getMonthlyIncome($request);
         $orders = $this->profileService->getDateOfOrder($request);
         $moneyDay = $this->profileService->getMoneyOfOrder($request);
-
         $money = number_format($totalMoney);
         return response()->json([
             'status' => 'success',
