@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-
 Route::get('/category', 'HomeStayController@category')->name('web.category');
 Route::get('/about_us', 'HomeStayController@aboutUs')->name('web.about_us');
 Route::get('/contact', 'HomeStayController@contact')->name('web.contact');

@@ -46,6 +46,7 @@
                             <th>#</th>
                             <th>Loại nhà</th>
                             <th>Địa chỉ</th>
+                            <th>Email liên hệ</th>
                             <th>Ngày thuê dự kiến</th>
                             <th>Ngày trả dự kiến</th>
                             <th>Tổng số tiền(VNĐ)</th>
@@ -66,6 +67,7 @@
                                     <td>{{$order->house->category->name}}</td>
                                     <td>{{$order->house->ward->name}} - {{$order->house->district->name}}
                                         - {{$order->house->province->name}}</td>
+                                    <td>{{$order->house->user->email}}</td>
                                     <td>{{$order->checkin}}</td>
                                     <td>{{$order->checkout}}</td>
                                     <td>{{number_format($order->totalPrice)}}</td>
