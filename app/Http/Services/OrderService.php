@@ -146,8 +146,9 @@ class OrderService implements OrderServiceInterface
     public function deleteOrderSoftDelete($id)
     {
         // TODO: Implement deleteOrderSoftDelete() method.
-        $order=$this->orderRepo->getById($id);
-        $this->orderRepo->deleteOrderSoftDelete($order);
-        return $order;
+
+
+        $this->orderRepo->deleteOrderSoftDelete($id);
+
     }
 }

@@ -95,6 +95,7 @@ class UserController extends Controller
 
     public function getHistoryOrderForAjax()
     {
+
         $orders = $this->profileService->historyRentHouse();
         foreach ($orders as $order) {
             $order->house->category;

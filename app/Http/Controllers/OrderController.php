@@ -16,9 +16,9 @@ use Illuminate\Notifications\Notification;
 use App\Order;
 use Illuminate\Http\Request;
 
+
 class OrderController extends Controller
 {
-    //
     protected $order;
     protected $user;
     protected $house;
@@ -102,19 +102,23 @@ class OrderController extends Controller
     public function sendNotificationNewOrder($houseId)
     {
         $user = $this->user->getUserByHouse($houseId);
-        $customer = Auth::user()->name;
+        $house = $this->house->getHouseById($houseId);
+        $houseOwner_id = $house->user_id;
+        $houseOwner = $this->user->getUserById($houseOwner_id);
+        $customer = Auth::user();
         $details = [
             'greeting' => 'Xin chào ' . $user->name,
-            'body' => 'Bạn có đơn hàng mới từ ' . $customer,
+            'body' => 'Bạn có đơn hàng mới từ ' . $customer->name,
             'thanks' => 'Cảm ơn bạn đã tin tưởng và lựa chọn chúng tôi!',
             'actionText' => 'Xem chi tiết ',
             'actionURL' => url('/'),
             'house' => House::where('id', $houseId)->get()[0]->category->name,
             'price' => House::where('id', $houseId)->get()[0]->price,
-            'user' => $user->name
+//            'user' => $user->name
+            'customer' => $customer->name
         ];
         $when = now()->addSeconds(5);
-        $user->notify((new YouHasNewEmail($details))->delay($when));
+        $houseOwner->notify((new YouHasNewEmail($details))->delay($when));
     }
 
     public function sendNotificationConfirmOrder($customerId)
@@ -178,19 +182,8 @@ class OrderController extends Controller
 
     public function deleteOrderSoftDelete($id)
     {
-        try {
-            $order = $this->order->deleteOrderSoftDelete($id);
-            return response()->json([
-                'status' => 'success',
-                'message' => 'thành công',
-                'data' => $order
-            ]);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'lỗi rồi ',
-                'data' => $exception->getCode()
-            ]);
-        }
+
+        $this->order->deleteOrderSoftDelete($id);
+       return redirect()->route('user.profile');
     }
 }

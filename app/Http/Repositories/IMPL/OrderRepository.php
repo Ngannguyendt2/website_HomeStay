@@ -52,9 +52,12 @@ class OrderRepository extends RepositoryEloquent implements OrderRepositoryInter
         return Order::onlyTrashed()->get();
     }
 
-    public function deleteOrderSoftDelete($object)
+    public function deleteOrderSoftDelete($id)
     {
         // TODO: Implement deleteOrderSoftDelete() method.
-        $object->forceDelete();
+        $order = Order::onlyTrashed()
+            ->where('id', $id)
+            ->first();
+        $order->forceDelete();
     }
 }

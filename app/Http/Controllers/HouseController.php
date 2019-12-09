@@ -51,6 +51,10 @@ class HouseController extends Controller
 
     public function housesManager()
     {
+        foreach (\Illuminate\Support\Facades\Auth::user()->notifications as $notification) {
+            $notification->markAsRead();
+        }
+
         $id = Auth::user()->id;
         $houseOwner = House::where('user_id', $id)->paginate(5);
         $array = [];

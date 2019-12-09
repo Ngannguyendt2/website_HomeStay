@@ -14,5 +14,5 @@ interface OrderRepositoryInterface extends RepositoryInterface
 
     public function getOrderHadCancel();
 
-    public function deleteOrderSoftDelete($object);
+    public function deleteOrderSoftDelete($id);
 }
